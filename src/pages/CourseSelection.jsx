@@ -46,6 +46,180 @@ export default function CourseSelection() {
         </p>
       </div>
 
+      {/* Course Selection for 11th-12th Science */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 mb-6">Course Selection: 11th–12th Science</h2>
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          {/* Regular Science Subjects */}
+          <div className="card p-6">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4">Regular Science Subjects</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b-2 border-brand/30">
+                    <th className="text-left py-2 px-3 font-semibold text-slate-900">Subject</th>
+                    <th className="text-right py-2 px-3 font-semibold text-slate-900">Marks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-slate-200">
+                    <td className="py-2 px-3 text-slate-700">English</td>
+                    <td className="py-2 px-3 text-right text-slate-700">100</td>
+                  </tr>
+                  <tr className="border-b border-slate-200">
+                    <td className="py-2 px-3 text-slate-700">Hindi/Marathi/IT (Any 1)</td>
+                    <td className="py-2 px-3 text-right text-slate-700">100</td>
+                  </tr>
+                  <tr className="border-b border-slate-200">
+                    <td className="py-2 px-3 text-slate-700">Physics</td>
+                    <td className="py-2 px-3 text-right text-slate-700">100</td>
+                  </tr>
+                  <tr className="border-b border-slate-200">
+                    <td className="py-2 px-3 text-slate-700">Chemistry</td>
+                    <td className="py-2 px-3 text-right text-slate-700">100</td>
+                  </tr>
+                  <tr className="border-b border-slate-200">
+                    <td className="py-2 px-3 text-slate-700">Maths</td>
+                    <td className="py-2 px-3 text-right text-slate-700">100</td>
+                  </tr>
+                  <tr className="border-b border-slate-200">
+                    <td className="py-2 px-3 text-slate-700">CS-1 or Elec-1 (Any 1)</td>
+                    <td className="py-2 px-3 text-right text-slate-700">100</td>
+                  </tr>
+                  <tr className="bg-brand/10 font-semibold">
+                    <td className="py-2 px-3 text-slate-900">Total</td>
+                    <td className="py-2 px-3 text-right text-slate-900">600</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Bifocal Subjects */}
+          <div className="card p-6">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4">Bifocal Subjects</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b-2 border-brand/30">
+                    <th className="text-left py-2 px-3 font-semibold text-slate-900">Subject</th>
+                    <th className="text-right py-2 px-3 font-semibold text-slate-900">Marks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-slate-200">
+                    <td className="py-2 px-3 text-slate-700">English</td>
+                    <td className="py-2 px-3 text-right text-slate-700">100</td>
+                  </tr>
+                  <tr className="border-b border-slate-200">
+                    <td className="py-2 px-3 text-slate-700">Physics</td>
+                    <td className="py-2 px-3 text-right text-slate-700">100</td>
+                  </tr>
+                  <tr className="border-b border-slate-200">
+                    <td className="py-2 px-3 text-slate-700">Chemistry</td>
+                    <td className="py-2 px-3 text-right text-slate-700">100</td>
+                  </tr>
+                  <tr className="border-b border-slate-200">
+                    <td className="py-2 px-3 text-slate-700">Maths/Biology/Geography (Any 1)</td>
+                    <td className="py-2 px-3 text-right text-slate-700">100</td>
+                  </tr>
+                  <tr className="border-b border-slate-200">
+                    <td className="py-2 px-3 text-slate-700">CS-2 or Elec-2 (Any 1)</td>
+                    <td className="py-2 px-3 text-right text-slate-700">100</td>
+                  </tr>
+                  <tr className="border-b border-slate-200">
+                    <td className="py-2 px-3 text-slate-700">Maths/Biology/Geography (Any 1)</td>
+                    <td className="py-2 px-3 text-right text-slate-700">100</td>
+                  </tr>
+                  <tr className="bg-brand/10 font-semibold">
+                    <td className="py-2 px-3 text-slate-900">Total</td>
+                    <td className="py-2 px-3 text-right text-slate-900">600</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Entrance Exams after 12th */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 mb-6">Lists of Entrance Exams after 12th</h2>
+        <div className="card p-6">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b-2 border-brand/30">
+                  <th className="text-left py-3 px-4 font-semibold text-slate-900">Stream</th>
+                  <th className="text-left py-3 px-4 font-semibold text-slate-900">Entrance Exams</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-slate-200">
+                  <td className="py-3 px-4 font-medium text-slate-900">Engineering</td>
+                  <td className="py-3 px-4 text-slate-700">MHT-CET (PCM), JEE(M) & JEE(A), BITSAT, VITEEE</td>
+                </tr>
+                <tr className="border-b border-slate-200">
+                  <td className="py-3 px-4 font-medium text-slate-900">Medical</td>
+                  <td className="py-3 px-4 text-slate-700">NEET(UG)</td>
+                </tr>
+                <tr className="border-b border-slate-200">
+                  <td className="py-3 px-4 font-medium text-slate-900">Paramedical</td>
+                  <td className="py-3 px-4 text-slate-700">MHT-CET (PCB)</td>
+                </tr>
+                <tr className="border-b border-slate-200">
+                  <td className="py-3 px-4 font-medium text-slate-900">Pure Sciences</td>
+                  <td className="py-3 px-4 text-slate-700">IAT (IISER), IISc, CMI, SRM</td>
+                </tr>
+                <tr className="border-b border-slate-200">
+                  <td className="py-3 px-4 font-medium text-slate-900">Architecture/Design</td>
+                  <td className="py-3 px-4 text-slate-700">NATA, JEE(M) Paper 2, UID, NID</td>
+                </tr>
+                <tr className="border-b border-slate-200">
+                  <td className="py-3 px-4 font-medium text-slate-900">Defence</td>
+                  <td className="py-3 px-4 text-slate-700">NDA Entrance Exam</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Average Self Study Hours */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 mb-6">Average Self Study Hours of Toppers (According to MSA Survey)</h2>
+        <div className="card p-6">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b-2 border-brand/30">
+                  <th className="text-left py-3 px-4 font-semibold text-slate-900">Exam</th>
+                  <th className="text-center py-3 px-4 font-semibold text-slate-900">In Class XI</th>
+                  <th className="text-center py-3 px-4 font-semibold text-slate-900">In Class XII</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-slate-200">
+                  <td className="py-3 px-4 font-medium text-slate-900">MHT-CET</td>
+                  <td className="py-3 px-4 text-center text-slate-700">4–5 hrs Daily</td>
+                  <td className="py-3 px-4 text-center text-slate-700">6–8 hrs Daily</td>
+                </tr>
+                <tr className="border-b border-slate-200">
+                  <td className="py-3 px-4 font-medium text-slate-900">IIT–JEE</td>
+                  <td className="py-3 px-4 text-center text-slate-700">7–8 hrs Daily</td>
+                  <td className="py-3 px-4 text-center text-slate-700">9–10 hrs Daily</td>
+                </tr>
+                <tr className="border-b border-slate-200">
+                  <td className="py-3 px-4 font-medium text-slate-900">NEET</td>
+                  <td className="py-3 px-4 text-center text-slate-700">7–8 hrs Daily</td>
+                  <td className="py-3 px-4 text-center text-slate-700">9–10 hrs Daily</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {courses.map((course, idx) => (
           <div key={idx} className="card p-6 hover:-translate-y-2 transition-all duration-300">

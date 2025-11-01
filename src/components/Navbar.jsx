@@ -83,7 +83,6 @@ export default function Navbar() {
             { label: 'Our Faculty', to: '/faculty' },
             { label: 'Results', to: '/results' },
             { label: 'Testimonials', to: '/testimonials' },
-            { label: 'Directors Message', to: '/directors-message' },
           ]} />
           <Dropdown label="Activities" items={[
             { label: 'Performance', to: '/activities/performance' },
@@ -93,6 +92,7 @@ export default function Navbar() {
             { label: 'On Demand Courses', to: '/activities/on-demand-courses' },
             { label: 'Felicitation', to: '/activities/felicitation' },
           ]} />
+          <NavLink to="/directors-message" className={({isActive}) => `nav-link ${isActive ? 'text-slate-900' : ''}`}>Directors Message</NavLink>
           <NavLink to="/about" className={({isActive}) => `nav-link ${isActive ? 'text-slate-900' : ''}`}>About Us</NavLink>
         </nav>
 
@@ -137,7 +137,6 @@ export default function Navbar() {
                 <Link to="/faculty" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Our Faculty</Link>
                 <Link to="/results" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Results</Link>
                 <Link to="/testimonials" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Testimonials</Link>
-                <Link to="/directors-message" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Directors Message</Link>
               </div>
             )}
 
@@ -156,6 +155,7 @@ export default function Navbar() {
               </div>
             )}
 
+            <NavLink to="/directors-message" className={({isActive}) => `block px-2 py-2 rounded-lg ${isActive ? 'bg-brand/20 text-slate-900' : 'hover:bg-brand/10'}`} onClick={() => setMobileOpen(false)}>Directors Message</NavLink>
             <NavLink to="/about" className={({isActive}) => `block px-2 py-2 rounded-lg ${isActive ? 'bg-brand/20 text-slate-900' : 'hover:bg-brand/10'}`} onClick={() => setMobileOpen(false)}>About Us</NavLink>
 
             <div className="pt-3 flex flex-col gap-2">

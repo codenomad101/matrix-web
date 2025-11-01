@@ -1,99 +1,185 @@
+import { useEffect, useState } from 'react'
+
 export default function OnDemandCourses() {
-  const courses = [
-    {
-      title: 'Crash Course for IIT-JEE',
-      duration: '3-4 Months',
-      target: 'Class 12 & Droppers',
-      description: 'Intensive preparation course for students appearing in upcoming IIT-JEE exams',
-      highlights: ['Fast-paced syllabus completion', 'Daily practice tests', 'Expert doubt solving', 'Exam strategy']
-    },
-    {
-      title: 'NEET Crash Course',
-      duration: '3-4 Months',
-      target: 'Class 12 & Droppers',
-      description: 'Comprehensive crash course focusing on all three subjects for NEET preparation',
-      highlights: ['Complete NCERT coverage', 'Biology special focus', 'Regular mock tests', 'Performance tracking']
-    },
-    {
-      title: 'MHT-CET Quick Prep',
-      duration: '2-3 Months',
-      target: 'Class 12 Students',
-      description: 'Accelerated preparation program for MHT-CET with focus on speed and accuracy',
-      highlights: ['State board syllabus', 'Previous year papers', 'Speed building', 'Accuracy improvement']
-    },
-    {
-      title: 'Board Exam Preparation',
-      duration: '2-3 Months',
-      target: 'Class 10 & 12',
-      description: 'Focused preparation for board examinations with emphasis on writing and presentation',
-      highlights: ['Syllabus completion', 'Sample papers', 'Writing practice', 'Exam techniques']
-    },
-    {
-      title: 'Doubt Clearing Sessions',
-      duration: 'Flexible',
-      target: 'All Students',
-      description: 'Personalized doubt clearing sessions on specific topics as per student requirement',
-      highlights: ['One-on-one sessions', 'Topic-specific focus', 'Flexible timing', 'Expert guidance']
-    },
-    {
-      title: 'Test Series Program',
-      duration: 'Ongoing',
-      target: 'All Competitive Exam Aspirants',
-      description: 'Comprehensive test series with detailed analysis and performance improvement plans',
-      highlights: ['Regular tests', 'Detailed analysis', 'Weakness identification', 'Improvement plans']
-    },
+  const [visibleIndex, setVisibleIndex] = useState(0)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute('data-index'))
+            setVisibleIndex((prev) => Math.max(prev, index))
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+
+    const elements = document.querySelectorAll('[data-section]')
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
+  const stats = [
+    { year: '2021', students: '2,600', label: 'Students Registered' },
+    { year: '2022', students: '2,700', label: 'Students Registered' },
+    { year: '2023', students: '3,500', label: 'Students Registered (Projected)' },
+    { year: '2024', students: '5,000', label: 'Students Registered (Till Date)' },
+  ]
+
+  const features = [
+    'Flexible learning through recorded lectures',
+    'Easy access to missed offline lectures through the MATRIX APP',
+    'Enhanced preparation and revision opportunities',
+  ]
+
+  const appContent = [
+    { title: 'Complete HSC Syllabus', description: 'Detailed Lectures covering entire syllabus' },
+    { title: 'One Shot Revision', description: 'Quick revision sessions for all topics' },
+    { title: 'Video Solutions', description: 'Video solutions of MCQ Assignments' },
   ]
 
   return (
     <div className="container-content py-10">
-      <div className="text-center mb-10">
-        <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">On Demand Courses</h1>
-        <p className="text-slate-600 text-lg">
-          Flexible courses designed to meet your specific learning needs and schedule
+      {/* Header */}
+      <div className="text-center mb-12" data-section data-index={0}>
+        <div className="inline-block mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-3 bg-gradient-to-r from-brand-dark to-slate-700 bg-clip-text text-transparent">
+            On Demand Courses: On-Demand
+          </h1>
+        </div>
+        <p className="text-slate-600 text-lg max-w-3xl mx-auto">
+          Recorded Lectures - Impulse Batch by MATRIX: Revolutionizing 11th and 12th Std Education
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        {courses.map((course, idx) => (
-          <div key={idx} className="card p-6 hover:-translate-y-2 transition-all duration-300">
-            <div className="mb-4">
-              <h3 className="text-xl font-bold text-slate-900 mb-2">{course.title}</h3>
-              <div className="flex items-center gap-4 text-sm text-slate-600 mb-3">
-                <span className="flex items-center gap-1">
-                  <svg className="w-4 h-4 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  {course.duration}
-                </span>
-                <span>•</span>
-                <span>{course.target}</span>
-              </div>
-              <p className="text-slate-700 text-sm">{course.description}</p>
-            </div>
-
-            <div className="border-t pt-4">
-              <div className="text-sm font-semibold text-slate-900 mb-3">Course Highlights:</div>
-              <ul className="space-y-2">
-                {course.highlights.map((highlight, hIdx) => (
-                  <li key={hIdx} className="text-sm text-slate-700 flex items-start gap-2">
-                    <svg className="w-5 h-5 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span>{highlight}</span>
-                  </li>
-                ))}
-              </ul>
+      {/* Hero Section with Images */}
+      <div className="grid md:grid-cols-2 gap-6 mb-12" data-section data-index={1}>
+        <div className={`transition-all duration-1000 ease-out ${
+          visibleIndex >= 1 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+        }`}>
+          <div className="card rounded-2xl overflow-hidden h-full">
+            <img 
+              src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop" 
+              alt="Educational App Interface with Notes and Questions" 
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.target.src = 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop'
+              }}
+            />
+            <div className="p-6 bg-gradient-to-br from-green-50 to-green-100">
+              <h3 className="text-xl font-bold text-slate-900 mb-2">MATRIX App</h3>
+              <p className="text-slate-700 text-sm">Access recorded lectures, notes, and question solutions anytime</p>
             </div>
           </div>
-        ))}
+        </div>
+        <div className={`transition-all duration-1000 ease-out ${
+          visibleIndex >= 1 ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+        }`} style={{ transitionDelay: '200ms' }}>
+          <div className="card rounded-2xl overflow-hidden h-full">
+            <img 
+              src="/images/audi1.png" 
+              alt="Auditorium" 
+              className="w-full h-full object-cover"
+            />
+            <div className="p-6 bg-gradient-to-br from-brand/20 to-brand-dark/10">
+              <h3 className="text-xl font-bold text-slate-900 mb-2">Our Infrastructure</h3>
+              <p className="text-slate-700 text-sm">State-of-the-art learning facilities</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="rounded-2xl bg-gradient-to-br from-brand/20 to-brand-dark/10 p-8 sm:p-10 border border-brand/30">
+      {/* Main Content Section */}
+      <div className="mb-12" data-section data-index={2}>
+        <div className={`card p-8 md:p-10 mb-8 transition-all duration-1000 ease-out ${
+          visibleIndex >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6 text-center">
+              Impulse Batch by MATRIX: Revolutionizing 11th and 12th Std Education
+            </h2>
+            <p className="text-slate-700 text-lg leading-relaxed mb-6">
+              Impulse Batch, an online platform owned by MATRIX, provides comprehensive recorded lectures covering the entire 12th standard syllabus. Since its inception, the platform has witnessed remarkable growth:
+            </p>
+
+            {/* Growth Statistics */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              {stats.map((stat, idx) => (
+                <div 
+                  key={idx}
+                  className="bg-gradient-to-br from-brand/20 to-brand-dark/10 rounded-xl p-6 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-brand/30"
+                >
+                  <div className="text-3xl md:text-4xl font-extrabold text-brand-dark mb-2">{stat.students}</div>
+                  <div className="text-sm font-semibold text-slate-900 mb-1">{stat.year}</div>
+                  <div className="text-xs text-slate-600">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-slate-700 text-lg leading-relaxed mb-6">
+              Catering specifically to 11th and 12th std Science students in Maharashtra, Impulse Batch addresses the challenges of understanding the vast and complex syllabus. The platform offers:
+            </p>
+
+            {/* Features Grid */}
+            <div className="grid md:grid-cols-3 gap-6">
+              {features.map((feature, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white rounded-xl p-6 border-2 border-brand/20 hover:border-brand-dark hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full bg-brand/20 flex items-center justify-center flex-shrink-0">
+                      <svg className="w-6 h-6 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <p className="text-slate-700 leading-relaxed pt-1">{feature}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* App Content Section */}
+      <div className="mb-12" data-section data-index={3}>
+        <div className={`transition-all duration-1000 ease-out ${
+          visibleIndex >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <div className="rounded-2xl bg-gradient-to-br from-brand/20 via-brand-dark/10 to-brand/20 p-8 md:p-10 border border-brand/30 shadow-xl">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-8 text-center">
+                Content Available on MATRIX APP
+              </h2>
+              <div className="grid md:grid-cols-3 gap-6">
+                {appContent.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-white rounded-xl p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group"
+                  >
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-brand-dark via-brand to-brand-dark flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-2xl text-white font-bold">{idx + 1}</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2 text-center">{item.title}</h3>
+                    <p className="text-slate-600 text-center text-sm">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="rounded-2xl bg-gradient-to-br from-brand/20 via-brand-dark/10 to-brand/20 p-8 md:p-10 border border-brand/30 shadow-xl">
         <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-2xl font-bold text-slate-900 mb-4">Customize Your Learning</h3>
+          <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Ready to Get Started?</h3>
           <p className="text-slate-700 text-lg mb-6">
-            Our on-demand courses offer flexibility to match your schedule and learning pace. 
-            Whether you need intensive preparation or specific topic coverage, we have a solution for you.
+            Join thousands of students who are already benefiting from our comprehensive on-demand courses.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/enquiry" className="btn-primary inline-flex justify-center">
@@ -108,4 +194,3 @@ export default function OnDemandCourses() {
     </div>
   )
 }
-
