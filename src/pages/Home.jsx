@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import HeroSlider from '../components/HeroSlider.jsx'
-import Stats from '../components/Stats.jsx'
 
 const topTestimonials = [
   { 
@@ -36,19 +35,25 @@ export default function Home() {
 
       {/* Top Images Section */}
       <section className="container-content py-4">
+                                      <h2 className="text-4xl font-semibold text-slate-700 py-2">Overview and Features</h2>
+
         <div className="grid md:grid-cols-2 gap-6">
+
           <div className="rounded-2xl overflow-hidden shadow-lg">
+
             <img 
-              src="/images/top1.png" 
+              src="/images/top11.png" 
               alt="Top Achievement 1" 
-              className="w-full h-auto object-contain"
+              className="w-full h-auto object-contain py-2"
             />
           </div>
+          
           <div className="rounded-2xl overflow-hidden shadow-lg">
+
             <img 
-              src="/images/top2.png" 
+              src="/images/top22.png" 
               alt="Top Achievement 2" 
-              className="w-full h-auto object-contain"
+              className="w-full h-auto object-contain  py-2"
             />
           </div>
         </div>
@@ -56,22 +61,20 @@ export default function Home() {
 
       <section className="container-content py-4">
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="card p-6 hover:-translate-y-1 transition-transform duration-300">
-            <h3 className="text-xl font-semibold">Why MSA?</h3>
-            <p className="mt-2 text-slate-600">150+ teachers by choice, curated content, and disciplined guidance for competitive exams.</p>
+          <div className="card bg-white rounded-2xl p-6 hover:-translate-y-1 hover:bg-slate-600 hover:shadow-lg transition-all duration-300 group">
+            <h3 className="text-xl font-semibold text-slate-900 group-hover:text-white transition-colors duration-300">Why MSA?</h3>
+            <p className="mt-2 text-slate-600 group-hover:text-white transition-colors duration-300">150+ teachers by choice, curated content, and disciplined guidance for competitive exams.</p>
           </div>
-          <div className="card p-6 hover:-translate-y-1 transition-transform duration-300">
-            <h3 className="text-xl font-semibold">Programs</h3>
-            <p className="mt-2 text-slate-600">IIT-JEE, MHT-CET, NEET, IISER Foundation, and 8th–12th board prep.</p>
+          <div className="card bg-white rounded-2xl p-6 hover:-translate-y-1 hover:bg-slate-600 hover:shadow-lg transition-all duration-300 group">
+            <h3 className="text-xl font-semibold text-slate-900 group-hover:text-white transition-colors duration-300">Programs</h3>
+            <p className="mt-2 text-slate-600 group-hover:text-white transition-colors duration-300">IIT-JEE, MHT-CET, NEET, IISER Foundation, and 8th–12th board prep.</p>
           </div>
-          <div className="card p-6 hover:-translate-y-1 transition-transform duration-300">
-            <h3 className="text-xl font-semibold">Branches</h3>
-            <p className="mt-2 text-slate-600">8 branches: Pradhikaran, Nigdi, Ravet, Shahunagar, Chinchwad, Wakad, Moshi.</p>
+          <div className="card bg-white rounded-2xl p-6 hover:-translate-y-1 hover:bg-slate-600 hover:shadow-lg transition-all duration-300 group">
+            <h3 className="text-xl font-semibold text-slate-900 group-hover:text-white transition-colors duration-300">Branches</h3>
+            <p className="mt-2 text-slate-600 group-hover:text-white transition-colors duration-300">8 branches: Pradhikaran, Nigdi, Ravet, Shahunagar, Chinchwad, Wakad, Moshi.</p>
           </div>
         </div>
       </section>
-
-      <Stats />
 
       {/* Results Section */}
       <section className="container-content py-6">

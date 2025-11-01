@@ -57,7 +57,6 @@ function Dropdown({ label, items }) {
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [coursesOpen, setCoursesOpen] = useState(false)
   const [academicsOpen, setAcademicsOpen] = useState(false)
   const [activitiesOpen, setActivitiesOpen] = useState(false)
   return (
@@ -79,28 +78,22 @@ export default function Navbar() {
 
         <nav className="hidden md:flex items-center gap-6">
           <NavLink to="/" className={({isActive}) => `nav-link ${isActive ? 'text-slate-900' : ''}`}>Home</NavLink>
-          <Dropdown label="Courses" items={[
-            { label: 'IIT-JEE (Main/Advanced)', to: '/courses#iit' },
-            { label: 'MHT-CET', to: '/courses#mhtcet' },
-            { label: 'NEET', to: '/courses#neet' },
-            { label: 'IISER Foundation', to: '/courses#iiser' },
-            { label: '8th-12th Board', to: '/courses#board' },
-          ]} />
           <Dropdown label="Academics" items={[
+            { label: 'Courses', to: '/courses' },
             { label: 'Our Faculty', to: '/faculty' },
             { label: 'Results', to: '/results' },
             { label: 'Testimonials', to: '/testimonials' },
             { label: 'Directors Message', to: '/directors-message' },
-            { label: 'About Us', to: '/about' },
           ]} />
           <Dropdown label="Activities" items={[
-            { label: 'Performance', to: '/activities#performance' },
-            { label: 'Course Selection', to: '/activities#course-selection' },
-            { label: 'IIT-JEE/NEET Timeline', to: '/activities#iit-neet-timeline' },
-            { label: 'MHT-CET Timeline', to: '/activities#mht-cet-timeline' },
-            { label: 'On Demand Courses', to: '/activities#on-demand-courses' },
-            { label: 'Felicitation', to: '/activities#felicitation' },
+            { label: 'Performance', to: '/activities/performance' },
+            { label: 'Course Selection', to: '/activities/course-selection' },
+            { label: 'IIT-JEE/NEET Timeline', to: '/activities/iit-neet-timeline' },
+            { label: 'MHT-CET Timeline', to: '/activities/mht-cet-timeline' },
+            { label: 'On Demand Courses', to: '/activities/on-demand-courses' },
+            { label: 'Felicitation', to: '/activities/felicitation' },
           ]} />
+          <NavLink to="/about" className={({isActive}) => `nav-link ${isActive ? 'text-slate-900' : ''}`}>About Us</NavLink>
         </nav>
 
         <div className="flex items-center gap-3">
@@ -134,31 +127,17 @@ export default function Navbar() {
           <div className="p-4 flex flex-col gap-2 bg-white">
             <NavLink to="/" className={({isActive}) => `block px-2 py-2 rounded-lg ${isActive ? 'bg-brand/20 text-slate-900' : 'hover:bg-brand/10'}`} onClick={() => setMobileOpen(false)}>Home</NavLink>
 
-            <button className="flex items-center justify-between px-2 py-2 rounded-lg hover:bg-brand/10" onClick={() => setCoursesOpen((v) => !v)}>
-              <span>Courses</span>
-              <span>{coursesOpen ? '−' : '+'}</span>
-            </button>
-            {coursesOpen && (
-              <div className="ml-3 flex flex-col gap-1">
-                <Link to="/courses#iit" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>IIT-JEE (Main/Advanced)</Link>
-                <Link to="/courses#mhtcet" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>MHT-CET</Link>
-                <Link to="/courses#neet" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>NEET</Link>
-                <Link to="/courses#iiser" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>IISER Foundation</Link>
-                <Link to="/courses#board" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>8th-12th Board</Link>
-              </div>
-            )}
-
             <button className="flex items-center justify-between px-2 py-2 rounded-lg hover:bg-brand/10" onClick={() => setAcademicsOpen((v) => !v)}>
               <span>Academics</span>
               <span>{academicsOpen ? '−' : '+'}</span>
             </button>
             {academicsOpen && (
               <div className="ml-3 flex flex-col gap-1">
+                <Link to="/courses" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Courses</Link>
                 <Link to="/faculty" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Our Faculty</Link>
                 <Link to="/results" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Results</Link>
                 <Link to="/testimonials" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Testimonials</Link>
                 <Link to="/directors-message" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Directors Message</Link>
-                <Link to="/about" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>About Us</Link>
               </div>
             )}
 
@@ -168,14 +147,16 @@ export default function Navbar() {
             </button>
             {activitiesOpen && (
               <div className="ml-3 flex flex-col gap-1">
-                <Link to="/activities#performance" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Performance</Link>
-                <Link to="/activities#course-selection" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Course Selection</Link>
-                <Link to="/activities#iit-neet-timeline" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>IIT-JEE/NEET Timeline</Link>
-                <Link to="/activities#mht-cet-timeline" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>MHT-CET Timeline</Link>
-                <Link to="/activities#on-demand-courses" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>On Demand Courses</Link>
-                <Link to="/activities#felicitation" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Felicitation</Link>
+                <Link to="/activities/performance" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Performance</Link>
+                <Link to="/activities/course-selection" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Course Selection</Link>
+                <Link to="/activities/iit-neet-timeline" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>IIT-JEE/NEET Timeline</Link>
+                <Link to="/activities/mht-cet-timeline" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>MHT-CET Timeline</Link>
+                <Link to="/activities/on-demand-courses" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>On Demand Courses</Link>
+                <Link to="/activities/felicitation" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Felicitation</Link>
               </div>
             )}
+
+            <NavLink to="/about" className={({isActive}) => `block px-2 py-2 rounded-lg ${isActive ? 'bg-brand/20 text-slate-900' : 'hover:bg-brand/10'}`} onClick={() => setMobileOpen(false)}>About Us</NavLink>
 
             <div className="pt-3 flex flex-col gap-2">
               <Link to="/enquiry" className="btn-primary inline-flex justify-center" onClick={() => setMobileOpen(false)}>Enquire Now</Link>

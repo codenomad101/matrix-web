@@ -1,0 +1,104 @@
+export default function CourseSelection() {
+  const courses = [
+    {
+      title: 'IIT-JEE (Main/Advanced)',
+      description: 'Comprehensive preparation for India\'s most prestigious engineering entrance exams.',
+      duration: '2-3 Years',
+      target: 'Class 11-12 Students',
+      features: ['Expert faculty', 'Regular mock tests', 'Doubt solving sessions', 'Study material']
+    },
+    {
+      title: 'MHT-CET',
+      description: 'Tailored program for Maharashtra Common Entrance Test for engineering admissions.',
+      duration: '1-2 Years',
+      target: 'Class 12 Students',
+      features: ['State syllabus focus', 'Speed & accuracy training', 'Previous year papers', 'Performance tracking']
+    },
+    {
+      title: 'NEET',
+      description: 'Complete preparation for National Eligibility cum Entrance Test for medical courses.',
+      duration: '2-3 Years',
+      target: 'Class 11-12 Students',
+      features: ['Biology specialization', 'NCERT coverage', '100/100 score guidance', 'Expert mentorship']
+    },
+    {
+      title: 'IISER Foundation',
+      description: 'Foundation program for Indian Institutes of Science Education and Research.',
+      duration: '2-3 Years',
+      target: 'Class 9-10 Students',
+      features: ['Scientific aptitude', 'Research orientation', 'Critical thinking', 'Interview preparation']
+    },
+    {
+      title: '8th-12th Board',
+      description: 'Comprehensive board preparation ensuring excellent academic results.',
+      duration: 'Full Academic Year',
+      target: 'Class 8-12 Students',
+      features: ['Syllabus coverage', 'Regular assessments', 'Writing skills', 'Practical support']
+    },
+  ]
+
+  return (
+    <div className="container-content py-10">
+      <div className="text-center mb-10">
+        <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">Course Selection Guide</h1>
+        <p className="text-slate-600 text-lg">
+          Choose the right course based on your career aspirations and academic goals
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {courses.map((course, idx) => (
+          <div key={idx} className="card p-6 hover:-translate-y-2 transition-all duration-300">
+            <div className="mb-4">
+              <h3 className="text-xl font-bold text-slate-900 mb-2">{course.title}</h3>
+              <p className="text-slate-600 text-sm">{course.description}</p>
+            </div>
+            
+            <div className="space-y-3 mb-4">
+              <div className="flex items-center gap-2 text-sm">
+                <svg className="w-5 h-5 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-slate-700 font-medium">Duration: {course.duration}</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <svg className="w-5 h-5 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <span className="text-slate-700 font-medium">Target: {course.target}</span>
+              </div>
+            </div>
+
+            <div className="border-t pt-4">
+              <div className="text-sm font-semibold text-slate-900 mb-2">Key Features:</div>
+              <ul className="space-y-1">
+                {course.features.map((feature, fIdx) => (
+                  <li key={fIdx} className="text-sm text-slate-600 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-brand" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-12 rounded-2xl bg-gradient-to-br from-brand/20 to-brand-dark/10 p-8 sm:p-10 border border-brand/30">
+        <div className="max-w-4xl mx-auto text-center">
+          <h3 className="text-2xl font-bold text-slate-900 mb-4">Need Help Choosing?</h3>
+          <p className="text-slate-700 text-lg mb-6">
+            Our expert counselors are here to guide you through the course selection process. 
+            Book a free counseling session to understand which course aligns best with your career goals.
+          </p>
+          <a href="/enquiry" className="btn-primary inline-flex">
+            Schedule Counseling Session
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
+

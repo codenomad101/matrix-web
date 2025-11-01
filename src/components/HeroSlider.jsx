@@ -18,12 +18,19 @@ export default function HeroSlider() {
       type: 'content',
     },
     {
-      id: 'stats',
-      title: 'Scaling Quality Learning',
-      highlight: '150+ Teachers • 1 Lakh Happy Students',
-      subtitle: '10M+ YouTube viewers • 20M+ hours learned • 8 branches',
-      branches: [],
-      type: 'content',
+      id: 'activities',
+      title: 'Explore Our Activities',
+      highlight: 'Programs, Timelines & More',
+      subtitle: 'Discover comprehensive resources for your academic journey',
+      activities: [
+        { label: 'Performance', to: '/activities/performance', icon: '📈' },
+        { label: 'Course Selection', to: '/activities/course-selection', icon: '📚' },
+        { label: 'IIT-JEE/NEET Timeline', to: '/activities/iit-neet-timeline', icon: '⏱️' },
+        { label: 'MHT-CET Timeline', to: '/activities/mht-cet-timeline', icon: '📅' },
+        { label: 'On Demand Courses', to: '/activities/on-demand-courses', icon: '🎯' },
+        { label: 'Felicitation', to: '/activities/felicitation', icon: '🏆' },
+      ],
+      type: 'activities',
     },
   ], [])
 
@@ -44,7 +51,7 @@ export default function HeroSlider() {
 
           <div className="absolute inset-0 flex transition-transform duration-700 ease-smooth will-change-transform" style={{ transform: `translateX(-${index * 100}%)` }}>
             {slides.map((s) => (
-              <div key={s.id} className={`min-w-full shrink-0 ${s.type === 'hero' ? 'relative flex items-center' : 'flex items-center'}`}>
+              <div key={s.id} className={`min-w-full shrink-0 ${s.type === 'hero' ? 'relative flex items-center' : s.type === 'activities' ? 'relative flex items-center' : 'flex items-center'}`}>
                 {s.type === 'hero' ? (
                   <div className="w-full h-full grid lg:grid-cols-2 gap-8 p-6 sm:p-10 lg:p-12 relative z-10">
                     {/* Left Content */}
@@ -147,6 +154,44 @@ export default function HeroSlider() {
                           </div>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                ) : s.type === 'activities' ? (
+                  <div className="w-full h-full flex flex-col justify-center p-6 sm:p-10 lg:p-12 relative z-10">
+                    <div className="text-center mb-8">
+                      <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium bg-white/70 text-slate-800 w-fit px-3 py-1 rounded-full shadow-soft mx-auto mb-4">
+                        <span>Discover More</span>
+                      </div>
+                      <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-white drop-shadow-lg mb-3">
+                        {s.title}
+                      </h1>
+                      <p className="text-base sm:text-xl font-semibold text-white/95 drop-shadow-md mb-2">
+                        {s.highlight}
+                      </p>
+                      <p className="text-sm sm:text-base text-white/90">
+                        {s.subtitle}
+                      </p>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                      {s.activities.map((activity, idx) => (
+                        <Link
+                          key={idx}
+                          to={activity.to}
+                          className="bg-white/90 backdrop-blur rounded-xl p-4 sm:p-5 text-center shadow-lg hover:bg-white hover:scale-105 hover:shadow-xl transition-all duration-300 group"
+                        >
+                          <div className="text-2xl sm:text-3xl mb-2">{activity.icon}</div>
+                          <div className="text-xs sm:text-sm font-semibold text-slate-900 group-hover:text-brand-dark transition-colors duration-300">
+                            {activity.label}
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+
+                    <div className="mt-6 flex justify-center gap-3">
+                      <Link to="/activities" className="btn-primary inline-flex justify-center w-full sm:w-auto bg-white text-brand-dark hover:bg-white/95">
+                        View All Activities
+                      </Link>
                     </div>
                   </div>
                 ) : (
