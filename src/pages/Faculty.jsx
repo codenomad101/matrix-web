@@ -53,9 +53,9 @@ export default function Faculty() {
   ]
 
   return (
-    <div className="container-content py-10">
+    <div className="container-page py-10">
       <div className="text-center mb-10">
-        <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">Our Faculty</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-slate-700 mb-3">Our Faculty</h1>
         <p className="text-slate-600 text-lg">
           150+ Teachers by Choice - Expert educators dedicated to your success
         </p>

@@ -23,7 +23,11 @@ body {
 }
 
 .container-content {
-	@apply max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8;
+	@apply max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.container-page {
+	@apply max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8;
 }
 
 .btn-primary {
@@ -35,9 +39,22 @@ body {
 }
 
 .nav-link {
-	@apply text-slate-700 hover:text-slate-900 hover:underline underline-offset-4 transition-colors duration-200;
+	@apply text-slate-700 transition-colors duration-200;
 }
 
 .card {
 	@apply bg-white rounded-2xl shadow-soft hover:shadow-lg transition-shadow duration-300;
+}
+
+@keyframes bounce-slow {
+	0%, 100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+.animate-bounce-slow {
+	animation: bounce-slow 3s ease-in-out infinite;
 }

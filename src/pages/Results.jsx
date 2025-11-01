@@ -44,8 +44,8 @@ export default function Results() {
   ]
 
   return (
-    <div className="container-content py-10">
-      <h1 className="text-3xl font-bold mb-2">Results & Achievements</h1>
+    <div className="container-page py-10">
+      <h1 className="text-3xl font-bold mb-2 text-slate-700">Results & Achievements</h1>
       <p className="text-slate-600 mb-8">Celebrating our students' remarkable achievements in competitive exams</p>
 
       {/* MHT-CET Results 2024 */}

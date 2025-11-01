@@ -8,7 +8,7 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="container-content py-6">
+    <section className="container-page py-6">
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         {stats.map((s) => (
           <div key={s.label} className="card p-6 text-center group">

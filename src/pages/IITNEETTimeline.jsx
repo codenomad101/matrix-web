@@ -82,10 +82,10 @@ export default function IITNEETTimeline() {
   ]
 
   return (
-    <div className="container-content py-10">
+    <div className="container-page py-10">
       <div className="text-center mb-12">
         <div className="inline-block mb-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-3 bg-gradient-to-r from-brand-dark to-slate-700 bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-700 mb-3">
             IIT-JEE / NEET Calendar
           </h1>
         </div>

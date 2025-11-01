@@ -1,6 +1,6 @@
 export default function EnquiryForm() {
   return (
-    <div className="container-content py-12">
+    <div className="container-page py-12">
       <div className="grid lg:grid-cols-2 gap-8">
         <div className="card p-6 sm:p-8">
           <h2 className="text-2xl font-bold text-slate-900">Enquiry Form</h2>

@@ -45,25 +45,26 @@ export default function HeroSlider() {
 
   return (
     <section className="relative overflow-hidden">
-      <div className="container-content pt-4 pb-6 sm:pt-6 sm:pb-8">
-        <div className="relative h-[420px] sm:h-[520px] rounded-3xl overflow-hidden bg-gradient-to-br from-brand-dark via-brand-dark/90 to-slate-700 text-slate-900 grid">
+      <div className="container-page pt-4 pb-6 sm:pt-6 sm:pb-8">
+        <div className="relative h-[480px] sm:h-[580px] rounded-3xl overflow-hidden bg-gradient-to-br from-brand-dark via-brand-dark/90 to-slate-700 text-slate-900 grid">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.15),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.1),transparent_35%)]" />
 
           <div className="absolute inset-0 flex transition-transform duration-700 ease-smooth will-change-transform" style={{ transform: `translateX(-${index * 100}%)` }}>
             {slides.map((s) => (
               <div key={s.id} className={`min-w-full shrink-0 ${s.type === 'hero' ? 'relative flex items-center' : s.type === 'activities' ? 'relative flex items-center' : 'flex items-center'}`}>
                 {s.type === 'hero' ? (
-                  <div className="w-full h-full grid lg:grid-cols-2 gap-8 p-6 sm:p-10 lg:p-12 relative z-10">
+                  <div className="w-full h-full grid lg:grid-cols-2 gap-6 sm:gap-8 p-6 sm:p-8 lg:p-10 relative z-10 overflow-hidden">
                     {/* Left Content */}
-                    <div className="flex flex-col justify-center gap-6">
+                    <div className="flex flex-col justify-center gap-4 sm:gap-5 min-w-0">
                       <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium bg-white/90 text-slate-800 w-fit px-4 py-2 rounded-full shadow-lg">
                         <span className="text-brand-dark font-bold">🎓 Premium Education</span>
                       </div>
                       
                       <div>
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white drop-shadow-lg">
-                          Matrix Science
-                          <span className="block text-brand-dark">Academy</span>
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight drop-shadow-lg">
+                          <span className="text-red-600">Matrix</span>{' '}
+                          <span className="text-gray-300 drop-shadow-lg">Science</span>
+                          <span className="block text-brand-dark drop-shadow-2xl" style={{ textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 6px 12px rgba(0,0,0,0.6)' }}>Academy</span>
                         </h1>
                         <p className="text-lg sm:text-xl md:text-2xl font-bold text-white/95 mt-3 drop-shadow-md">
                           + IMPULSE Batch
@@ -75,7 +76,7 @@ export default function HeroSlider() {
                       </p>
 
                       {/* Stats Grid */}
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-4">
                         <div className="bg-white/90 backdrop-blur rounded-xl p-4 text-center shadow-lg">
                           <div className="text-2xl sm:text-3xl font-extrabold text-brand-dark">150+</div>
                           <div className="text-xs sm:text-sm text-slate-700 mt-1">Teachers</div>
@@ -95,15 +96,15 @@ export default function HeroSlider() {
                       </div>
 
                       {/* CTA Buttons */}
-                      <div className="flex flex-col sm:flex-row gap-3 mt-4">
-                        <Link to="/enquiry" className="btn-primary inline-flex justify-center w-full sm:w-auto bg-white text-brand-dark hover:bg-white/95 text-lg px-6 py-3 font-bold shadow-xl">
+                      <div className="flex flex-col sm:flex-row gap-3 mt-4 sm:justify-end relative z-20">
+                        <Link to="/enquiry" className="inline-flex justify-center w-full sm:w-auto bg-red-600 text-white hover:bg-red-700 text-lg px-8 py-4 font-bold shadow-2xl rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-red-500/50">
                           Enquire Now
                         </Link>
                       </div>
                     </div>
 
                     {/* Right Side - Decorative Elements */}
-                    <div className="hidden lg:flex items-center justify-center relative">
+                    <div className="hidden lg:flex items-center justify-center relative min-w-0 overflow-hidden">
                       <div className="relative w-full max-w-md">
                         {/* Circular Stats */}
                         <div className="absolute top-0 right-0 bg-white/90 backdrop-blur rounded-full p-6 shadow-xl z-20">
@@ -157,15 +158,15 @@ export default function HeroSlider() {
                     </div>
                   </div>
                 ) : s.type === 'activities' ? (
-                  <div className="w-full h-full flex flex-col justify-center p-6 sm:p-10 lg:p-12 relative z-10">
-                    <div className="text-center mb-8">
-                      <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium bg-white/70 text-slate-800 w-fit px-3 py-1 rounded-full shadow-soft mx-auto mb-4">
+                  <div className="w-full h-full flex flex-col justify-center p-6 sm:p-8 lg:p-10 relative z-10 overflow-hidden">
+                    <div className="text-left mb-8 max-w-4xl">
+                      <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium bg-white/70 text-slate-800 w-fit px-3 py-1 rounded-full shadow-soft mb-4">
                         <span>Discover More</span>
                       </div>
-                      <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-white drop-shadow-lg mb-3">
+                      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-slate-800 mb-3">
                         {s.title}
                       </h1>
-                      <p className="text-base sm:text-xl font-semibold text-white/95 drop-shadow-md mb-2">
+                      <p className="text-base sm:text-lg md:text-xl font-semibold text-white/95 drop-shadow-md mb-2">
                         {s.highlight}
                       </p>
                       <p className="text-sm sm:text-base text-white/90">
@@ -173,44 +174,44 @@ export default function HeroSlider() {
                       </p>
                     </div>
                     
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-5 max-w-5xl">
                       {s.activities.map((activity, idx) => (
                         <Link
                           key={idx}
                           to={activity.to}
-                          className="bg-white/90 backdrop-blur rounded-xl p-4 sm:p-5 text-center shadow-lg hover:bg-white hover:scale-105 hover:shadow-xl transition-all duration-300 group"
+                          className="bg-white/90 backdrop-blur rounded-xl p-5 sm:p-6 text-center shadow-lg hover:bg-white hover:scale-105 hover:shadow-xl transition-all duration-300 group"
                         >
-                          <div className="text-2xl sm:text-3xl mb-2">{activity.icon}</div>
-                          <div className="text-xs sm:text-sm font-semibold text-slate-900 group-hover:text-brand-dark transition-colors duration-300">
+                          <div className="text-3xl sm:text-4xl mb-3">{activity.icon}</div>
+                          <div className="text-sm sm:text-base font-semibold text-slate-900 group-hover:text-brand-dark transition-colors duration-300">
                             {activity.label}
                           </div>
                         </Link>
                       ))}
                     </div>
 
-                    <div className="mt-6 flex justify-center gap-3">
+                    <div className="mt-6 flex justify-start gap-3">
                       <Link to="/activities" className="btn-primary inline-flex justify-center w-full sm:w-auto bg-white text-brand-dark hover:bg-white/95">
                         View All Activities
                       </Link>
                     </div>
                   </div>
                 ) : (
-                  <div className="w-full grid md:grid-cols-2 gap-6 sm:gap-8 p-6 sm:p-10 lg:p-12">
-                    <div className="flex flex-col gap-4">
+                  <div className="w-full grid md:grid-cols-2 gap-6 sm:gap-8 p-6 sm:p-8 lg:p-10 overflow-hidden">
+                    <div className="flex flex-col gap-4 sm:gap-5 min-w-0">
                       <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium bg-white/70 text-slate-800 w-fit px-3 py-1 rounded-full shadow-soft">
                         <span>Trusted by achievers</span>
                       </div>
-                      <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
+                      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
                         {s.title}
                       </h1>
-                      <p className="text-base sm:text-2xl font-semibold text-slate-800">
+                      <p className="text-base sm:text-xl md:text-2xl font-semibold text-slate-800">
                         {s.highlight}
                       </p>
                       <p className="text-slate-800/90 text-sm sm:text-lg">
                         {s.subtitle}
                       </p>
                       {s.branches && s.branches.length > 0 && (
-                        <div className="mt-2">
+                        <div className="mt-3">
                           <span className="text-sm font-semibold uppercase tracking-wide">Branches:</span>
                           <div className="mt-2 flex flex-wrap gap-2">
                             {s.branches.map((b) => (
@@ -223,14 +224,14 @@ export default function HeroSlider() {
                       )}
 
                       <div className="mt-4 flex flex-col sm:flex-row gap-3">
-                        <Link to="/enquiry" className="btn-primary inline-flex justify-center w-full sm:w-auto">Join Now</Link>
+                        <Link to="/enquiry" className="inline-flex justify-center w-full sm:w-auto items-center gap-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft">Join Now</Link>
                         <Link to="/courses" className="btn-outline inline-flex justify-center w-full sm:w-auto">Explore</Link>
                       </div>
                     </div>
 
-                    <div className="hidden md:flex items-center justify-center">
+                    <div className="hidden md:flex items-center justify-center min-w-0 overflow-hidden">
                       <div className="relative">
-                        <div className="h-64 w-64 sm:h-80 sm:w-80 rounded-2xl bg-white/70 backdrop-blur shadow-soft rotate-3"></div>
+                        <div className="h-64 w-64 sm:h-72 sm:w-72 rounded-2xl bg-white/70 backdrop-blur shadow-soft rotate-3"></div>
                         <div className="absolute -top-6 -left-6 h-32 w-32 rounded-xl bg-white/70 shadow-soft -rotate-6"></div>
                         <div className="absolute -bottom-6 -right-6 h-24 w-24 rounded-xl bg-white/70 shadow-soft rotate-12"></div>
                       </div>

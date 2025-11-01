@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
+import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
 import Courses from './pages/Courses.jsx'
 import Faculty from './pages/Faculty.jsx'
@@ -41,18 +42,7 @@ function App() {
           <Route path="/thank-you" element={<ThankYou />} />
         </Routes>
       </main>
-      <footer className="border-t mt-16">
-        <div className="container-responsive py-8 text-sm text-slate-600 flex flex-col sm:flex-row gap-3 items-center justify-between">
-          <div>
-            © {new Date().getFullYear()} Matrix Science Academy. All rights reserved.
-          </div>
-          <div className="flex gap-4">
-            <a className="nav-link" href="#">Privacy</a>
-            <a className="nav-link" href="#">Terms</a>
-            <a className="nav-link" href="#">Contact</a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

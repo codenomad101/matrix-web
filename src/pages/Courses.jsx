@@ -7,8 +7,8 @@ export default function Courses() {
     { id: 'board', title: '8th–12th Boards', desc: 'Boards-aligned lectures, notes, and focused writing practice.' },
   ]
   return (
-    <div className="container-content py-10">
-      <h1 className="text-3xl font-bold">Courses</h1>
+    <div className="container-page py-10">
+      <h1 className="text-3xl font-bold text-slate-700">Courses</h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
         {sections.map((s) => (
           <a key={s.id} id={s.id} href={`#${s.id}`} className="card p-6 block hover:-translate-y-0.5 transition-transform duration-300">

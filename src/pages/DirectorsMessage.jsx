@@ -87,9 +87,9 @@ export default function DirectorsMessage() {
 
   return (
     <div className="bg-gray-100 py-12">
-      <div className="container-content">
+      <div className="container-page">
         <div className="bg-white p-8 rounded-lg shadow-lg">
-          <h1 className="text-4xl font-bold text-brand-dark mb-4">Director's Message:</h1>
+          <h1 className="text-4xl font-bold text-slate-700 mb-4">Director's Message:</h1>
           <p className="text-gray-700 leading-relaxed">
             We are teachers by our choice and we passionately do our job. Our Aim is not to run the classes conventionally, but we
             are here to make a change and make a strong impact in the field of 8th to 12th Education in Maharashtra. We believe
@@ -117,7 +117,7 @@ export default function DirectorsMessage() {
         </div>
 
         <div className="mt-12">
-          <h2 className="text-4xl font-bold text-brand-dark mb-8">Branches</h2>
+          <h2 className="text-4xl font-bold text-slate-700 mb-8">Branches</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {branches.map((branch, index) => (
               <div key={index} className="bg-white p-6 rounded-lg shadow-lg flex items-center">

@@ -38,9 +38,9 @@ export default function CourseSelection() {
   ]
 
   return (
-    <div className="container-content py-10">
+    <div className="container-page py-10">
       <div className="text-center mb-10">
-        <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">Course Selection Guide</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-slate-700 mb-3">Course Selection Guide</h1>
         <p className="text-slate-600 text-lg">
           Choose the right course based on your career aspirations and academic goals
         </p>
@@ -48,7 +48,7 @@ export default function CourseSelection() {
 
       {/* Course Selection for 11th-12th Science */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold text-slate-900 mb-6">Course Selection: 11th–12th Science</h2>
+        <h2 className="text-2xl font-bold text-slate-700 mb-6">Course Selection: 11th–12th Science</h2>
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           {/* Regular Science Subjects */}
           <div className="card p-6">
@@ -144,7 +144,7 @@ export default function CourseSelection() {
 
       {/* Entrance Exams after 12th */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold text-slate-900 mb-6">Lists of Entrance Exams after 12th</h2>
+        <h2 className="text-2xl font-bold text-slate-700 mb-6">Lists of Entrance Exams after 12th</h2>
         <div className="card p-6">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -187,7 +187,7 @@ export default function CourseSelection() {
 
       {/* Average Self Study Hours */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold text-slate-900 mb-6">Average Self Study Hours of Toppers (According to MSA Survey)</h2>
+        <h2 className="text-2xl font-bold text-slate-700 mb-6">Average Self Study Hours of Toppers (According to MSA Survey)</h2>
         <div className="card p-6">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -267,7 +267,7 @@ export default function CourseSelection() {
             Our expert counselors are here to guide you through the course selection process. 
             Book a free counseling session to understand which course aligns best with your career goals.
           </p>
-          <a href="/enquiry" className="btn-primary inline-flex">
+          <a href="/enquiry" className="inline-flex items-center gap-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft">
             Schedule Counseling Session
           </a>
         </div>
