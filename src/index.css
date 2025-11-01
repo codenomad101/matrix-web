@@ -1,0 +1,43 @@
+/* Tailwind base */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS variables for brand colors */
+:root {
+	--brand: #b2dfee;
+	--brand-dark: #5aa6c4;
+}
+
+html, body, #root {
+	height: 100%;
+}
+
+body {
+	@apply bg-white text-slate-800 antialiased;
+}
+
+/******** Utilities ********/
+.container-responsive {
+	@apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.container-content {
+	@apply max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.btn-primary {
+	@apply items-center gap-2 rounded-lg bg-brand text-slate-900 hover:bg-brand-dark transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium shadow-soft;
+}
+
+.btn-outline {
+	@apply items-center gap-2 rounded-lg border border-brand text-brand hover:bg-brand/10 transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium;
+}
+
+.nav-link {
+	@apply text-slate-700 hover:text-slate-900 hover:underline underline-offset-4 transition-colors duration-200;
+}
+
+.card {
+	@apply bg-white rounded-2xl shadow-soft hover:shadow-lg transition-shadow duration-300;
+}
