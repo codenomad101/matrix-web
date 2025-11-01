@@ -219,7 +219,7 @@ function ResultsSection({ topResults }) {
       
       {/* Achievement Highlights - Moved to top */}
       <div className="mb-10">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {achievementCards.filter((_, idx) => idx !== 1).map((card, filteredIdx) => {
             const bgColors = ['bg-red-500', 'bg-gray-400', 'bg-brand-dark']
             return (
