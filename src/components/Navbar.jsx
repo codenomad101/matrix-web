@@ -225,14 +225,12 @@ export default function Navbar() {
         ? 'backdrop-blur-md bg-white/95 border-b-2 border-brand/20 shadow-lg' 
         : 'backdrop-blur-sm bg-white/80 border-b'
     }`}>
-      <div className="container-content flex items-center justify-between h-16">
+      <div className="container-content flex items-center justify-between h-20 md:h-24">
         <Link to="/" className="flex items-center gap-3 group relative">
-          <div className="h-16 w-16 md:h-20 md:w-20 grid place-content-center overflow-hidden transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-            <img src="/images/matrix_logo1.png" alt="MSA logo" className="h-16 w-16 md:h-20 md:w-20 object-contain transition-all duration-300" />
+          <div className="h-20 w-20 md:h-24 md:w-24 grid place-content-center overflow-hidden transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 flex-shrink-0">
+            <img src="/images/matrix_logo1.png" alt="MSA logo" className="h-20 w-20 md:h-24 md:w-24 object-contain transition-all duration-300" />
           </div>
-          <div className="flex flex-col leading-tight">
-            <span className="text-xs sm:text-sm text-slate-600 transition-colors duration-300 group-hover:text-slate-700">सा विद्या या विमुक्तये</span>
-          </div>
+          <span className="text-xs sm:text-sm text-slate-600 transition-colors duration-300 group-hover:text-slate-700 whitespace-nowrap hidden sm:block">सा विद्या या विमुक्तये</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">

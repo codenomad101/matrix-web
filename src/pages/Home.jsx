@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import HeroSlider from '../components/HeroSlider.jsx'
+import NewsSlider from '../components/NewsSlider.jsx'
 
 // Results Slider Component
 function ResultsSlider() {
@@ -32,7 +33,7 @@ function ResultsSlider() {
   }
 
   return (
-    <div className="mt-6 relative">
+    <div className="mt-6">
       <div className="relative overflow-hidden rounded-xl p-2 shadow-lg max-w-[1320px] mx-auto">
         {/* Images Container */}
         <div className="relative min-h-[600px] overflow-hidden">
@@ -54,42 +55,22 @@ function ResultsSlider() {
             ))}
           </div>
         </div>
+      </div>
 
-        {/* Navigation Arrows */}
-        <button
-          onClick={goToPrev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-slate-900 rounded-full p-2 shadow-lg transition-all duration-300 hover:scale-110 z-10"
-          aria-label="Previous slide"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          onClick={goToNext}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-slate-900 rounded-full p-2 shadow-lg transition-all duration-300 hover:scale-110 z-10"
-          aria-label="Next slide"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-
-        {/* Dots Indicator */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-          {images.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => goToSlide(idx)}
-              className={`h-3 rounded-full transition-all duration-300 ${
-                index === idx 
-                  ? 'w-10 bg-brand-dark' 
-                  : 'w-4 bg-white/70 hover:bg-white/90'
-              }`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
-        </div>
+      {/* Dots Indicator - Below Slider */}
+      <div className="flex justify-center gap-2 mt-4">
+        {images.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => goToSlide(idx)}
+            className={`h-3 rounded-full transition-all duration-300 ${
+              index === idx 
+                ? 'w-10 bg-brand-dark' 
+                : 'w-4 bg-slate-300 hover:bg-slate-400'
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
       </div>
     </div>
   )
@@ -100,19 +81,33 @@ const topTestimonials = [
     name: 'Dhruv Shinde', 
     college: 'IIT MANDI',
     text: 'Matrix Science Academy played a crucial role in my success. Their expert guidance and structured approach were key in my selection for IIT Mandi.',
-    exam: 'IIT-JEE' 
+    exam: 'IIT-JEE',
+    image: '/images/features/Dhruv-Shinde.jpg',
+    instituteImage: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop'
   },
   { 
     name: 'Rahul Kavhale', 
     college: 'IIT KHARAGPUR',
     text: 'Thanks to Matrix Science Academy, I achieved my goal of getting into IIT. Their expert teaching and supportive environment were vital to my success.',
-    exam: 'IIT-JEE' 
+    exam: 'IIT-JEE',
+    image: '/images/features/Rahul-Kavhale.jpg',
+    instituteImage: 'https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=600&fit=crop'
   },
   { 
     name: 'Dhruv Unde', 
     college: 'NIT TRICHY',
     text: 'Matrix Science Academy was instrumental in my journey to NIT Trichy. The exceptional teaching & comprehensive support helped me excel.',
-    exam: 'MHT-CET' 
+    exam: 'MHT-CET',
+    image: '/images/features/Dhruv-Unde.jpg',
+    instituteImage: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop'
+  },
+  {
+    name: 'Maithili Sagare',
+    college: 'IIT GUWAHATI',
+    text: 'Matrix Science Academy transformed my preparation journey. The dedicated faculty and structured curriculum helped me achieve my dream of joining IIT Guwahati.',
+    exam: 'IIT-JEE',
+    image: '/images/features/Maithili-Sagare.jpg',
+    instituteImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop'
   },
 ]
 
@@ -212,7 +207,7 @@ function ResultsSection({ topResults }) {
     <section className="container-page py-6" ref={sectionRef}>
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-4xl font-bold text-slate-700">
-          One of the <span className="text-red-600">most sought after</span> and <span className="text-red-600">most successful</span> institution
+          One of the <span className="text-red-600">most sought after</span> and <span className="text-red-600"> successful</span> Institutions
         </h2>
         <Link to="/results" className="btn-outline hover:scale-105 transition-transform duration-300">View All Results</Link>
       </div>
@@ -293,6 +288,90 @@ function ResultsSection({ topResults }) {
   )
 }
 
+// Testimonials Slider Component
+function TestimonialsSlider({ testimonials }) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+
+  // Auto-advance slider
+  useEffect(() => {
+    if (!isAutoPlaying) return
+    
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+    }, 5000) // Change every 5 seconds
+
+    return () => clearInterval(timer)
+  }, [testimonials.length, isAutoPlaying])
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index)
+    setIsAutoPlaying(false)
+    // Resume auto-play after 10 seconds
+    setTimeout(() => setIsAutoPlaying(true), 10000)
+  }
+
+  const goToPrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+    setIsAutoPlaying(false)
+    setTimeout(() => setIsAutoPlaying(true), 10000)
+  }
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+    setIsAutoPlaying(false)
+    setTimeout(() => setIsAutoPlaying(true), 10000)
+  }
+
+  const slideWidth = 100 / testimonials.length
+
+  return (
+    <div className="relative w-full">
+      {/* Slider Container */}
+      <div className="relative overflow-hidden rounded-2xl w-full">
+        <div 
+          className="flex transition-transform duration-700 ease-in-out" 
+          style={{ 
+            transform: `translateX(-${currentIndex * slideWidth}%)`,
+            width: `${testimonials.length * 100}%`
+          }}
+        >
+          {testimonials.map((testimonial, idx) => (
+            <div 
+              key={idx} 
+              className="flex-shrink-0"
+              style={{ 
+                width: `${slideWidth}%`,
+                minWidth: `${slideWidth}%`
+              }}
+            >
+              <div className="px-1 sm:px-2 h-full">
+                <TestimonialCard testimonial={testimonial} index={idx} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Dots Indicator */}
+      <div className="flex justify-center items-center gap-2 mt-8">
+        {testimonials.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => goToSlide(idx)}
+            className={`h-2.5 rounded-full transition-all duration-300 ${
+              currentIndex === idx 
+                ? 'w-10 bg-brand-dark' 
+                : 'w-2.5 bg-slate-300 hover:bg-slate-400'
+            }`}
+            aria-label={`Go to testimonial ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // Testimonial Card Component with enhanced animations
 function TestimonialCard({ testimonial: t, index }) {
   const [isVisible, setIsVisible] = useState(false)
@@ -327,13 +406,13 @@ function TestimonialCard({ testimonial: t, index }) {
       ref={cardRef}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`bg-white rounded-2xl shadow-soft overflow-hidden group cursor-pointer transform transition-all duration-700 ease-out ${
+      className={`bg-white rounded-3xl shadow-soft overflow-hidden group cursor-pointer transform transition-all duration-700 ease-out min-h-[500px] flex flex-col ${
         isVisible 
           ? 'opacity-100 translate-y-0 scale-100' 
           : 'opacity-0 translate-y-10 scale-95'
       } ${
         isHovered 
-          ? 'shadow-2xl -translate-y-3 scale-[1.02] rotate-1' 
+          ? 'shadow-2xl -translate-y-3 scale-[1.02]' 
           : 'hover:shadow-xl hover:-translate-y-2'
       }`}
       style={{ 
@@ -343,63 +422,103 @@ function TestimonialCard({ testimonial: t, index }) {
           : undefined
       }}
     >
-      {/* Quote Section with Brand Color */}
-      <div className="relative bg-gradient-to-br from-brand via-brand/95 to-brand-dark/90 px-6 pt-8 pb-6 overflow-hidden transition-all duration-500 group-hover:from-brand-dark group-hover:to-brand-dark">
-        {/* Animated Quote Icon */}
-        <div className={`absolute top-4 left-6 transition-all duration-700 ${isHovered ? 'opacity-30 scale-110 rotate-12' : 'opacity-20 scale-100 rotate-0'}`}>
-          <svg className="w-16 h-16 text-slate-900" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.481.967-4.996 2.848-4.996 7.153 0 3.031 1.214 5.555 3.003 7.266h-7.986zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.481.967-5 2.848-5 7.153 0 3.031 1.214 5.555 3.003 7.266h-7.003z"/>
-          </svg>
+      {/* Quote and Institute Image Side by Side */}
+      <div className="grid md:grid-cols-2 gap-0 h-64">
+        {/* Quote Section with Red Background */}
+        <div className="relative bg-gradient-to-br from-red-600 via-red-600/95 to-red-700 px-6 pt-8 pb-6 overflow-hidden transition-all duration-500 group-hover:from-red-700 group-hover:to-red-800 flex flex-col justify-between">
+          {/* Animated Quote Icon */}
+          <div className={`absolute top-4 right-6 transition-all duration-700 ${isHovered ? 'opacity-30 scale-110 rotate-12' : 'opacity-20 scale-100 rotate-0'}`}>
+            <svg className="w-16 h-16 text-white/30" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.481.967-4.996 2.848-4.996 7.153 0 3.031 1.214 5.555 3.003 7.266h-7.986zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.481.967-5 2.848-5 7.153 0 3.031 1.214 5.555 3.003 7.266h-7.003z"/>
+            </svg>
+          </div>
+          
+          {/* Quote Text with fade-in animation */}
+          <div className={`relative z-10 transition-all duration-500 flex-1 flex items-center ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
+            <p className="text-white text-base leading-relaxed font-medium italic transition-all duration-300">
+              "{t.text}"
+            </p>
+          </div>
+          
+          {/* Decorative corner with animation */}
+          <div className={`absolute bottom-0 right-0 w-20 h-20 bg-white/10 rounded-tl-full transform transition-all duration-700 ${
+            isHovered ? 'translate-x-4 translate-y-4 scale-125' : 'translate-x-8 translate-y-8'
+          }`}></div>
         </div>
-        
-        {/* Floating particles effect on hover */}
-        <div className={`absolute inset-0 transition-opacity duration-500 ${isHovered ? 'opacity-20' : 'opacity-0'}`}>
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white rounded-full animate-ping"></div>
-          <div className="absolute top-3/4 right-1/4 w-1.5 h-1.5 bg-white rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
+
+        {/* Institute Image Section - Contained Image */}
+        <div className="relative h-full overflow-hidden bg-white flex flex-col justify-center items-center p-4">
+          {t.instituteImage ? (
+            <>
+              <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg">
+                <img 
+                  src={t.instituteImage} 
+                  alt={t.college}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  onError={(e) => {
+                    e.target.style.display = 'none'
+                  }}
+                />
+              </div>
+              {/* College Name Below Image */}
+              <div className={`mt-4 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <h3 className="text-xl font-extrabold text-slate-900">
+                  {t.college}
+                </h3>
+                <div className="text-sm font-semibold text-slate-700 mt-1">
+                  {t.exam}
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-slate-200 via-slate-300 to-slate-400 rounded-xl flex flex-col items-center justify-center">
+              <span className="text-slate-600 font-semibold text-lg">{t.college}</span>
+              <span className="text-slate-500 text-sm mt-2">{t.exam}</span>
+            </div>
+          )}
         </div>
-        
-        {/* Quote Text with fade-in animation */}
-        <div className={`relative z-10 transition-all duration-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
-          <p className="text-slate-900 text-base leading-relaxed font-medium italic transition-all duration-300 group-hover:text-white">
-            "{t.text}"
-          </p>
-        </div>
-        
-        {/* Decorative corner with animation */}
-        <div className={`absolute bottom-0 right-0 w-20 h-20 bg-white/20 rounded-tl-full transform transition-all duration-700 ${
-          isHovered ? 'translate-x-4 translate-y-4 scale-125' : 'translate-x-8 translate-y-8'
-        }`}></div>
-        
-        {/* Glow effect */}
-        <div className={`absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
       </div>
 
-      {/* Person Details Section with slide-up animation */}
-      <div className={`px-6 py-5 bg-white border-t border-slate-100 transition-all duration-500 group-hover:bg-slate-50 ${
+      {/* Person Details Section with photo */}
+      <div className={`px-6 py-3 bg-white border-t border-slate-200 transition-all duration-500 group-hover:bg-slate-50 ${
         isHovered ? 'border-brand/30' : ''
       }`}>
         <div className="flex items-center gap-4">
-          {/* Avatar with scale and glow effect */}
-          <div className={`h-12 w-12 rounded-full bg-gradient-to-br from-brand/40 to-brand-dark/30 flex items-center justify-center text-slate-900 font-bold text-lg shrink-0 transition-all duration-500 ${
+          {/* Student Photo */}
+          <div className={`relative h-16 w-16 rounded-full overflow-hidden ring-2 transition-all duration-500 shrink-0 ${
             isHovered 
-              ? 'scale-110 ring-4 ring-brand/30 shadow-lg bg-gradient-to-br from-brand to-brand-dark' 
-              : 'group-hover:bg-brand/50'
+              ? 'ring-4 ring-brand-dark shadow-xl scale-110' 
+              : 'ring-brand/30 group-hover:ring-brand/50'
           }`}>
-            <span className={`transition-all duration-300 ${isHovered ? 'scale-110 text-white' : ''}`}>
-              {t.name.split(' ').map(n => n[0]).join('')}
-            </span>
+            {t.image ? (
+              <img 
+                src={t.image} 
+                alt={t.name}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                onError={(e) => {
+                  // Fallback to initials if image fails
+                  e.target.style.display = 'none'
+                  const parent = e.target.parentElement
+                  parent.classList.add('bg-gradient-to-br', 'from-brand/40', 'to-brand-dark/30', 'flex', 'items-center', 'justify-center')
+                  parent.innerHTML = `<span class="text-slate-900 font-bold text-lg">${t.name.split(' ').map(n => n[0]).join('')}</span>`
+                }}
+              />
+            ) : (
+              <div className="h-full w-full bg-gradient-to-br from-brand/40 to-brand-dark/30 flex items-center justify-center">
+                <span className={`text-slate-900 font-bold text-lg transition-all duration-300 ${isHovered ? 'scale-110 text-white' : ''}`}>
+                  {t.name.split(' ').map(n => n[0]).join('')}
+                </span>
+              </div>
+            )}
           </div>
           
-          {/* Details with fade animation */}
+          {/* Details with fade animation - Dark Text */}
           <div className={`flex-1 min-w-0 transition-all duration-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}>
-            <div className={`font-semibold text-slate-900 text-lg transition-colors duration-300 ${isHovered ? 'text-brand-dark' : ''}`}>
+            <div className={`font-bold text-slate-900 text-lg transition-colors duration-300 ${isHovered ? 'text-brand-dark' : ''}`}>
               {t.name}
             </div>
-            <div className={`text-sm font-medium text-brand mt-0.5 transition-all duration-300 ${isHovered ? 'text-brand-dark font-semibold scale-105' : ''}`}>
-              {t.college}
-            </div>
-            <div className="text-xs text-slate-500 mt-1 transition-colors duration-300 group-hover:text-slate-700">
-              {t.exam}
+            <div className={`text-sm font-semibold text-slate-700 transition-all duration-300 ${isHovered ? 'text-brand-dark font-bold' : ''}`}>
+              Student
             </div>
           </div>
           
@@ -418,6 +537,7 @@ function TestimonialCard({ testimonial: t, index }) {
 export default function Home() {
   return (
     <div>
+      <NewsSlider />
       <HeroSlider />
 
       {/* Results Section */}
@@ -443,24 +563,22 @@ export default function Home() {
         </div>
       </section>
 
-              {/* Testimonials Section */}
-      <section className="bg-brand/10 py-6 relative overflow-hidden">
+              {/* Testimonials Section with Slider */}
+      <section className="bg-brand/10 py-12 relative overflow-hidden">
         {/* Animated background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-brand/20 via-transparent to-brand-dark/10 pointer-events-none"></div>
         
         <div className="container-page relative z-10">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-10">
             <h2 className="text-4xl font-bold relative text-slate-700">
               <span className="relative z-10">Student Testimonials</span>
               <span className="absolute -bottom-1 left-0 w-24 h-1 bg-brand-dark rounded-full"></span>
             </h2>
             <Link to="/testimonials" className="btn-outline bg-white hover:scale-105 transition-transform duration-300">View All</Link>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {topTestimonials.map((t, idx) => (
-              <TestimonialCard key={idx} testimonial={t} index={idx} />
-            ))}
-          </div>
+          
+          {/* Testimonials Slider */}
+          <TestimonialsSlider testimonials={topTestimonials} />
         </div>
       </section>
 
