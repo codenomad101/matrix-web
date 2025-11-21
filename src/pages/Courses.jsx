@@ -1,3 +1,4 @@
+'use client'
 export default function Courses() {
   const sections = [
     { id: 'iit', title: 'IIT-JEE (Main/Advanced)', desc: 'Concept mastery, problem-solving drills, and test series.' },

@@ -1,3 +1,4 @@
+'use client'
 export default function Faculty() {
   // Helper function to get image path
   const getImagePath = (name) => {

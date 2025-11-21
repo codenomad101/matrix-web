@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+'use client'
+import Link from 'next/link'
 
 export default function Activities() {
   const activities = [
@@ -77,7 +78,7 @@ export default function Activities() {
         {activities.map((activity, idx) => (
           <Link 
             key={idx} 
-            to={activity.link}
+            href={activity.link}
             className="card p-6 hover:-translate-y-2 transition-all duration-300 group"
           >
             <div className="flex items-start gap-4">

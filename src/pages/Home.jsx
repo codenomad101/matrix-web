@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+'use client'
+import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import HeroSlider from '../components/HeroSlider.jsx'
 import NewsSlider from '../components/NewsSlider.jsx'
@@ -209,7 +210,7 @@ function ResultsSection({ topResults }) {
         <h2 className="text-4xl font-bold text-slate-700">
           One of the <span className="text-red-600">most sought after</span> and <span className="text-red-600"> successful</span> Institutions
         </h2>
-        <Link to="/results" className="btn-outline hover:scale-105 transition-transform duration-300">View All Results</Link>
+        <Link href="/results" className="btn-outline hover:scale-105 transition-transform duration-300">View All Results</Link>
       </div>
       
       {/* Achievement Highlights - Moved to top */}
@@ -574,7 +575,7 @@ export default function Home() {
               <span className="relative z-10">Student Testimonials</span>
               <span className="absolute -bottom-1 left-0 w-24 h-1 bg-brand-dark rounded-full"></span>
             </h2>
-            <Link to="/testimonials" className="btn-outline bg-white hover:scale-105 transition-transform duration-300">View All</Link>
+            <Link href="/testimonials" className="btn-outline bg-white hover:scale-105 transition-transform duration-300">View All</Link>
           </div>
           
           {/* Testimonials Slider */}
@@ -590,7 +591,7 @@ export default function Home() {
             <h3 className="text-2xl font-bold text-slate-900">Ready to start your journey?</h3>
             <p className="text-slate-700 mt-1">Speak with our counsellors and get a personalized plan.</p>
           </div>
-          <Link to="/enquiry" className="inline-flex items-center gap-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft">Enquire Now</Link>
+          <Link href="/enquiry" className="inline-flex items-center gap-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft">Enquire Now</Link>
         </div>
       </section>
     </div>

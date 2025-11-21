@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 export default function Footer() {
   return (
@@ -11,7 +11,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link 
-                  to="/" 
+                  href="/" 
                   className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Home
@@ -19,7 +19,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  to="/directors-message" 
+                  href="/directors-message" 
                   className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Directors Message
@@ -27,7 +27,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  to="/about" 
+                  href="/about" 
                   className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   About Us
@@ -35,7 +35,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  to="/enquiry" 
+                  href="/enquiry" 
                   className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Enquire Now
@@ -50,7 +50,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link 
-                  to="/courses" 
+                  href="/courses" 
                   className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Courses
@@ -58,7 +58,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  to="/faculty" 
+                  href="/faculty" 
                   className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Our Faculty
@@ -66,7 +66,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  to="/results" 
+                  href="/results" 
                   className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Results
@@ -74,7 +74,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  to="/testimonials" 
+                  href="/testimonials" 
                   className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Testimonials
@@ -89,7 +89,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link 
-                  to="/activities/performance" 
+                  href="/activities/performance" 
                   className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Performance
@@ -97,7 +97,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  to="/activities/course-selection" 
+                  href="/activities/course-selection" 
                   className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Course Selection
@@ -105,7 +105,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  to="/activities/iit-neet-timeline" 
+                  href="/activities/iit-neet-timeline" 
                   className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   IIT-JEE/NEET Timeline
@@ -113,7 +113,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  to="/activities/mht-cet-timeline" 
+                  href="/activities/mht-cet-timeline" 
                   className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   MHT-CET Timeline
@@ -121,7 +121,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  to="/activities/on-demand-courses" 
+                  href="/activities/on-demand-courses" 
                   className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   On Demand Courses
@@ -129,7 +129,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  to="/activities/felicitation" 
+                  href="/activities/felicitation" 
                   className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Felicitation
@@ -159,7 +159,7 @@ export default function Footer() {
           </div>
           <div className="flex items-center gap-2">
             <Link 
-              to="/" 
+              href="/" 
               className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-300"
             >
               <img src="/images/matrix_logo1.png" alt="MSA logo" className="h-8 w-8 object-contain" />

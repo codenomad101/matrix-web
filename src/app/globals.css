@@ -9,7 +9,7 @@
 	--brand-dark: #5aa6c4;
 }
 
-html, body, #root {
+html, body {
 	height: 100%;
 }
 
@@ -58,3 +58,5 @@ body {
 .animate-bounce-slow {
 	animation: bounce-slow 3s ease-in-out infinite;
 }
+
+

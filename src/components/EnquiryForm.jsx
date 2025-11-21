@@ -1,4 +1,15 @@
+'use client'
+import { useEffect, useState } from 'react'
+
 export default function EnquiryForm() {
+  const [origin, setOrigin] = useState('')
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setOrigin(window.location.origin)
+    }
+  }, [])
+
   return (
     <div className="container-page py-12">
       <div className="grid lg:grid-cols-2 gap-8">
@@ -14,7 +25,7 @@ export default function EnquiryForm() {
             <input type="hidden" name="_subject" value="MSA Website Enquiry" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value={`${window.location.origin}/thank-you`} />
+            {origin && <input type="hidden" name="_next" value={`${origin}/thank-you`} />}
             <input type="text" name="_honey" className="hidden" tabIndex="-1" autoComplete="off" />
 
             <div className="sm:col-span-1">

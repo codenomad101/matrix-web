@@ -1,5 +1,6 @@
+'use client'
 import { useEffect, useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 const SLIDE_INTERVAL_MS = 6000
 
@@ -97,7 +98,7 @@ export default function HeroSlider() {
 
                       {/* CTA Buttons */}
                       <div className="flex flex-col sm:flex-row gap-3 mt-4 sm:justify-end relative z-20">
-                        <Link to="/enquiry" className="inline-flex justify-center w-full sm:w-auto bg-red-600 text-white hover:bg-red-700 text-lg px-8 py-4 font-bold shadow-2xl rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-red-500/50">
+                        <Link href="/enquiry" className="inline-flex justify-center w-full sm:w-auto bg-red-600 text-white hover:bg-red-700 text-lg px-8 py-4 font-bold shadow-2xl rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-red-500/50">
                           Enquire Now
                         </Link>
                       </div>
@@ -178,7 +179,7 @@ export default function HeroSlider() {
                       {s.activities.map((activity, idx) => (
                         <Link
                           key={idx}
-                          to={activity.to}
+                          href={activity.to}
                           className="bg-white/90 backdrop-blur rounded-xl p-5 sm:p-6 text-center shadow-lg hover:bg-white hover:scale-105 hover:shadow-xl transition-all duration-300 group"
                         >
                           <div className="text-3xl sm:text-4xl mb-3">{activity.icon}</div>
@@ -190,7 +191,7 @@ export default function HeroSlider() {
                     </div>
 
                     <div className="mt-6 flex justify-start gap-3">
-                      <Link to="/activities" className="btn-primary inline-flex justify-center w-full sm:w-auto bg-white text-brand-dark hover:bg-white/95">
+                      <Link href="/activities" className="btn-primary inline-flex justify-center w-full sm:w-auto bg-white text-brand-dark hover:bg-white/95">
                         View All Activities
                       </Link>
                     </div>
@@ -224,8 +225,8 @@ export default function HeroSlider() {
                       )}
 
                       <div className="mt-4 flex flex-col sm:flex-row gap-3">
-                        <Link to="/enquiry" className="inline-flex justify-center w-full sm:w-auto items-center gap-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft">Join Now</Link>
-                        <Link to="/courses" className="btn-outline inline-flex justify-center w-full sm:w-auto">Explore</Link>
+                        <Link href="/enquiry" className="inline-flex justify-center w-full sm:w-auto items-center gap-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft">Join Now</Link>
+                        <Link href="/courses" className="btn-outline inline-flex justify-center w-full sm:w-auto">Explore</Link>
                       </div>
                     </div>
 

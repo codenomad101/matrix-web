@@ -1,5 +1,6 @@
+'use client'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 const newsItems = [
   {
@@ -67,7 +68,7 @@ export default function NewsSlider() {
                   className="min-w-full flex items-center px-2 sm:px-3"
                 >
                   <Link
-                    to={item.link}
+                    href={item.link}
                     className="flex items-center gap-2 group hover:text-red-400 transition-colors duration-300 w-full"
                   >
                     <span className="text-xs sm:text-sm md:text-base font-medium truncate group-hover:underline">

@@ -1,5 +1,7 @@
+'use client'
 import { useState, useRef, useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 function MegaMenu({ label, items, images, description }) {
   const [open, setOpen] = useState(false)
@@ -61,9 +63,9 @@ function MegaMenu({ label, items, images, description }) {
             {/* Content Grid */}
             <div className="grid grid-cols-2 gap-0 p-2">
               {items.map((item, idx) => (
-                <Link
+                  <Link
                   key={item.to}
-                  to={item.to}
+                  href={item.to}
                   onMouseEnter={() => setHoveredIndex(idx)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   className={`group relative flex items-start gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
@@ -129,6 +131,7 @@ function MegaMenu({ label, items, images, description }) {
 }
 
 export default function Navbar() {
+  const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [academicsOpen, setAcademicsOpen] = useState(false)
   const [activitiesOpen, setActivitiesOpen] = useState(false)
@@ -226,7 +229,7 @@ export default function Navbar() {
         : 'backdrop-blur-sm bg-white/80 border-b'
     }`}>
       <div className="container-content flex items-center justify-between h-20 md:h-24">
-        <Link to="/" className="flex items-center gap-3 group relative">
+        <Link href="/" className="flex items-center gap-3 group relative">
           <div className="h-20 w-20 md:h-24 md:w-24 grid place-content-center overflow-hidden transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 flex-shrink-0">
             <img src="/images/matrix_logo1.png" alt="MSA logo" className="h-20 w-20 md:h-24 md:w-24 object-contain transition-all duration-300" />
           </div>
@@ -234,19 +237,19 @@ export default function Navbar() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">
-          <NavLink 
-            to="/" 
-            className={({isActive}) => `nav-link relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${
-              isActive 
+          <Link 
+            href="/" 
+            className={`nav-link relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${
+              pathname === '/' 
                 ? 'text-slate-900 font-bold shadow-md scale-105' 
                 : 'hover:text-white hover:shadow-lg hover:scale-105'
             } after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:bg-brand-dark after:rounded-full after:transition-all after:duration-300 ${
-              isActive ? 'after:w-full' : 'after:w-0 group-hover:after:w-full'
-            } ${isActive ? '[&>span.bg-overlay]:scale-x-100' : '[&>span.bg-overlay]:scale-x-0 [&:hover>span.bg-overlay]:scale-x-100'}`}
+              pathname === '/' ? 'after:w-full' : 'after:w-0 group-hover:after:w-full'
+            } ${pathname === '/' ? '[&>span.bg-overlay]:scale-x-100' : '[&>span.bg-overlay]:scale-x-0 [&:hover>span.bg-overlay]:scale-x-100'}`}
           >
             <span className="relative z-10">Home</span>
             <span className="bg-overlay absolute inset-0 bg-brand-dark transform transition-transform duration-300 origin-left rounded-lg"></span>
-          </NavLink>
+          </Link>
           
           <MegaMenu 
             label="Academics" 
@@ -262,38 +265,38 @@ export default function Navbar() {
             images={{ featured: '/images/audi1.png' }}
           />
           
-          <NavLink 
-            to="/directors-message" 
-            className={({isActive}) => `nav-link relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${
-              isActive 
+          <Link 
+            href="/directors-message" 
+            className={`nav-link relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${
+              pathname === '/directors-message' 
                 ? 'text-slate-900 font-bold shadow-md scale-105' 
                 : 'hover:text-white hover:shadow-lg hover:scale-105'
             } after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:bg-brand-dark after:rounded-full after:transition-all after:duration-300 ${
-              isActive ? 'after:w-full' : 'after:w-0 group-hover:after:w-full'
-            } ${isActive ? '[&>span.bg-overlay]:scale-x-100' : '[&>span.bg-overlay]:scale-x-0 [&:hover>span.bg-overlay]:scale-x-100'}`}
+              pathname === '/directors-message' ? 'after:w-full' : 'after:w-0 group-hover:after:w-full'
+            } ${pathname === '/directors-message' ? '[&>span.bg-overlay]:scale-x-100' : '[&>span.bg-overlay]:scale-x-0 [&:hover>span.bg-overlay]:scale-x-100'}`}
           >
             <span className="relative z-10">Directors Message</span>
             <span className="bg-overlay absolute inset-0 bg-brand-dark transform transition-transform duration-300 origin-left rounded-lg"></span>
-          </NavLink>
+          </Link>
           
-          <NavLink 
-            to="/about" 
-            className={({isActive}) => `nav-link relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${
-              isActive 
+          <Link 
+            href="/about" 
+            className={`nav-link relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${
+              pathname === '/about' 
                 ? 'text-slate-900 font-bold shadow-md scale-105' 
                 : 'hover:text-white hover:shadow-lg hover:scale-105'
             } after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:bg-brand-dark after:rounded-full after:transition-all after:duration-300 ${
-              isActive ? 'after:w-full' : 'after:w-0 group-hover:after:w-full'
-            } ${isActive ? '[&>span.bg-overlay]:scale-x-100' : '[&>span.bg-overlay]:scale-x-0 [&:hover>span.bg-overlay]:scale-x-100'}`}
+              pathname === '/about' ? 'after:w-full' : 'after:w-0 group-hover:after:w-full'
+            } ${pathname === '/about' ? '[&>span.bg-overlay]:scale-x-100' : '[&>span.bg-overlay]:scale-x-0 [&:hover>span.bg-overlay]:scale-x-100'}`}
           >
             <span className="relative z-10">About Us</span>
             <span className="bg-overlay absolute inset-0 bg-brand-dark transform transition-transform duration-300 origin-left rounded-lg"></span>
-          </NavLink>
+          </Link>
         </nav>
 
         <div className="flex items-center gap-3">
           <Link 
-            to="/enquiry" 
+            href="/enquiry" 
             className="hidden md:inline-flex items-center gap-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium shadow-soft relative overflow-hidden group transition-all duration-300 hover:scale-105"
           >
             <span className="relative z-10">Enquire Now</span>
@@ -351,7 +354,7 @@ export default function Navbar() {
             </button>
           </div>
           <div className="p-4 flex flex-col gap-2 bg-white">
-            <NavLink to="/" className={({isActive}) => `block px-2 py-2 rounded-lg ${isActive ? 'bg-brand/20 text-slate-900' : 'hover:bg-brand/10'}`} onClick={() => setMobileOpen(false)}>Home</NavLink>
+            <Link href="/" className={`block px-2 py-2 rounded-lg ${pathname === '/' ? 'bg-brand/20 text-slate-900' : 'hover:bg-brand/10'}`} onClick={() => setMobileOpen(false)}>Home</Link>
 
             <button className="flex items-center justify-between px-2 py-2 rounded-lg hover:bg-brand/10" onClick={() => setAcademicsOpen((v) => !v)}>
               <span>Academics</span>
@@ -359,10 +362,10 @@ export default function Navbar() {
             </button>
             {academicsOpen && (
               <div className="ml-3 flex flex-col gap-1">
-                <Link to="/courses" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Courses</Link>
-                <Link to="/faculty" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Our Faculty</Link>
-                <Link to="/results" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Results</Link>
-                <Link to="/testimonials" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Testimonials</Link>
+                <Link href="/courses" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Courses</Link>
+                <Link href="/faculty" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Our Faculty</Link>
+                <Link href="/results" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Results</Link>
+                <Link href="/testimonials" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Testimonials</Link>
               </div>
             )}
 
@@ -372,20 +375,20 @@ export default function Navbar() {
             </button>
             {activitiesOpen && (
               <div className="ml-3 flex flex-col gap-1">
-                <Link to="/activities/performance" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Performance</Link>
-                <Link to="/activities/course-selection" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Course Selection</Link>
-                <Link to="/activities/iit-neet-timeline" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>IIT-JEE/NEET Timeline</Link>
-                <Link to="/activities/mht-cet-timeline" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>MHT-CET Timeline</Link>
-                <Link to="/activities/on-demand-courses" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>On Demand Courses</Link>
-                <Link to="/activities/felicitation" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Felicitation</Link>
+                <Link href="/activities/performance" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Performance</Link>
+                <Link href="/activities/course-selection" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Course Selection</Link>
+                <Link href="/activities/iit-neet-timeline" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>IIT-JEE/NEET Timeline</Link>
+                <Link href="/activities/mht-cet-timeline" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>MHT-CET Timeline</Link>
+                <Link href="/activities/on-demand-courses" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>On Demand Courses</Link>
+                <Link href="/activities/felicitation" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Felicitation</Link>
               </div>
             )}
 
-            <NavLink to="/directors-message" className={({isActive}) => `block px-2 py-2 rounded-lg ${isActive ? 'bg-brand/20 text-slate-900' : 'hover:bg-brand/10'}`} onClick={() => setMobileOpen(false)}>Directors Message</NavLink>
-            <NavLink to="/about" className={({isActive}) => `block px-2 py-2 rounded-lg ${isActive ? 'bg-brand/20 text-slate-900' : 'hover:bg-brand/10'}`} onClick={() => setMobileOpen(false)}>About Us</NavLink>
+            <Link href="/directors-message" className={`block px-2 py-2 rounded-lg ${pathname === '/directors-message' ? 'bg-brand/20 text-slate-900' : 'hover:bg-brand/10'}`} onClick={() => setMobileOpen(false)}>Directors Message</Link>
+            <Link href="/about" className={`block px-2 py-2 rounded-lg ${pathname === '/about' ? 'bg-brand/20 text-slate-900' : 'hover:bg-brand/10'}`} onClick={() => setMobileOpen(false)}>About Us</Link>
 
                     <div className="pt-3 flex flex-col gap-2">
-                      <Link to="/enquiry" className="inline-flex justify-center items-center gap-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft" onClick={() => setMobileOpen(false)}>Enquire Now</Link>
+                      <Link href="/enquiry" className="inline-flex justify-center items-center gap-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft" onClick={() => setMobileOpen(false)}>Enquire Now</Link>
                     </div>
           </div>
         </div>
