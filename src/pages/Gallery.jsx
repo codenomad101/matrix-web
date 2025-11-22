@@ -40,7 +40,7 @@ export default function Gallery() {
         <pre className="mt-3 bg-slate-900 text-white p-4 rounded text-xs overflow-x-auto">
 {`cd public/images/extracted
 for f in *.ppm; do
-  convert "$f" "${f%.ppm}.jpg"
+  convert "$f" "\${f%.ppm}.jpg"
 done`}
         </pre>
       </div>

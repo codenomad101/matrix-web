@@ -19,6 +19,11 @@
 .cache/
 *.cache
 .webpack/
+.webpack-cache/
+webpack-stats.json
+*.webpack.js
+dist/
+build/
 
 # misc
 .DS_Store
