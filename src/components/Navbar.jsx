@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import OptimizedImage from '@/components/OptimizedImage'
 
 function MegaMenu({ label, items, images, description }) {
   const [open, setOpen] = useState(false)
@@ -231,7 +232,15 @@ export default function Navbar() {
       <div className="container-content flex items-center justify-between h-20 md:h-24">
         <Link href="/" className="flex items-center gap-3 group relative">
           <div className="h-20 w-20 md:h-24 md:w-24 grid place-content-center overflow-hidden transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 flex-shrink-0">
-            <img src="/images/matrix_logo1.png" alt="MSA logo" className="h-20 w-20 md:h-24 md:w-24 object-contain transition-all duration-300" />
+            <OptimizedImage
+              cloudinaryId="v1763788005/matrix_logo_cra98w"
+              alt="MSA logo"
+              width={96}
+              height={96}
+              className="h-20 w-20 md:h-24 md:w-24 object-contain transition-all duration-300"
+              crop="fit"
+              loading="eager"
+            />
           </div>
           <span className="text-xs sm:text-sm text-slate-600 transition-colors duration-300 group-hover:text-slate-700 whitespace-nowrap hidden sm:block">सा विद्या या विमुक्तये</span>
         </Link>

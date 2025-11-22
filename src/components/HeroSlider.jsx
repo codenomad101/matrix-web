@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
+import OptimizedImage from '@/components/OptimizedImage'
 
 const SLIDE_INTERVAL_MS = 6000
 
@@ -159,50 +160,100 @@ export default function HeroSlider() {
                     </div>
                   </div>
                 ) : s.type === 'activities' ? (
-                  <div className="w-full h-full flex flex-col justify-center p-6 sm:p-8 lg:p-10 relative z-10 overflow-hidden">
-                    <div className="text-left mb-8 max-w-4xl">
-                      <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium bg-white/70 text-slate-800 w-fit px-3 py-1 rounded-full shadow-soft mb-4">
+                  <div className="w-full h-full grid md:grid-cols-2 gap-6 sm:gap-8 p-6 sm:p-8 lg:p-10 relative z-10 overflow-hidden">
+                    {/* Left Content */}
+                    <div className="flex flex-col justify-center gap-4 sm:gap-5 min-w-0">
+                      <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium bg-white/70 text-slate-800 w-fit px-3 py-1 rounded-full shadow-soft">
                         <span>Discover More</span>
                       </div>
-                      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-slate-800 mb-3">
+                      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-slate-800">
                         {s.title}
                       </h1>
-                      <p className="text-base sm:text-lg md:text-xl font-semibold text-white/95 drop-shadow-md mb-2">
+                      <p className="text-base sm:text-lg md:text-xl font-semibold text-white/95 drop-shadow-md">
                         {s.highlight}
                       </p>
                       <p className="text-sm sm:text-base text-white/90">
                         {s.subtitle}
                       </p>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-5 max-w-5xl">
-                      {s.activities.map((activity, idx) => (
-                        <Link
-                          key={idx}
-                          href={activity.to}
-                          className="bg-white/90 backdrop-blur rounded-xl p-5 sm:p-6 text-center shadow-lg hover:bg-white hover:scale-105 hover:shadow-xl transition-all duration-300 group"
-                        >
-                          <div className="text-3xl sm:text-4xl mb-3">{activity.icon}</div>
-                          <div className="text-sm sm:text-base font-semibold text-slate-900 group-hover:text-brand-dark transition-colors duration-300">
-                            {activity.label}
-                          </div>
+                      
+                      {/* Activity Buttons - Small, in 3 lines */}
+                      <div className="flex flex-col gap-2 sm:gap-3 mt-4">
+                        {/* First line - 2 buttons */}
+                        <div className="flex flex-wrap gap-2 sm:gap-3">
+                          {s.activities.slice(0, 2).map((activity, idx) => (
+                            <Link
+                              key={idx}
+                              href={activity.to}
+                              className="inline-flex items-center gap-2 bg-white/90 backdrop-blur rounded-lg px-3 py-2 text-xs sm:text-sm font-semibold text-slate-900 hover:bg-white hover:scale-105 hover:shadow-lg transition-all duration-300 group"
+                            >
+                              <span className="text-base sm:text-lg">{activity.icon}</span>
+                              <span className="group-hover:text-brand-dark transition-colors duration-300">
+                                {activity.label}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                        {/* Second line - 2 buttons */}
+                        <div className="flex flex-wrap gap-2 sm:gap-3">
+                          {s.activities.slice(2, 4).map((activity, idx) => (
+                            <Link
+                              key={idx + 2}
+                              href={activity.to}
+                              className="inline-flex items-center gap-2 bg-white/90 backdrop-blur rounded-lg px-3 py-2 text-xs sm:text-sm font-semibold text-slate-900 hover:bg-white hover:scale-105 hover:shadow-lg transition-all duration-300 group"
+                            >
+                              <span className="text-base sm:text-lg">{activity.icon}</span>
+                              <span className="group-hover:text-brand-dark transition-colors duration-300">
+                                {activity.label}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                        {/* Third line - 2 buttons */}
+                        <div className="flex flex-wrap gap-2 sm:gap-3">
+                          {s.activities.slice(4, 6).map((activity, idx) => (
+                            <Link
+                              key={idx + 4}
+                              href={activity.to}
+                              className="inline-flex items-center gap-2 bg-white/90 backdrop-blur rounded-lg px-3 py-2 text-xs sm:text-sm font-semibold text-slate-900 hover:bg-white hover:scale-105 hover:shadow-lg transition-all duration-300 group"
+                            >
+                              <span className="text-base sm:text-lg">{activity.icon}</span>
+                              <span className="group-hover:text-brand-dark transition-colors duration-300">
+                                {activity.label}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="mt-4 flex flex-col sm:flex-row gap-3">
+                        <Link href="/activities" className="btn-primary inline-flex justify-center w-full sm:w-auto bg-white text-brand-dark hover:bg-white/95">
+                          View All Activities
                         </Link>
-                      ))}
+                      </div>
                     </div>
 
-                    <div className="mt-6 flex justify-start gap-3">
-                      <Link href="/activities" className="btn-primary inline-flex justify-center w-full sm:w-auto bg-white text-brand-dark hover:bg-white/95">
-                        View All Activities
-                      </Link>
+                    {/* Right Side - Image */}
+                    <div className="hidden md:flex items-center justify-center min-w-0 overflow-hidden relative">
+                      <div className="w-full max-w-md h-full flex items-center justify-center" style={{ borderRadius: '20%', overflow: 'hidden' }}>
+                        <OptimizedImage
+                          cloudinaryId="v1763783028/8_ubkbjt"
+                          alt="Matrix Science Academy Activities"
+                          width={600}
+                          height={800}
+                          className="w-full h-auto max-h-full object-contain"
+                          crop="fit"
+                          loading="eager"
+                        />
+                      </div>
                     </div>
                   </div>
                 ) : (
-                  <div className="w-full grid md:grid-cols-2 gap-6 sm:gap-8 p-6 sm:p-8 lg:p-10 overflow-hidden">
-                    <div className="flex flex-col gap-4 sm:gap-5 min-w-0">
+                  <div className="w-full h-full grid md:grid-cols-2 gap-6 sm:gap-8 p-6 sm:p-8 lg:p-10 relative z-10 overflow-hidden">
+                    <div className="flex flex-col justify-center gap-4 sm:gap-5 min-w-0">
                       <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium bg-white/70 text-slate-800 w-fit px-3 py-1 rounded-full shadow-soft">
                         <span>Trusted by achievers</span>
                       </div>
-                      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
+                      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-slate-800">
                         {s.title}
                       </h1>
                       <p className="text-base sm:text-xl md:text-2xl font-semibold text-slate-800">
@@ -213,7 +264,7 @@ export default function HeroSlider() {
                       </p>
                       {s.branches && s.branches.length > 0 && (
                         <div className="mt-3">
-                          <span className="text-sm font-semibold uppercase tracking-wide">Branches:</span>
+                          <span className="text-sm font-semibold uppercase tracking-wide text-slate-800">Branches:</span>
                           <div className="mt-2 flex flex-wrap gap-2">
                             {s.branches.map((b) => (
                               <span key={b} className="px-3 py-1 rounded-full bg-white/70 text-slate-800 text-xs sm:text-sm">
@@ -230,11 +281,22 @@ export default function HeroSlider() {
                       </div>
                     </div>
 
+                    {/* Right Side - Image */}
                     <div className="hidden md:flex items-center justify-center min-w-0 overflow-hidden">
-                      <div className="relative">
-                        <div className="h-64 w-64 sm:h-72 sm:w-72 rounded-2xl bg-white/70 backdrop-blur shadow-soft rotate-3"></div>
-                        <div className="absolute -top-6 -left-6 h-32 w-32 rounded-xl bg-white/70 shadow-soft -rotate-6"></div>
-                        <div className="absolute -bottom-6 -right-6 h-24 w-24 rounded-xl bg-white/70 shadow-soft rotate-12"></div>
+                      <div className="relative w-full h-full flex items-center justify-center">
+                        <div className="relative w-full max-w-md h-full flex items-center justify-center overflow-hidden">
+                          <div className="w-full h-full flex items-center justify-center" style={{ borderRadius: '20%', overflow: 'hidden' }}>
+                            <OptimizedImage
+                              cloudinaryId="v1763786335/output_faqujd"
+                              alt="Matrix Science Academy Achievement"
+                              width={600}
+                              height={800}
+                              className="w-full h-auto object-contain"
+                              crop="fit"
+                              loading="eager"
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

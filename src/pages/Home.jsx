@@ -3,79 +3,7 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import HeroSlider from '../components/HeroSlider.jsx'
 import NewsSlider from '../components/NewsSlider.jsx'
-
-// Results Slider Component
-function ResultsSlider() {
-  const [index, setIndex] = useState(0)
-  const images = [
-    { src: '/images/result11.png', alt: 'Matrix Science Academy Results 1' },
-    { src: '/images/result22.png', alt: 'Matrix Science Academy Results 2' },
-    { src: '/images/result33.png', alt: 'Matrix Science Academy Results 3' },
-    { src: '/images/result44.png', alt: 'Matrix Science Academy Results 4' },
-  ]
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((i) => (i + 1) % images.length)
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [images.length])
-
-  const goToSlide = (idx) => {
-    setIndex(idx)
-  }
-
-  const goToPrev = () => {
-    setIndex((i) => (i - 1 + images.length) % images.length)
-  }
-
-  const goToNext = () => {
-    setIndex((i) => (i + 1) % images.length)
-  }
-
-  return (
-    <div className="mt-6">
-      <div className="relative overflow-hidden rounded-xl p-2 shadow-lg max-w-[1320px] mx-auto">
-        {/* Images Container */}
-        <div className="relative min-h-[600px] overflow-hidden">
-          <div 
-            className="flex transition-transform duration-500 ease-smooth"
-            style={{ transform: `translateX(-${index * 100}%)` }}
-          >
-            {images.map((img, idx) => (
-              <div key={idx} className="min-w-full flex items-center justify-center py-4">
-                <img 
-                  src={img.src} 
-                  alt={img.alt} 
-                  className="w-full h-auto max-h-[600px] object-contain"
-                  onError={(e) => {
-                    e.target.style.display = 'none'
-                  }}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Dots Indicator - Below Slider */}
-      <div className="flex justify-center gap-2 mt-4">
-        {images.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => goToSlide(idx)}
-            className={`h-3 rounded-full transition-all duration-300 ${
-              index === idx 
-                ? 'w-10 bg-brand-dark' 
-                : 'w-4 bg-slate-300 hover:bg-slate-400'
-            }`}
-            aria-label={`Go to slide ${idx + 1}`}
-          />
-        ))}
-      </div>
-    </div>
-  )
-}
+import OptimizedImage from '@/components/OptimizedImage'
 
 const topTestimonials = [
   { 
@@ -121,8 +49,8 @@ const topResults = {
 // Overview Section Component
 function OverviewSection() {
   const images = [
-    { src: '/images/top11.png', alt: 'Top Achievement 1' },
-    { src: '/images/top22.png', alt: 'Top Achievement 2' },
+    { cloudinaryId: 'v1763786029/output_mdyqhp', alt: 'Top Achievement 1' },
+    { cloudinaryId: 'v1763785958/output_cbx5g1', alt: 'Top Achievement 2' },
   ]
 
   return (
@@ -137,10 +65,14 @@ function OverviewSection() {
             key={idx}
             className="rounded-2xl overflow-hidden shadow-lg"
           >
-            <img 
-              src={img.src} 
-              alt={img.alt} 
+            <OptimizedImage
+              cloudinaryId={img.cloudinaryId}
+              alt={img.alt}
+              width={800}
+              height={600}
               className="w-full h-auto object-contain py-2"
+              crop="fit"
+              loading="eager"
             />
           </div>
         ))}
@@ -179,29 +111,22 @@ function ResultsSection({ topResults }) {
   }, [])
 
   const topCards = [
-    {
-      value: topResults.mhtcet.count,
-      title: 'MHT-CET 2024',
-      desc: `Students scored ${topResults.mhtcet.percentile} percentile`,
-      highlight: topResults.mhtcet.highlight,
-    },
-    {
-      value: `${topResults.iit.count}+`,
-      title: 'IIT Admissions',
-      desc: topResults.iit.colleges,
-    },
-    {
-      value: topResults.neet.score,
-      title: 'NEET Biology',
-      desc: `${topResults.neet.students} achieved perfect score`,
-    },
+    
+    
+   // {
+    //  value: topResults.neet.score,
+     // title: 'NEET Biology',
+    //  desc: `${topResults.neet.students} achieved perfect score`,
+    //},
   ]
 
   const achievementCards = [
     { value: '12+', title: 'IIT Admissions', desc: 'IIT Guwahati, Kharagpur, Mandi' },
     { value: '100/100', title: 'NEET Biology', desc: 'Perfect scores achieved' },
-    { value: '60', title: '99+ Percentile', desc: 'MHT-CET 2024' },
-    { value: '60', title: 'Students Scored 99%+', desc: 'Percentile' },
+
+    { value: '86', title: 'Students with 99+', desc: 'MHT-CET 2025' },
+    { value: '32', title: 'Students Scored 95%+', desc: 'JEE Advanced 2025' },
+    { value: '80+', title: 'Students Qualified', desc: 'JEE Advanced 2025' },
   ]
 
   return (
@@ -216,12 +141,13 @@ function ResultsSection({ topResults }) {
       {/* Achievement Highlights - Moved to top */}
       <div className="mb-10">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {achievementCards.filter((_, idx) => idx !== 1).map((card, filteredIdx) => {
-            const bgColors = ['bg-red-500', 'bg-gray-400', 'bg-brand-dark']
+          {achievementCards.map((card, idx) => {
+            // Colors for all 5 cards: red, gray (NEET), red, gray, red
+            const bgColors = ['bg-red-500', 'bg-gray-400', 'bg-red-600', 'bg-gray-400', 'bg-brand-dark']
             return (
               <div
-                key={filteredIdx}
-                className={`${bgColors[filteredIdx]} rounded-2xl p-6 text-center text-white shadow-soft transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden group min-h-[180px] flex flex-col justify-center`}
+                key={idx}
+                className={`${bgColors[idx]} rounded-2xl p-6 text-center text-white shadow-soft transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden group min-h-[180px] flex flex-col justify-center`}
               >
                 <div className="relative z-10">
                   <div className="text-4xl font-extrabold text-white mb-2">
@@ -282,8 +208,37 @@ function ResultsSection({ topResults }) {
         })}
         </div>
 
-        {/* Results Images Slider */}
-        <ResultsSlider />
+        {/* Results Images */}
+        <div className="grid sm:grid-cols-2 gap-6 mt-6">
+          <div className="card bg-white rounded-2xl overflow-hidden hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+            <div className="w-full aspect-[3/4] overflow-hidden">
+              <OptimizedImage
+                cloudinaryId="v1763783028/4_nl1ejs"
+                alt="Results Photo 1"
+                width={600}
+                height={800}
+                className="w-full h-full object-cover"
+                crop="fill"
+                quality="auto"
+                loading="eager"
+              />
+            </div>
+          </div>
+          <div className="card bg-white rounded-2xl overflow-hidden hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+            <div className="w-full aspect-[3/4] overflow-hidden">
+              <OptimizedImage
+                cloudinaryId="v1763783015/5_c2lqwx"
+                alt="Results Photo 2"
+                width={600}
+                height={800}
+                className="w-full h-full object-cover"
+                crop="fill"
+                quality="auto"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )
