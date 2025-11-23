@@ -12,8 +12,8 @@ export default function Stats() {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         {stats.map((s) => (
           <div key={s.label} className="card p-6 text-center group">
-            <div className="text-3xl font-extrabold text-slate-900 group-hover:text-brand-dark transition-colors duration-300">{s.value}</div>
-            <div className="mt-1 text-sm text-slate-600">{s.label}</div>
+            <div className="text-3xl font-extrabold text-[#004c8f] group-hover:text-brand-dark transition-colors duration-300">{s.value}</div>
+            <div className="mt-1 text-sm text-[#004c8f]">{s.label}</div>
           </div>
         ))}
       </div>

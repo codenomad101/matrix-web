@@ -22,6 +22,18 @@ module.exports = {
           800: '#2c6e89',
           900: '#1f4f62',
         },
+        slate: {
+          50: '#e6f0f7',
+          100: '#cce1ef',
+          200: '#99c3df',
+          300: '#66a5cf',
+          400: '#3387bf',
+          500: '#004c8f',
+          600: '#003d72',
+          700: '#002e56',
+          800: '#001f3a',
+          900: '#00101d',
+        },
       },
       fontFamily: {
         display: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],

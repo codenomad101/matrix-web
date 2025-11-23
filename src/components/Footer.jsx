@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-700 text-white">
+    <footer className="bg-[#004c8f] text-white">
       <div className="container-page py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Quick Links */}
@@ -12,7 +12,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/" 
-                  className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
+                  className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Home
                 </Link>
@@ -20,7 +20,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/directors-message" 
-                  className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
+                  className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Directors Message
                 </Link>
@@ -28,7 +28,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/about" 
-                  className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
+                  className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   About Us
                 </Link>
@@ -36,7 +36,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/enquiry" 
-                  className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
+                  className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Enquire Now
                 </Link>
@@ -51,7 +51,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/courses" 
-                  className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
+                  className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Courses
                 </Link>
@@ -59,7 +59,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/faculty" 
-                  className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
+                  className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Our Faculty
                 </Link>
@@ -67,7 +67,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/results" 
-                  className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
+                  className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Results
                 </Link>
@@ -75,7 +75,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/testimonials" 
-                  className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
+                  className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Testimonials
                 </Link>
@@ -90,7 +90,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/activities/performance" 
-                  className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
+                  className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Performance
                 </Link>
@@ -98,7 +98,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/activities/course-selection" 
-                  className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
+                  className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Course Selection
                 </Link>
@@ -106,7 +106,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/activities/iit-neet-timeline" 
-                  className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
+                  className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   IIT-JEE/NEET Timeline
                 </Link>
@@ -114,7 +114,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/activities/mht-cet-timeline" 
-                  className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
+                  className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   MHT-CET Timeline
                 </Link>
@@ -122,7 +122,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/activities/on-demand-courses" 
-                  className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
+                  className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   On Demand Courses
                 </Link>
@@ -130,7 +130,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/activities/felicitation" 
-                  className="text-slate-300 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
+                  className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Felicitation
                 </Link>
@@ -142,10 +142,10 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-red-500">Contact</h3>
             <ul className="space-y-2">
-              <li className="text-slate-300">
+              <li className="text-white/70">
                 <span className="font-medium text-white">Email:</span> jadhavsbj755@gmail.com
               </li>
-              <li className="text-slate-300">
+              <li className="text-white/70">
                 <span className="font-medium text-white">Branches:</span> Pradhikaran, Nigdi, Ravet, Shahunagar, Chinchwad, Wakad, Moshi
               </li>
             </ul>
@@ -153,8 +153,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-slate-600 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="text-slate-300 text-sm">
+        <div className="border-t border-white/20 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="text-white/70 text-sm">
             © {new Date().getFullYear()} Matrix Science Academy. All rights reserved.
           </div>
           <div className="flex items-center gap-2">
@@ -165,7 +165,7 @@ export default function Footer() {
               <img src="/images/matrix_logo1.png" alt="MSA logo" className="h-8 w-8 object-contain" />
               <span className="text-sm font-semibold">
                 <span className="text-red-500">Matrix</span>{' '}
-                <span className="text-slate-300">Science</span>{' '}
+                <span className="text-white/70">Science</span>{' '}
                 <span className="text-brand">Academy</span>
               </span>
             </Link>

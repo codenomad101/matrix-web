@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import HeroSlider from '../components/HeroSlider.jsx'
 import NewsSlider from '../components/NewsSlider.jsx'
 import OptimizedImage from '@/components/OptimizedImage'
+import FeaturesSection from '@/components/featuresSection.jsx'
 
 const topTestimonials = [
   { 
@@ -49,14 +50,15 @@ const topResults = {
 // Overview Section Component
 function OverviewSection() {
   const images = [
-    { cloudinaryId: 'v1763786029/output_mdyqhp', alt: 'Top Achievement 1' },
-    { cloudinaryId: 'v1763785958/output_cbx5g1', alt: 'Top Achievement 2' },
+    { cloudinaryId: 'v1763852019/booksweoffer_bciiam', alt: 'Top Achievement 1' },
+    //{ cloudinaryId: 'v1763786029/output_mdyqhp', alt: 'Top Achievement 2' },
+    { cloudinaryId: 'v1763785958/output_cbx5g1', alt: 'Top Achievement 3' },
   ]
 
   return (
     <section className="container-page py-4">
       <div className="mb-6">
-        <h2 className="text-4xl font-semibold text-slate-700 py-2">Overview and Features</h2>
+        <h2 className="text-4xl font-semibold text-[#004c8f] py-2">Overview and Features</h2>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
@@ -132,8 +134,8 @@ function ResultsSection({ topResults }) {
   return (
     <section className="container-page py-6" ref={sectionRef}>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-4xl font-bold text-slate-700">
-          One of the <span className="text-red-600">most sought after</span> and <span className="text-red-600"> successful</span> Institutions
+        <h2 className="text-4xl font-bold text-[#004c8f]">
+          One of the <span className="text-red-600">Leading and most </span>  <span className="text-red-600"> successful</span> Institutions in Pune
         </h2>
         <Link href="/results" className="btn-outline hover:scale-105 transition-transform duration-300">View All Results</Link>
       </div>
@@ -318,7 +320,7 @@ function TestimonialsSlider({ testimonials }) {
             className={`h-2.5 rounded-full transition-all duration-300 ${
               currentIndex === idx 
                 ? 'w-10 bg-brand-dark' 
-                : 'w-2.5 bg-slate-300 hover:bg-slate-400'
+                : 'w-2.5 bg-[#004c8f]/30 hover:bg-[#004c8f]/40'
             }`}
             aria-label={`Go to testimonial ${idx + 1}`}
           />
@@ -418,25 +420,25 @@ function TestimonialCard({ testimonial: t, index }) {
               </div>
               {/* College Name Below Image */}
               <div className={`mt-4 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                <h3 className="text-xl font-extrabold text-slate-900">
+                <h3 className="text-xl font-extrabold text-[#004c8f]">
                   {t.college}
                 </h3>
-                <div className="text-sm font-semibold text-slate-700 mt-1">
+                <div className="text-sm font-semibold text-[#004c8f] mt-1">
                   {t.exam}
                 </div>
               </div>
             </>
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-slate-200 via-slate-300 to-slate-400 rounded-xl flex flex-col items-center justify-center">
-              <span className="text-slate-600 font-semibold text-lg">{t.college}</span>
-              <span className="text-slate-500 text-sm mt-2">{t.exam}</span>
+            <div className="w-full h-full bg-gradient-to-br from-[#004c8f]/20 via-[#004c8f]/30 to-[#004c8f]/40 rounded-xl flex flex-col items-center justify-center">
+              <span className="text-[#004c8f] font-semibold text-lg">{t.college}</span>
+              <span className="text-[#004c8f] text-sm mt-2">{t.exam}</span>
             </div>
           )}
         </div>
       </div>
 
       {/* Person Details Section with photo */}
-      <div className={`px-6 py-3 bg-white border-t border-slate-200 transition-all duration-500 group-hover:bg-slate-50 ${
+      <div className={`px-6 py-3 bg-white border-t border-[#004c8f]/20 transition-all duration-500 group-hover:bg-[#004c8f]/5 ${
         isHovered ? 'border-brand/30' : ''
       }`}>
         <div className="flex items-center gap-4">
@@ -456,12 +458,12 @@ function TestimonialCard({ testimonial: t, index }) {
                   e.target.style.display = 'none'
                   const parent = e.target.parentElement
                   parent.classList.add('bg-gradient-to-br', 'from-brand/40', 'to-brand-dark/30', 'flex', 'items-center', 'justify-center')
-                  parent.innerHTML = `<span class="text-slate-900 font-bold text-lg">${t.name.split(' ').map(n => n[0]).join('')}</span>`
+                  parent.innerHTML = `<span class="text-[#004c8f] font-bold text-lg">${t.name.split(' ').map(n => n[0]).join('')}</span>`
                 }}
               />
             ) : (
               <div className="h-full w-full bg-gradient-to-br from-brand/40 to-brand-dark/30 flex items-center justify-center">
-                <span className={`text-slate-900 font-bold text-lg transition-all duration-300 ${isHovered ? 'scale-110 text-white' : ''}`}>
+                <span className={`text-[#004c8f] font-bold text-lg transition-all duration-300 ${isHovered ? 'scale-110 text-white' : ''}`}>
                   {t.name.split(' ').map(n => n[0]).join('')}
                 </span>
               </div>
@@ -470,10 +472,10 @@ function TestimonialCard({ testimonial: t, index }) {
           
           {/* Details with fade animation - Dark Text */}
           <div className={`flex-1 min-w-0 transition-all duration-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}>
-            <div className={`font-bold text-slate-900 text-lg transition-colors duration-300 ${isHovered ? 'text-brand-dark' : ''}`}>
+            <div className={`font-bold text-[#004c8f] text-lg transition-colors duration-300 ${isHovered ? 'text-brand-dark' : ''}`}>
               {t.name}
             </div>
-            <div className={`text-sm font-semibold text-slate-700 transition-all duration-300 ${isHovered ? 'text-brand-dark font-bold' : ''}`}>
+            <div className={`text-sm font-semibold text-[#004c8f] transition-all duration-300 ${isHovered ? 'text-brand-dark font-bold' : ''}`}>
               Student
             </div>
           </div>
@@ -495,6 +497,8 @@ export default function Home() {
     <div>
       <NewsSlider />
       <HeroSlider />
+      <FeaturesSection />
+
 
       {/* Results Section */}
       <ResultsSection topResults={topResults} />
@@ -504,31 +508,29 @@ export default function Home() {
 
       <section className="container-page py-4">
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="card bg-white rounded-2xl p-6 hover:-translate-y-1 hover:bg-slate-600 hover:shadow-lg transition-all duration-300 group">
-            <h3 className="text-xl font-semibold text-slate-900 group-hover:text-white transition-colors duration-300">Why MSA?</h3>
-            <p className="mt-2 text-slate-600 group-hover:text-white transition-colors duration-300">150+ teachers by choice, curated content, and disciplined guidance for competitive exams.</p>
+          <div className="card bg-white rounded-2xl p-6 hover:-translate-y-1 hover:bg-[#004c8f] hover:shadow-lg transition-all duration-300 group">
+            <h3 className="text-xl font-semibold text-[#004c8f] group-hover:text-white transition-colors duration-300">Why MSA?</h3>
+            <p className="mt-2 text-[#004c8f] group-hover:text-white transition-colors duration-300">150+ teachers by choice, curated content, and disciplined guidance for competitive exams.</p>
           </div>
-          <div className="card bg-white rounded-2xl p-6 hover:-translate-y-1 hover:bg-slate-600 hover:shadow-lg transition-all duration-300 group">
-            <h3 className="text-xl font-semibold text-slate-900 group-hover:text-white transition-colors duration-300">Programs</h3>
-            <p className="mt-2 text-slate-600 group-hover:text-white transition-colors duration-300">IIT-JEE, MHT-CET, NEET, IISER Foundation, and 8th–12th board prep.</p>
+          <div className="card bg-white rounded-2xl p-6 hover:-translate-y-1 hover:bg-[#004c8f] hover:shadow-lg transition-all duration-300 group">
+            <h3 className="text-xl font-semibold text-[#004c8f] group-hover:text-white transition-colors duration-300">Programs</h3>
+            <p className="mt-2 text-[#004c8f] group-hover:text-white transition-colors duration-300">Leading trainers in Pune</p>
           </div>
-          <div className="card bg-white rounded-2xl p-6 hover:-translate-y-1 hover:bg-slate-600 hover:shadow-lg transition-all duration-300 group">
-            <h3 className="text-xl font-semibold text-slate-900 group-hover:text-white transition-colors duration-300">Branches</h3>
-            <p className="mt-2 text-slate-600 group-hover:text-white transition-colors duration-300">8 branches: Pradhikaran, Nigdi, Ravet, Shahunagar, Chinchwad, Wakad, Moshi.</p>
+          <div className="card bg-white rounded-2xl p-6 hover:-translate-y-1 hover:bg-[#004c8f] hover:shadow-lg transition-all duration-300 group">
+            <h3 className="text-xl font-semibold text-[#004c8f] group-hover:text-white transition-colors duration-300">Branches</h3>
+            <p className="mt-2 text-[#004c8f] group-hover:text-white transition-colors duration-300">8 branches: Pradhikaran, Nigdi, Ravet, Shahunagar, Chinchwad, Wakad, Moshi.</p>
           </div>
         </div>
       </section>
 
               {/* Testimonials Section with Slider */}
-      <section className="bg-brand/10 py-12 relative overflow-hidden">
-        {/* Animated background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-brand/20 via-transparent to-brand-dark/10 pointer-events-none"></div>
+      <section className="py-12 relative overflow-hidden" style={{ backgroundColor: '#004c8f' }}>
         
         <div className="container-page relative z-10">
           <div className="flex items-center justify-between mb-10">
-            <h2 className="text-4xl font-bold relative text-slate-700">
+            <h2 className="text-4xl font-bold relative text-white">
               <span className="relative z-10">Student Testimonials</span>
-              <span className="absolute -bottom-1 left-0 w-24 h-1 bg-brand-dark rounded-full"></span>
+              <span className="absolute -bottom-1 left-0 w-24 h-1 bg-white rounded-full"></span>
             </h2>
             <Link href="/testimonials" className="btn-outline bg-white hover:scale-105 transition-transform duration-300">View All</Link>
           </div>
@@ -543,8 +545,8 @@ export default function Home() {
       <section className="container-page py-8">
         <div className="rounded-2xl bg-brand/30 border border-brand/40 p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <h3 className="text-2xl font-bold text-slate-900">Ready to start your journey?</h3>
-            <p className="text-slate-700 mt-1">Speak with our counsellors and get a personalized plan.</p>
+            <h3 className="text-2xl font-bold text-[#004c8f]">Ready to start your journey?</h3>
+            <p className="text-[#004c8f] mt-1">Speak with our counsellors and get a personalized plan.</p>
           </div>
           <Link href="/enquiry" className="inline-flex items-center gap-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft">Enquire Now</Link>
         </div>

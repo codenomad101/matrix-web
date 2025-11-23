@@ -34,8 +34,8 @@ const items = [
 export default function Testimonials() {
   return (
     <div className="container-page py-10">
-      <h1 className="text-3xl font-bold mb-2 text-slate-700">Testimonials</h1>
-      <p className="text-slate-600 mb-8">Hear from our successful students who achieved their dreams</p>
+      <h1 className="text-3xl font-bold mb-2 text-[#004c8f]">Testimonials</h1>
+      <p className="text-[#004c8f] mb-8">Hear from our successful students who achieved their dreams</p>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {items.map((t, idx) => (
           <div 
@@ -46,14 +46,14 @@ export default function Testimonials() {
             <div className="relative bg-brand px-6 pt-8 pb-6">
               {/* Quote Icon */}
               <div className="absolute top-4 left-6 opacity-20">
-                <svg className="w-16 h-16 text-slate-900" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-16 h-16 text-[#004c8f]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.481.967-4.996 2.848-4.996 7.153 0 3.031 1.214 5.555 3.003 7.266h-7.986zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.481.967-5 2.848-5 7.153 0 3.031 1.214 5.555 3.003 7.266h-7.003z"/>
                 </svg>
               </div>
               
               {/* Quote Text */}
               <div className="relative z-10">
-                <p className="text-slate-900 text-base leading-relaxed font-medium italic">
+                <p className="text-[#004c8f] text-base leading-relaxed font-medium italic">
                   "{t.text}"
                 </p>
               </div>
@@ -63,18 +63,18 @@ export default function Testimonials() {
             </div>
 
             {/* Person Details Section */}
-            <div className="px-6 py-5 bg-white border-t border-slate-100">
+            <div className="px-6 py-5 bg-white border-t border-[#004c8f]/10">
               <div className="flex items-center gap-4">
                 {/* Avatar */}
-                <div className="h-12 w-12 rounded-full bg-brand/30 flex items-center justify-center text-slate-900 font-bold text-lg shrink-0 group-hover:bg-brand/50 transition-colors duration-300">
+                <div className="h-12 w-12 rounded-full bg-brand/30 flex items-center justify-center text-[#004c8f] font-bold text-lg shrink-0 group-hover:bg-brand/50 transition-colors duration-300">
                   {t.name.split(' ').map(n => n[0]).join('')}
                 </div>
                 
                 {/* Details */}
                 <div className="flex-1 min-w-0">
-                  <div className="font-semibold text-slate-900 text-lg">{t.name}</div>
+                  <div className="font-semibold text-[#004c8f] text-lg">{t.name}</div>
                   <div className="text-sm font-medium text-brand mt-0.5">{t.college}</div>
-                  <div className="text-xs text-slate-500 mt-1">{t.exam}</div>
+                  <div className="text-xs text-[#004c8f] mt-1">{t.exam}</div>
                 </div>
               </div>
             </div>

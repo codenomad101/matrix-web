@@ -14,8 +14,8 @@ export default function EnquiryForm() {
     <div className="container-page py-12">
       <div className="grid lg:grid-cols-2 gap-8">
         <div className="card p-6 sm:p-8">
-          <h2 className="text-2xl font-bold text-slate-900">Enquiry Form</h2>
-          <p className="mt-1 text-slate-600">Fill this and our team will reach out shortly.</p>
+          <h2 className="text-2xl font-bold text-[#004c8f]">Enquiry Form</h2>
+          <p className="mt-1 text-[#004c8f]">Fill this and our team will reach out shortly.</p>
 
           <form
             className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4"
@@ -29,22 +29,22 @@ export default function EnquiryForm() {
             <input type="text" name="_honey" className="hidden" tabIndex="-1" autoComplete="off" />
 
             <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-slate-700">Full Name</label>
+              <label className="block text-sm font-medium text-[#004c8f]">Full Name</label>
               <input required name="name" type="text" placeholder="Your name" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand" />
             </div>
 
             <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-slate-700">Phone</label>
+              <label className="block text-sm font-medium text-[#004c8f]">Phone</label>
               <input required name="phone" type="tel" placeholder="98765 43210" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand" />
             </div>
 
             <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-slate-700">Email</label>
+              <label className="block text-sm font-medium text-[#004c8f]">Email</label>
               <input required name="email" type="email" placeholder="you@example.com" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand" />
             </div>
 
             <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-slate-700">Course</label>
+              <label className="block text-sm font-medium text-[#004c8f]">Course</label>
               <select name="course" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand">
                 <option>IIT-JEE (Main/Advanced)</option>
                 <option>MHT-CET</option>
@@ -55,7 +55,7 @@ export default function EnquiryForm() {
             </div>
 
             <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-slate-700">Preferred Branch</label>
+              <label className="block text-sm font-medium text-[#004c8f]">Preferred Branch</label>
               <select name="branch" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand">
                 <option>Pradhikaran</option>
                 <option>Nigdi</option>
@@ -68,7 +68,7 @@ export default function EnquiryForm() {
             </div>
 
             <div className="sm:col-span-2">
-              <label className="block text-sm font-medium text-slate-700">Message</label>
+              <label className="block text-sm font-medium text-[#004c8f]">Message</label>
               <textarea name="message" rows="4" placeholder="Tell us about your goals" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand"></textarea>
             </div>
 
@@ -80,14 +80,14 @@ export default function EnquiryForm() {
         </div>
 
         <div className="rounded-2xl bg-brand/20 border border-brand/30 p-6 sm:p-8">
-          <h3 className="text-xl font-semibold text-slate-900">Why enquire?</h3>
-          <ul className="mt-3 space-y-2 text-slate-700">
+          <h3 className="text-xl font-semibold text-[#004c8f]">Why enquire?</h3>
+          <ul className="mt-3 space-y-2 text-[#004c8f]">
             <li>• Get a personalized study plan</li>
             <li>• Fee details and scholarship options</li>
             <li>• Centre timings and batch schedules</li>
             <li>• Meet counsellors and mentors</li>
           </ul>
-          <div className="mt-6 text-sm text-slate-600">
+          <div className="mt-6 text-sm text-[#004c8f]">
             We’ll email your details to our team instantly.
           </div>
         </div>

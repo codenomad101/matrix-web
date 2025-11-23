@@ -42,7 +42,7 @@ export default function NewsSlider() {
   }, [])
 
   return (
-    <div className="bg-gradient-to-r from-brand-dark via-brand-dark to-slate-800 text-white border-b border-brand/30 shadow-md">
+    <div className="bg-red-600 text-white border-b border-brand/30 shadow-md">
       <div className="container-content">
         <div className="flex items-center gap-3 sm:gap-4 py-3 px-4 sm:px-6">
           {/* News Icon/Label */}
@@ -50,7 +50,7 @@ export default function NewsSlider() {
             <svg className="w-4 h-4 sm:w-5 sm:h-5 text-red-500 animate-pulse flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
             </svg>
-            <span className="text-xs font-bold uppercase tracking-wider text-red-500 whitespace-nowrap hidden sm:inline">Latest News</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-white whitespace-nowrap hidden sm:inline">Latest News</span>
           </div>
 
           {/* Separator */}

@@ -86,18 +86,18 @@ export default function MHTCETTimeline() {
     <div className="container-page py-10">
       <div className="text-center mb-12">
         <div className="inline-block mb-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-700 mb-3">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#004c8f] mb-3">
             MHT-CET Calendar
           </h1>
         </div>
-        <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+        <p className="text-[#004c8f] text-lg max-w-2xl mx-auto">
           A comprehensive academic calendar for MHT-CET preparation
         </p>
       </div>
 
       <div className="relative">
         {/* Vertical Timeline Line */}
-        <div className="absolute left-8 md:left-12 top-0 bottom-0 w-1 bg-gradient-to-b from-brand via-brand-dark to-slate-300 hidden md:block"></div>
+        <div className="absolute left-8 md:left-12 top-0 bottom-0 w-1 bg-gradient-to-b from-brand via-brand-dark to-[#004c8f]/30 hidden md:block"></div>
 
         <div className="space-y-6 md:space-y-8">
           {timeline.map((phase, idx) => (
@@ -129,16 +129,16 @@ export default function MHTCETTimeline() {
                     <div className="inline-block px-2.5 py-0.5 rounded-full bg-brand/20 text-brand-dark text-xs font-bold mb-2">
                       {phase.highlight}
                     </div>
-                    <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-1.5">{phase.months}</h3>
-                    <div className="flex flex-wrap items-center gap-2 text-sm text-slate-600 mb-2">
-                      <span className="font-medium text-slate-900">{phase.phase}</span>
-                      <span className="text-slate-400">•</span>
-                      <span className="text-slate-600">{phase.duration}</span>
+                    <h3 className="text-lg md:text-xl font-bold text-[#004c8f] mb-1.5">{phase.months}</h3>
+                    <div className="flex flex-wrap items-center gap-2 text-sm text-[#004c8f] mb-2">
+                      <span className="font-medium text-[#004c8f]">{phase.phase}</span>
+                      <span className="text-[#004c8f]/40">•</span>
+                      <span className="text-[#004c8f]">{phase.duration}</span>
                     </div>
                   </div>
 
                   {/* Description */}
-                  <p className="text-slate-700 leading-relaxed mb-4 text-sm md:text-base">{phase.description}</p>
+                  <p className="text-[#004c8f] leading-relaxed mb-4 text-sm md:text-base">{phase.description}</p>
 
                   {/* Decorative Bottom Border */}
                   <div className="h-1 bg-gradient-to-r from-brand via-brand-dark to-transparent rounded-full"></div>
@@ -152,7 +152,7 @@ export default function MHTCETTimeline() {
       {/* Important Dates Section */}
       <div className="mt-16 rounded-2xl bg-gradient-to-br from-brand/20 via-brand-dark/10 to-brand/20 p-8 md:p-10 border border-brand/30 shadow-xl">
         <div className="max-w-4xl mx-auto">
-          <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6 text-center">MHT-CET Important Information</h3>
+          <h3 className="text-2xl md:text-3xl font-bold text-[#004c8f] mb-6 text-center">MHT-CET Important Information</h3>
           <div className="grid md:grid-cols-2 gap-6">
             {[
               { title: 'Exam Date', info: 'Usually in April/May (Check official website for exact dates)', icon: '📅' },
@@ -167,8 +167,8 @@ export default function MHTCETTimeline() {
                 <div className="flex items-start gap-4">
                   <div className="text-3xl">{item.icon}</div>
                   <div>
-                    <h4 className="font-bold text-slate-900 mb-2 text-lg">{item.title}</h4>
-                    <p className="text-sm text-slate-600">{item.info}</p>
+                    <h4 className="font-bold text-[#004c8f] mb-2 text-lg">{item.title}</h4>
+                    <p className="text-sm text-[#004c8f]">{item.info}</p>
                   </div>
                 </div>
               </div>

@@ -57,8 +57,8 @@ function MegaMenu({ label, items, images, description }) {
           }`}>
             {/* Header Section */}
             <div className="bg-gradient-to-r from-brand/20 to-brand-dark/10 px-6 py-4 border-b">
-              <h3 className="font-bold text-lg text-slate-900">{label}</h3>
-              {description && <p className="text-sm text-slate-600 mt-1">{description}</p>}
+              <h3 className="font-bold text-lg text-[#004c8f]">{label}</h3>
+              {description && <p className="text-sm text-[#004c8f] mt-1">{description}</p>}
             </div>
             
             {/* Content Grid */}
@@ -71,8 +71,8 @@ function MegaMenu({ label, items, images, description }) {
                   onMouseLeave={() => setHoveredIndex(null)}
                   className={`group relative flex items-start gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
                     hoveredIndex === idx 
-                      ? 'bg-brand/10 scale-[1.02] shadow-md' 
-                      : 'hover:bg-brand/5'
+                      ? 'bg-[#004c8f]/10 scale-[1.02] shadow-md' 
+                      : 'hover:bg-[#004c8f]/5'
                   }`}
                 >
                   {/* Image/Icon */}
@@ -99,13 +99,13 @@ function MegaMenu({ label, items, images, description }) {
                   
                   {/* Text Content */}
                   <div className="flex-1 min-w-0">
-                    <div className={`font-semibold text-slate-900 transition-colors duration-300 ${
+                    <div className={`font-semibold text-[#004c8f] transition-colors duration-300 ${
                       hoveredIndex === idx ? 'text-brand-dark' : ''
                     }`}>
                       {item.label}
                     </div>
                     {item.description && (
-                      <div className="text-xs text-slate-500 mt-0.5 line-clamp-2">
+                      <div className="text-xs text-[#004c8f] mt-0.5 line-clamp-2">
                         {item.description}
                       </div>
                     )}
@@ -242,7 +242,7 @@ export default function Navbar() {
               loading="eager"
             />
           </div>
-          <span className="text-xs sm:text-sm text-slate-600 transition-colors duration-300 group-hover:text-slate-700 whitespace-nowrap hidden sm:block">सा विद्या या विमुक्तये</span>
+          <span className="text-xs sm:text-sm text-[#004c8f] transition-colors duration-300 group-hover:text-[#004c8f] whitespace-nowrap hidden sm:block">सा विद्या या विमुक्तये</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">
@@ -250,7 +250,7 @@ export default function Navbar() {
             href="/" 
             className={`nav-link relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${
               pathname === '/' 
-                ? 'text-slate-900 font-bold shadow-md scale-105' 
+                ? 'text-[#004c8f] font-bold shadow-md scale-105' 
                 : 'hover:text-white hover:shadow-lg hover:scale-105'
             } after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:bg-brand-dark after:rounded-full after:transition-all after:duration-300 ${
               pathname === '/' ? 'after:w-full' : 'after:w-0 group-hover:after:w-full'
@@ -278,7 +278,7 @@ export default function Navbar() {
             href="/directors-message" 
             className={`nav-link relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${
               pathname === '/directors-message' 
-                ? 'text-slate-900 font-bold shadow-md scale-105' 
+                ? 'text-[#004c8f] font-bold shadow-md scale-105' 
                 : 'hover:text-white hover:shadow-lg hover:scale-105'
             } after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:bg-brand-dark after:rounded-full after:transition-all after:duration-300 ${
               pathname === '/directors-message' ? 'after:w-full' : 'after:w-0 group-hover:after:w-full'
@@ -292,7 +292,7 @@ export default function Navbar() {
             href="/about" 
             className={`nav-link relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${
               pathname === '/about' 
-                ? 'text-slate-900 font-bold shadow-md scale-105' 
+                ? 'text-[#004c8f] font-bold shadow-md scale-105' 
                 : 'hover:text-white hover:shadow-lg hover:scale-105'
             } after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:bg-brand-dark after:rounded-full after:transition-all after:duration-300 ${
               pathname === '/about' ? 'after:w-full' : 'after:w-0 group-hover:after:w-full'
@@ -315,7 +315,7 @@ export default function Navbar() {
             className={`md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border transition-all duration-300 ${
               mobileOpen 
                 ? 'bg-brand/20 border-brand rotate-90' 
-                : 'hover:bg-brand/10'
+                : 'hover:bg-[#004c8f]/10'
             }`} 
             onClick={() => setMobileOpen((v) => !v)} 
             aria-label="Toggle menu"
@@ -351,50 +351,50 @@ export default function Navbar() {
         {/* Overlay */}
         <div className={`absolute inset-0 bg-black/80 transition-opacity ${mobileOpen ? 'opacity-100' : 'opacity-0'}`} onClick={() => setMobileOpen(false)}></div>
         {/* Panel */}
-        <div className={`absolute right-0 top-0 h-full w-4/5 max-w-sm bg-white text-slate-900 shadow-[0_10px_30px_rgba(0,0,0,0.25)] border-l transition-transform duration-300 ease-smooth ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`absolute right-0 top-0 h-full w-4/5 max-w-sm bg-white text-[#004c8f] shadow-[0_10px_30px_rgba(0,0,0,0.25)] border-l transition-transform duration-300 ease-smooth ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="p-4 border-b flex items-center justify-between bg-white sticky top-0">
             <div className="font-extrabold">
               <span className="text-red-600">Matrix</span>{' '}
-              <span className="text-slate-600">Science</span>{' '}
+              <span className="text-[#004c8f]">Science</span>{' '}
               <span className="text-brand">Academy</span>
             </div>
-            <button className="h-9 w-9 rounded-lg hover:bg-brand/10 grid place-content-center" onClick={() => setMobileOpen(false)} aria-label="Close menu">
+            <button className="h-9 w-9 rounded-lg hover:bg-[#004c8f]/10 grid place-content-center" onClick={() => setMobileOpen(false)} aria-label="Close menu">
               <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
             </button>
           </div>
           <div className="p-4 flex flex-col gap-2 bg-white">
-            <Link href="/" className={`block px-2 py-2 rounded-lg ${pathname === '/' ? 'bg-brand/20 text-slate-900' : 'hover:bg-brand/10'}`} onClick={() => setMobileOpen(false)}>Home</Link>
+            <Link href="/" className={`block px-2 py-2 rounded-lg ${pathname === '/' ? 'bg-[#004c8f]/20 text-[#004c8f]' : 'hover:bg-[#004c8f]/10'}`} onClick={() => setMobileOpen(false)}>Home</Link>
 
-            <button className="flex items-center justify-between px-2 py-2 rounded-lg hover:bg-brand/10" onClick={() => setAcademicsOpen((v) => !v)}>
+            <button className="flex items-center justify-between px-2 py-2 rounded-lg hover:bg-[#004c8f]/10" onClick={() => setAcademicsOpen((v) => !v)}>
               <span>Academics</span>
               <span>{academicsOpen ? '−' : '+'}</span>
             </button>
             {academicsOpen && (
               <div className="ml-3 flex flex-col gap-1">
-                <Link href="/courses" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Courses</Link>
-                <Link href="/faculty" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Our Faculty</Link>
-                <Link href="/results" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Results</Link>
-                <Link href="/testimonials" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Testimonials</Link>
+                <Link href="/courses" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>Courses</Link>
+                <Link href="/faculty" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>Our Faculty</Link>
+                <Link href="/results" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>Results</Link>
+                <Link href="/testimonials" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>Testimonials</Link>
               </div>
             )}
 
-            <button className="flex items-center justify-between px-2 py-2 rounded-lg hover:bg-brand/10" onClick={() => setActivitiesOpen((v) => !v)}>
+            <button className="flex items-center justify-between px-2 py-2 rounded-lg hover:bg-[#004c8f]/10" onClick={() => setActivitiesOpen((v) => !v)}>
               <span>Activities</span>
               <span>{activitiesOpen ? '−' : '+'}</span>
             </button>
             {activitiesOpen && (
               <div className="ml-3 flex flex-col gap-1">
-                <Link href="/activities/performance" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Performance</Link>
-                <Link href="/activities/course-selection" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Course Selection</Link>
-                <Link href="/activities/iit-neet-timeline" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>IIT-JEE/NEET Timeline</Link>
-                <Link href="/activities/mht-cet-timeline" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>MHT-CET Timeline</Link>
-                <Link href="/activities/on-demand-courses" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>On Demand Courses</Link>
-                <Link href="/activities/felicitation" className="px-2 py-1 rounded hover:bg-brand/10" onClick={() => setMobileOpen(false)}>Felicitation</Link>
+                <Link href="/activities/performance" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>Performance</Link>
+                <Link href="/activities/course-selection" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>Course Selection</Link>
+                <Link href="/activities/iit-neet-timeline" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>IIT-JEE/NEET Timeline</Link>
+                <Link href="/activities/mht-cet-timeline" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>MHT-CET Timeline</Link>
+                <Link href="/activities/on-demand-courses" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>On Demand Courses</Link>
+                <Link href="/activities/felicitation" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>Felicitation</Link>
               </div>
             )}
 
-            <Link href="/directors-message" className={`block px-2 py-2 rounded-lg ${pathname === '/directors-message' ? 'bg-brand/20 text-slate-900' : 'hover:bg-brand/10'}`} onClick={() => setMobileOpen(false)}>Directors Message</Link>
-            <Link href="/about" className={`block px-2 py-2 rounded-lg ${pathname === '/about' ? 'bg-brand/20 text-slate-900' : 'hover:bg-brand/10'}`} onClick={() => setMobileOpen(false)}>About Us</Link>
+            <Link href="/directors-message" className={`block px-2 py-2 rounded-lg ${pathname === '/directors-message' ? 'bg-[#004c8f]/20 text-[#004c8f]' : 'hover:bg-[#004c8f]/10'}`} onClick={() => setMobileOpen(false)}>Directors Message</Link>
+            <Link href="/about" className={`block px-2 py-2 rounded-lg ${pathname === '/about' ? 'bg-[#004c8f]/20 text-[#004c8f]' : 'hover:bg-[#004c8f]/10'}`} onClick={() => setMobileOpen(false)}>About Us</Link>
 
                     <div className="pt-3 flex flex-col gap-2">
                       <Link href="/enquiry" className="inline-flex justify-center items-center gap-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft" onClick={() => setMobileOpen(false)}>Enquire Now</Link>
