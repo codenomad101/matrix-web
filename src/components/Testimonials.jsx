@@ -41,7 +41,7 @@ export default function TestimonialsShowcase() {
         name: "Soham Deshpande",
         college: "NIT Jamshedpur",
         exam: "MHT-CET",
-        image: null,
+        image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/v1763882946/soham1_s7aa4m.png',
         instituteImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kvOY7H6o7X-VGA5B4yED52IVJ6fR5Qit1w&s'
       },
   ];
