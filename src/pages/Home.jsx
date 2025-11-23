@@ -6,6 +6,8 @@ import NewsSlider from '../components/NewsSlider.jsx'
 import OptimizedImage from '@/components/OptimizedImage'
 import FeaturesSection from '@/components/featuresSection.jsx'
 
+import TestimonialsShowcase from '@/components/Testimonials.jsx'
+
 const topTestimonials = [
   { 
     name: 'Dhruv Shinde', 
@@ -247,250 +249,7 @@ function ResultsSection({ topResults }) {
 }
 
 // Testimonials Slider Component
-function TestimonialsSlider({ testimonials }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
-  // Auto-advance slider
-  useEffect(() => {
-    if (!isAutoPlaying) return
-    
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length)
-    }, 5000) // Change every 5 seconds
-
-    return () => clearInterval(timer)
-  }, [testimonials.length, isAutoPlaying])
-
-  const goToSlide = (index) => {
-    setCurrentIndex(index)
-    setIsAutoPlaying(false)
-    // Resume auto-play after 10 seconds
-    setTimeout(() => setIsAutoPlaying(true), 10000)
-  }
-
-  const goToPrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-    setIsAutoPlaying(false)
-    setTimeout(() => setIsAutoPlaying(true), 10000)
-  }
-
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length)
-    setIsAutoPlaying(false)
-    setTimeout(() => setIsAutoPlaying(true), 10000)
-  }
-
-  const slideWidth = 100 / testimonials.length
-
-  return (
-    <div className="relative w-full">
-      {/* Slider Container */}
-      <div className="relative overflow-hidden rounded-2xl w-full">
-        <div 
-          className="flex transition-transform duration-700 ease-in-out" 
-          style={{ 
-            transform: `translateX(-${currentIndex * slideWidth}%)`,
-            width: `${testimonials.length * 100}%`
-          }}
-        >
-          {testimonials.map((testimonial, idx) => (
-            <div 
-              key={idx} 
-              className="flex-shrink-0"
-              style={{ 
-                width: `${slideWidth}%`,
-                minWidth: `${slideWidth}%`
-              }}
-            >
-              <div className="px-1 sm:px-2 h-full">
-                <TestimonialCard testimonial={testimonial} index={idx} />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Dots Indicator */}
-      <div className="flex justify-center items-center gap-2 mt-8">
-        {testimonials.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => goToSlide(idx)}
-            className={`h-2.5 rounded-full transition-all duration-300 ${
-              currentIndex === idx 
-                ? 'w-10 bg-brand-dark' 
-                : 'w-2.5 bg-[#004c8f]/30 hover:bg-[#004c8f]/40'
-            }`}
-            aria-label={`Go to testimonial ${idx + 1}`}
-          />
-        ))}
-      </div>
-    </div>
-  )
-}
-
-// Testimonial Card Component with enhanced animations
-function TestimonialCard({ testimonial: t, index }) {
-  const [isVisible, setIsVisible] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
-  const cardRef = useRef(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => setIsVisible(true), index * 150)
-          }
-        })
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
-    )
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current)
-    }
-
-    return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current)
-      }
-    }
-  }, [index])
-
-  return (
-    <div 
-      ref={cardRef}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`bg-white rounded-3xl shadow-soft overflow-hidden group cursor-pointer transform transition-all duration-700 ease-out min-h-[500px] flex flex-col ${
-        isVisible 
-          ? 'opacity-100 translate-y-0 scale-100' 
-          : 'opacity-0 translate-y-10 scale-95'
-      } ${
-        isHovered 
-          ? 'shadow-2xl -translate-y-3 scale-[1.02]' 
-          : 'hover:shadow-xl hover:-translate-y-2'
-      }`}
-      style={{ 
-        transitionDelay: `${index * 50}ms`,
-        boxShadow: isHovered 
-          ? '0 25px 50px -12px rgba(90, 166, 196, 0.25)' 
-          : undefined
-      }}
-    >
-      {/* Quote and Institute Image Side by Side */}
-      <div className="grid md:grid-cols-2 gap-0 h-64">
-        {/* Quote Section with Red Background */}
-        <div className="relative bg-gradient-to-br from-red-600 via-red-600/95 to-red-700 px-6 pt-8 pb-6 overflow-hidden transition-all duration-500 group-hover:from-red-700 group-hover:to-red-800 flex flex-col justify-between">
-          {/* Animated Quote Icon */}
-          <div className={`absolute top-4 right-6 transition-all duration-700 ${isHovered ? 'opacity-30 scale-110 rotate-12' : 'opacity-20 scale-100 rotate-0'}`}>
-            <svg className="w-16 h-16 text-white/30" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.481.967-4.996 2.848-4.996 7.153 0 3.031 1.214 5.555 3.003 7.266h-7.986zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.481.967-5 2.848-5 7.153 0 3.031 1.214 5.555 3.003 7.266h-7.003z"/>
-            </svg>
-          </div>
-          
-          {/* Quote Text with fade-in animation */}
-          <div className={`relative z-10 transition-all duration-500 flex-1 flex items-center ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
-            <p className="text-white text-base leading-relaxed font-medium italic transition-all duration-300">
-              "{t.text}"
-            </p>
-          </div>
-          
-          {/* Decorative corner with animation */}
-          <div className={`absolute bottom-0 right-0 w-20 h-20 bg-white/10 rounded-tl-full transform transition-all duration-700 ${
-            isHovered ? 'translate-x-4 translate-y-4 scale-125' : 'translate-x-8 translate-y-8'
-          }`}></div>
-        </div>
-
-        {/* Institute Image Section - Contained Image */}
-        <div className="relative h-full overflow-hidden bg-white flex flex-col justify-center items-center p-4">
-          {t.instituteImage ? (
-            <>
-              <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg">
-                <img 
-                  src={t.instituteImage} 
-                  alt={t.college}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  onError={(e) => {
-                    e.target.style.display = 'none'
-                  }}
-                />
-              </div>
-              {/* College Name Below Image */}
-              <div className={`mt-4 text-center transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                <h3 className="text-xl font-extrabold text-[#004c8f]">
-                  {t.college}
-                </h3>
-                <div className="text-sm font-semibold text-[#004c8f] mt-1">
-                  {t.exam}
-                </div>
-              </div>
-            </>
-          ) : (
-            <div className="w-full h-full bg-gradient-to-br from-[#004c8f]/20 via-[#004c8f]/30 to-[#004c8f]/40 rounded-xl flex flex-col items-center justify-center">
-              <span className="text-[#004c8f] font-semibold text-lg">{t.college}</span>
-              <span className="text-[#004c8f] text-sm mt-2">{t.exam}</span>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Person Details Section with photo */}
-      <div className={`px-6 py-3 bg-white border-t border-[#004c8f]/20 transition-all duration-500 group-hover:bg-[#004c8f]/5 ${
-        isHovered ? 'border-brand/30' : ''
-      }`}>
-        <div className="flex items-center gap-4">
-          {/* Student Photo */}
-          <div className={`relative h-16 w-16 rounded-full overflow-hidden ring-2 transition-all duration-500 shrink-0 ${
-            isHovered 
-              ? 'ring-4 ring-brand-dark shadow-xl scale-110' 
-              : 'ring-brand/30 group-hover:ring-brand/50'
-          }`}>
-            {t.image ? (
-              <img 
-                src={t.image} 
-                alt={t.name}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                onError={(e) => {
-                  // Fallback to initials if image fails
-                  e.target.style.display = 'none'
-                  const parent = e.target.parentElement
-                  parent.classList.add('bg-gradient-to-br', 'from-brand/40', 'to-brand-dark/30', 'flex', 'items-center', 'justify-center')
-                  parent.innerHTML = `<span class="text-[#004c8f] font-bold text-lg">${t.name.split(' ').map(n => n[0]).join('')}</span>`
-                }}
-              />
-            ) : (
-              <div className="h-full w-full bg-gradient-to-br from-brand/40 to-brand-dark/30 flex items-center justify-center">
-                <span className={`text-[#004c8f] font-bold text-lg transition-all duration-300 ${isHovered ? 'scale-110 text-white' : ''}`}>
-                  {t.name.split(' ').map(n => n[0]).join('')}
-                </span>
-              </div>
-            )}
-          </div>
-          
-          {/* Details with fade animation - Dark Text */}
-          <div className={`flex-1 min-w-0 transition-all duration-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`}>
-            <div className={`font-bold text-[#004c8f] text-lg transition-colors duration-300 ${isHovered ? 'text-brand-dark' : ''}`}>
-              {t.name}
-            </div>
-            <div className={`text-sm font-semibold text-[#004c8f] transition-all duration-300 ${isHovered ? 'text-brand-dark font-bold' : ''}`}>
-              Student
-            </div>
-          </div>
-          
-          {/* Arrow icon on hover */}
-          <div className={`transition-all duration-300 transform ${isHovered ? 'translate-x-0 opacity-100' : 'translate-x-2 opacity-0'}`}>
-            <svg className="w-5 h-5 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 export default function Home() {
   return (
@@ -526,7 +285,7 @@ export default function Home() {
               {/* Testimonials Section with Slider */}
       <section className="py-12 relative overflow-hidden" style={{ backgroundColor: '#004c8f' }}>
         
-        <div className="container-page relative z-10">
+        {/* <div className="container-page relative z-10">
           <div className="flex items-center justify-between mb-10">
             <h2 className="text-4xl font-bold relative text-white">
               <span className="relative z-10">Student Testimonials</span>
@@ -535,9 +294,9 @@ export default function Home() {
             <Link href="/testimonials" className="btn-outline bg-white hover:scale-105 transition-transform duration-300">View All</Link>
           </div>
           
-          {/* Testimonials Slider */}
-          <TestimonialsSlider testimonials={topTestimonials} />
-        </div>
+          <TestimonialCard testimonials={topTestimonials} />
+        </div> */}
+        <TestimonialsShowcase />
       </section>
 
 
