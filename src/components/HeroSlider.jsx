@@ -47,7 +47,7 @@ export default function HeroSlider() {
   return (
     <section className="relative overflow-hidden">
       <div className="container-page pt-4 pb-6 sm:pt-6 sm:pb-8 px-4 sm:px-6">
-        <div className="relative min-h-[500px] sm:min-h-[580px] md:h-[580px] lg:h-[650px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 text-white grid">
+        <div className="relative min-h-[500px] sm:min-h-[580px] md:h-[580px] lg:h-[650px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-gray-300 via-gray-200 to-gray-300 text-white grid">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.15),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.1),transparent_35%)]" />
 
           <div className="absolute inset-0 flex transition-transform duration-700 ease-smooth will-change-transform" style={{ transform: `translateX(-${index * 100}%)` }}>
