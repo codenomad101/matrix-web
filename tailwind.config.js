@@ -10,7 +10,7 @@ module.exports = {
       colors: {
         brand: {
           DEFAULT: '#b2dfee',
-          dark: '#5aa6c4',
+          dark: '#0a1a67',
           50: '#f2faff',
           100: '#e4f4fb',
           200: '#cdeafa',
@@ -28,7 +28,7 @@ module.exports = {
           200: '#99c3df',
           300: '#66a5cf',
           400: '#3387bf',
-          500: '#004c8f',
+          500: '#0a1a67',
           600: '#003d72',
           700: '#002e56',
           800: '#001f3a',

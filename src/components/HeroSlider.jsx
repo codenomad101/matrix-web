@@ -57,26 +57,26 @@ export default function HeroSlider() {
                   <div className="w-full h-full grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 p-4 sm:p-6 md:p-8 lg:p-10 relative z-10 overflow-hidden">
                     {/* Left Content */}
                     <div className="flex flex-col justify-center gap-3 sm:gap-4 md:gap-5 min-w-0 py-4 sm:py-0">
-                      <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs md:text-sm font-medium bg-white/90 text-[#004c8f] w-fit px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full shadow-lg">
+                      <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs md:text-sm font-medium bg-white/90 text-[#0a1a67] w-fit px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full shadow-lg">
                         <span className="text-brand-dark font-bold">🎓 Premium Education</span>
                       </div>
                       
                       <div>
                         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight drop-shadow-lg">
-                          <span className="text-red-600">Matrix</span>{' '}
+                          <span className="text-[#B30027]">Matrix</span>{' '}
                           <span className="text-gray-300 drop-shadow-lg">Science</span>
                           <span className="block text-brand-dark drop-shadow-2xl" style={{ textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 6px 12px rgba(0,0,0,0.6)' }}>Academy</span>
                         </h1>
-                        <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[#004c8f] mt-2 sm:mt-3 drop-shadow-md">
+                        <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[#0a1a67] mt-2 sm:mt-3 drop-shadow-md">
                           + IMPULSE Batch
                         </p>
                       </div>
 
-                      <p className="text-sm sm:text-base md:text-lg text-[#004c8f] leading-relaxed max-w-xl">
+                      <p className="text-sm sm:text-base md:text-lg text-[#0a1a67] leading-relaxed max-w-xl">
                         Top trainers in Maharashtra 
                       {/*   <span className="font-semibold text-white">IIT-JEE, MHT-CET, NEET, IISER Foundation</span>, and 8th–12th Board preparation.*/}
                       </p>
-                      <p className="text-md sm:text-base md:text-lg text-[#004c8f] leading-relaxed max-w-xl">
+                      <p className="text-md sm:text-base md:text-lg text-[#0a1a67] leading-relaxed max-w-xl">
                       IIT-JEE, MHT-CET, NEET, IISER Foundation.                   {/*   <span className="font-semibold text-white">IIT-JEE, MHT-CET, NEET, IISER Foundation</span>, and 8th–12th Board preparation.*/}
                       </p>
                       
@@ -84,25 +84,25 @@ export default function HeroSlider() {
                       <div className="flex flex-wrap gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 mt-3 sm:mt-4">
                         <div className="bg-white/90 backdrop-blur rounded-md sm:rounded-lg md:rounded-xl p-1.5 sm:p-2.5 md:p-3 lg:p-4 text-center shadow-md sm:shadow-lg min-w-[70px] sm:min-w-[80px] md:min-w-[100px] lg:min-w-[120px] flex-shrink-0">
                           <div className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold text-brand-dark leading-tight">150+</div>
-                          <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#004c8f] mt-0.5 sm:mt-1">Teachers</div>
+                          <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] mt-0.5 sm:mt-1">Teachers</div>
                         </div>
                         <div className="bg-white/90 backdrop-blur rounded-md sm:rounded-lg md:rounded-xl p-1.5 sm:p-2.5 md:p-3 lg:p-4 text-center shadow-md sm:shadow-lg min-w-[70px] sm:min-w-[80px] md:min-w-[100px] lg:min-w-[120px] flex-shrink-0">
                           <div className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold text-brand-dark leading-tight">1L+</div>
-                          <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#004c8f] mt-0.5 sm:mt-1">Students</div>
+                          <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] mt-0.5 sm:mt-1">Students</div>
                         </div>
                         <div className="bg-white/90 backdrop-blur rounded-md sm:rounded-lg md:rounded-xl p-1.5 sm:p-2.5 md:p-3 lg:p-4 text-center shadow-md sm:shadow-lg min-w-[70px] sm:min-w-[80px] md:min-w-[100px] lg:min-w-[120px] flex-shrink-0">
                           <div className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold text-brand-dark leading-tight">8</div>
-                          <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#004c8f] mt-0.5 sm:mt-1">Branches</div>
+                          <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] mt-0.5 sm:mt-1">Branches</div>
                         </div>
                         <div className="bg-white/90 backdrop-blur rounded-md sm:rounded-lg md:rounded-xl p-1.5 sm:p-2.5 md:p-3 lg:p-4 text-center shadow-md sm:shadow-lg min-w-[70px] sm:min-w-[80px] md:min-w-[100px] lg:min-w-[120px] flex-shrink-0">
                           <div className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold text-brand-dark leading-tight">12+</div>
-                          <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#004c8f] mt-0.5 sm:mt-1">Years</div>
+                          <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] mt-0.5 sm:mt-1">Years</div>
                         </div>
                       </div>
 
                       {/* CTA Buttons */}
                       <div className="flex flex-col sm:flex-row gap-3 mt-3 sm:mt-4 relative z-20">
-                        <Link href="/enquiry" className="inline-flex justify-center items-center max-w-[120px] sm:max-w-[140px] md:max-w-[160px] lg:max-w-[180px] bg-red-600 text-white hover:bg-red-700 text-xs sm:text-sm md:text-base lg:text-lg px-4 sm:px-5 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 lg:py-4 font-bold shadow-lg sm:shadow-2xl rounded-md sm:rounded-lg md:rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-red-500/50">
+                        <Link href="/enquiry" className="inline-flex justify-center items-center max-w-[120px] sm:max-w-[140px] md:max-w-[160px] lg:max-w-[180px] bg-[#B30027] text-white hover:bg-[#8a001e] text-xs sm:text-sm md:text-base lg:text-lg px-4 sm:px-5 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 lg:py-4 font-bold shadow-lg sm:shadow-2xl rounded-md sm:rounded-lg md:rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[#B30027]/50">
                           Enquire Now
                         </Link>
                       </div>
@@ -115,7 +115,7 @@ export default function HeroSlider() {
                         <div className="absolute top-0 right-0 bg-white/90 backdrop-blur rounded-full p-4 lg:p-5 xl:p-6 shadow-xl z-20">
                           <div className="text-center">
                             <div className="text-2xl lg:text-3xl xl:text-3xl font-extrabold text-brand-dark">99+</div>
-                            <div className="text-xs lg:text-sm text-[#004c8f]">Percentile</div>
+                            <div className="text-xs lg:text-sm text-[#0a1a67]">Percentile</div>
                           </div>
                         </div>
                         
@@ -127,8 +127,8 @@ export default function HeroSlider() {
                                 <span className="text-xl lg:text-2xl">🎯</span>
                               </div>
                               <div className="min-w-0">
-                                <div className="text-sm lg:text-base font-bold text-[#004c8f]">IIT-JEE</div>
-                                <div className="text-xs lg:text-sm text-[#004c8f]">12+ Admissions</div>
+                                <div className="text-sm lg:text-base font-bold text-[#0a1a67]">IIT-JEE</div>
+                                <div className="text-xs lg:text-sm text-[#0a1a67]">12+ Admissions</div>
                               </div>
                             </div>
                             <div className="flex items-center gap-2.5 lg:gap-3">
@@ -136,8 +136,8 @@ export default function HeroSlider() {
                                 <span className="text-xl lg:text-2xl">🏆</span>
                               </div>
                               <div className="min-w-0">
-                                <div className="text-sm lg:text-base font-bold text-[#004c8f]">MHT-CET</div>
-                                <div className="text-xs lg:text-sm text-[#004c8f]">123 Students 98+</div>
+                                <div className="text-sm lg:text-base font-bold text-[#0a1a67]">MHT-CET</div>
+                                <div className="text-xs lg:text-sm text-[#0a1a67]">123 Students 98+</div>
                               </div>
                             </div>
                             <div className="flex items-center gap-2.5 lg:gap-3">
@@ -145,8 +145,8 @@ export default function HeroSlider() {
                                 <span className="text-xl lg:text-2xl">⚕️</span>
                               </div>
               <div className="min-w-0">
-                                <div className="text-sm lg:text-base font-bold text-[#004c8f]">NEET</div>
-                                <div className="text-xs lg:text-sm text-[#004c8f]">Perfect Scores</div>
+                                <div className="text-sm lg:text-base font-bold text-[#0a1a67]">NEET</div>
+                                <div className="text-xs lg:text-sm text-[#0a1a67]">Perfect Scores</div>
                               </div>
                             </div>
                           </div>
@@ -166,16 +166,16 @@ export default function HeroSlider() {
                   <div className="w-full h-full grid md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 p-4 sm:p-6 md:p-8 lg:p-10 relative z-10 overflow-hidden">
                     {/* Left Content */}
                     <div className="flex flex-col justify-center gap-3 sm:gap-4 md:gap-5 min-w-0 py-4 sm:py-0">
-                      <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs md:text-sm font-medium bg-white/70 text-red-600 w-fit px-2.5 sm:px-3 py-1 rounded-full shadow-soft">
+                      <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs md:text-sm font-medium bg-white/70 text-[#B30027] w-fit px-2.5 sm:px-3 py-1 rounded-full shadow-soft">
                         <span>Discover More</span>
                       </div>
-                      <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-tight text-[#004c8f]">
+                      <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-tight text-[#0a1a67]">
                         {s.title}
                       </h1>
-                      <p className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-[#004c8f] drop-shadow-md">
+                      <p className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-[#0a1a67] drop-shadow-md">
                         {s.highlight}
                       </p>
-                      <p className="text-xs sm:text-sm md:text-base text-[#004c8f]/90">
+                      <p className="text-xs sm:text-sm md:text-base text-[#0a1a67]/90">
                         {s.subtitle}
                       </p>
                       
@@ -187,7 +187,7 @@ export default function HeroSlider() {
                             <Link
                               key={idx}
                               href={activity.to}
-                              className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/90 backdrop-blur rounded-md sm:rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-[#004c8f] hover:bg-white hover:scale-105 hover:shadow-lg transition-all duration-300 group"
+                              className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/90 backdrop-blur rounded-md sm:rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-[#0a1a67] hover:bg-white hover:scale-105 hover:shadow-lg transition-all duration-300 group"
                             >
                               <span className="text-sm sm:text-base md:text-lg">{activity.icon}</span>
                               <span className="group-hover:text-brand-dark transition-colors duration-300 whitespace-nowrap">
@@ -202,7 +202,7 @@ export default function HeroSlider() {
                             <Link
                               key={idx + 2}
                               href={activity.to}
-                              className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/90 backdrop-blur rounded-md sm:rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-[#004c8f] hover:bg-white hover:scale-105 hover:shadow-lg transition-all duration-300 group"
+                              className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/90 backdrop-blur rounded-md sm:rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-[#0a1a67] hover:bg-white hover:scale-105 hover:shadow-lg transition-all duration-300 group"
                             >
                               <span className="text-sm sm:text-base md:text-lg">{activity.icon}</span>
                               <span className="group-hover:text-brand-dark transition-colors duration-300 whitespace-nowrap">
@@ -217,7 +217,7 @@ export default function HeroSlider() {
                             <Link
                               key={idx + 4}
                               href={activity.to}
-                              className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/90 backdrop-blur rounded-md sm:rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-[#004c8f] hover:bg-white hover:scale-105 hover:shadow-lg transition-all duration-300 group"
+                              className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/90 backdrop-blur rounded-md sm:rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-[#0a1a67] hover:bg-white hover:scale-105 hover:shadow-lg transition-all duration-300 group"
                             >
                               <span className="text-sm sm:text-base md:text-lg">{activity.icon}</span>
                               <span className="group-hover:text-brand-dark transition-colors duration-300 whitespace-nowrap">
@@ -229,7 +229,7 @@ export default function HeroSlider() {
                       </div>
 
                       <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row gap-3">
-                        <Link href="/activities" className="btn-primary inline-flex justify-center items-center w-full sm:w-auto bg-white text-[#004c8f] hover:bg-white/95 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base font-semibold transition-all duration-300">
+                        <Link href="/activities" className="btn-primary inline-flex justify-center items-center w-full sm:w-auto bg-white text-[#0a1a67] hover:bg-white/95 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base font-semibold transition-all duration-300">
                           View All Activities
                         </Link>
                       </div>
@@ -253,24 +253,24 @@ export default function HeroSlider() {
                 ) : (
                   <div className="w-full h-full max-w-[95%] sm:max-w-[90%] md:max-w-[85%] lg:max-w-5xl xl:max-w-6xl mx-auto grid md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 relative z-10 overflow-hidden">
                     <div className="flex flex-col justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-5 min-w-0 py-2 sm:py-4 md:py-0 max-w-full sm:max-w-[400px] md:max-w-[450px] lg:max-w-[500px] xl:max-w-[550px]">
-                      <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs md:text-sm font-medium bg-white/70 text-[#004c8f] w-fit px-2.5 sm:px-3 py-1 rounded-full shadow-soft">
+                      <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs md:text-sm font-medium bg-white/70 text-[#0a1a67] w-fit px-2.5 sm:px-3 py-1 rounded-full shadow-soft">
                         <span>Trusted by achievers</span>
                       </div>
-                      <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold leading-tight text-[#004c8f] max-w-full">
+                      <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold leading-tight text-[#0a1a67] max-w-full">
                         {s.title}
                       </h1>
-                      <p className="text-xs sm:text-sm md:text-base lg:text-xl font-semibold text-[#004c8f] max-w-full">
+                      <p className="text-xs sm:text-sm md:text-base lg:text-xl font-semibold text-[#0a1a67] max-w-full">
                         {s.highlight}
                       </p>
-                      <p className="text-[#004c8f]/90 text-[10px] sm:text-xs md:text-sm lg:text-base max-w-full">
+                      <p className="text-[#0a1a67]/90 text-[10px] sm:text-xs md:text-sm lg:text-base max-w-full">
                         {s.subtitle}
                       </p>
                       {s.branches && s.branches.length > 0 && (
                         <div className="mt-1 sm:mt-3 max-w-full overflow-hidden">
-                          <span className="text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-wide text-[#004c8f] block mb-1 sm:mb-2">Branches:</span>
+                          <span className="text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-wide text-[#0a1a67] block mb-1 sm:mb-2">Branches:</span>
                           <div className="flex flex-wrap gap-1 sm:gap-1.5 md:gap-2 overflow-hidden">
                             {s.branches.map((b) => (
-                              <span key={b} className="px-1.5 sm:px-2 md:px-2.5 py-0.5 rounded-full bg-white/70 text-[#004c8f] text-[9px] sm:text-[10px] md:text-xs whitespace-nowrap flex-shrink-0">
+                              <span key={b} className="px-1.5 sm:px-2 md:px-2.5 py-0.5 rounded-full bg-white/70 text-[#0a1a67] text-[9px] sm:text-[10px] md:text-xs whitespace-nowrap flex-shrink-0">
                                 {b}
                               </span>
                             ))}
@@ -279,7 +279,7 @@ export default function HeroSlider() {
                       )}
 
                       <div className="mt-2 sm:mt-3 md:mt-4 flex flex-col sm:flex-row gap-2 sm:gap-3 max-w-full">
-                        <Link href="/enquiry" className="inline-flex justify-center items-center max-w-[120px] sm:max-w-[140px] md:max-w-[160px] lg:max-w-[180px] bg-red-600 text-white hover:bg-red-700 text-xs sm:text-sm md:text-base lg:text-lg px-4 sm:px-5 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 lg:py-4 font-bold shadow-lg sm:shadow-2xl rounded-md sm:rounded-lg md:rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-red-500/50">Join Now</Link>
+                        <Link href="/enquiry" className="inline-flex justify-center items-center max-w-[120px] sm:max-w-[140px] md:max-w-[160px] lg:max-w-[180px] bg-[#B30027] text-white hover:bg-[#8a001e] text-xs sm:text-sm md:text-base lg:text-lg px-4 sm:px-5 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 lg:py-4 font-bold shadow-lg sm:shadow-2xl rounded-md sm:rounded-lg md:rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[#B30027]/50">Join Now</Link>
                       </div>
                     </div>
 
@@ -309,7 +309,7 @@ export default function HeroSlider() {
 
           <div className="absolute bottom-3 sm:bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
             {slides.map((_, i) => (
-              <button key={i} aria-label={`Go to slide ${i + 1}`} onClick={() => setIndex(i)} className={`h-2 sm:h-3 rounded-full transition-all duration-300 ${index === i ? 'w-8 sm:w-10 bg-[#004c8f]' : 'w-3 sm:w-4 bg-gray-400 hover:bg-gray-500'}`}></button>
+              <button key={i} aria-label={`Go to slide ${i + 1}`} onClick={() => setIndex(i)} className={`h-2 sm:h-3 rounded-full transition-all duration-300 ${index === i ? 'w-8 sm:w-10 bg-[#0a1a67]' : 'w-3 sm:w-4 bg-gray-400 hover:bg-gray-500'}`}></button>
             ))}
           </div>
         </div>

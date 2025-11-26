@@ -2,12 +2,12 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-[#004c8f] text-white">
+    <footer className="bg-[#0a1a67] text-white">
       <div className="container-page py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-red-500">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4 text-[#B30027]">Quick Links</h3>
             <ul className="space-y-2">
               <li>
                 <Link 
@@ -46,7 +46,7 @@ export default function Footer() {
 
           {/* Academics */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-red-500">Academics</h3>
+            <h3 className="text-lg font-semibold mb-4 text-[#B30027]">Academics</h3>
             <ul className="space-y-2">
               <li>
                 <Link 
@@ -85,7 +85,7 @@ export default function Footer() {
 
           {/* Activities */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-red-500">Activities</h3>
+            <h3 className="text-lg font-semibold mb-4 text-[#B30027]">Activities</h3>
             <ul className="space-y-2">
               <li>
                 <Link 
@@ -140,7 +140,7 @@ export default function Footer() {
 
           {/* Contact & Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-red-500">Contact</h3>
+            <h3 className="text-lg font-semibold mb-4 text-[#B30027]">Contact</h3>
             <ul className="space-y-2">
               <li className="text-white/70">
                 <span className="font-medium text-white">Email:</span> jadhavsbj755@gmail.com
@@ -164,7 +164,7 @@ export default function Footer() {
             >
               <img src="/images/matrix_logo1.png" alt="MSA logo" className="h-8 w-8 object-contain" />
               <span className="text-sm font-semibold">
-                <span className="text-red-500">Matrix</span>{' '}
+                <span className="text-[#B30027]">Matrix</span>{' '}
                 <span className="text-white/70">Science</span>{' '}
                 <span className="text-brand">Academy</span>
               </span>

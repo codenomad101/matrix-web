@@ -8,37 +8,37 @@ export default function FeaturesSection() {
       id: 1,
       title: 'Doubt Solving Session',
       description: 'Personalized doubt clearing sessions with expert faculty members to ensure complete understanding of concepts.',
-      cloudinaryId: 'v1763854823/doubtsolving_v5oyx1',
+      cloudinaryId: 'v1764181800/7_rhfwuq',
     },
     {
       id: 2,
       title: 'Floor Coordinator',
       description: 'Dedicated floor coordinators to assist students with queries, guidance, and academic support throughout the day.',
-      cloudinaryId: 'v1763855123/coordinator_zrv2tf',
+      cloudinaryId: 'v1764181802/2_qkyerp',
     },
     {
       id: 3,
       title: 'AC Classroom',
       description: 'Modern air-conditioned classrooms equipped with smart boards and comfortable seating for optimal learning environment.',
-      cloudinaryId: 'v1763855368/acclassroom2_zzm4oj',
+      cloudinaryId: 'v1764181811/6_txcbt4',
     },
     {
       id: 4,
       title: 'Spacious Parking',
       description: 'Ample and secure parking space for bicycles, scooters, and cars with 24/7 CCTV surveillance for safety.',
-      cloudinaryId: 'v1763855637/parking_1_w6fh6f',
+      cloudinaryId: 'v1764181896/5_iksmin',
     },
     {
       id: 5,
       title: 'Parents Waiting Room',
       description: 'Comfortable waiting area for parents with seating arrangements and refreshments while their children attend classes.',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop',
+      cloudinaryId: 'v1764181956/1_hvf5af',
     },
     {
       id: 6,
       title: 'Office',
       description: 'Well-equipped administrative office with friendly staff ready to help with admissions, inquiries, and student services.',
-      image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&auto=format&fit=crop',
+      cloudinaryId: 'v1764181872/4_phnnrh',
     },
   ]
 
@@ -55,7 +55,7 @@ export default function FeaturesSection() {
   return (
     <section className="py-6 sm:py-8 bg-white">
       <div className="container-page max-w-5xl mx-auto">
-        <div className="bg-[#004c8f] rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8">
+        <div className="bg-[#0a1a67] rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8">
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white/30 mb-2 tracking-wider">
@@ -82,7 +82,7 @@ export default function FeaturesSection() {
                     transition-all duration-300 text-xs sm:text-sm
                     ${isCenter 
                       ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-xl scale-105 z-10' 
-                      : 'bg-white text-[#004c8f] opacity-50 hover:opacity-70 shadow-md'
+                      : 'bg-white text-[#0a1a67] opacity-50 hover:opacity-70 shadow-md'
                     }
                   `}
                   style={{
@@ -103,7 +103,7 @@ export default function FeaturesSection() {
             onClick={() => setActiveTab(activeTab === 0 ? features.length - 1 : activeTab - 1)}
             className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-blue-50 transition-colors"
           >
-            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#004c8f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#0a1a67]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
@@ -111,7 +111,7 @@ export default function FeaturesSection() {
             onClick={() => setActiveTab(activeTab === features.length - 1 ? 0 : activeTab + 1)}
             className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-blue-50 transition-colors"
           >
-            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#004c8f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#0a1a67]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -130,25 +130,27 @@ export default function FeaturesSection() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 items-center">
                 {/* Image */}
                 <div className="order-2 lg:order-1">
-                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
-                    {feature.cloudinaryId ? (
-                      <OptimizedImage
-                        cloudinaryId={feature.cloudinaryId}
-                        alt={feature.title}
-                        width={800}
-                        height={600}
-                        className="w-full h-auto object-contain"
-                        crop="fit"
-                        loading="eager"
-                      />
-                    ) : (
-                      <img
-                        src={feature.image}
-                        alt={feature.title}
-                        className="w-full h-auto object-contain"
-                      />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+                  <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm p-2 sm:p-3">
+                    <div className="rounded-xl sm:rounded-2xl overflow-hidden">
+                      {feature.cloudinaryId ? (
+                        <OptimizedImage
+                          cloudinaryId={feature.cloudinaryId}
+                          alt={feature.title}
+                          width={800}
+                          height={600}
+                          className="w-full h-auto object-contain opacity-95 hover:opacity-100 transition-opacity duration-300"
+                          crop="fit"
+                          loading="eager"
+                        />
+                      ) : (
+                        <img
+                          src={feature.image}
+                          alt={feature.title}
+                          className="w-full h-auto object-contain opacity-95 hover:opacity-100 transition-opacity duration-300"
+                        />
+                      )}
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a67]/10 to-transparent pointer-events-none rounded-2xl sm:rounded-3xl"></div>
                   </div>
                 </div>
 

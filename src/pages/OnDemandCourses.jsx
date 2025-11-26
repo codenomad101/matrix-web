@@ -47,11 +47,11 @@ export default function OnDemandCourses() {
       {/* Header */}
       <div className="text-center mb-12" data-section data-index={0}>
         <div className="inline-block mb-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#004c8f] mb-3">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0a1a67] mb-3">
             On Demand Courses: On-Demand
           </h1>
         </div>
-        <p className="text-[#004c8f] text-lg max-w-3xl mx-auto">
+        <p className="text-[#0a1a67] text-lg max-w-3xl mx-auto">
           Recorded Lectures - Impulse Batch by MATRIX: Revolutionizing 11th and 12th Std Education
         </p>
       </div>
@@ -71,8 +71,8 @@ export default function OnDemandCourses() {
               }}
             />
             <div className="p-6 bg-gradient-to-br from-green-50 to-green-100">
-              <h3 className="text-xl font-bold text-[#004c8f] mb-2">MATRIX App</h3>
-              <p className="text-[#004c8f] text-sm">Access recorded lectures, notes, and question solutions anytime</p>
+              <h3 className="text-xl font-bold text-[#0a1a67] mb-2">MATRIX App</h3>
+              <p className="text-[#0a1a67] text-sm">Access recorded lectures, notes, and question solutions anytime</p>
             </div>
           </div>
         </div>
@@ -86,8 +86,8 @@ export default function OnDemandCourses() {
               className="w-full h-full object-cover"
             />
             <div className="p-6 bg-gradient-to-br from-brand/20 to-brand-dark/10">
-              <h3 className="text-xl font-bold text-[#004c8f] mb-2">Our Infrastructure</h3>
-              <p className="text-[#004c8f] text-sm">State-of-the-art learning facilities</p>
+              <h3 className="text-xl font-bold text-[#0a1a67] mb-2">Our Infrastructure</h3>
+              <p className="text-[#0a1a67] text-sm">State-of-the-art learning facilities</p>
             </div>
           </div>
         </div>
@@ -99,10 +99,10 @@ export default function OnDemandCourses() {
           visibleIndex >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#004c8f] mb-6 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#0a1a67] mb-6 text-center">
               Impulse Batch by MATRIX: Revolutionizing 11th and 12th Std Education
             </h2>
-            <p className="text-[#004c8f] text-lg leading-relaxed mb-6">
+            <p className="text-[#0a1a67] text-lg leading-relaxed mb-6">
               Impulse Batch, an online platform owned by MATRIX, provides comprehensive recorded lectures covering the entire 12th standard syllabus. Since its inception, the platform has witnessed remarkable growth:
             </p>
 
@@ -114,13 +114,13 @@ export default function OnDemandCourses() {
                   className="bg-gradient-to-br from-brand/20 to-brand-dark/10 rounded-xl p-6 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-brand/30"
                 >
                   <div className="text-3xl md:text-4xl font-extrabold text-brand-dark mb-2">{stat.students}</div>
-                  <div className="text-sm font-semibold text-[#004c8f] mb-1">{stat.year}</div>
-                  <div className="text-xs text-[#004c8f]">{stat.label}</div>
+                  <div className="text-sm font-semibold text-[#0a1a67] mb-1">{stat.year}</div>
+                  <div className="text-xs text-[#0a1a67]">{stat.label}</div>
                 </div>
               ))}
             </div>
 
-            <p className="text-[#004c8f] text-lg leading-relaxed mb-6">
+            <p className="text-[#0a1a67] text-lg leading-relaxed mb-6">
               Catering specifically to 11th and 12th std Science students in Maharashtra, Impulse Batch addresses the challenges of understanding the vast and complex syllabus. The platform offers:
             </p>
 
@@ -137,7 +137,7 @@ export default function OnDemandCourses() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
-                    <p className="text-[#004c8f] leading-relaxed pt-1">{feature}</p>
+                    <p className="text-[#0a1a67] leading-relaxed pt-1">{feature}</p>
                   </div>
                 </div>
               ))}
@@ -153,7 +153,7 @@ export default function OnDemandCourses() {
         }`}>
           <div className="rounded-2xl bg-gradient-to-br from-brand/20 via-brand-dark/10 to-brand/20 p-8 md:p-10 border border-brand/30 shadow-xl">
             <div className="max-w-5xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-[#004c8f] mb-8 text-center">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#0a1a67] mb-8 text-center">
                 Content Available on MATRIX APP
               </h2>
               <div className="grid md:grid-cols-3 gap-6">
@@ -165,8 +165,8 @@ export default function OnDemandCourses() {
                     <div className="w-16 h-16 rounded-full bg-gradient-to-br from-brand-dark via-brand to-brand-dark flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-300">
                       <span className="text-2xl text-white font-bold">{idx + 1}</span>
                     </div>
-                    <h3 className="text-xl font-bold text-[#004c8f] mb-2 text-center">{item.title}</h3>
-                    <p className="text-[#004c8f] text-center text-sm">{item.description}</p>
+                    <h3 className="text-xl font-bold text-[#0a1a67] mb-2 text-center">{item.title}</h3>
+                    <p className="text-[#0a1a67] text-center text-sm">{item.description}</p>
                   </div>
                 ))}
               </div>
@@ -178,12 +178,12 @@ export default function OnDemandCourses() {
       {/* CTA Section */}
       <div className="rounded-2xl bg-gradient-to-br from-brand/20 via-brand-dark/10 to-brand/20 p-8 md:p-10 border border-brand/30 shadow-xl">
         <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-2xl md:text-3xl font-bold text-[#004c8f] mb-4">Ready to Get Started?</h3>
-          <p className="text-[#004c8f] text-lg mb-6">
+          <h3 className="text-2xl md:text-3xl font-bold text-[#0a1a67] mb-4">Ready to Get Started?</h3>
+          <p className="text-[#0a1a67] text-lg mb-6">
             Join thousands of students who are already benefiting from our comprehensive on-demand courses.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/enquiry" className="inline-flex justify-center items-center gap-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft">
+            <a href="/enquiry" className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft">
               Enquire Now
             </a>
             <a href="/courses" className="btn-outline inline-flex justify-center">

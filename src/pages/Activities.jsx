@@ -68,8 +68,8 @@ export default function Activities() {
   return (
     <div className="container-page py-10">
       <div className="text-center mb-12">
-        <h1 className="text-3xl sm:text-4xl font-bold text-[#004c8f] mb-3">Activities & Programs</h1>
-        <p className="text-[#004c8f] text-lg">
+        <h1 className="text-3xl sm:text-4xl font-bold text-[#0a1a67] mb-3">Activities & Programs</h1>
+        <p className="text-[#0a1a67] text-lg">
           Explore our comprehensive range of activities, timelines, and programs
         </p>
       </div>
@@ -86,10 +86,10 @@ export default function Activities() {
                 {activity.icon}
               </div>
               <div className="flex-1">
-                <h3 className="text-xl font-bold text-[#004c8f] mb-2 group-hover:text-brand-dark transition-colors duration-300">
+                <h3 className="text-xl font-bold text-[#0a1a67] mb-2 group-hover:text-brand-dark transition-colors duration-300">
                   {activity.title}
                 </h3>
-                <p className="text-[#004c8f] text-sm">
+                <p className="text-[#0a1a67] text-sm">
                   {activity.description}
                 </p>
               </div>

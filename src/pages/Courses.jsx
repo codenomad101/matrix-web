@@ -9,12 +9,12 @@ export default function Courses() {
   ]
   return (
     <div className="container-page py-10">
-      <h1 className="text-3xl font-bold text-[#004c8f]">Courses</h1>
+      <h1 className="text-3xl font-bold text-[#0a1a67]">Courses</h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
         {sections.map((s) => (
           <a key={s.id} id={s.id} href={`#${s.id}`} className="card p-6 block hover:-translate-y-0.5 transition-transform duration-300">
             <h3 className="text-xl font-semibold">{s.title}</h3>
-            <p className="mt-2 text-[#004c8f]">{s.desc}</p>
+            <p className="mt-2 text-[#0a1a67]">{s.desc}</p>
           </a>
         ))}
       </div>

@@ -2,8 +2,8 @@ export default function Felicitation() {
   return (
     <div className="container-page py-10">
       <div className="text-center mb-10">
-        <h1 className="text-3xl sm:text-4xl font-bold text-[#004c8f] mb-3">Felicitation Ceremonies</h1>
-        <p className="text-[#004c8f] text-lg">
+        <h1 className="text-3xl sm:text-4xl font-bold text-[#0a1a67] mb-3">Felicitation Ceremonies</h1>
+        <p className="text-[#0a1a67] text-lg">
           Celebrating the outstanding achievements of our students
         </p>
       </div>
@@ -11,7 +11,7 @@ export default function Felicitation() {
       <div className="space-y-12">
         {/* Felicitation Section 1 */}
         <div>
-          <h2 className="text-3xl font-bold text-[#004c8f] mb-8">Felicitation Ceremony 2024</h2>
+          <h2 className="text-3xl font-bold text-[#0a1a67] mb-8">Felicitation Ceremony 2024</h2>
           <div className="flex justify-center">
             <div className="rounded-2xl overflow-hidden shadow-lg max-w-4xl w-full">
               <img 
@@ -25,7 +25,7 @@ export default function Felicitation() {
 
         {/* Felicitation Section 2 */}
         <div>
-          <h2 className="text-3xl font-bold text-[#004c8f] mb-8">Achievement Awards & Recognition</h2>
+          <h2 className="text-3xl font-bold text-[#0a1a67] mb-8">Achievement Awards & Recognition</h2>
           <div className="flex justify-center">
             <div className="rounded-2xl overflow-hidden shadow-lg max-w-4xl w-full">
               <img 

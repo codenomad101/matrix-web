@@ -14,7 +14,7 @@ export default function Gallery() {
   return (
     <div className="container-content py-10">
       <h1 className="text-3xl font-bold mb-2">Photo Gallery</h1>
-      <p className="text-[#004c8f] mb-8">Explore moments from our events, ceremonies, and student activities</p>
+      <p className="text-[#0a1a67] mb-8">Explore moments from our events, ceremonies, and student activities</p>
       
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {imageCategories.map((category, idx) => (
@@ -23,7 +23,7 @@ export default function Gallery() {
               <span className="text-4xl">📷</span>
             </div>
             <h3 className="text-xl font-semibold">{category.name}</h3>
-            <p className="text-sm text-[#004c8f] mt-2">
+            <p className="text-sm text-[#0a1a67] mt-2">
               Images from {category.name.toLowerCase()} are available in the extracted folder.
               Convert PPM files to JPG/PNG for web display.
             </p>
@@ -33,11 +33,11 @@ export default function Gallery() {
 
       <div className="mt-8 p-6 bg-brand/10 rounded-xl">
         <h3 className="font-semibold mb-2">Note:</h3>
-        <p className="text-sm text-[#004c8f]">
+        <p className="text-sm text-[#0a1a67]">
           Images have been extracted from the PDF to <code className="bg-white px-2 py-1 rounded">public/images/extracted/</code>.
           They are currently in PPM format. To display them on the website, convert them to JPG or PNG format using ImageMagick:
         </p>
-        <pre className="mt-3 bg-[#004c8f] text-white p-4 rounded text-xs overflow-x-auto">
+        <pre className="mt-3 bg-[#0a1a67] text-white p-4 rounded text-xs overflow-x-auto">
 {`cd public/images/extracted
 for f in *.ppm; do
   convert "$f" "\${f%.ppm}.jpg"

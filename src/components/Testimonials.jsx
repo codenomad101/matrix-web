@@ -126,7 +126,7 @@ export default function TestimonialsShowcase() {
           {/* Navigation Buttons */}
           <button
             onClick={goToPrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white hover:bg-[#004c8f]/10 text-[#004c8f] rounded-full p-3 md:p-4 shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 z-10"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white hover:bg-[#0a1a67]/10 text-[#0a1a67] rounded-full p-3 md:p-4 shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 z-10"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -134,7 +134,7 @@ export default function TestimonialsShowcase() {
 
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white hover:bg-[#004c8f]/10 text-[#004c8f] rounded-full p-3 md:p-4 shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 z-10"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white hover:bg-[#0a1a67]/10 text-[#0a1a67] rounded-full p-3 md:p-4 shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 z-10"
             aria-label="Next testimonial"
           >
             <ChevronRight className="w-6 h-6" />
@@ -149,8 +149,8 @@ export default function TestimonialsShowcase() {
               onClick={() => goToSlide(idx)}
               className={`rounded-full transition-all duration-300 ${
                 currentIndex === idx
-                  ? 'w-12 h-3 bg-[#004c8f]'
-                  : 'w-3 h-3 bg-gray-300 hover:bg-[#004c8f]/50'
+                  ? 'w-12 h-3 bg-[#0a1a67]'
+                  : 'w-3 h-3 bg-gray-300 hover:bg-[#0a1a67]/50'
               }`}
               aria-label={`Go to testimonial ${idx + 1}`}
             />
@@ -170,7 +170,7 @@ function TestimonialCard({ testimonial, isActive }) {
   return (
     <div className="grid md:grid-cols-2 h-full">
       {/* Left Side - Quote Section */}
-      <div className="bg-gradient-to-br from-red-500 to-red-600 p-8 md:p-10 flex flex-col justify-center relative overflow-hidden">
+      <div className="bg-gradient-to-br from-[#B30027] to-[#8a001e] p-8 md:p-10 flex flex-col justify-center relative overflow-hidden">
         {/* Decorative Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-8 right-8 w-32 h-32 border-4 border-white rounded-full" />
@@ -248,7 +248,7 @@ function TestimonialCard({ testimonial, isActive }) {
           <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
             {testimonial.college}
           </h3>
-          <div className="w-12 md:w-16 h-1 bg-gradient-to-r from-red-500 to-red-600 rounded-full" />
+          <div className="w-12 md:w-16 h-1 bg-gradient-to-r from-[#B30027] to-[#8a001e] rounded-full" />
         </div>
 
         {/* Student Info */}

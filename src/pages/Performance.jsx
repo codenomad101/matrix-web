@@ -10,10 +10,10 @@ export default function Performance() {
   return (
     <div className="container-page py-10">
       <div className="text-center mb-10">
-        <h1 className="text-3xl sm:text-4xl font-bold text-[#004c8f] mb-3">
+        <h1 className="text-3xl sm:text-4xl font-bold text-[#0a1a67] mb-3">
           Number of Students Scoring More than 99 Percentile
         </h1>
-        <p className="text-[#004c8f] text-lg">
+        <p className="text-[#0a1a67] text-lg">
           Consistent upward trend demonstrating our commitment to excellence
         </p>
       </div>
@@ -38,7 +38,7 @@ export default function Performance() {
                   </div>
                 </div>
                 {/* Year Label */}
-                <div className="text-lg sm:text-xl font-bold text-[#004c8f] mt-2">{data.year}</div>
+                <div className="text-lg sm:text-xl font-bold text-[#0a1a67] mt-2">{data.year}</div>
                 {/* Growth Badge */}
                 {data.growth && (
                   <div className="px-3 py-1 rounded-full bg-brand/20 text-brand-dark text-sm font-semibold">
@@ -55,8 +55,8 @@ export default function Performance() {
       <div className="grid md:grid-cols-3 gap-6 mb-8">
         <div className="card p-6 hover:-translate-y-1 transition-transform duration-300">
           <div className="text-4xl font-extrabold text-brand-dark mb-2">12</div>
-          <div className="text-lg font-semibold text-[#004c8f] mb-3">Students in 2022</div>
-          <p className="text-[#004c8f] text-sm">
+          <div className="text-lg font-semibold text-[#0a1a67] mb-3">Students in 2022</div>
+          <p className="text-[#0a1a67] text-sm">
             The number of students scoring above 99 percentile was 12.
           </p>
         </div>
@@ -68,8 +68,8 @@ export default function Performance() {
               +200%
             </div>
           </div>
-          <div className="text-lg font-semibold text-[#004c8f] mb-3">Students in 2023</div>
-          <p className="text-[#004c8f] text-sm">
+          <div className="text-lg font-semibold text-[#0a1a67] mb-3">Students in 2023</div>
+          <p className="text-[#0a1a67] text-sm">
             The number increased significantly to 36 students, reflecting a growth of 200% from the previous year.
           </p>
         </div>
@@ -81,8 +81,8 @@ export default function Performance() {
               +66.7%
             </div>
           </div>
-          <div className="text-lg font-semibold text-[#004c8f] mb-3">Students in 2024</div>
-          <p className="text-[#004c8f] text-sm">
+          <div className="text-lg font-semibold text-[#0a1a67] mb-3">Students in 2024</div>
+          <p className="text-[#0a1a67] text-sm">
             The number further increased to 60 students, showing an impressive growth of 66.7% from 2023.
           </p>
         </div>
@@ -95,9 +95,9 @@ export default function Performance() {
             <svg className="w-6 h-6 text-brand-dark" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
-            <h3 className="text-2xl font-bold text-[#004c8f]">Achievement Summary</h3>
+            <h3 className="text-2xl font-bold text-[#0a1a67]">Achievement Summary</h3>
           </div>
-          <p className="text-[#004c8f] text-lg leading-relaxed">
+          <p className="text-[#0a1a67] text-lg leading-relaxed">
             The data demonstrates a consistent upward trend in the number of students achieving top percentiles 
             in the CET exam, highlighting the effectiveness of the educational strategies and the dedication of 
             both students and faculty at Matrix Science Academy.

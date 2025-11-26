@@ -30,17 +30,17 @@ function MegaMenu({ label, items, images, description }) {
       onMouseEnter={handleMouseEnter} 
       onMouseLeave={handleMouseLeave}
     >
-              <button className="nav-link relative px-3 py-2 rounded-lg overflow-hidden inline-flex items-center gap-1 group transition-all duration-300 hover:text-white hover:shadow-lg hover:scale-105 font-bold">
-                <span className="relative z-10">
+              <button className={`relative px-3 py-2 rounded-lg overflow-hidden inline-flex items-center gap-1 group transition-all duration-300 font-bold ${
+                open 
+                  ? 'bg-[#0a1a67] text-white shadow-lg scale-105' 
+                  : 'text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white hover:shadow-lg hover:scale-105'
+              }`}>
+                <span className={`relative z-10 ${open ? 'text-white' : 'group-hover:text-white'}`}>
                   {label}
-                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-dark transition-all duration-300 ${open ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
                 </span>
-        <svg className={`h-4 w-4 transition-transform duration-300 relative z-10 ${open ? 'rotate-180 text-white' : ''}`} viewBox="0 0 20 20" fill="currentColor">
+        <svg className={`h-4 w-4 transition-transform duration-300 relative z-10 ${open ? 'rotate-180 text-white' : 'group-hover:text-white'}`} viewBox="0 0 20 20" fill="currentColor">
           <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"/>
         </svg>
-        <span className={`absolute inset-0 bg-brand-dark transform ${
-          open ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-        } transition-transform duration-300 origin-left rounded-lg`}></span>
       </button>
       {open && (
         <div 
@@ -57,8 +57,8 @@ function MegaMenu({ label, items, images, description }) {
           }`}>
             {/* Header Section */}
             <div className="bg-gradient-to-r from-brand/20 to-brand-dark/10 px-6 py-4 border-b">
-              <h3 className="font-bold text-lg text-[#004c8f]">{label}</h3>
-              {description && <p className="text-sm text-[#004c8f] mt-1">{description}</p>}
+              <h3 className="font-bold text-lg text-[#0a1a67]">{label}</h3>
+              {description && <p className="text-sm text-[#0a1a67] mt-1">{description}</p>}
             </div>
             
             {/* Content Grid */}
@@ -71,8 +71,8 @@ function MegaMenu({ label, items, images, description }) {
                   onMouseLeave={() => setHoveredIndex(null)}
                   className={`group relative flex items-start gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
                     hoveredIndex === idx 
-                      ? 'bg-[#004c8f]/10 scale-[1.02] shadow-md' 
-                      : 'hover:bg-[#004c8f]/5'
+                      ? 'bg-[#0a1a67]/10 scale-[1.02] shadow-md' 
+                      : 'hover:bg-[#0a1a67]/5'
                   }`}
                 >
                   {/* Image/Icon */}
@@ -99,13 +99,13 @@ function MegaMenu({ label, items, images, description }) {
                   
                   {/* Text Content */}
                   <div className="flex-1 min-w-0">
-                    <div className={`font-semibold text-[#004c8f] transition-colors duration-300 ${
+                    <div className={`font-semibold text-[#0a1a67] transition-colors duration-300 ${
                       hoveredIndex === idx ? 'text-brand-dark' : ''
                     }`}>
                       {item.label}
                     </div>
                     {item.description && (
-                      <div className="text-xs text-[#004c8f] mt-0.5 line-clamp-2">
+                      <div className="text-xs text-[#0a1a67] mt-0.5 line-clamp-2">
                         {item.description}
                       </div>
                     )}
@@ -242,22 +242,19 @@ export default function Navbar() {
               loading="eager"
             />
           </div>
-          <span className="text-xs sm:text-sm text-[#004c8f] transition-colors duration-300 group-hover:text-[#004c8f] whitespace-nowrap hidden sm:block">सा विद्या या विमुक्तये</span>
+          <span className="text-xs sm:text-sm text-[#0a1a67] transition-colors duration-300 group-hover:text-[#0a1a67] whitespace-nowrap hidden sm:block">सा विद्या या विमुक्तये</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">
           <Link 
             href="/" 
-            className={`nav-link relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${
+            className={`relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${
               pathname === '/' 
-                ? 'text-[#004c8f] font-bold shadow-md scale-105' 
-                : 'hover:text-white hover:shadow-lg hover:scale-105'
-            } after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:bg-brand-dark after:rounded-full after:transition-all after:duration-300 ${
-              pathname === '/' ? 'after:w-full' : 'after:w-0 group-hover:after:w-full'
-            } ${pathname === '/' ? '[&>span.bg-overlay]:scale-x-100' : '[&>span.bg-overlay]:scale-x-0 [&:hover>span.bg-overlay]:scale-x-100'}`}
+                ? 'bg-[#0a1a67] text-white shadow-md scale-105' 
+                : 'text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white hover:shadow-lg hover:scale-105'
+            }`}
           >
-            <span className="relative z-10">Home</span>
-            <span className="bg-overlay absolute inset-0 bg-brand-dark transform transition-transform duration-300 origin-left rounded-lg"></span>
+            <span className={`relative z-10 ${pathname === '/' ? 'text-white' : 'group-hover:text-white'}`}>Home</span>
           </Link>
           
           <MegaMenu 
@@ -276,46 +273,40 @@ export default function Navbar() {
           
           <Link 
             href="/directors-message" 
-            className={`nav-link relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${
+            className={`relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${
               pathname === '/directors-message' 
-                ? 'text-[#004c8f] font-bold shadow-md scale-105' 
-                : 'hover:text-white hover:shadow-lg hover:scale-105'
-            } after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:bg-brand-dark after:rounded-full after:transition-all after:duration-300 ${
-              pathname === '/directors-message' ? 'after:w-full' : 'after:w-0 group-hover:after:w-full'
-            } ${pathname === '/directors-message' ? '[&>span.bg-overlay]:scale-x-100' : '[&>span.bg-overlay]:scale-x-0 [&:hover>span.bg-overlay]:scale-x-100'}`}
+                ? 'bg-[#0a1a67] text-white shadow-md scale-105' 
+                : 'text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white hover:shadow-lg hover:scale-105'
+            }`}
           >
-            <span className="relative z-10">Directors Message</span>
-            <span className="bg-overlay absolute inset-0 bg-brand-dark transform transition-transform duration-300 origin-left rounded-lg"></span>
+            <span className={`relative z-10 ${pathname === '/directors-message' ? 'text-white' : 'group-hover:text-white'}`}>Directors Message</span>
           </Link>
           
           <Link 
             href="/about" 
-            className={`nav-link relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${
+            className={`relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${
               pathname === '/about' 
-                ? 'text-[#004c8f] font-bold shadow-md scale-105' 
-                : 'hover:text-white hover:shadow-lg hover:scale-105'
-            } after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:bg-brand-dark after:rounded-full after:transition-all after:duration-300 ${
-              pathname === '/about' ? 'after:w-full' : 'after:w-0 group-hover:after:w-full'
-            } ${pathname === '/about' ? '[&>span.bg-overlay]:scale-x-100' : '[&>span.bg-overlay]:scale-x-0 [&:hover>span.bg-overlay]:scale-x-100'}`}
+                ? 'bg-[#0a1a67] text-white shadow-md scale-105' 
+                : 'text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white hover:shadow-lg hover:scale-105'
+            }`}
           >
-            <span className="relative z-10">About Us</span>
-            <span className="bg-overlay absolute inset-0 bg-brand-dark transform transition-transform duration-300 origin-left rounded-lg"></span>
+            <span className={`relative z-10 ${pathname === '/about' ? 'text-white' : 'group-hover:text-white'}`}>About Us</span>
           </Link>
         </nav>
 
         <div className="flex items-center gap-3">
           <Link 
             href="/enquiry" 
-            className="hidden md:inline-flex items-center gap-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium shadow-soft relative overflow-hidden group transition-all duration-300 hover:scale-105"
+            className="hidden md:inline-flex items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium shadow-soft relative overflow-hidden group transition-all duration-300 hover:scale-105"
           >
             <span className="relative z-10">Enquire Now</span>
-            <span className="absolute inset-0 bg-red-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            <span className="absolute inset-0 bg-[#8a001e] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </Link>
           <button 
             className={`md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border transition-all duration-300 ${
               mobileOpen 
                 ? 'bg-brand/20 border-brand rotate-90' 
-                : 'hover:bg-[#004c8f]/10'
+                : 'hover:bg-[#0a1a67]/10'
             }`} 
             onClick={() => setMobileOpen((v) => !v)} 
             aria-label="Toggle menu"
@@ -351,53 +342,53 @@ export default function Navbar() {
         {/* Overlay */}
         <div className={`absolute inset-0 bg-black/80 transition-opacity ${mobileOpen ? 'opacity-100' : 'opacity-0'}`} onClick={() => setMobileOpen(false)}></div>
         {/* Panel */}
-        <div className={`absolute right-0 top-0 h-full w-4/5 max-w-sm bg-white text-[#004c8f] shadow-[0_10px_30px_rgba(0,0,0,0.25)] border-l transition-transform duration-300 ease-smooth ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`absolute right-0 top-0 h-full w-4/5 max-w-sm bg-white text-[#0a1a67] shadow-[0_10px_30px_rgba(0,0,0,0.25)] border-l transition-transform duration-300 ease-smooth ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="p-4 border-b flex items-center justify-between bg-white sticky top-0">
             <div className="font-extrabold">
-              <span className="text-red-600">Matrix</span>{' '}
-              <span className="text-[#004c8f]">Science</span>{' '}
+              <span className="text-[#B30027]">Matrix</span>{' '}
+              <span className="text-[#0a1a67]">Science</span>{' '}
               <span className="text-brand">Academy</span>
             </div>
-            <button className="h-9 w-9 rounded-lg hover:bg-[#004c8f]/10 grid place-content-center" onClick={() => setMobileOpen(false)} aria-label="Close menu">
+            <button className="h-9 w-9 rounded-lg hover:bg-[#0a1a67]/10 grid place-content-center" onClick={() => setMobileOpen(false)} aria-label="Close menu">
               <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
             </button>
           </div>
           <div className="p-4 flex flex-col gap-2 bg-white">
-            <Link href="/" className={`block px-2 py-2 rounded-lg ${pathname === '/' ? 'bg-[#004c8f]/20 text-[#004c8f]' : 'hover:bg-[#004c8f]/10'}`} onClick={() => setMobileOpen(false)}>Home</Link>
+            <Link href="/" className={`block px-2 py-2 rounded-lg font-medium transition-all duration-300 ${pathname === '/' ? 'bg-[#0a1a67] text-white' : 'text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white'}`} onClick={() => setMobileOpen(false)}>Home</Link>
 
-            <button className="flex items-center justify-between px-2 py-2 rounded-lg hover:bg-[#004c8f]/10" onClick={() => setAcademicsOpen((v) => !v)}>
+            <button className={`flex items-center justify-between px-2 py-2 rounded-lg font-medium transition-all duration-300 ${academicsOpen ? 'bg-[#0a1a67] text-white' : 'text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white'}`} onClick={() => setAcademicsOpen((v) => !v)}>
               <span>Academics</span>
               <span>{academicsOpen ? '−' : '+'}</span>
             </button>
             {academicsOpen && (
               <div className="ml-3 flex flex-col gap-1">
-                <Link href="/courses" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>Courses</Link>
-                <Link href="/faculty" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>Our Faculty</Link>
-                <Link href="/results" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>Results</Link>
-                <Link href="/testimonials" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>Testimonials</Link>
+                <Link href="/courses" className="px-2 py-1 rounded text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white transition-all duration-300" onClick={() => setMobileOpen(false)}>Courses</Link>
+                <Link href="/faculty" className="px-2 py-1 rounded text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white transition-all duration-300" onClick={() => setMobileOpen(false)}>Our Faculty</Link>
+                <Link href="/results" className="px-2 py-1 rounded text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white transition-all duration-300" onClick={() => setMobileOpen(false)}>Results</Link>
+                <Link href="/testimonials" className="px-2 py-1 rounded text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white transition-all duration-300" onClick={() => setMobileOpen(false)}>Testimonials</Link>
               </div>
             )}
 
-            <button className="flex items-center justify-between px-2 py-2 rounded-lg hover:bg-[#004c8f]/10" onClick={() => setActivitiesOpen((v) => !v)}>
+            <button className={`flex items-center justify-between px-2 py-2 rounded-lg font-medium transition-all duration-300 ${activitiesOpen ? 'bg-[#0a1a67] text-white' : 'text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white'}`} onClick={() => setActivitiesOpen((v) => !v)}>
               <span>Activities</span>
               <span>{activitiesOpen ? '−' : '+'}</span>
             </button>
             {activitiesOpen && (
               <div className="ml-3 flex flex-col gap-1">
-                <Link href="/activities/performance" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>Performance</Link>
-                <Link href="/activities/course-selection" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>Course Selection</Link>
-                <Link href="/activities/iit-neet-timeline" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>IIT-JEE/NEET Timeline</Link>
-                <Link href="/activities/mht-cet-timeline" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>MHT-CET Timeline</Link>
-                <Link href="/activities/on-demand-courses" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>On Demand Courses</Link>
-                <Link href="/activities/felicitation" className="px-2 py-1 rounded hover:bg-[#004c8f]/10" onClick={() => setMobileOpen(false)}>Felicitation</Link>
+                <Link href="/activities/performance" className="px-2 py-1 rounded text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white transition-all duration-300" onClick={() => setMobileOpen(false)}>Performance</Link>
+                <Link href="/activities/course-selection" className="px-2 py-1 rounded text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white transition-all duration-300" onClick={() => setMobileOpen(false)}>Course Selection</Link>
+                <Link href="/activities/iit-neet-timeline" className="px-2 py-1 rounded text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white transition-all duration-300" onClick={() => setMobileOpen(false)}>IIT-JEE/NEET Timeline</Link>
+                <Link href="/activities/mht-cet-timeline" className="px-2 py-1 rounded text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white transition-all duration-300" onClick={() => setMobileOpen(false)}>MHT-CET Timeline</Link>
+                <Link href="/activities/on-demand-courses" className="px-2 py-1 rounded text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white transition-all duration-300" onClick={() => setMobileOpen(false)}>On Demand Courses</Link>
+                <Link href="/activities/felicitation" className="px-2 py-1 rounded text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white transition-all duration-300" onClick={() => setMobileOpen(false)}>Felicitation</Link>
               </div>
             )}
 
-            <Link href="/directors-message" className={`block px-2 py-2 rounded-lg ${pathname === '/directors-message' ? 'bg-[#004c8f]/20 text-[#004c8f]' : 'hover:bg-[#004c8f]/10'}`} onClick={() => setMobileOpen(false)}>Directors Message</Link>
-            <Link href="/about" className={`block px-2 py-2 rounded-lg ${pathname === '/about' ? 'bg-[#004c8f]/20 text-[#004c8f]' : 'hover:bg-[#004c8f]/10'}`} onClick={() => setMobileOpen(false)}>About Us</Link>
+            <Link href="/directors-message" className={`block px-2 py-2 rounded-lg font-medium transition-all duration-300 ${pathname === '/directors-message' ? 'bg-[#0a1a67] text-white' : 'text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white'}`} onClick={() => setMobileOpen(false)}>Directors Message</Link>
+            <Link href="/about" className={`block px-2 py-2 rounded-lg font-medium transition-all duration-300 ${pathname === '/about' ? 'bg-[#0a1a67] text-white' : 'text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white'}`} onClick={() => setMobileOpen(false)}>About Us</Link>
 
                     <div className="pt-3 flex flex-col gap-2">
-                      <Link href="/enquiry" className="inline-flex justify-center items-center gap-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft" onClick={() => setMobileOpen(false)}>Enquire Now</Link>
+                      <Link href="/enquiry" className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft" onClick={() => setMobileOpen(false)}>Enquire Now</Link>
                     </div>
           </div>
         </div>

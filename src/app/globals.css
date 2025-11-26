@@ -6,7 +6,7 @@
 /* CSS variables for brand colors */
 :root {
 	--brand: #b2dfee;
-	--brand-dark: #5aa6c4;
+	--brand-dark: #0a1a67;
 }
 
 html, body {
@@ -14,7 +14,7 @@ html, body {
 }
 
 body {
-	@apply bg-white text-[#004c8f] antialiased;
+	@apply bg-white text-[#0a1a67] antialiased;
 }
 
 /******** Utilities ********/
@@ -31,15 +31,15 @@ body {
 }
 
 .btn-primary {
-	@apply items-center gap-2 rounded-lg bg-brand text-[#004c8f] hover:bg-brand-dark transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium shadow-soft;
+	@apply items-center gap-2 rounded-lg bg-brand text-[#0a1a67] hover:bg-brand-dark transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium shadow-soft;
 }
 
 .btn-outline {
-	@apply items-center gap-2 rounded-lg border border-brand text-brand hover:bg-[#004c8f]/10 transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium;
+	@apply items-center gap-2 rounded-lg border border-brand text-brand hover:bg-[#0a1a67]/10 transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium;
 }
 
 .nav-link {
-	@apply text-[#004c8f] transition-colors duration-200;
+	@apply transition-colors duration-200;
 }
 
 .card {

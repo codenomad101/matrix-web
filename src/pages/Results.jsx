@@ -11,7 +11,7 @@ export default function Results() {
 
   return (
     <div className="container-page py-10">
-      <h1 className="text-3xl sm:text-4xl font-bold text-[#004c8f] mb-8 text-center">Our Results</h1>
+      <h1 className="text-3xl sm:text-4xl font-bold text-[#0a1a67] mb-8 text-center">Our Results</h1>
       <div className="grid sm:grid-cols-2 gap-6">
         {resultsImages.map((image, idx) => (
           <div 

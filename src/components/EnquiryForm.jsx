@@ -1,8 +1,22 @@
 'use client'
 import { useEffect, useState } from 'react'
 
+// WhatsApp numbers for each branch
+// Format: country code + number (without + or spaces)
+// Example: '919876543210' for +91 98765 43210
+const BRANCH_WHATSAPP_NUMBERS = {
+  'Pradhikaran': '917499740835', // Replace with actual WhatsApp number
+  'Nigdi': '919876543211', // Replace with actual WhatsApp number
+  'Ravet': '919876543212', // Replace with actual WhatsApp number
+  'Shahunagar': '919876543213', // Replace with actual WhatsApp number
+  'Chinchwad': '919876543214', // Replace with actual WhatsApp number
+  'Wakad': '919876543215', // Replace with actual WhatsApp number
+  'Moshi': '919876543216', // Replace with actual WhatsApp number
+}
+
 export default function EnquiryForm() {
   const [origin, setOrigin] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -10,17 +24,105 @@ export default function EnquiryForm() {
     }
   }, [])
 
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    const formData = new FormData(e.target)
+    const formValues = {
+      name: formData.get('name'),
+      phone: formData.get('phone'),
+      email: formData.get('email'),
+      course: formData.get('course'),
+      branch: formData.get('branch'),
+      message: formData.get('message') || 'No message provided'
+    }
+
+    // Get WhatsApp number for selected branch
+    const whatsappNumber = BRANCH_WHATSAPP_NUMBERS[formValues.branch] || BRANCH_WHATSAPP_NUMBERS['Pradhikaran']
+
+    // Format WhatsApp message
+    const whatsappMessage = `*New Enquiry from Matrix Science Academy Website*
+
+*Name:* ${formValues.name}
+*Phone:* ${formValues.phone}
+*Email:* ${formValues.email}
+*Course:* ${formValues.course}
+*Branch:* ${formValues.branch}
+*Message:* ${formValues.message}
+
+_This enquiry was submitted through the website._`
+
+    // Encode message for URL
+    const encodedMessage = encodeURIComponent(whatsappMessage)
+
+    // Open WhatsApp with pre-filled message
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`
+    window.open(whatsappUrl, '_blank')
+
+    // Still submit to FormSubmit for email backup (in background)
+    // Create a hidden form and submit it
+    const hiddenForm = document.createElement('form')
+    hiddenForm.action = 'https://formsubmit.co/jadhavsbj755@gmail.com'
+    hiddenForm.method = 'POST'
+    hiddenForm.style.display = 'none'
+
+    // Add all form fields
+    Object.keys(formValues).forEach(key => {
+      const input = document.createElement('input')
+      input.type = 'hidden'
+      input.name = key
+      input.value = formValues[key]
+      hiddenForm.appendChild(input)
+    })
+
+    // Add FormSubmit hidden fields
+    const subjectInput = document.createElement('input')
+    subjectInput.type = 'hidden'
+    subjectInput.name = '_subject'
+    subjectInput.value = `MSA Website Enquiry - ${formValues.branch} Branch`
+    hiddenForm.appendChild(subjectInput)
+
+    const templateInput = document.createElement('input')
+    templateInput.type = 'hidden'
+    templateInput.name = '_template'
+    templateInput.value = 'table'
+    hiddenForm.appendChild(templateInput)
+
+    const captchaInput = document.createElement('input')
+    captchaInput.type = 'hidden'
+    captchaInput.name = '_captcha'
+    captchaInput.value = 'false'
+    hiddenForm.appendChild(captchaInput)
+
+    if (origin) {
+      const nextInput = document.createElement('input')
+      nextInput.type = 'hidden'
+      nextInput.name = '_next'
+      nextInput.value = `${origin}/thank-you`
+      hiddenForm.appendChild(nextInput)
+    }
+
+    document.body.appendChild(hiddenForm)
+    hiddenForm.submit()
+
+    // Reset form after a short delay
+    setTimeout(() => {
+      e.target.reset()
+      setIsSubmitting(false)
+    }, 1000)
+  }
+
   return (
     <div className="container-page py-12">
       <div className="grid lg:grid-cols-2 gap-8">
         <div className="card p-6 sm:p-8">
-          <h2 className="text-2xl font-bold text-[#004c8f]">Enquiry Form</h2>
-          <p className="mt-1 text-[#004c8f]">Fill this and our team will reach out shortly.</p>
+          <h2 className="text-2xl font-bold text-[#0a1a67]">Enquiry Form</h2>
+          <p className="mt-1 text-[#0a1a67]">Fill this and our team will reach out shortly.</p>
 
           <form
             className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4"
-            action="https://formsubmit.co/jadhavsbj755@gmail.com"
-            method="POST"
+            onSubmit={handleSubmit}
           >
             <input type="hidden" name="_subject" value="MSA Website Enquiry" />
             <input type="hidden" name="_template" value="table" />
@@ -29,22 +131,22 @@ export default function EnquiryForm() {
             <input type="text" name="_honey" className="hidden" tabIndex="-1" autoComplete="off" />
 
             <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-[#004c8f]">Full Name</label>
+              <label className="block text-sm font-medium text-[#0a1a67]">Full Name</label>
               <input required name="name" type="text" placeholder="Your name" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand" />
             </div>
 
             <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-[#004c8f]">Phone</label>
+              <label className="block text-sm font-medium text-[#0a1a67]">Phone</label>
               <input required name="phone" type="tel" placeholder="98765 43210" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand" />
             </div>
 
             <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-[#004c8f]">Email</label>
+              <label className="block text-sm font-medium text-[#0a1a67]">Email</label>
               <input required name="email" type="email" placeholder="you@example.com" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand" />
             </div>
 
             <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-[#004c8f]">Course</label>
+              <label className="block text-sm font-medium text-[#0a1a67]">Course</label>
               <select name="course" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand">
                 <option>IIT-JEE (Main/Advanced)</option>
                 <option>MHT-CET</option>
@@ -55,7 +157,7 @@ export default function EnquiryForm() {
             </div>
 
             <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-[#004c8f]">Preferred Branch</label>
+              <label className="block text-sm font-medium text-[#0a1a67]">Preferred Branch</label>
               <select name="branch" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand">
                 <option>Pradhikaran</option>
                 <option>Nigdi</option>
@@ -68,27 +170,33 @@ export default function EnquiryForm() {
             </div>
 
             <div className="sm:col-span-2">
-              <label className="block text-sm font-medium text-[#004c8f]">Message</label>
+              <label className="block text-sm font-medium text-[#0a1a67]">Message</label>
               <textarea name="message" rows="4" placeholder="Tell us about your goals" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand"></textarea>
             </div>
 
             <div className="sm:col-span-2 flex flex-col sm:flex-row gap-3">
-              <button type="submit" className="btn-primary inline-flex justify-center">Submit Enquiry</button>
+              <button 
+                type="submit" 
+                className="btn-primary inline-flex justify-center"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit Enquiry'}
+              </button>
               <a href="tel:+91XXXXXXXXXX" className="btn-outline inline-flex justify-center">Call Us</a>
             </div>
           </form>
         </div>
 
         <div className="rounded-2xl bg-brand/20 border border-brand/30 p-6 sm:p-8">
-          <h3 className="text-xl font-semibold text-[#004c8f]">Why enquire?</h3>
-          <ul className="mt-3 space-y-2 text-[#004c8f]">
+          <h3 className="text-xl font-semibold text-[#0a1a67]">Why enquire?</h3>
+          <ul className="mt-3 space-y-2 text-[#0a1a67]">
             <li>• Get a personalized study plan</li>
             <li>• Fee details and scholarship options</li>
             <li>• Centre timings and batch schedules</li>
             <li>• Meet counsellors and mentors</li>
           </ul>
-          <div className="mt-6 text-sm text-[#004c8f]">
-            We’ll email your details to our team instantly.
+          <div className="mt-6 text-sm text-[#0a1a67]">
+            We'll send your enquiry via WhatsApp to the selected branch and email your details to our team instantly.
           </div>
         </div>
       </div>
