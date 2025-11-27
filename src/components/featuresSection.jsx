@@ -58,7 +58,7 @@ export default function FeaturesSection() {
         <div className="bg-[#0a1a67] rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8">
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white/30 mb-2 tracking-wider">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 tracking-wider">
             FEATURES
           </h2>
           <p className="text-sm sm:text-base text-white/80 max-w-2xl mx-auto">

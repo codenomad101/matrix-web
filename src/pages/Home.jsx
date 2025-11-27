@@ -49,6 +49,78 @@ const topResults = {
   neet: { score: '100/100', subject: 'Biology', students: 'Multiple students' },
 }
 
+// Latest News Section Component
+function LatestNewsSection() {
+  const newsItems = [
+    "Admissions Open for 2025-26 Batch - IIT-JEE, NEET, MHT-CET",
+    "86 Students scored 99+ Percentile in MHT-CET 2025",
+    "12+ Students selected for IIT in 2025",
+    "New Branch Opening in Hinjewadi - Coming Soon",
+    "100/100 in Biology - NEET 2025 Toppers",
+    "Free Career Counselling Sessions Every Saturday",
+    "Special Crash Course for Board Exams Starting January",
+    "Matrix Science Academy ranked #1 in Pune Region",
+  ]
+
+  return (
+    <section className="container-page py-8">
+      <div className="bg-gradient-to-r from-gray-50 to-white rounded-2xl shadow-lg overflow-hidden">
+        <div className="grid md:grid-cols-[300px_1fr] lg:grid-cols-[350px_1fr]">
+          {/* Left Side - Title and Description */}
+          <div className="bg-[#0a1a67] p-6 md:p-8 flex flex-col justify-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              Latest News & Updates
+            </h2>
+            <p className="text-white/80 text-sm md:text-base">
+              Stay updated with the latest happenings, achievements, and announcements from Matrix Science Academy.
+            </p>
+            <div className="mt-4 flex items-center gap-2 text-white/60 text-sm">
+              <svg className="w-5 h-5 animate-pulse text-[#B30027]" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+              </svg>
+              <span></span>
+            </div>
+          </div>
+
+          {/* Right Side - Scrolling News */}
+          <div className="p-6 md:p-8 relative overflow-hidden h-[200px] md:h-[220px]">
+            <div className="animate-scroll-vertical">
+              {[...newsItems, ...newsItems].map((news, idx) => (
+                <div
+                  key={idx}
+                  className="py-3 border-b border-gray-100 last:border-0 flex items-start gap-3 group cursor-pointer hover:bg-gray-50 px-2 rounded-lg transition-colors duration-300"
+                >
+                  <span className="text-[#B30027] font-bold text-lg">›</span>
+                  <span className="text-[#0a1a67] font-medium group-hover:text-[#B30027] transition-colors duration-300">
+                    {news}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes scroll-vertical {
+          0% {
+            transform: translateY(0);
+          }
+          100% {
+            transform: translateY(-50%);
+          }
+        }
+        .animate-scroll-vertical {
+          animation: scroll-vertical 20s linear infinite;
+        }
+        .animate-scroll-vertical:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+    </section>
+  )
+}
+
 // Overview Section Component
 function OverviewSection() {
   const images = [
@@ -82,6 +154,82 @@ function OverviewSection() {
         ))}
       </div>
     </section>
+  )
+}
+
+// Results Image Slider Component
+function ResultsImageSlider() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const images = [
+    { cloudinaryId: 'v1764181799/JEE_MAIN_o7kayq', alt: 'JEE Main Results' },
+    { cloudinaryId: 'v1764181794/JEE_MAIN_2025_aoxekj', alt: 'JEE Main 2025 Results' },
+    { cloudinaryId: 'v1764181786/IIT_knkkka', alt: 'IIT Results' },
+    { cloudinaryId: 'v1764181835/NEET_riozts', alt: 'NEET Results' },
+  ]
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length)
+    }, 4000)
+    return () => clearInterval(timer)
+  }, [images.length])
+
+  return (
+    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-100 to-white shadow-lg">
+      {/* Main Slider */}
+      <div className="relative h-[400px] md:h-[500px] lg:h-[550px]">
+        {images.map((img, idx) => (
+          <div
+            key={idx}
+            className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+              currentIndex === idx 
+                ? 'opacity-100 scale-100' 
+                : 'opacity-0 scale-95'
+            }`}
+          >
+            <img
+              src={`https://res.cloudinary.com/ddqgxrgnc/image/upload/w_1200,h_800,c_fit,q_auto,f_auto/${img.cloudinaryId}`}
+              alt={img.alt}
+              className="w-full h-full object-contain"
+              loading={idx === 0 ? 'eager' : 'lazy'}
+            />
+          </div>
+        ))}
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={() => setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
+        >
+          <svg className="w-6 h-6 text-[#0a1a67]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          onClick={() => setCurrentIndex((prev) => (prev + 1) % images.length)}
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
+        >
+          <svg className="w-6 h-6 text-[#0a1a67]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Dots Navigation */}
+      <div className="flex justify-center gap-3 py-4 bg-white/80">
+        {images.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrentIndex(idx)}
+            className={`h-3 rounded-full transition-all duration-300 ${
+              currentIndex === idx 
+                ? 'w-10 bg-[#0a1a67]' 
+                : 'w-3 bg-gray-300 hover:bg-gray-400'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -262,6 +410,11 @@ function ResultsSection({ topResults }) {
           })}
         </div>
 
+        {/* Results Image Slider */}
+        <div className="mt-8">
+          <ResultsImageSlider />
+        </div>
+
       </div>
 
       {/* Enhanced Results Display */}
@@ -351,6 +504,9 @@ export default function Home() {
       {/* Results Section */}
 
       <ResultsSection topResults={topResults} />
+
+      {/* Latest News Section */}
+      <LatestNewsSection />
 
       {/* Top Images Section */}
       <OverviewSection />
