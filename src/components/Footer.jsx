@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import OptimizedImage from '@/components/OptimizedImage'
 
 export default function Footer() {
   return (
@@ -162,7 +163,15 @@ export default function Footer() {
               href="/" 
               className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-300"
             >
-              <img src="/images/matrix_logo1.png" alt="MSA logo" className="h-8 w-8 object-contain" />
+              <OptimizedImage
+                cloudinaryId="v1763788005/matrix_logo_cra98w"
+                alt="MSA logo"
+                width={40}
+                height={40}
+                className="h-10 w-10 object-contain"
+                crop="fit"
+                loading="lazy"
+              />
               <span className="text-sm font-semibold">
                 <span className="text-[#B30027]">Matrix</span>{' '}
                 <span className="text-white/70">Science</span>{' '}

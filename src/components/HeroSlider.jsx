@@ -27,7 +27,7 @@ export default function HeroSlider() {
     {
       id: 'matrix-impulse',
       title: 'Leading trainers in Pune',
-      highlight: '',
+      highlight: 'Look at Recent IIT results of our students',
       branches: ['Pradhikaran', 'Nigdi', 'Ravet', 'Shahunagar', 'Chinchwad', 'Wakad', 'Moshi'],
       type: 'content',
     },
