@@ -493,20 +493,114 @@ function ResultsSection({ topResults }) {
 // Testimonials Slider Component
 
 
+// Combined Features & News Section
+function FeaturesAndNewsSection() {
+  const features = [
+    { icon: '📚', title: 'Expert Faculty', desc: '150+ qualified teachers' },
+    { icon: '🎯', title: 'Focused Learning', desc: 'Structured curriculum' },
+    { icon: '🏆', title: 'Proven Results', desc: 'Top rankers every year' },
+    { icon: '💡', title: 'Doubt Sessions', desc: 'Personalized attention' },
+    { icon: '🏢', title: '8 Branches', desc: 'Across Pune region' },
+    { icon: '📊', title: 'Performance Tracking', desc: 'Regular assessments' },
+  ]
+
+  const newsItems = [
+    "Admissions Open for 2025-26 Batch - IIT-JEE, NEET, MHT-CET",
+    "86 Students scored 99+ Percentile in MHT-CET 2025",
+    "12+ Students selected for IIT in 2025",
+    "New Branch Opening in Hinjewadi - Coming Soon",
+    "100/100 in Biology - NEET 2025 Toppers",
+    "Free Career Counselling Sessions Every Saturday",
+  ]
+
+  return (
+    <section className="container-page py-8">
+      <div className="grid lg:grid-cols-2 gap-6">
+        {/* Left - Features */}
+        <div className="bg-[#0a1a67] rounded-2xl p-6 md:p-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Why Choose Us?</h2>
+          <div className="grid grid-cols-2 gap-4">
+            {features.map((feature, idx) => (
+              <div 
+                key={idx} 
+                className="bg-white/10 backdrop-blur rounded-xl p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group"
+              >
+                <span className="text-3xl mb-2 block group-hover:scale-110 transition-transform duration-300">{feature.icon}</span>
+                <h3 className="text-white font-semibold text-sm md:text-base">{feature.title}</h3>
+                <p className="text-white/70 text-xs md:text-sm mt-1">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+          <Link href="/about" className="inline-flex items-center gap-2 mt-6 text-white hover:text-white/80 transition-colors duration-300 font-medium">
+            Learn More About Us
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </div>
+
+        {/* Right - Latest News */}
+        <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+          <div className="bg-[#B30027] p-4 md:p-6">
+            <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+              <svg className="w-6 h-6 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+              </svg>
+              Latest News & Updates
+            </h2>
+          </div>
+          <div className="p-4 md:p-6 h-[320px] overflow-hidden relative">
+            <div className="animate-scroll-news">
+              {[...newsItems, ...newsItems].map((news, idx) => (
+                <div
+                  key={idx}
+                  className="py-3 border-b border-gray-100 last:border-0 flex items-start gap-3 group cursor-pointer hover:bg-gray-50 px-2 rounded-lg transition-colors duration-300"
+                >
+                  <span className="text-[#B30027] font-bold text-lg flex-shrink-0">›</span>
+                  <span className="text-[#0a1a67] font-medium group-hover:text-[#B30027] transition-colors duration-300 text-sm md:text-base">
+                    {news}
+                  </span>
+                </div>
+              ))}
+            </div>
+            {/* Fade effect at bottom */}
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes scroll-news {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-50%); }
+        }
+        .animate-scroll-news {
+          animation: scroll-news 15s linear infinite;
+        }
+        .animate-scroll-news:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+    </section>
+  )
+}
+
 export default function Home() {
   return (
     <div>
       <NewsSlider />
       <HeroSlider />
-      <FeaturesSection />
-
+      
+      {/* Combined Features & News Section */}
+      <FeaturesAndNewsSection />
+      
 
       {/* Results Section */}
 
       <ResultsSection topResults={topResults} />
 
-      {/* Latest News Section */}
-      <LatestNewsSection />
+      {/* Latest News Section - keeping original as well */}
+      <FeaturesSection />
 
       {/* Top Images Section */}
       <OverviewSection />
