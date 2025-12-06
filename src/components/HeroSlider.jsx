@@ -110,19 +110,19 @@ export default function HeroSlider() {
                           <span className="font-bold">🎓 Premium Education</span>
                         </div>
 
-                        <div>
-                          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight drop-shadow-2xl text-white" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 8px 16px rgba(0,0,0,0.6)' }}>
+                        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 sm:p-6 max-w-fit">
+                          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight text-white">
                             <span className="text-[#B30027]">Matrix</span>{' '}
                             <span className="text-[#7a7a7a]">Science</span>
                             <span className="block text-[#0a1a67]">Academy</span>
                           </h1>
 
                           {/* Sanskrit Tagline */}
-                          <p className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#0a1a67] mt-1 sm:mt-2 drop-shadow-md italic">
+                          <p className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#0a1a67] mt-1 sm:mt-2 italic">
                             {s.sanskritTagline}
                           </p>
 
-                          <p className="text-xs sm:text-lg md:text-xl lg:text-2xl font-bold text-[#0a1a67] mt-0.5 sm:mt-2 drop-shadow-md">
+                          <p className="text-xs sm:text-lg md:text-xl lg:text-2xl font-bold text-[#0a1a67] mt-0.5 sm:mt-2">
                             {s.tagline}
                           </p>
                         </div>
