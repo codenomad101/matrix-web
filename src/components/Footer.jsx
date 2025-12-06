@@ -11,32 +11,32 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4 text-[#B30027]">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link 
-                  href="/" 
+                <Link
+                  href="/"
                   className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Home
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/directors-message" 
+                <Link
+                  href="/directors-message"
                   className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Directors Message
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/about" 
+                <Link
+                  href="/about"
                   className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/enquiry" 
+                <Link
+                  href="/enquiry"
                   className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Enquire Now
@@ -50,32 +50,32 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4 text-[#B30027]">Academics</h3>
             <ul className="space-y-2">
               <li>
-                <Link 
-                  href="/courses" 
+                <Link
+                  href="/courses"
                   className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Courses
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/faculty" 
+                <Link
+                  href="/faculty"
                   className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Our Faculty
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/results" 
+                <Link
+                  href="/results"
                   className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Results
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/testimonials" 
+                <Link
+                  href="/testimonials"
                   className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Testimonials
@@ -89,48 +89,48 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4 text-[#B30027]">Activities</h3>
             <ul className="space-y-2">
               <li>
-                <Link 
-                  href="/activities/performance" 
+                <Link
+                  href="/activities/performance"
                   className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Performance
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/activities/course-selection" 
+                <Link
+                  href="/activities/course-selection"
                   className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Course Selection
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/activities/iit-neet-timeline" 
+                <Link
+                  href="/activities/iit-neet-timeline"
                   className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   IIT-JEE/NEET Timeline
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/activities/mht-cet-timeline" 
+                <Link
+                  href="/activities/mht-cet-timeline"
                   className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   MHT-CET Timeline
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/activities/on-demand-courses" 
+                <Link
+                  href="/activities/on-demand-courses"
                   className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   On Demand Courses
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/activities/felicitation" 
+                <Link
+                  href="/activities/felicitation"
                   className="text-white/70 hover:text-white transition-colors duration-300 hover:underline underline-offset-4 inline-block"
                 >
                   Felicitation
@@ -144,7 +144,10 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4 text-[#B30027]">Contact</h3>
             <ul className="space-y-2">
               <li className="text-white/70">
-                <span className="font-medium text-white">Email:</span> jadhavsbj755@gmail.com
+                <span className="font-medium text-white">Email:</span> msapcmc@gmail.com
+              </li>
+              <li className="text-white/70">
+                <span className="font-medium text-white">Phone:</span> 7058740609
               </li>
               <li className="text-white/70">
                 <span className="font-medium text-white">Branches:</span> Pradhikaran, Nigdi, Ravet, Shahunagar, Chinchwad, Wakad, Moshi
@@ -159,8 +162,8 @@ export default function Footer() {
             © {new Date().getFullYear()} Matrix Science Academy. All rights reserved.
           </div>
           <div className="flex items-center gap-2">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-300"
             >
               <OptimizedImage

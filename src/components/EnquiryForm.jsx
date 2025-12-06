@@ -5,13 +5,13 @@ import { useEffect, useState } from 'react'
 // Format: country code + number (without + or spaces)
 // Example: '919876543210' for +91 98765 43210
 const BRANCH_WHATSAPP_NUMBERS = {
-  'Pradhikaran': '917499740835', // Replace with actual WhatsApp number
-  'Nigdi': '919876543211', // Replace with actual WhatsApp number
-  'Ravet': '919876543212', // Replace with actual WhatsApp number
-  'Shahunagar': '919876543213', // Replace with actual WhatsApp number
-  'Chinchwad': '919876543214', // Replace with actual WhatsApp number
-  'Wakad': '919876543215', // Replace with actual WhatsApp number
-  'Moshi': '919876543216', // Replace with actual WhatsApp number
+  'Pradhikaran': '917058740609',
+  'Nigdi': '917058740609',
+  'Ravet': '917058740609',
+  'Shahunagar': '917058740609',
+  'Chinchwad': '917058740609',
+  'Wakad': '917058740609',
+  'Moshi': '917058740609',
 }
 
 export default function EnquiryForm() {
@@ -60,52 +60,6 @@ _This enquiry was submitted through the website._`
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`
     window.open(whatsappUrl, '_blank')
 
-    // Still submit to FormSubmit for email backup (in background)
-    // Create a hidden form and submit it
-    const hiddenForm = document.createElement('form')
-    hiddenForm.action = 'https://formsubmit.co/jadhavsbj755@gmail.com'
-    hiddenForm.method = 'POST'
-    hiddenForm.style.display = 'none'
-
-    // Add all form fields
-    Object.keys(formValues).forEach(key => {
-      const input = document.createElement('input')
-      input.type = 'hidden'
-      input.name = key
-      input.value = formValues[key]
-      hiddenForm.appendChild(input)
-    })
-
-    // Add FormSubmit hidden fields
-    const subjectInput = document.createElement('input')
-    subjectInput.type = 'hidden'
-    subjectInput.name = '_subject'
-    subjectInput.value = `MSA Website Enquiry - ${formValues.branch} Branch`
-    hiddenForm.appendChild(subjectInput)
-
-    const templateInput = document.createElement('input')
-    templateInput.type = 'hidden'
-    templateInput.name = '_template'
-    templateInput.value = 'table'
-    hiddenForm.appendChild(templateInput)
-
-    const captchaInput = document.createElement('input')
-    captchaInput.type = 'hidden'
-    captchaInput.name = '_captcha'
-    captchaInput.value = 'false'
-    hiddenForm.appendChild(captchaInput)
-
-    if (origin) {
-      const nextInput = document.createElement('input')
-      nextInput.type = 'hidden'
-      nextInput.name = '_next'
-      nextInput.value = `${origin}/thank-you`
-      hiddenForm.appendChild(nextInput)
-    }
-
-    document.body.appendChild(hiddenForm)
-    hiddenForm.submit()
-
     // Reset form after a short delay
     setTimeout(() => {
       e.target.reset()
@@ -124,12 +78,6 @@ _This enquiry was submitted through the website._`
             className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4"
             onSubmit={handleSubmit}
           >
-            <input type="hidden" name="_subject" value="MSA Website Enquiry" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_captcha" value="false" />
-            {origin && <input type="hidden" name="_next" value={`${origin}/thank-you`} />}
-            <input type="text" name="_honey" className="hidden" tabIndex="-1" autoComplete="off" />
-
             <div className="sm:col-span-1">
               <label className="block text-sm font-medium text-[#0a1a67]">Full Name</label>
               <input required name="name" type="text" placeholder="Your name" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand" />
@@ -175,8 +123,8 @@ _This enquiry was submitted through the website._`
             </div>
 
             <div className="sm:col-span-2 flex flex-col sm:flex-row gap-3">
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="btn-primary inline-flex justify-center"
                 disabled={isSubmitting}
               >

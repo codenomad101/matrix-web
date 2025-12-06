@@ -61,42 +61,42 @@ export default function DirectorsMessage() {
     {
       name: 'Pradhikaran Office',
       address: 'Tated horizon building Opp. St. Ursula School Nigdi, Pradhikaran',
-      phone: ['91755 57966', '84848 79514'],
+      phone: ['70587 40609'],
     },
     {
       name: 'Nigdi Office',
       address: '3rd Floor, Kohinoor Arcade, Nigdi Chowk',
-      phone: ['91755 57966', '70587 40609'],
+      phone: ['70587 40609'],
     },
     {
       name: 'Ravet 1 Office',
       address: '3rd Floor, Blooming Dale, Above Dominos',
-      phone: ['84848 07149', '84840 95234'],
+      phone: ['70587 40609'],
     },
     {
       name: 'Ravet 2 Office',
       address: '3rd Floor, Sr No. 95, Bhalchandra Prospera',
-      phone: ['84848 25383', '84849 75084'],
+      phone: ['70587 40609'],
     },
     {
       name: 'Chinchwad Office',
       address: '3rd Floor, Geo Spaces, Opp. Elpro Mall, Link Road',
-      phone: ['98348 24292', '83295 12658'],
+      phone: ['70587 40609'],
     },
     {
       name: 'Shahunagar Office',
       address: 'Spine Road, Near NKGSB Bank, Purnanagar',
-      phone: ['93732 69468', '99221 13988'],
+      phone: ['70587 40609'],
     },
     {
       name: 'Moshi',
       address: 'Bharat Mata Chowk Above Reliance Digital',
-      phone: ['96733 06104', '93732 69468'],
+      phone: ['70587 40609'],
     },
     {
       name: 'Wakad Office',
       address: 'Sr No 190/190 Ground Floor, Sunder Height, Near Saraswat Bank, Datta Mandir',
-      phone: ['75072 04456', '75179 94456'],
+      phone: ['70587 40609'],
     },
   ];
 

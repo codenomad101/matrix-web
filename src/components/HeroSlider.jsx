@@ -21,30 +21,43 @@ const Link = ({ href, children, className, ...props }) => (
 export default function HeroSlider() {
   const slides = useMemo(() => [
     {
-      id: 'hero-main',
-      type: 'hero',
+      id: 'msa-branding',
+      title: 'Matrix Science Academy',
+      tagline: '+ IMPULSE Batch',
+      subtitle: 'Top trainers in Maharashtra',
+      courses: 'IIT-JEE, MHT-CET, NEET, IISER Foundation',
+      type: 'branding',
     },
     {
-      id: 'matrix-impulse',
-      title: 'Leading trainers in Pune',
-      highlight: 'Look at Recent IIT results of our students',
-      branches: ['Pradhikaran', 'Nigdi', 'Ravet', 'Shahunagar', 'Chinchwad', 'Wakad', 'Moshi'],
-      type: 'content',
+      id: 'vision',
+      title: 'Our Vision',
+      subtitle: 'Directors Message',
+      description: 'Empowering students to achieve excellence in competitive examinations through dedicated teaching, innovative methods, and personalized attention.',
+      type: 'vision',
     },
     {
-      id: 'activities',
-      title: 'Explore Our Activities',
-      highlight: 'Programs, Timelines & More',
-      subtitle: 'Discover comprehensive resources for your academic journey',
-      activities: [
-        { label: 'Performance', to: '/activities/performance', icon: '📈' },
-        { label: 'Course Selection', to: '/activities/course-selection', icon: '📚' },
-        { label: 'IIT-JEE/NEET Timeline', to: '/activities/iit-neet-timeline', icon: '⏱️' },
-        { label: 'MHT-CET Timeline', to: '/activities/mht-cet-timeline', icon: '📅' },
-        { label: 'On Demand Courses', to: '/activities/on-demand-courses', icon: '🎯' },
-        { label: 'Felicitation', to: '/activities/felicitation', icon: '🏆' },
+      id: 'courses-offered',
+      title: 'Courses We Offer',
+      subtitle: 'Comprehensive Training Programs',
+      courses: [
+        { name: 'IIT-JEE', icon: '🎯', description: 'Advanced Engineering Entrance' },
+        { name: 'MHT-CET', icon: '📚', description: 'Maharashtra State Entrance' },
+        { name: 'NEET', icon: '⚕️', description: 'Medical Entrance Exam' },
+        { name: 'IISER', icon: '🔬', description: 'Science Research Institute' },
       ],
-      type: 'activities',
+      type: 'courses',
+    },
+    {
+      id: 'results-stats',
+      title: 'Results in Statistics',
+      subtitle: 'Our Success Story',
+      stats: [
+        { value: '86', label: 'Students 99+ Percentile', exam: 'MHT-CET 2025' },
+        { value: '12+', label: 'IIT Admissions', exam: '2025' },
+        { value: '100/100', label: 'Perfect Score', exam: 'NEET Biology' },
+        { value: '150+', label: 'Expert Faculty', exam: 'Teachers by Choice' },
+      ],
+      type: 'results',
     },
   ], [])
 
@@ -59,14 +72,15 @@ export default function HeroSlider() {
 
   return (
     <section className="relative overflow-hidden">
-      <div className="container-page pt-4 pb-6 sm:pt-6 sm:pb-8 px-4 sm:px-6">
-        <div className="relative min-h-[500px] sm:min-h-[580px] md:h-[580px] lg:h-[650px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-gray-300 via-gray-200 to-gray-300 text-white grid">
+      <div className="container-page pt-2 pb-4 sm:pt-6 sm:pb-8 px-2 sm:px-6">
+        {/* Compact height for mobile */}
+        <div className="relative min-h-[500px] sm:min-h-[600px] md:min-h-[650px] lg:min-h-[700px] rounded-xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-gray-300 via-gray-200 to-gray-300 text-white">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.15),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.1),transparent_35%)]" />
 
           <div className="absolute inset-0 flex transition-transform duration-700 ease-smooth will-change-transform" style={{ transform: `translateX(-${index * 100}%)` }}>
             {slides.map((s) => (
-              <div key={s.id} className={`min-w-full shrink-0 ${s.type === 'hero' ? 'relative flex items-center' : s.type === 'activities' ? 'relative flex items-center' : 'flex items-center'}`}>
-                {s.type === 'hero' ? (
+              <div key={s.id} className="w-full flex-[0_0_100%] h-full shrink-0 relative flex items-center">
+                {s.type === 'branding' ? (
                   <div className="w-full h-full relative overflow-hidden">
                     {/* Background Image */}
                     <div className="absolute inset-0">
@@ -80,14 +94,14 @@ export default function HeroSlider() {
                         loading="eager"
                       />
                       {/* Dark overlay for text readability */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/75 to-white/40"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/50"></div>
                       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/30"></div>
                     </div>
                     {/* Content */}
-                    <div className="relative z-10 w-full h-full grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 p-4 sm:p-6 md:p-8 lg:p-10">
+                    <div className="relative z-10 w-full h-full grid lg:grid-cols-2 gap-2 sm:gap-6 lg:gap-8 p-3 sm:p-6 md:p-8 lg:p-10 overflow-y-auto lg:overflow-visible">
                       {/* Left Content */}
-                      <div className="flex flex-col justify-center gap-3 sm:gap-4 md:gap-5 min-w-0 py-4 sm:py-0">
-                        <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs md:text-sm font-medium bg-white/90 text-[#0a1a67] w-fit px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full shadow-lg">
+                      <div className="flex flex-col justify-center gap-1.5 sm:gap-4 md:gap-5 min-w-0 py-2 sm:py-0">
+                        <div className="inline-flex items-center gap-1 sm:gap-2 text-[9px] sm:text-xs md:text-sm font-medium bg-white/90 text-[#0a1a67] w-fit px-2 sm:px-3 md:px-4 py-0.5 sm:py-1.5 md:py-2 rounded-full shadow-lg">
                           <span className="text-brand-dark font-bold">🎓 Premium Education</span>
                         </div>
 
@@ -97,41 +111,41 @@ export default function HeroSlider() {
                             <span className="text-gray-300 drop-shadow-lg">Science</span>
                             <span className="block text-brand-dark drop-shadow-2xl" style={{ textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 6px 12px rgba(0,0,0,0.6)' }}>Academy</span>
                           </h1>
-                          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[#0a1a67] mt-2 sm:mt-3 drop-shadow-md">
-                            + IMPULSE Batch
+                          <p className="text-xs sm:text-lg md:text-xl lg:text-2xl font-bold text-[#0a1a67] mt-0.5 sm:mt-3 drop-shadow-md">
+                            {s.tagline}
                           </p>
                         </div>
 
-                        <p className="text-sm sm:text-base md:text-lg text-[#0a1a67] leading-relaxed max-w-xl">
-                          Top trainers in Maharashtra
+                        <p className="text-[10px] sm:text-base md:text-lg text-[#0a1a67] leading-relaxed max-w-xl">
+                          {s.subtitle}
                         </p>
-                        <p className="text-md sm:text-base md:text-lg text-[#0a1a67] leading-relaxed max-w-xl">
-                          IIT-JEE, MHT-CET, NEET, IISER Foundation.
+                        <p className="text-[10px] sm:text-base md:text-lg text-[#0a1a67] leading-relaxed max-w-xl font-medium">
+                          {s.courses}
                         </p>
 
                         {/* Stats Grid */}
-                        <div className="flex flex-wrap gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 mt-3 sm:mt-4">
-                          <div className="bg-white/90 backdrop-blur rounded-md sm:rounded-lg md:rounded-xl p-1.5 sm:p-2.5 md:p-3 lg:p-4 text-center shadow-md sm:shadow-lg min-w-[70px] sm:min-w-[80px] md:min-w-[100px] lg:min-w-[120px] flex-shrink-0">
-                            <div className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold text-brand-dark leading-tight">150+</div>
-                            <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] mt-0.5 sm:mt-1">Teachers</div>
+                        <div className="flex flex-wrap gap-1 sm:gap-2 md:gap-3 lg:gap-4 mt-1.5 sm:mt-4">
+                          <div className="bg-white/90 backdrop-blur rounded sm:rounded-lg md:rounded-xl p-1 sm:p-2.5 md:p-3 lg:p-4 text-center shadow-md sm:shadow-lg min-w-[50px] sm:min-w-[80px] md:min-w-[100px] lg:min-w-[120px] flex-shrink-0">
+                            <div className="text-xs sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold text-brand-dark leading-tight">150+</div>
+                            <div className="text-[7px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] mt-0.5 sm:mt-1">Teachers</div>
                           </div>
-                          <div className="bg-white/90 backdrop-blur rounded-md sm:rounded-lg md:rounded-xl p-1.5 sm:p-2.5 md:p-3 lg:p-4 text-center shadow-md sm:shadow-lg min-w-[70px] sm:min-w-[80px] md:min-w-[100px] lg:min-w-[120px] flex-shrink-0">
-                            <div className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold text-brand-dark leading-tight">1L+</div>
-                            <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] mt-0.5 sm:mt-1">Students</div>
+                          <div className="bg-white/90 backdrop-blur rounded sm:rounded-lg md:rounded-xl p-1 sm:p-2.5 md:p-3 lg:p-4 text-center shadow-md sm:shadow-lg min-w-[50px] sm:min-w-[80px] md:min-w-[100px] lg:min-w-[120px] flex-shrink-0">
+                            <div className="text-xs sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold text-brand-dark leading-tight">1L+</div>
+                            <div className="text-[7px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] mt-0.5 sm:mt-1">Students</div>
                           </div>
-                          <div className="bg-white/90 backdrop-blur rounded-md sm:rounded-lg md:rounded-xl p-1.5 sm:p-2.5 md:p-3 lg:p-4 text-center shadow-md sm:shadow-lg min-w-[70px] sm:min-w-[80px] md:min-w-[100px] lg:min-w-[120px] flex-shrink-0">
-                            <div className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold text-brand-dark leading-tight">8</div>
-                            <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] mt-0.5 sm:mt-1">Branches</div>
+                          <div className="bg-white/90 backdrop-blur rounded sm:rounded-lg md:rounded-xl p-1 sm:p-2.5 md:p-3 lg:p-4 text-center shadow-md sm:shadow-lg min-w-[50px] sm:min-w-[80px] md:min-w-[100px] lg:min-w-[120px] flex-shrink-0">
+                            <div className="text-xs sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold text-brand-dark leading-tight">8</div>
+                            <div className="text-[7px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] mt-0.5 sm:mt-1">Branches</div>
                           </div>
-                          <div className="bg-white/90 backdrop-blur rounded-md sm:rounded-lg md:rounded-xl p-1.5 sm:p-2.5 md:p-3 lg:p-4 text-center shadow-md sm:shadow-lg min-w-[70px] sm:min-w-[80px] md:min-w-[100px] lg:min-w-[120px] flex-shrink-0">
-                            <div className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold text-brand-dark leading-tight">12+</div>
-                            <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] mt-0.5 sm:mt-1">Years</div>
+                          <div className="bg-white/90 backdrop-blur rounded sm:rounded-lg md:rounded-xl p-1 sm:p-2.5 md:p-3 lg:p-4 text-center shadow-md sm:shadow-lg min-w-[50px] sm:min-w-[80px] md:min-w-[100px] lg:min-w-[120px] flex-shrink-0">
+                            <div className="text-xs sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold text-brand-dark leading-tight">12+</div>
+                            <div className="text-[7px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] mt-0.5 sm:mt-1">Years</div>
                           </div>
                         </div>
 
                         {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-3 mt-3 sm:mt-4 relative z-20">
-                          <Link href="/enquiry" className="inline-flex justify-center items-center max-w-[120px] sm:max-w-[140px] md:max-w-[160px] lg:max-w-[180px] bg-[#B30027] text-white hover:bg-[#8a001e] text-xs sm:text-sm md:text-base lg:text-lg px-4 sm:px-5 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 lg:py-4 font-bold shadow-lg sm:shadow-2xl rounded-md sm:rounded-lg md:rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[#B30027]/50">
+                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-2 sm:mt-4 relative z-20">
+                          <Link href="/enquiry" className="inline-flex justify-center items-center max-w-[120px] sm:max-w-[140px] md:max-w-[160px] lg:max-w-[180px] bg-[#B30027] text-white hover:bg-[#8a001e] text-[10px] sm:text-sm md:text-base lg:text-lg px-3 sm:px-5 md:px-6 lg:px-8 py-1.5 sm:py-2.5 md:py-3 lg:py-4 font-bold shadow-lg sm:shadow-2xl rounded sm:rounded-lg md:rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[#B30027]/50">
                             Enquire Now
                           </Link>
                         </div>
@@ -192,161 +206,167 @@ export default function HeroSlider() {
                       </div>
                     </div>
                   </div>
-                ) : s.type === 'activities' ? (
-                  <div className="w-full h-full flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-8 p-4 sm:p-6 md:p-8 lg:p-10 relative z-10 overflow-hidden items-center">
-                    {/* Left Content */}
-                    <div className="flex flex-col justify-center gap-3 sm:gap-4 md:gap-5 min-w-0 py-4 sm:py-0 md:w-[45%] lg:w-[40%] flex-shrink-0">
-                      <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs md:text-sm font-medium bg-white/70 text-[#B30027] w-fit px-2.5 sm:px-3 py-1 rounded-full shadow-soft">
-                        <span>Discover More</span>
-                      </div>
-                      <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-tight text-[#0a1a67]">
-                        {s.title}
-                      </h1>
-                      <p className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-[#0a1a67] drop-shadow-md">
-                        {s.highlight}
-                      </p>
-                      <p className="text-xs sm:text-sm md:text-base text-[#0a1a67]/90">
-                        {s.subtitle}
-                      </p>
-
-                      {/* Activity Buttons - Small, in 3 lines */}
-                      <div className="flex flex-col gap-2 sm:gap-3 mt-3 sm:mt-4">
-                        {/* First line - 2 buttons */}
-                        <div className="flex flex-wrap gap-2 sm:gap-3">
-                          {s.activities.slice(0, 2).map((activity, idx) => (
-                            <Link
-                              key={idx}
-                              href={activity.to}
-                              className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/90 backdrop-blur rounded-md sm:rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-[#0a1a67] hover:bg-white hover:scale-105 hover:shadow-lg transition-all duration-300 group"
-                            >
-                              <span className="text-sm sm:text-base md:text-lg">{activity.icon}</span>
-                              <span className="group-hover:text-brand-dark transition-colors duration-300 whitespace-nowrap">
-                                {activity.label}
-                              </span>
-                            </Link>
-                          ))}
-                        </div>
-                        {/* Second line - 2 buttons */}
-                        <div className="flex flex-wrap gap-2 sm:gap-3">
-                          {s.activities.slice(2, 4).map((activity, idx) => (
-                            <Link
-                              key={idx + 2}
-                              href={activity.to}
-                              className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/90 backdrop-blur rounded-md sm:rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-[#0a1a67] hover:bg-white hover:scale-105 hover:shadow-lg transition-all duration-300 group"
-                            >
-                              <span className="text-sm sm:text-base md:text-lg">{activity.icon}</span>
-                              <span className="group-hover:text-brand-dark transition-colors duration-300 whitespace-nowrap">
-                                {activity.label}
-                              </span>
-                            </Link>
-                          ))}
-                        </div>
-                        {/* Third line - 2 buttons */}
-                        <div className="flex flex-wrap gap-2 sm:gap-3">
-                          {s.activities.slice(4, 6).map((activity, idx) => (
-                            <Link
-                              key={idx + 4}
-                              href={activity.to}
-                              className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/90 backdrop-blur rounded-md sm:rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-[#0a1a67] hover:bg-white hover:scale-105 hover:shadow-lg transition-all duration-300 group"
-                            >
-                              <span className="text-sm sm:text-base md:text-lg">{activity.icon}</span>
-                              <span className="group-hover:text-brand-dark transition-colors duration-300 whitespace-nowrap">
-                                {activity.label}
-                              </span>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row gap-3">
-                        <Link href="/activities" className="btn-primary inline-flex justify-center items-center w-full sm:w-auto bg-white text-[#0a1a67] hover:bg-white/95 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base font-semibold transition-all duration-300">
-                          View All Activities
-                        </Link>
-                      </div>
+                ) : s.type === 'vision' ? (
+                  <div className="w-full h-full flex flex-col gap-2 sm:gap-4 p-3 sm:p-6 md:p-8 lg:p-10 relative z-10 overflow-y-auto items-center">
+                    {/* Title at top */}
+                    <div className="text-center max-w-3xl mx-auto shrink-0">
+                      <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight text-[#0a1a67]">{s.title}</h1>
                     </div>
 
-                    {/* Right Side - Image - FIXED */}
-                    <div className="hidden md:flex items-stretch flex-1 relative overflow-hidden">
-                      <div className="relative w-full h-full">
-                        {/* Subtle edge fade overlays */}
-                        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-gray-200 via-gray-200/50 to-transparent z-10 pointer-events-none"></div>
-                        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-gray-200/70 to-transparent z-10 pointer-events-none"></div>
-                        <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-gray-200/60 to-transparent z-10 pointer-events-none"></div>
-                        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-gray-200/60 to-transparent z-10 pointer-events-none"></div>
-                        
-                        <img
-                          src="https://res.cloudinary.com/ddqgxrgnc/image/upload/w_1000,h_800,c_fit,q_auto,f_auto/v1763783028/8_ubkbjt"
-                          alt="Matrix Science Academy Activities"
-                          className="w-full h-full object-cover object-center rounded-lg"
+                    {/* Directors images with names */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 w-full max-w-4xl mt-2 sm:mt-4 shrink-0">
+                      <div className="flex flex-col items-center">
+                        <OptimizedImage
+                          cloudinaryId="v1764218937/nishant_tifi1f"
+                          alt="Nishant Patwardhan"
+                          width={200}
+                          height={200}
+                          className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover rounded-full shadow-lg"
+                          crop="fill"
                           loading="eager"
                         />
+                        <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-[#0a1a67] text-center font-medium">Nishant Patwardhan</p>
+                      </div>
+                      <div className="flex flex-col items-center">
+                        <OptimizedImage
+                          cloudinaryId="v1764218938/abhi_mehta_f6h4om"
+                          alt="Abhishek Mehta"
+                          width={200}
+                          height={200}
+                          className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover rounded-full shadow-lg"
+                          crop="fill"
+                          loading="eager"
+                        />
+                        <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-[#0a1a67] text-center font-medium">Abhishek Mehta</p>
+                      </div>
+                      <div className="flex flex-col items-center">
+                        <OptimizedImage
+                          cloudinaryId="v1764990905/yadav_vv66wt"
+                          alt="Ravindra Yadav"
+                          width={200}
+                          height={200}
+                          className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover rounded-full shadow-lg"
+                          crop="fill"
+                          loading="eager"
+                        />
+                        <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-[#0a1a67] text-center font-medium">Ravindra Yadav</p>
                       </div>
                     </div>
+
+                    {/* Description text - Hidden on mobile */}
+                    <blockquote className="hidden sm:block mt-2 sm:mt-4 text-[10px] sm:text-sm md:text-base lg:text-lg text-[#0a1a67]/90 leading-relaxed text-center max-w-3xl mx-auto shrink-0 px-2">
+                      <strong>
+                        <p className="mb-1">We are teachers by our choice and we passionately do our job.</p>
+                        <p className="mb-1 hidden sm:block">Our aim is not to run the classes conventionally, but we are here to make a change and make a strong impact in the field of 8th to 12th Education in Maharashtra.</p>
+                        <p>Matrix Science Academy aims to provide quality and affordable education to all students via offline as well as online mode.</p>
+                      </strong>
+                    </blockquote>
+
+                    {/* CTA Button */}
+                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-4 sm:mt-4 shrink-0">
+                      <Link
+                        href="/directors-message"
+                        className="inline-flex justify-center items-center w-fit bg-[#B30007] text-white hover:bg-[#8a001e] text-xs sm:text-sm md:text-base px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 font-bold shadow-lg rounded sm:rounded-lg transition-all duration-300 hover:scale-105"
+                      >
+                        Read Full Message
+                      </Link>
+                    </div>
                   </div>
-                ) : (
-                  <div className="w-full h-full flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-8 p-4 sm:p-6 md:p-8 lg:p-10 relative z-10 overflow-hidden items-center">
-                    <div className="flex flex-col justify-center gap-3 sm:gap-4 md:gap-5 min-w-0 py-4 sm:py-0 md:w-[45%] lg:w-[40%] flex-shrink-0">
-                      <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs md:text-sm font-medium bg-white/70 text-[#0a1a67] w-fit px-2.5 sm:px-3 py-1 rounded-full shadow-soft">
-                        <span>Trusted by achievers</span>
+                ) : s.type === 'courses' ? (
+                  <div className="w-full h-full flex flex-col gap-2 sm:gap-6 p-3 sm:p-6 md:p-8 lg:p-10 relative z-10 overflow-y-auto items-center justify-center">
+                    <div className="text-center shrink-0">
+                      <div className="inline-flex items-center gap-1 sm:gap-2 text-[9px] sm:text-xs md:text-sm font-medium bg-white/70 text-[#B30027] w-fit px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-soft mb-1 sm:mb-3">
+                        <span>Our Programs</span>
                       </div>
-                      <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold leading-tight text-[#0a1a67] max-w-full">
+                      <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-tight text-[#0a1a67]">
                         {s.title}
                       </h1>
-                      <p className="text-xs sm:text-sm md:text-base lg:text-xl font-semibold text-[#0a1a67] max-w-full">
-                        {s.highlight}
-                      </p>
-                      <p className="text-[#0a1a67]/90 text-[10px] sm:text-xs md:text-sm lg:text-base max-w-full">
+                      <p className="text-[10px] sm:text-base md:text-lg text-[#0a1a67]/90 mt-0.5 sm:mt-2">
                         {s.subtitle}
                       </p>
-                      {s.branches && s.branches.length > 0 && (
-                        <div className="mt-1 sm:mt-3 max-w-full overflow-hidden">
-                          <span className="text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-wide text-[#0a1a67] block mb-1 sm:mb-2">Branches:</span>
-                          <div className="flex flex-wrap gap-1 sm:gap-1.5 md:gap-2 overflow-hidden">
-                            {s.branches.map((b) => (
-                              <span key={b} className="px-1.5 sm:px-2 md:px-2.5 py-0.5 rounded-full bg-white/70 text-[#0a1a67] text-[9px] sm:text-[10px] md:text-xs whitespace-nowrap flex-shrink-0">
-                                {b}
-                              </span>
-                            ))}
+                    </div>
+
+                    <div className="grid grid-cols-4 gap-1 sm:gap-4 w-full max-w-5xl mx-auto shrink-0">
+                      {s.courses.map((course, idx) => (
+                        <div
+                          key={idx}
+                          className="bg-white/90 backdrop-blur rounded sm:rounded-xl p-1 sm:p-4 text-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer"
+                        >
+                          <div className="text-lg sm:text-3xl md:text-4xl mb-0.5 sm:mb-1 group-hover:scale-110 transition-transform duration-300">
+                            {course.icon}
                           </div>
+                          <h3 className="text-[8px] sm:text-lg md:text-xl font-bold text-[#0a1a67] mb-0.5 sm:mb-1 leading-tight">
+                            {course.name}
+                          </h3>
+                          <p className="hidden sm:block text-[9px] sm:text-sm text-[#0a1a67]/80 mb-0.5 sm:mb-1">
+                            {course.description}
+                          </p>
                         </div>
-                      )}
-
-                      <div className="mt-2 sm:mt-3 md:mt-4 flex flex-col sm:flex-row gap-2 sm:gap-3 max-w-full">
-                        <Link href="/enquiry" className="inline-flex justify-center items-center max-w-[120px] sm:max-w-[140px] md:max-w-[160px] lg:max-w-[180px] bg-[#B30027] text-white hover:bg-[#8a001e] text-xs sm:text-sm md:text-base lg:text-lg px-4 sm:px-5 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 lg:py-4 font-bold shadow-lg sm:shadow-2xl rounded-md sm:rounded-lg md:rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[#B30027]/50">Join Now</Link>
-                      </div>
+                      ))}
                     </div>
-
-                    {/* Right Side - Image - FIXED */}
-                    <div className="hidden md:flex items-center justify-center flex-1 relative overflow-hidden">
-                      <div className="relative overflow-hidden" style={{ width: '650px', height: '700px' }}>
-                        {/* Subtle edge fade overlays */}
-                        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-gray-200 via-gray-200/50 to-transparent z-10 pointer-events-none"></div>
-                        <div className="absolute inset-y-0 right-0 w-14 bg-gradient-to-l from-gray-200/70 to-transparent z-10 pointer-events-none"></div>
-                        <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-gray-200/60 to-transparent z-10 pointer-events-none"></div>
-                        <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-gray-200/60 to-transparent z-10 pointer-events-none"></div>
-                        
-                        <img
-                          src="https://res.cloudinary.com/ddqgxrgnc/image/upload/w_650,h_700,c_fill,q_auto,f_auto/v1763783028/4_nl1ejs"
-                          alt="Matrix Science Academy"
-                          className="w-full h-full object-cover rounded-lg"
-                          style={{ objectPosition: 'center 15%' }}
-                          loading="eager"
-                        />
-                      </div>
+                    {/* CTA Button for all courses */}
+                    <div className="flex justify-center mt-3 sm:mt-6 shrink-0">
+                      <Link
+                        href="/courses"
+                        className="inline-flex justify-center items-center bg-[#B30027] text-white hover:bg-[#8a001e] text-[10px] sm:text-base px-3 sm:px-5 py-1.5 sm:py-3 rounded sm:rounded-md font-bold shadow-lg transition-all duration-300"
+                      >
+                        View All Courses
+                      </Link>
                     </div>
                   </div>
-                )}
+                ) : s.type === 'results' ? (
+                  <div className="w-full h-full flex flex-col gap-2 sm:gap-6 p-3 sm:p-6 md:p-8 lg:p-10 relative z-10 overflow-y-auto items-center justify-center">
+                    <div className="text-center shrink-0">
+                      <div className="inline-flex items-center gap-1 sm:gap-2 text-[9px] sm:text-xs md:text-sm font-medium bg-white/70 text-[#B30027] w-fit px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-soft mb-1 sm:mb-3">
+                        <span>Our Achievements</span>
+                      </div>
+                      <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-tight text-[#0a1a67]">
+                        {s.title}
+                      </h1>
+                      <p className="text-[10px] sm:text-base md:text-lg text-[#0a1a67]/90 mt-0.5 sm:mt-2">
+                        {s.subtitle}
+                      </p>
+                    </div>
+
+                    {/* Stats Grid */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 md:gap-6 w-full max-w-5xl shrink-0">
+                      {s.stats.map((stat, idx) => {
+                        const bgColors = ['bg-gradient-to-br from-[#B30027] to-[#8a001e]', 'bg-gradient-to-br from-[#0a1a67] to-blue-700', 'bg-gradient-to-br from-emerald-500 to-emerald-600', 'bg-gradient-to-br from-amber-500 to-orange-500']
+                        return (
+                          <div
+                            key={idx}
+                            className={`${bgColors[idx]} rounded-lg sm:rounded-2xl p-2 sm:p-6 text-center text-white shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer`}
+                          >
+                            <div className="text-xl sm:text-4xl md:text-5xl font-extrabold mb-0.5 sm:mb-2 group-hover:scale-110 transition-transform duration-300">
+                              {stat.value}
+                            </div>
+                            <h3 className="text-[10px] sm:text-base font-bold mb-0.5 sm:mb-1">
+                              {stat.label}
+                            </h3>
+                            <p className="text-[8px] sm:text-sm text-white/80">
+                              {stat.exam}
+                            </p>
+                          </div>
+                        )
+                      })}
+                    </div>
+
+                    <Link href="/results" className="inline-flex justify-center items-center bg-[#B30027] text-white hover:bg-[#8a001e] text-[10px] sm:text-sm md:text-base px-3 sm:px-5 md:px-6 py-1.5 sm:py-2.5 md:py-3 font-bold shadow-lg rounded sm:rounded-lg transition-all duration-300 hover:scale-105 mt-2 shrink-0">
+                      View All Results
+                    </Link>
+                  </div>
+                ) : null}
               </div>
             ))}
           </div>
 
-          <div className="absolute bottom-3 sm:bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
+          <div className="absolute bottom-2 sm:bottom-4 left-0 right-0 flex justify-center gap-1.5 sm:gap-2 z-20">
             {slides.map((_, i) => (
-              <button key={i} aria-label={`Go to slide ${i + 1}`} onClick={() => setIndex(i)} className={`h-2 sm:h-3 rounded-full transition-all duration-300 ${index === i ? 'w-8 sm:w-10 bg-[#0a1a67]' : 'w-3 sm:w-4 bg-gray-400 hover:bg-gray-500'}`}></button>
+              <button key={i} aria-label={`Go to slide ${i + 1}`} onClick={() => setIndex(i)} className={`h-1.5 sm:h-3 rounded-full transition-all duration-300 ${index === i ? 'w-6 sm:w-10 bg-[#0a1a67]' : 'w-2 sm:w-4 bg-gray-400 hover:bg-gray-500'}`}></button>
             ))}
           </div>
         </div>
       </div>
-    </section>
+    </section >
   )
 }
