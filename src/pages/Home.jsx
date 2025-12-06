@@ -9,24 +9,24 @@ import FeaturesSection from '@/components/featuresSection.jsx'
 import TestimonialsShowcase from '@/components/Testimonials.jsx'
 
 const topTestimonials = [
-  { 
-    name: 'Dhruv Shinde', 
+  {
+    name: 'Dhruv Shinde',
     college: 'IIT MANDI',
     text: 'Matrix Science Academy played a crucial role in my success. Their expert guidance and structured approach were key in my selection for IIT Mandi.',
     exam: 'IIT-JEE',
     image: '/images/features/Dhruv-Shinde.jpg',
     instituteImage: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop'
   },
-  { 
-    name: 'Rahul Kavhale', 
+  {
+    name: 'Rahul Kavhale',
     college: 'IIT KHARAGPUR',
     text: 'Thanks to Matrix Science Academy, I achieved my goal of getting into IIT. Their expert teaching and supportive environment were vital to my success.',
     exam: 'IIT-JEE',
     image: '/images/features/Rahul-Kavhale.jpg',
     instituteImage: 'https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=600&fit=crop'
   },
-  { 
-    name: 'Dhruv Unde', 
+  {
+    name: 'Dhruv Unde',
     college: 'NIT TRICHY',
     text: 'Matrix Science Academy was instrumental in my journey to NIT Trichy. The exceptional teaching & comprehensive support helped me excel.',
     exam: 'MHT-CET',
@@ -181,11 +181,10 @@ function ResultsImageSlider() {
         {images.map((img, idx) => (
           <div
             key={idx}
-            className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-              currentIndex === idx 
-                ? 'opacity-100 scale-100' 
+            className={`absolute inset-0 transition-all duration-700 ease-in-out ${currentIndex === idx
+                ? 'opacity-100 scale-100'
                 : 'opacity-0 scale-95'
-            }`}
+              }`}
           >
             <img
               src={`https://res.cloudinary.com/ddqgxrgnc/image/upload/w_1200,h_800,c_fit,q_auto,f_auto/${img.cloudinaryId}`}
@@ -221,11 +220,10 @@ function ResultsImageSlider() {
           <button
             key={idx}
             onClick={() => setCurrentIndex(idx)}
-            className={`h-3 rounded-full transition-all duration-300 ${
-              currentIndex === idx 
-                ? 'w-10 bg-[#0a1a67]' 
+            className={`h-3 rounded-full transition-all duration-300 ${currentIndex === idx
+                ? 'w-10 bg-[#0a1a67]'
                 : 'w-3 bg-gray-300 hover:bg-gray-400'
-            }`}
+              }`}
           />
         ))}
       </div>
@@ -263,19 +261,19 @@ function ResultsSection({ topResults }) {
   }, [])
 
   const topCards = [
-    
-    
-   // {
+
+
+    // {
     //  value: topResults.neet.score,
-     // title: 'NEET Biology',
+    // title: 'NEET Biology',
     //  desc: `${topResults.neet.students} achieved perfect score`,
     //},
   ]
 
   const achievementCards = [
-    { 
-      value: '12+', 
-      title: 'IIT Admissions', 
+    {
+      value: '12+',
+      title: 'IIT Admissions',
       desc: 'IIT Guwahati, Kharagpur, Mandi',
       subtext: 'Elite Engineering Dreams Realized',
       icon: (
@@ -284,9 +282,9 @@ function ResultsSection({ topResults }) {
         </svg>
       )
     },
-    { 
-      value: '100/100', 
-      title: 'NEET Biology', 
+    {
+      value: '100/100',
+      title: 'NEET Biology',
       desc: 'Perfect scores achieved',
       subtext: 'Future Doctors in Making',
       icon: (
@@ -295,9 +293,9 @@ function ResultsSection({ topResults }) {
         </svg>
       )
     },
-    { 
-      value: '86', 
-      title: 'Students with 99+ Percentile', 
+    {
+      value: '86',
+      title: 'Students with 99+ Percentile',
       desc: 'MHT-CET 2025',
       subtext: 'Top 1% Performers',
       icon: (
@@ -306,9 +304,9 @@ function ResultsSection({ topResults }) {
         </svg>
       )
     },
-    { 
-      value: '32', 
-      title: 'Students Scored 95%+', 
+    {
+      value: '32',
+      title: 'Students Scored 95%+',
       desc: 'JEE Advanced 2025',
       subtext: 'Excellence Personified',
       icon: (
@@ -317,9 +315,9 @@ function ResultsSection({ topResults }) {
         </svg>
       )
     },
-    { 
-      value: '80+', 
-      title: 'Students Qualified', 
+    {
+      value: '80+',
+      title: 'Students Qualified',
       desc: 'JEE Advanced 2025',
       subtext: 'Breaking Barriers',
       icon: (
@@ -328,9 +326,9 @@ function ResultsSection({ topResults }) {
         </svg>
       )
     },
-    { 
-      value: '150+', 
-      title: 'Expert Faculty', 
+    {
+      value: '150+',
+      title: 'Expert Faculty',
       desc: 'Teachers by Choice',
       subtext: 'Mentors Who Care',
       icon: (
@@ -347,10 +345,10 @@ function ResultsSection({ topResults }) {
         <h2 className="text-4xl font-bold text-[#0a1a67]">
           One of the <span className="text-[#B30027]">Leading and most </span>  <span className="text-[#B30027]"> successful</span> Institutions in Pune
         </h2>
-        
+
         <Link href="/results" className="btn-outline hover:scale-105 transition-transform duration-300">View All Results</Link>
       </div>
-      
+
       {/* Achievement Highlights - Moved to top */}
       <div className="mb-10">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -367,7 +365,7 @@ function ResultsSection({ topResults }) {
                 {/* Background decorative elements */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
-                
+
                 {/* Icon section */}
                 <div className="relative z-10 flex justify-between items-start">
                   <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-3 group-hover:bg-white/30 group-hover:scale-110 transition-all duration-300">
@@ -402,7 +400,7 @@ function ResultsSection({ topResults }) {
 
                 {/* Bottom gradient line on hover */}
                 <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r from-white/0 via-white to-white/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center"></div>
-                
+
                 {/* Shine effect on hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               </div>
@@ -420,38 +418,38 @@ function ResultsSection({ topResults }) {
       {/* Enhanced Results Display */}
       <div className="mt-10">
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        {topCards.filter((_, idx) => idx !== 1).map((card, filteredIdx) => {
-          const bgColors = ['bg-[#B30027]', 'bg-brand-dark']
-          return (
-            <div
-              key={filteredIdx}
-              className={`${bgColors[filteredIdx]} p-6 text-center text-white rounded-2xl shadow-soft transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden group min-h-[180px] flex flex-col justify-center`}
-            >
-              <h2>Our Results</h2>
-              <div className="relative z-10">
-                <div className="text-4xl font-extrabold text-white mb-2">
-                  {card.value}
-                </div>
-                <div className="text-lg font-semibold text-white flex items-center justify-center gap-2">
-                  {card.title}
-                  <svg className="w-5 h-5 opacity-0 group-hover:opacity-100 transform group-hover:scale-110 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </div>
-                <div className="text-sm text-white/90 mt-2">
-                  {card.desc}
-                </div>
-                {card.highlight && (
-                  <div className="text-xs text-white/80 mt-2">
-                    {card.highlight}
+          {topCards.filter((_, idx) => idx !== 1).map((card, filteredIdx) => {
+            const bgColors = ['bg-[#B30027]', 'bg-brand-dark']
+            return (
+              <div
+                key={filteredIdx}
+                className={`${bgColors[filteredIdx]} p-6 text-center text-white rounded-2xl shadow-soft transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden group min-h-[180px] flex flex-col justify-center`}
+              >
+                <h2>Our Results</h2>
+                <div className="relative z-10">
+                  <div className="text-4xl font-extrabold text-white mb-2">
+                    {card.value}
                   </div>
-                )}
+                  <div className="text-lg font-semibold text-white flex items-center justify-center gap-2">
+                    {card.title}
+                    <svg className="w-5 h-5 opacity-0 group-hover:opacity-100 transform group-hover:scale-110 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                  <div className="text-sm text-white/90 mt-2">
+                    {card.desc}
+                  </div>
+                  {card.highlight && (
+                    <div className="text-xs text-white/80 mt-2">
+                      {card.highlight}
+                    </div>
+                  )}
+                </div>
+                {/* Hover underline effect */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></div>
               </div>
-              {/* Hover underline effect */}
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></div>
-            </div>
-          )
-        })}
+            )
+          })}
         </div>
 
         {/* Results Images */}
@@ -511,6 +509,10 @@ function FeaturesAndNewsSection() {
     "New Branch Opening in Hinjewadi - Coming Soon",
     "100/100 in Biology - NEET 2025 Toppers",
     "Free Career Counselling Sessions Every Saturday",
+    "80+ Students Qualified for JEE Advanced",
+    "32 Students Scored more than 95%ile",
+    "86 Students Scored 99%ile in MHT-CET",
+    "162 Students Scored 98%ile in MHT-CET",
   ]
 
   return (
@@ -521,8 +523,8 @@ function FeaturesAndNewsSection() {
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Why Choose Us?</h2>
           <div className="grid grid-cols-2 gap-4">
             {features.map((feature, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className="bg-white/10 backdrop-blur rounded-xl p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group"
               >
                 <span className="text-3xl mb-2 block group-hover:scale-110 transition-transform duration-300">{feature.icon}</span>
@@ -590,10 +592,10 @@ export default function Home() {
     <div>
       <NewsSlider />
       <HeroSlider />
-      
+
       {/* Combined Features & News Section */}
       <FeaturesAndNewsSection />
-      
+
 
       {/* Results Section */}
 
@@ -622,9 +624,9 @@ export default function Home() {
         </div>
       </section>
 
-              {/* Testimonials Section with Slider */}
+      {/* Testimonials Section with Slider */}
       <section className="py-12 relative overflow-hidden" style={{ backgroundColor: '#0a1a67' }}>
-        
+
         {/* <div className="container-page relative z-10">
           <div className="flex items-center justify-between mb-10">
             <h2 className="text-4xl font-bold relative text-white">

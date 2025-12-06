@@ -28,6 +28,26 @@ const newsItems = [
     text: '150+ Expert Teachers by Choice - Comprehensive Guidance for Competitive Exams',
     link: '/faculty',
   },
+  {
+    id: 6,
+    text: '80+ Students Qualified for JEE Advanced',
+    link: '/results',
+  },
+  {
+    id: 7,
+    text: '32 Students Scored more than 95%ile',
+    link: '/results',
+  },
+  {
+    id: 8,
+    text: '86 Students Scored 99%ile in MHT-CET',
+    link: '/results',
+  },
+  {
+    id: 9,
+    text: '162 Students Scored 98%ile in MHT-CET',
+    link: '/results',
+  },
 ]
 
 export default function NewsSlider() {
@@ -58,7 +78,7 @@ export default function NewsSlider() {
 
           {/* News Text Slider */}
           <div className="flex-1 overflow-hidden relative min-w-0">
-            <div 
+            <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
@@ -74,10 +94,10 @@ export default function NewsSlider() {
                     <span className="text-xs sm:text-sm md:text-base font-medium truncate group-hover:underline">
                       {item.text}
                     </span>
-                    <svg 
-                      className="w-3 h-3 sm:w-4 sm:h-4 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" 
-                      fill="none" 
-                      stroke="currentColor" 
+                    <svg
+                      className="w-3 h-3 sm:w-4 sm:h-4 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -94,11 +114,10 @@ export default function NewsSlider() {
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  currentIndex === idx 
-                    ? 'w-6 bg-[#B30027]' 
+                className={`h-1.5 rounded-full transition-all duration-300 ${currentIndex === idx
+                    ? 'w-6 bg-[#B30027]'
                     : 'w-1.5 bg-white/40 hover:bg-white/60'
-                }`}
+                  }`}
                 aria-label={`Go to news ${idx + 1}`}
               />
             ))}
