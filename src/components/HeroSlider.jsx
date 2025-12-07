@@ -223,73 +223,81 @@ export default function HeroSlider() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
                     </div>
 
-                    <div className="w-full h-full flex flex-col gap-2 sm:gap-4 p-3 sm:p-6 md:p-8 lg:p-10 relative z-10 overflow-y-auto items-center">
+                    <div className="w-full h-full flex flex-col gap-2 sm:gap-4 p-3 sm:p-6 md:p-8 lg:p-10 relative z-10 overflow-y-auto items-center justify-center">
                       {/* Title at top */}
-                      <div className="text-center max-w-3xl mx-auto shrink-0">
-                        <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight text-white">{s.title}</h1>
+                      <div className="text-center shrink-0 mb-2 sm:mb-4">
+                        <div className="inline-flex items-center gap-1 sm:gap-2 text-[9px] sm:text-xs md:text-sm font-medium bg-white/10 text-white border border-white/20 w-fit px-2 sm:px-3 py-0.5 sm:py-1 rounded-full backdrop-blur-sm mb-1 sm:mb-2">
+                          <span>Our Vision</span>
+                        </div>
+                        <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-tight text-white">
+                          {s.title}
+                        </h1>
                       </div>
 
-                      {/* Directors images with names */}
-                      <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 sm:p-6 w-full max-w-4xl mt-2 sm:mt-4 shrink-0">
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-                          <div className="flex flex-col items-center">
-                            <OptimizedImage
-                              cloudinaryId="v1764218938/abhi_mehta_f6h4om"
-                              alt="Nishant Patwardhan"
-                              width={200}
-                              height={200}
-                              className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover rounded-full shadow-lg border-2 border-white/20"
-                              crop="fill"
-                              loading="lazy"
-                            />
-                            <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-white text-center font-medium">Nishant Patwardhan</p>
-                          </div>
-                          <div className="flex flex-col items-center">
-                            <OptimizedImage
-                              cloudinaryId="v1764218937/nishant_tifi1f"
-                              alt="Abhishek Mehta"
-                              width={200}
-                              height={200}
-                              className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover rounded-full shadow-lg border-2 border-white/20"
-                              crop="fill"
-                              loading="lazy"
-                            />
-                            <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-white text-center font-medium">Abhishek Mehta</p>
-                          </div>
-                          <div className="flex flex-col items-center">
-                            <OptimizedImage
-                              cloudinaryId="v1764990905/yadav_vv66wt"
-                              alt="Ravindra Yadav"
-                              width={200}
-                              height={200}
-                              className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover rounded-full shadow-lg border-2 border-white/20"
-                              crop="fill"
-                              loading="lazy"
-                            />
-                            <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-white text-center font-medium">Ravindra Yadav</p>
+                      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 items-start">
+                        {/* Directors Images */}
+                        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10">
+                          <h3 className="text-base sm:text-xl md:text-2xl font-bold mb-4 sm:mb-6 border-b border-white/20 pb-3 text-white text-center">
+                            👥 Our Directors
+                          </h3>
+                          <div className="grid grid-cols-3 gap-3 sm:gap-6">
+                            <div className="flex flex-col items-center">
+                              <OptimizedImage
+                                cloudinaryId="v1764218938/abhi_mehta_f6h4om"
+                                alt="Nishant Patwardhan"
+                                width={200}
+                                height={200}
+                                className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover rounded-full shadow-lg border-2 border-white/20"
+                                crop="fill"
+                                loading="lazy"
+                              />
+                              <p className="mt-2 sm:mt-3 text-[10px] sm:text-xs md:text-sm text-white text-center font-medium">Nishant Patwardhan</p>
+                            </div>
+                            <div className="flex flex-col items-center">
+                              <OptimizedImage
+                                cloudinaryId="v1764218937/nishant_tifi1f"
+                                alt="Abhishek Mehta"
+                                width={200}
+                                height={200}
+                                className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover rounded-full shadow-lg border-2 border-white/20"
+                                crop="fill"
+                                loading="lazy"
+                              />
+                              <p className="mt-2 sm:mt-3 text-[10px] sm:text-xs md:text-sm text-white text-center font-medium">Abhishek Mehta</p>
+                            </div>
+                            <div className="flex flex-col items-center">
+                              <OptimizedImage
+                                cloudinaryId="v1764990905/yadav_vv66wt"
+                                alt="Ravindra Yadav"
+                                width={200}
+                                height={200}
+                                className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover rounded-full shadow-lg border-2 border-white/20"
+                                crop="fill"
+                                loading="lazy"
+                              />
+                              <p className="mt-2 sm:mt-3 text-[10px] sm:text-xs md:text-sm text-white text-center font-medium">Ravindra Yadav</p>
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                      {/* Description text - Hidden on mobile */}
-                      <div className="hidden sm:block bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 sm:p-6 mt-2 sm:mt-4 max-w-3xl mx-auto shrink-0">
-                        <blockquote className="text-[10px] sm:text-sm md:text-base lg:text-lg text-gray-200 leading-relaxed text-center px-2">
-                          <strong>
-                            <p className="mb-1">We are teachers by our choice and we passionately do our job.</p>
-                            <p className="mb-1 hidden sm:block">Our aim is not to run the classes conventionally, but we are here to make a change and make a strong impact in the field of 8th to 12th Education in Maharashtra.</p>
-                            <p>Matrix Science Academy aims to provide quality and affordable education to all students via offline as well as online mode.</p>
-                          </strong>
-                        </blockquote>
-                      </div>
+                        {/* Vision Text */}
+                        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 text-white shadow-2xl">
+                          <h3 className="text-base sm:text-xl md:text-2xl font-bold mb-4 sm:mb-6 border-b border-white/20 pb-3 text-white">
+                            🎯 Our Mission
+                          </h3>
+                          <div className="space-y-3 sm:space-y-4 text-xs sm:text-sm md:text-base leading-relaxed text-white/90">
+                            <p>
+                              <strong>We are teachers by our choice and we passionately do our job.</strong> Our aim is not to run the classes conventionally, but we are here to make a change and make a strong impact in the field of 8th to 12th Education in Maharashtra.
+                            </p>
+                            <p>
+                              Matrix Science Academy aims to provide <strong>quality and affordable education</strong> to all students via offline as well as online mode.
+                            </p>
+                          </div>
 
-                      {/* CTA Button */}
-                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-4 sm:mt-4 shrink-0">
-                        <Link
-                          href="/directors-message"
-                          className="inline-flex justify-center items-center w-fit bg-[#B30007] text-white hover:bg-[#8a001e] text-xs sm:text-sm md:text-base px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 font-bold shadow-lg rounded sm:rounded-lg transition-all duration-300 hover:scale-105"
-                        >
-                          Read Full Message
-                        </Link>
+                          <Link href="/directors-message" className="inline-flex justify-center items-center w-full bg-[#B30027] text-white hover:bg-[#8a001e] text-xs sm:text-sm md:text-base px-4 py-2.5 sm:py-3 rounded-lg font-bold shadow-lg transition-all duration-300 hover:scale-105 mt-5 sm:mt-6">
+                            Read Full Message
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
