@@ -20,7 +20,7 @@ export default function CoursesPage() {
         'Regular mock tests and assessments',
         'Doubt clearing sessions',
       ],
-      color: 'from-blue-500 to-blue-700',
+      color: 'from-[#0a1a67] to-[#051139]',
     },
     {
       id: 'iit-jee',
@@ -34,7 +34,7 @@ export default function CoursesPage() {
         'Comprehensive study material',
         'Performance tracking system',
       ],
-      color: 'from-[#B30027] to-[#8a001e]',
+      color: 'from-[#0a1a67] to-[#051139]',
     },
     {
       id: 'neet',
@@ -43,12 +43,12 @@ export default function CoursesPage() {
       icon: '⚕️',
       description: 'Complete preparation for medical entrance examination across India.',
       highlights: [
-        'Perfect scores in Biology',
+        'Multiple admissions into MBBS',
         'Medical entrance specialists',
         'NCERT-based comprehensive coverage',
         'Regular practice tests',
       ],
-      color: 'from-emerald-500 to-emerald-700',
+      color: 'from-[#0a1a67] to-[#051139]',
     },
     {
       id: 'iiser',
@@ -62,77 +62,35 @@ export default function CoursesPage() {
         'Expert mentorship',
         'Aptitude development',
       ],
-      color: 'from-purple-500 to-purple-700',
+      color: 'from-[#0a1a67] to-[#051139]',
     },
+  ]
+
+  const batches = [
     {
       id: 'impulse',
-      name: 'IMPULSE BATCH',
-      fullName: 'Intensive Multi-Purpose Learning & Success Enhancement',
+      name: 'IMPULSE',
       icon: '⚡',
-      description: 'Our flagship intensive program for serious aspirants targeting top ranks.',
-      highlights: [
-        'Extended study hours',
-        'Intensive problem-solving sessions',
-        'Personalized attention',
-        'Top ranker mentorship',
-      ],
-      color: 'from-orange-500 to-red-600',
     },
     {
       id: 'sprint',
-      name: 'SPRINT BATCH',
-      fullName: 'Short-term Preparation & Rapid INTensive Training',
+      name: 'SPRINT',
       icon: '🏃',
-      description: 'Fast-track program for quick revision and last-minute preparation.',
-      highlights: [
-        'Crash course format',
-        'Focus on high-weightage topics',
-        'Quick revision techniques',
-        'Time management strategies',
-      ],
-      color: 'from-yellow-500 to-orange-500',
     },
     {
       id: 'pace',
-      name: 'PACE BATCH',
-      fullName: 'Progressive Academic Coaching & Excellence',
+      name: 'PACE',
       icon: '📈',
-      description: 'Structured long-term program with progressive difficulty levels.',
-      highlights: [
-        'Foundation to advanced level',
-        'Systematic curriculum',
-        'Regular assessments',
-        'Continuous progress tracking',
-      ],
-      color: 'from-teal-500 to-cyan-600',
     },
     {
       id: 'drift',
-      name: 'DRIFT BATCH',
-      fullName: 'Dedicated Revision & Intensive Focused Training',
+      name: 'DRIFT',
       icon: '🎓',
-      description: 'Revision-focused batch for students who have completed syllabus.',
-      highlights: [
-        'Complete syllabus revision',
-        'Problem-solving focus',
-        'Previous year papers',
-        'Exam strategy sessions',
-      ],
-      color: 'from-indigo-500 to-blue-600',
     },
     {
       id: 'race',
-      name: 'RACE BATCH',
-      fullName: 'Rapid Achievement & Competitive Excellence',
+      name: 'RACE',
       icon: '🏆',
-      description: 'Competitive batch for students aiming for top percentiles.',
-      highlights: [
-        'Advanced level problems',
-        'Competitive environment',
-        'Peer learning',
-        'Top rank strategies',
-      ],
-      color: 'from-pink-500 to-rose-600',
     },
   ]
 
@@ -247,12 +205,12 @@ export default function CoursesPage() {
         </div>
       </section>
 
-      {/* Quick Overview Grid */}
+      {/* Courses Overview Grid */}
       <section className="container-page py-12">
         <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8 text-center">
-          All Programs at a Glance
+          Our Courses
         </h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {courses.map((course) => (
             <div
               key={course.id}
@@ -263,6 +221,27 @@ export default function CoursesPage() {
               <h3 className="text-2xl font-bold mb-2">{course.name}</h3>
               <p className="text-sm opacity-90 mb-4">{course.fullName}</p>
               <p className="text-sm line-clamp-2">{course.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Batches Section */}
+      <section className="container-page py-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-4 text-center">
+          Our Specialized Batches
+        </h2>
+        <p className="text-center text-[#0a1a67]/70 mb-8 max-w-2xl mx-auto">
+          Choose the batch that best fits your preparation needs and learning pace
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
+          {batches.map((batch) => (
+            <div
+              key={batch.id}
+              className="bg-gradient-to-br from-[#0a1a67] to-[#051139] rounded-xl p-6 text-white text-center hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
+            >
+              <div className="text-4xl sm:text-5xl mb-3">{batch.icon}</div>
+              <h3 className="text-lg sm:text-xl font-bold">{batch.name}</h3>
             </div>
           ))}
         </div>
