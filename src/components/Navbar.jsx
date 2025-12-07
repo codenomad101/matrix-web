@@ -48,7 +48,7 @@ export default function Navbar() {
                 </Link>
 
                 {/* Academy Name - Visible on mobile in center */}
-                <div className="flex-1 flex justify-center md:hidden px-2">
+                <div className="flex-1 flex justify-start md:hidden px-2">
                     <span className="text-base font-bold whitespace-nowrap">
                         <span className="text-[#B30027]">Matrix</span>{' '}
                         <span className="text-[#0a1a67]">Science</span>{' '}
