@@ -33,7 +33,7 @@ export default function Navbar() {
             : 'backdrop-blur-sm bg-white/80 border-b'
             }`}>
             <div className="container-content flex items-center justify-between h-20 md:h-24">
-                <Link href="/" className="flex items-center gap-3 group relative">
+                <Link href="/" className="flex items-center gap-3 group relative flex-shrink-0">
                     <div className="h-20 w-20 md:h-24 md:w-24 grid place-content-center overflow-hidden transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 flex-shrink-0">
                         <OptimizedImage
                             cloudinaryId="v1763788005/matrix_logo_cra98w"
@@ -45,8 +45,26 @@ export default function Navbar() {
                             loading="eager"
                         />
                     </div>
-                    <span className="text-xs sm:text-sm text-[#0a1a67] transition-colors duration-300 group-hover:text-[#0a1a67] whitespace-nowrap hidden sm:block">Believe - Build - Become</span>
                 </Link>
+
+                {/* Academy Name - Visible on mobile in center */}
+                <div className="flex-1 flex justify-center md:hidden px-2">
+                    <span className="text-sm font-bold whitespace-nowrap">
+                        <span className="text-[#B30027]">Matrix</span>{' '}
+                        <span className="text-[#0a1a67]">Science</span>{' '}
+                        <span className="text-[#7a7a7a]">Academy</span>
+                    </span>
+                </div>
+
+                {/* Academy Name - Desktop version next to logo */}
+                <div className="hidden md:block absolute left-28 lg:left-32">
+                    <span className="text-sm font-bold whitespace-nowrap">
+                        <span className="text-[#B30027]">Matrix</span>{' '}
+                        <span className="text-[#0a1a67]">Science</span>{' '}
+                        <span className="text-[#7a7a7a]">Academy</span>
+                    </span>
+                    <p className="text-xs text-[#0a1a67] mt-0.5">Believe - Build - Become</p>
+                </div>
 
                 <nav className="hidden md:flex items-center gap-6">
                     {navItems.map((item) => (
@@ -63,7 +81,7 @@ export default function Navbar() {
                     ))}
                 </nav>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 flex-shrink-0">
                     <Link
                         href="/enquiry"
                         className="hidden md:inline-flex items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium shadow-soft relative overflow-hidden group transition-all duration-300 hover:scale-105"
@@ -112,10 +130,13 @@ export default function Navbar() {
                 {/* Panel */}
                 <div className={`absolute right-0 top-0 h-full w-4/5 max-w-sm bg-white text-[#0a1a67] shadow-[0_10px_30px_rgba(0,0,0,0.25)] border-l transition-transform duration-300 ease-smooth ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                     <div className="p-4 border-b flex items-center justify-between bg-white sticky top-0">
-                        <div className="font-extrabold">
-                            <span className="text-[#B30027]">Matrix</span>{' '}
-                            <span className="text-[#0a1a67]">Science</span>{' '}
-                            <span className="text-brand">Academy</span>
+                        <div>
+                            <div className="font-extrabold">
+                                <span className="text-[#B30027]">Matrix</span>{' '}
+                                <span className="text-[#0a1a67]">Science</span>{' '}
+                                <span className="text-[#7a7a7a]">Academy</span>
+                            </div>
+                            <p className="text-xs text-[#0a1a67] mt-1 font-semibold">Believe - Build - Become</p>
                         </div>
                         <button className="h-9 w-9 rounded-lg hover:bg-[#0a1a67]/10 grid place-content-center" onClick={() => setMobileOpen(false)} aria-label="Close menu">
                             <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>

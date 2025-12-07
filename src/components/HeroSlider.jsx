@@ -123,7 +123,7 @@ export default function HeroSlider() {
                             <span className="block text-[#0a1a67] font-black">Academy</span>
                           </h1>
 
-                          <p className="text-xs sm:text-lg md:text-xl lg:text-2xl font-black text-[#0a1a67] mt-0.5 sm:mt-2" style={{ textShadow: 'none' }}>
+                          <p className="text-sm sm:text-lg md:text-xl lg:text-2xl font-black text-[#0a1a67] mt-1 sm:mt-2" style={{ textShadow: 'none' }}>
                             {s.tagline}
                           </p>
                         </div>
