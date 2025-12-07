@@ -1,6 +1,7 @@
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import FloatingInquiryButton from '@/components/FloatingInquiryButton'
 
 export const metadata = {
   title: 'Matrix Science Academy',
@@ -37,9 +38,11 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
+        <FloatingInquiryButton />
       </body>
     </html>
   )
 }
+
 
 

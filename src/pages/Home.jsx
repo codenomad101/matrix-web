@@ -175,9 +175,9 @@ function ResultsImageSlider() {
   }, [images.length])
 
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-100 to-white shadow-lg">
+    <div className="relative overflow-hidden rounded-2xl bg-white shadow-2xl border border-gray-100">
       {/* Main Slider */}
-      <div className="relative h-[400px] md:h-[500px] lg:h-[550px]">
+      <div className="relative h-[400px] md:h-[500px] lg:h-[550px] bg-white">
         {images.map((img, idx) => (
           <div
             key={idx}
@@ -186,43 +186,47 @@ function ResultsImageSlider() {
               : 'opacity-0 scale-95'
               }`}
           >
-            <img
-              src={`https://res.cloudinary.com/ddqgxrgnc/image/upload/w_1200,h_800,c_fit,q_auto,f_auto/${img.cloudinaryId}`}
-              alt={img.alt}
-              className="w-full h-full object-contain"
-              loading={idx === 0 ? 'eager' : 'lazy'}
-            />
+            <div className="w-full h-full bg-white p-4 md:p-6 lg:p-8 flex items-center justify-center">
+              <div className="relative w-full h-full bg-white rounded-xl shadow-lg overflow-hidden">
+                <img
+                  src={`https://res.cloudinary.com/ddqgxrgnc/image/upload/w_1200,h_800,c_fit,q_auto,f_auto/${img.cloudinaryId}`}
+                  alt={img.alt}
+                  className="w-full h-full object-contain"
+                  loading={idx === 0 ? 'eager' : 'lazy'}
+                />
+              </div>
+            </div>
           </div>
         ))}
 
         {/* Navigation Arrows */}
         <button
           onClick={() => setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white hover:bg-[#0a1a67] rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border-2 border-[#0a1a67]/20 hover:border-[#0a1a67]"
         >
-          <svg className="w-6 h-6 text-[#0a1a67]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
         <button
           onClick={() => setCurrentIndex((prev) => (prev + 1) % images.length)}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white hover:bg-[#0a1a67] rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border-2 border-[#0a1a67]/20 hover:border-[#0a1a67]"
         >
-          <svg className="w-6 h-6 text-[#0a1a67]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
       </div>
 
       {/* Dots Navigation */}
-      <div className="flex justify-center gap-3 py-4 bg-white/80">
+      <div className="flex justify-center gap-3 py-4 bg-white border-t border-gray-100">
         {images.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrentIndex(idx)}
             className={`h-3 rounded-full transition-all duration-300 ${currentIndex === idx
-              ? 'w-10 bg-[#0a1a67]'
-              : 'w-3 bg-gray-300 hover:bg-gray-400'
+              ? 'w-10 bg-[#0a1a67] shadow-md'
+              : 'w-3 bg-gray-300 hover:bg-[#0a1a67]/50'
               }`}
           />
         ))}
@@ -341,12 +345,12 @@ function ResultsSection({ topResults }) {
 
   return (
     <section className="container-page py-6" ref={sectionRef}>
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-4xl font-bold text-[#0a1a67]">
+      <div className="flex items-center justify-between mb-6 flex-col sm:flex-row gap-3 sm:gap-0">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#0a1a67] text-center sm:text-left">
           One of the <span className="text-[#B30027]">Leading and most </span>  <span className="text-[#B30027]"> successful</span> Institutions in Pune
         </h2>
 
-        <Link href="/results" className="btn-outline hover:scale-105 transition-transform duration-300">View All Results</Link>
+        <Link href="/results" className="btn-outline hover:scale-105 transition-transform duration-300 text-sm sm:text-base px-4 py-2 sm:px-5 sm:py-2.5">View All Results</Link>
       </div>
 
       {/* Results Image Slider */}
@@ -465,7 +469,7 @@ function FeaturesAndNewsSection() {
     <section className="container-page py-8">
       <div className="grid lg:grid-cols-2 gap-6">
         {/* Left - Features */}
-        <div className="bg-[#0a1a67] rounded-2xl p-6 md:p-8">
+        <div className="hidden md:block bg-[#0a1a67] rounded-2xl p-6 md:p-8">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Why Choose Us?</h2>
           <div className="grid grid-cols-2 gap-4">
             {features.map((feature, idx) => (
@@ -488,7 +492,7 @@ function FeaturesAndNewsSection() {
         </div>
 
         {/* Right - Latest News */}
-        <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+        <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 md:col-span-1 lg:col-span-1">
           <div className="bg-[#B30027] p-4 md:p-6">
             <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
               <svg className="w-6 h-6 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
@@ -524,35 +528,35 @@ function FeaturesAndNewsSection() {
           <p className="text-[#0a1a67]/70 text-lg">Comprehensive preparation for competitive examinations</p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {courses.map((course) => (
             <Link
               key={course.id}
               href={`/courses/${course.id}`}
-              className="bg-[#0a1a67] rounded-2xl p-6 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden block"
+              className="bg-[#0a1a67] rounded-xl sm:rounded-2xl p-3 sm:p-6 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden block"
             >
               {/* Background decoration */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500"></div>
+              <div className="absolute top-0 right-0 w-16 h-16 sm:w-24 sm:h-24 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500"></div>
 
               <div className="relative z-10">
-                <div className="text-5xl mb-3 group-hover:scale-110 transition-transform duration-300">{course.icon}</div>
-                <h3 className="text-2xl font-bold mb-1">{course.name}</h3>
-                <p className="text-sm opacity-90 mb-3">{course.fullName}</p>
-                <p className="text-sm leading-relaxed mb-4 line-clamp-3">{course.description}</p>
+                <div className="text-2xl sm:text-5xl mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">{course.icon}</div>
+                <h3 className="text-sm sm:text-2xl font-bold mb-0.5 sm:mb-1 leading-tight">{course.name}</h3>
+                <p className="text-[10px] sm:text-sm opacity-90 mb-1.5 sm:mb-3 leading-tight">{course.fullName}</p>
+                <p className="text-[9px] sm:text-sm leading-relaxed mb-2 sm:mb-4 line-clamp-2 sm:line-clamp-3">{course.description}</p>
 
-                <div className="mt-4 space-y-2">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                    <p className="text-xs font-bold mb-1">📅 {course.examDates}</p>
+                <div className="mt-2 sm:mt-4 space-y-1.5 sm:space-y-2">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-md sm:rounded-lg p-1.5 sm:p-3">
+                    <p className="text-[8px] sm:text-xs font-bold">📅 {course.examDates}</p>
                   </div>
 
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                    <p className="text-xs font-bold mb-1">🏆 {course.ourResults}</p>
+                  <div className="bg-white/20 backdrop-blur-sm rounded-md sm:rounded-lg p-1.5 sm:p-3">
+                    <p className="text-[8px] sm:text-xs font-bold">🏆 {course.ourResults}</p>
                   </div>
                 </div>
 
-                <div className="mt-4 flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all duration-300">
+                <div className="mt-2 sm:mt-4 flex items-center gap-1 sm:gap-2 text-[9px] sm:text-sm font-semibold group-hover:gap-2 sm:group-hover:gap-3 transition-all duration-300">
                   Learn More
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </div>
@@ -590,6 +594,111 @@ function FeaturesAndNewsSection() {
   )
 }
 
+// Our Vision Section Component
+function VisionSection() {
+  const branches = [
+    {
+      name: 'Nigdi Pradhikaran',
+      director: 'Mr. Nishant Patwardhan',
+      directorImage: 'v1764218937/nishant_tifi1f',
+    },
+    {
+      name: 'Shahunagar',
+      director: 'Mr. Ravindra Yadav',
+      directorImage: 'v1764990905/yadav_vv66wt',
+    },
+    {
+      name: 'Chinchwad',
+      director: 'Mr. Algesh Patrike',
+      directorImage: null,
+    },
+    {
+      name: 'Ravet',
+      director: 'Mr. Abhishek Mehta',
+      directorImage: 'v1764218938/abhi_mehta_f6h4om',
+    },
+    {
+      name: 'Wakad',
+      director: 'Mr. Manoj Kumar',
+      directorImage: null,
+    },
+    {
+      name: 'Moshi',
+      director: 'Mr. Umesh Bharde',
+      directorImage: null,
+    },
+  ]
+
+  return (
+    <section className="container-page py-8 sm:py-12">
+      <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+        {/* Vision Text */}
+        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-gray-100">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0a1a67] mb-4 sm:mb-6">
+            Our Vision
+          </h2>
+          <div className="space-y-4 text-[#0a1a67] text-sm sm:text-base leading-relaxed">
+            <p>
+              <strong>We are teachers by our choice and we passionately do our job.</strong> Our aim is not to run the classes conventionally, but we are here to make a change and make a strong impact in the field of 8th to 12th Education in Maharashtra.
+            </p>
+            <p>
+              Matrix Science Academy aims to provide <strong>quality and affordable education</strong> to all students via offline as well as online mode.
+            </p>
+          </div>
+          <Link 
+            href="/directors-message" 
+            className="inline-flex items-center gap-2 mt-6 text-[#B30027] hover:text-[#8a001e] font-semibold transition-colors duration-300 text-sm sm:text-base"
+          >
+            Read Full Message
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </div>
+
+        {/* Directors by Branch */}
+        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-gray-100">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0a1a67] mb-4 sm:mb-6">
+            Our Directors
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-4 sm:gap-6">
+            {branches.map((branch, idx) => (
+              <div key={idx} className="flex flex-col items-center text-center">
+                {branch.directorImage ? (
+                  <OptimizedImage
+                    cloudinaryId={branch.directorImage}
+                    alt={branch.director || branch.name}
+                    width={120}
+                    height={120}
+                    className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-cover rounded-full shadow-lg border-2 border-gray-200 mb-2 sm:mb-3"
+                    crop="fill"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full shadow-lg border-2 border-gray-200 bg-gradient-to-br from-[#0a1a67] to-[#1a2a87] flex items-center justify-center mb-2 sm:mb-3">
+                    <span className="text-white text-lg sm:text-xl md:text-2xl font-bold">
+                      {branch.director 
+                        ? branch.director.split(' ').slice(-2).map(n => n[0]).join('')
+                        : branch.name.split(' ').map(n => n[0]).join('').slice(0, 2)
+                      }
+                    </span>
+                  </div>
+                )}
+                <h3 className="text-xs sm:text-sm font-semibold text-[#0a1a67] mb-1 leading-tight">
+                  {branch.director || 'Director'}
+                </h3>
+                <p className="text-[10px] sm:text-xs text-[#B30027] font-medium">
+                  {branch.name}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function Home() {
   return (
     <div>
@@ -605,6 +714,9 @@ export default function Home() {
 
 
       <ResultsSection topResults={topResults} />
+
+      {/* Our Vision Section */}
+      <VisionSection />
 
       {/* Features Section */}
       <FeaturesSection />

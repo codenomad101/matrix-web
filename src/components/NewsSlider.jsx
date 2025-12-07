@@ -62,7 +62,7 @@ export default function NewsSlider() {
   }, [])
 
   return (
-    <div className="bg-[#B30027] text-white border-b border-brand/30 shadow-md">
+    <div className="bg-[#B30027] text-white border-b border-brand/30 shadow-md relative z-10">
       <div className="container-content">
         <div className="flex items-center gap-2 sm:gap-4 py-2 sm:py-3 px-2 sm:px-6">
           {/* News Icon/Label */}
