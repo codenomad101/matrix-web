@@ -206,36 +206,36 @@ export default function TestimonialsShowcase() {
 
 function TestimonialCard({ testimonial, isActive }) {
   return (
-    <div className="grid md:grid-cols-2 h-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 h-full">
       {/* Left Side - Quote Section */}
-      <div className="bg-gradient-to-br from-[#B30027] to-[#8a001e] p-8 md:p-10 flex flex-col justify-center relative overflow-hidden">
+      <div className="bg-gradient-to-br from-[#B30027] to-[#8a001e] p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-center relative overflow-hidden min-h-[300px] sm:min-h-[350px]">
         {/* Decorative Background Pattern */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-8 right-8 w-32 h-32 border-4 border-white rounded-full" />
-          <div className="absolute bottom-8 left-8 w-24 h-24 border-4 border-white rounded-full" />
+          <div className="absolute top-4 sm:top-8 right-4 sm:right-8 w-16 sm:w-24 md:w-32 h-16 sm:h-24 md:h-32 border-2 sm:border-4 border-white rounded-full" />
+          <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 w-12 sm:w-16 md:w-24 h-12 sm:h-16 md:h-24 border-2 sm:border-4 border-white rounded-full" />
         </div>
 
         <div className="relative z-10">
           {/* Student Name at Top */}
           <div
-            className={`mb-4 transition-all duration-700 delay-100 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+            className={`mb-3 sm:mb-4 transition-all duration-700 delay-100 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
               }`}
           >
-            <h4 className="text-xl md:text-2xl font-bold text-white">{testimonial.name}</h4>
-            <p className="text-white/80 text-sm md:text-base">Student</p>
+            <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-white">{testimonial.name}</h4>
+            <p className="text-white/80 text-xs sm:text-sm md:text-base">Student</p>
           </div>
 
           {/* Quote Icon */}
           <div
-            className={`mb-6 transition-all duration-700 delay-200 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+            className={`mb-4 sm:mb-6 transition-all duration-700 delay-200 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
               }`}
           >
-            <Quote className="w-12 h-12 md:w-14 md:h-14 text-white/90" />
+            <Quote className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-white/90" />
           </div>
 
           {/* Quote Text */}
           <blockquote
-            className={`text-white text-lg md:text-xl lg:text-2xl leading-relaxed font-light transition-all duration-700 delay-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            className={`text-white text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed font-light transition-all duration-700 delay-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
           >
             "{testimonial.text}"
@@ -243,7 +243,7 @@ function TestimonialCard({ testimonial, isActive }) {
 
           {/* Decorative Line */}
           <div
-            className={`mt-6 w-16 h-1 bg-white/50 transition-all duration-700 delay-500 ${isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
+            className={`mt-4 sm:mt-6 w-12 sm:w-16 h-1 bg-white/50 transition-all duration-700 delay-500 ${isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
               }`}
             style={{ transformOrigin: 'left' }}
           />
@@ -251,24 +251,24 @@ function TestimonialCard({ testimonial, isActive }) {
       </div>
 
       {/* Right Side - Student Info */}
-      <div className="bg-white p-8 md:p-10 flex flex-col justify-between">
+      <div className="bg-white p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-between min-h-[250px] sm:min-h-[300px]">
         {/* College Badge */}
         <div
           className={`transition-all duration-700 delay-400 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
             }`}
         >
-          <div className="inline-block bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-4 py-2 rounded-full text-xs md:text-sm font-semibold shadow-lg">
-            {testimonial.exam}
+          <div className="inline-block bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold shadow-lg">
+            {testimonial.college}
           </div>
         </div>
 
         {/* Institute Image */}
         {testimonial.instituteImage && (
           <div
-            className={`my-4 transition-all duration-700 delay-450 ${isActive ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
+            className={`my-3 sm:my-4 transition-all duration-700 delay-450 ${isActive ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
               }`}
           >
-            <div className="relative w-full h-32 md:h-40 rounded-lg overflow-hidden shadow-md">
+            <div className="relative w-full h-24 sm:h-32 md:h-40 rounded-lg overflow-hidden shadow-md">
               <img
                 src={testimonial.instituteImage}
                 alt={testimonial.college}
@@ -283,13 +283,13 @@ function TestimonialCard({ testimonial, isActive }) {
 
         {/* Institute Name */}
         <div
-          className={`my-4 transition-all duration-700 delay-500 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          className={`my-3 sm:my-4 transition-all duration-700 delay-500 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
         >
-          <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
+          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
             {testimonial.college}
           </h3>
-          <div className="w-12 md:w-16 h-1 bg-gradient-to-r from-[#B30027] to-[#8a001e] rounded-full" />
+          <div className="w-10 sm:w-12 md:w-16 h-1 bg-gradient-to-r from-[#B30027] to-[#8a001e] rounded-full" />
         </div>
       </div>
     </div>
