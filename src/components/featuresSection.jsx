@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import OptimizedImage from '@/components/OptimizedImage'
 
@@ -43,152 +43,146 @@ export default function FeaturesSection() {
   ]
 
   const [activeTab, setActiveTab] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
 
-  const getVisibleTabs = () => {
-    const prev = activeTab === 0 ? features.length - 1 : activeTab - 1
-    const next = activeTab === features.length - 1 ? 0 : activeTab + 1
-    return [prev, activeTab, next]
-  }
+  // Auto-slide functionality
+  useEffect(() => {
+    if (isPaused) return
 
-  const visibleTabs = getVisibleTabs()
+    const timer = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % features.length)
+    }, 4000) // Change slide every 4 seconds
+
+    return () => clearInterval(timer)
+  }, [features.length, isPaused])
 
   return (
-    <section className="py-6 sm:py-8 bg-white">
-      <div className="container-page max-w-5xl mx-auto">
-        <div className="bg-[#0a1a67] rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8">
-        {/* Header */}
-        <div className="text-center mb-6 sm:mb-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 tracking-wider">
+    <section className="py-4 sm:py-6 bg-white">
+      <div className="container-page max-w-6xl mx-auto">
+        {/* Header - Outside blue section */}
+        <div className="text-center mb-4 sm:mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0a1a67] mb-2 tracking-wider">
             FEATURES
           </h2>
-          <p className="text-sm sm:text-base text-white/80 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-[#0a1a67]/70 max-w-2xl mx-auto">
             Discover our world-class facilities designed to provide the best learning experience
           </p>
         </div>
 
-        {/* Tabs Navigation */}
-        <div className="relative mb-6 sm:mb-8">
-          <div className="flex items-center justify-center gap-3 sm:gap-4 overflow-hidden">
-            {visibleTabs.map((tabIndex, idx) => {
-              const isCenter = idx === 1
-              const feature = features[tabIndex]
-              
-              return (
-                <button
-                  key={tabIndex}
-                  onClick={() => setActiveTab(tabIndex)}
-                  className={`
-                    relative px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold
-                    transition-all duration-300 text-xs sm:text-sm
-                    ${isCenter 
-                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-xl scale-105 z-10' 
-                      : 'bg-white text-[#0a1a67] opacity-50 hover:opacity-70 shadow-md'
-                    }
-                  `}
-                  style={{
-                    minWidth: isCenter ? '140px' : '120px',
-                  }}
-                >
-                  <span className="block truncate">{feature.title}</span>
-                  {isCenter && (
-                    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-6 border-r-6 border-t-6 border-l-transparent border-r-transparent border-t-indigo-600"></span>
-                  )}
-                </button>
-              )
-            })}
-          </div>
+        <div
+          className="bg-[#0a1a67] rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
 
-          {/* Navigation Arrows */}
-          <button
-            onClick={() => setActiveTab(activeTab === 0 ? features.length - 1 : activeTab - 1)}
-            className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-blue-50 transition-colors"
-          >
-            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#0a1a67]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            onClick={() => setActiveTab(activeTab === features.length - 1 ? 0 : activeTab + 1)}
-            className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-blue-50 transition-colors"
-          >
-            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#0a1a67]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Content Area */}
-        <div className="relative overflow-hidden">
-          {features.map((feature, idx) => (
-            <div
-              key={feature.id}
-              className={`
+          {/* Content Area */}
+          <div className="relative overflow-hidden mb-3 sm:mb-4">
+            {features.map((feature, idx) => (
+              <div
+                key={feature.id}
+                className={`
                 transition-all duration-500 ease-in-out
                 ${activeTab === idx ? 'opacity-100 translate-x-0' : 'opacity-0 absolute inset-0 translate-x-full'}
               `}
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 items-center">
-                {/* Image */}
-                <div className="order-2 lg:order-1">
-                  <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm p-2 sm:p-3">
-                    <div className="rounded-xl sm:rounded-2xl overflow-hidden">
-                      {feature.cloudinaryId ? (
-                        <OptimizedImage
-                          cloudinaryId={feature.cloudinaryId}
-                          alt={feature.title}
-                          width={800}
-                          height={600}
-                          className="w-full h-auto object-contain opacity-95 hover:opacity-100 transition-opacity duration-300"
-                          crop="fit"
-                          loading="eager"
-                        />
-                      ) : (
-                        <img
-                          src={feature.image}
-                          alt={feature.title}
-                          className="w-full h-auto object-contain opacity-95 hover:opacity-100 transition-opacity duration-300"
-                        />
-                      )}
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 items-center">
+                  {/* Image */}
+                  <div className="order-2 lg:order-1">
+                    <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl bg-white/10 backdrop-blur-sm p-1.5 sm:p-2">
+                      <div className="rounded-lg sm:rounded-xl overflow-hidden max-h-64 sm:max-h-80">
+                        {feature.cloudinaryId ? (
+                          <OptimizedImage
+                            cloudinaryId={feature.cloudinaryId}
+                            alt={feature.title}
+                            width={800}
+                            height={600}
+                            className="w-full h-full object-cover opacity-95 hover:opacity-100 transition-opacity duration-300"
+                            crop="fit"
+                            loading="eager"
+                          />
+                        ) : (
+                          <img
+                            src={feature.image}
+                            alt={feature.title}
+                            className="w-full h-auto object-contain opacity-95 hover:opacity-100 transition-opacity duration-300"
+                          />
+                        )}
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a67]/10 to-transparent pointer-events-none rounded-2xl sm:rounded-3xl"></div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a67]/10 to-transparent pointer-events-none rounded-2xl sm:rounded-3xl"></div>
                   </div>
-                </div>
 
-                {/* Description */}
-                <div className="order-1 lg:order-2 space-y-3 sm:space-y-4 text-center lg:text-left">
-                  <div className="inline-flex items-center gap-2 bg-white/20 text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-semibold">
-                    Feature {idx + 1} of {features.length}
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-white/90 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                    {feature.description}
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center lg:justify-start pt-2">
-                    <Link href="/enquiry" className="px-4 sm:px-6 py-2 bg-transparent text-white rounded-full font-semibold hover:shadow-xl transition-all duration-300 border-2 border-white text-sm text-center">
-                      Contact Us
-                    </Link>
+                  {/* Description */}
+                  <div className="order-1 lg:order-2 space-y-2 sm:space-y-3 text-center lg:text-left">
+                    <div className="inline-flex items-center gap-2 bg-white/20 text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-semibold">
+                      Feature {idx + 1} of {features.length}
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white">
+                      {feature.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-white/90 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                      {feature.description}
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-2 justify-center lg:justify-start pt-1">
+                      <Link href="/enquiry" className="px-3 sm:px-5 py-1.5 sm:py-2 bg-transparent text-white rounded-full font-semibold hover:shadow-xl transition-all duration-300 border-2 border-white text-xs sm:text-sm text-center">
+                        Contact Us
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Progress Indicators */}
-        <div className="flex justify-center gap-2 mt-6 sm:mt-8">
-          {features.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveTab(idx)}
-              className={`
+          {/* Thumbnail Previews */}
+          <div className="grid grid-cols-6 gap-2 sm:gap-3 mb-4">
+            {features.map((feature, idx) => (
+              <button
+                key={feature.id}
+                onClick={() => setActiveTab(idx)}
+                className={`
+                relative rounded-lg overflow-hidden transition-all duration-300
+                ${activeTab === idx
+                    ? 'ring-4 ring-white scale-105 shadow-xl'
+                    : 'opacity-60 hover:opacity-100 hover:scale-105'
+                  }
+              `}
+              >
+                <div className="aspect-video">
+                  <OptimizedImage
+                    cloudinaryId={feature.cloudinaryId}
+                    alt={feature.title}
+                    width={200}
+                    height={150}
+                    className="w-full h-full object-cover"
+                    crop="fill"
+                    loading="lazy"
+                  />
+                </div>
+                {activeTab === idx && (
+                  <div className="absolute inset-0 bg-white/20 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* Progress Indicators */}
+          <div className="flex justify-center gap-2">
+            {features.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveTab(idx)}
+                className={`
                 h-2 rounded-full transition-all duration-300
                 ${activeTab === idx ? 'w-8 bg-white' : 'w-3 bg-white/40 hover:bg-white/60'}
               `}
-            />
-          ))}
-        </div>
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

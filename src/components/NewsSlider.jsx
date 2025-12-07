@@ -10,7 +10,7 @@ const newsItems = [
   },
   {
     id: 2,
-    text: '12+ IIT Admissions - IIT Guwahati, Kharagpur, Mandi',
+    text: '30% increase in IIT admissions',
     link: '/results',
   },
   {
@@ -115,8 +115,8 @@ export default function NewsSlider() {
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
                 className={`h-1.5 rounded-full transition-all duration-300 ${currentIndex === idx
-                    ? 'w-6 bg-[#B30027]'
-                    : 'w-1.5 bg-white/40 hover:bg-white/60'
+                  ? 'w-6 bg-[#B30027]'
+                  : 'w-1.5 bg-white/40 hover:bg-white/60'
                   }`}
                 aria-label={`Go to news ${idx + 1}`}
               />

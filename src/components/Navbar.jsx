@@ -29,8 +29,8 @@ export default function Navbar() {
 
     return (
         <header className={`sticky top-0 z-50 transition-all duration-500 ${scrolled
-                ? 'backdrop-blur-md bg-white/95 border-b-2 border-brand/20 shadow-lg'
-                : 'backdrop-blur-sm bg-white/80 border-b'
+            ? 'backdrop-blur-md bg-white/95 border-b-2 border-brand/20 shadow-lg'
+            : 'backdrop-blur-sm bg-white/80 border-b'
             }`}>
             <div className="container-content flex items-center justify-between h-20 md:h-24">
                 <Link href="/" className="flex items-center gap-3 group relative">
@@ -45,7 +45,7 @@ export default function Navbar() {
                             loading="eager"
                         />
                     </div>
-                    <span className="text-xs sm:text-sm text-[#0a1a67] transition-colors duration-300 group-hover:text-[#0a1a67] whitespace-nowrap hidden sm:block">सा विद्या या विमुक्तये</span>
+                    <span className="text-xs sm:text-sm text-[#0a1a67] transition-colors duration-300 group-hover:text-[#0a1a67] whitespace-nowrap hidden sm:block">Believe - Build - Become</span>
                 </Link>
 
                 <nav className="hidden md:flex items-center gap-6">
@@ -54,8 +54,8 @@ export default function Navbar() {
                             key={item.href}
                             href={item.href}
                             className={`relative px-3 py-2 rounded-lg overflow-hidden group transition-all duration-300 font-bold ${pathname === item.href
-                                    ? 'bg-[#0a1a67] text-white shadow-md scale-105'
-                                    : 'text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white hover:shadow-lg hover:scale-105'
+                                ? 'bg-[#0a1a67] text-white shadow-md scale-105'
+                                : 'text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white hover:shadow-lg hover:scale-105'
                                 }`}
                         >
                             <span className={`relative z-10 ${pathname === item.href ? 'text-white' : 'group-hover:text-white'}`}>{item.label}</span>
@@ -73,8 +73,8 @@ export default function Navbar() {
                     </Link>
                     <button
                         className={`md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border transition-all duration-300 ${mobileOpen
-                                ? 'bg-brand/20 border-brand rotate-90'
-                                : 'hover:bg-[#0a1a67]/10'
+                            ? 'bg-brand/20 border-brand rotate-90'
+                            : 'hover:bg-[#0a1a67]/10'
                             }`}
                         onClick={() => setMobileOpen((v) => !v)}
                         aria-label="Toggle menu"
@@ -127,8 +127,8 @@ export default function Navbar() {
                                 key={item.href}
                                 href={item.href}
                                 className={`block px-2 py-2 rounded-lg font-medium transition-all duration-300 ${pathname === item.href
-                                        ? 'bg-[#0a1a67] text-white'
-                                        : 'text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white'
+                                    ? 'bg-[#0a1a67] text-white'
+                                    : 'text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white'
                                     }`}
                                 onClick={() => setMobileOpen(false)}
                             >

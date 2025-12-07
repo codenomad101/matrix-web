@@ -23,10 +23,8 @@ export default function HeroSlider() {
     {
       id: 'msa-branding',
       title: 'Matrix Science Academy',
-      tagline: '',
+      tagline: 'Believe - Build - Become',
       sanskritTagline: 'सा विद्या या विमुक्तये',
-      subtitle: 'Top trainers in Maharashtra',
-      courses: 'IIT-JEE, MHT-CET, NEET, IISER Foundation',
       type: 'branding',
     },
     {
@@ -56,8 +54,8 @@ export default function HeroSlider() {
       subtitle: 'Our Success Story',
       stats: [
         { value: '86', label: 'Students 99+ Percentile', exam: 'MHT-CET 2025' },
-        { value: '12+', label: 'IIT Admissions', exam: '2025' },
-        { value: '100/100', label: 'Perfect Score', exam: 'NEET Biology' },
+        { value: '30%', label: 'increase in IIT admissions', exam: '2025' },
+        { value: 'Multiple', label: 'admissions into MBBS', exam: '2025' },
         { value: '150+', label: 'Expert Faculty', exam: 'Teachers by Choice' },
       ],
       cloudinaryId: 'v1763783028/4_nl1ejs',
@@ -65,20 +63,28 @@ export default function HeroSlider() {
     },
   ], [])
 
+
   const [index, setIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
 
   useEffect(() => {
+    if (isPaused) return
+
     const timer = setInterval(() => {
       setIndex((i) => (i + 1) % slides.length)
     }, SLIDE_INTERVAL_MS)
     return () => clearInterval(timer)
-  }, [slides.length])
+  }, [slides.length, isPaused])
 
   return (
     <section className="relative overflow-hidden">
       <div className="container-page pt-2 pb-4 sm:pt-6 sm:pb-8 px-2 sm:px-6">
         {/* Compact height for mobile */}
-        <div className="relative min-h-[500px] sm:min-h-[600px] md:min-h-[650px] lg:min-h-[700px] rounded-xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-gray-300 via-gray-200 to-gray-300 text-white">
+        <div
+          className="relative min-h-[500px] sm:min-h-[600px] md:min-h-[650px] lg:min-h-[700px] rounded-xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-gray-300 via-gray-200 to-gray-300 text-white"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.15),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.1),transparent_35%)]" />
 
           <div className="absolute inset-0 flex transition-transform duration-700 ease-smooth will-change-transform" style={{ transform: `translateX(-${index * 100}%)` }}>
@@ -111,28 +117,18 @@ export default function HeroSlider() {
                         </div>
 
                         <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 sm:p-6 max-w-fit">
-                          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight text-white">
-                            <span className="text-[#B30027]">Matrix</span>{' '}
-                            <span className="text-[#7a7a7a]">Science</span>
-                            <span className="block text-[#0a1a67]">Academy</span>
+                          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight text-white" style={{ textShadow: 'none' }}>
+                            <span className="text-[#B30027] font-black">Matrix</span>{' '}
+                            <span className="text-[#7a7a7a] font-black">Science</span>
+                            <span className="block text-[#0a1a67] font-black">Academy</span>
                           </h1>
 
-                          {/* Sanskrit Tagline */}
-                          <p className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#0a1a67] mt-1 sm:mt-2 italic">
-                            {s.sanskritTagline}
-                          </p>
-
-                          <p className="text-xs sm:text-lg md:text-xl lg:text-2xl font-bold text-[#0a1a67] mt-0.5 sm:mt-2">
+                          <p className="text-xs sm:text-lg md:text-xl lg:text-2xl font-black text-[#0a1a67] mt-0.5 sm:mt-2" style={{ textShadow: 'none' }}>
                             {s.tagline}
                           </p>
                         </div>
 
-                        <p className="text-[10px] sm:text-base md:text-lg text-gray-300 leading-relaxed max-w-xl">
-                          {s.subtitle}
-                        </p>
-                        <p className="text-[10px] sm:text-base md:text-lg text-gray-300 leading-relaxed max-w-xl font-medium">
-                          {s.courses}
-                        </p>
+
 
                         {/* Branches Grid */}
                         <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3 sm:p-4 mt-1.5 sm:mt-4 max-w-fit">
@@ -174,7 +170,7 @@ export default function HeroSlider() {
                                 </div>
                                 <div className="min-w-0">
                                   <div className="text-sm lg:text-base font-bold text-white">IIT-JEE</div>
-                                  <div className="text-xs lg:text-sm text-gray-200">12+ Admissions</div>
+                                  <div className="text-xs lg:text-sm text-gray-200">30% increase in admissions</div>
                                 </div>
                               </div>
                               <div className="flex items-center gap-2.5 lg:gap-3">
@@ -201,7 +197,7 @@ export default function HeroSlider() {
                           {/* Bottom Badge */}
                           <div className="absolute -bottom-3 lg:-bottom-4 -left-3 lg:-left-4 bg-[#B30027] rounded-lg lg:rounded-xl p-3 lg:p-4 shadow-xl z-20">
                             <div className="text-white text-center">
-                              <div className="text-xl lg:text-2xl font-extrabold">20K+</div>
+                              <div className="text-xl lg:text-2xl font-extrabold">30K+</div>
                               <div className="text-xs">Alumni</div>
                             </div>
                           </div>
@@ -238,7 +234,7 @@ export default function HeroSlider() {
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                           <div className="flex flex-col items-center">
                             <OptimizedImage
-                              cloudinaryId="v1764218937/nishant_tifi1f"
+                              cloudinaryId="v1764218938/abhi_mehta_f6h4om"
                               alt="Nishant Patwardhan"
                               width={200}
                               height={200}
@@ -250,7 +246,7 @@ export default function HeroSlider() {
                           </div>
                           <div className="flex flex-col items-center">
                             <OptimizedImage
-                              cloudinaryId="v1764218938/abhi_mehta_f6h4om"
+                              cloudinaryId="v1764218937/nishant_tifi1f"
                               alt="Abhishek Mehta"
                               width={200}
                               height={200}
@@ -336,10 +332,10 @@ export default function HeroSlider() {
                               <div className="text-lg sm:text-2xl md:text-3xl mb-0.5 sm:mb-1 group-hover:scale-110 transition-transform duration-300">
                                 {course.icon}
                               </div>
-                              <h3 className="text-[9px] sm:text-xs font-bold text-white mb-0.5 leading-tight">
+                              <h3 className="text-xs sm:text-sm md:text-base font-bold text-white mb-0.5 leading-tight">
                                 {course.name}
                               </h3>
-                              <p className="hidden sm:block text-[7px] sm:text-[10px] text-gray-200 mb-0.5">
+                              <p className="hidden sm:block text-[9px] sm:text-xs md:text-sm text-gray-200 mb-0.5">
                                 {course.description}
                               </p>
                             </div>
@@ -354,36 +350,31 @@ export default function HeroSlider() {
                             <div className="flex items-center gap-2 sm:gap-3">
                               <span className="text-base sm:text-lg">🚀</span>
                               <div>
-                                <div className="text-xs sm:text-sm font-bold">IMPULSE</div>
-                                <div className="text-[9px] sm:text-xs text-gray-200">Intensive Program</div>
+                                <div className="text-sm sm:text-base md:text-lg font-bold">IMPULSE</div>
                               </div>
                             </div>
                             <div className="flex items-center gap-2 sm:gap-3">
                               <span className="text-base sm:text-lg">🏃</span>
                               <div>
-                                <div className="text-xs sm:text-sm font-bold">SPRINT</div>
-                                <div className="text-[9px] sm:text-xs text-gray-200">Crash Course</div>
+                                <div className="text-sm sm:text-base md:text-lg font-bold">SPRINT</div>
                               </div>
                             </div>
                             <div className="flex items-center gap-2 sm:gap-3">
                               <span className="text-base sm:text-lg">📈</span>
                               <div>
-                                <div className="text-xs sm:text-sm font-bold">PACE</div>
-                                <div className="text-[9px] sm:text-xs text-gray-200">Long-term Program</div>
+                                <div className="text-sm sm:text-base md:text-lg font-bold">PACE</div>
                               </div>
                             </div>
                             <div className="flex items-center gap-2 sm:gap-3">
                               <span className="text-base sm:text-lg">🎓</span>
                               <div>
-                                <div className="text-xs sm:text-sm font-bold">DRIFT</div>
-                                <div className="text-[9px] sm:text-xs text-gray-200">Revision Batch</div>
+                                <div className="text-sm sm:text-base md:text-lg font-bold">DRIFT</div>
                               </div>
                             </div>
                             <div className="flex items-center gap-2 sm:gap-3">
                               <span className="text-base sm:text-lg">🏆</span>
                               <div>
-                                <div className="text-xs sm:text-sm font-bold">RACE</div>
-                                <div className="text-[9px] sm:text-xs text-gray-200">Competitive Batch</div>
+                                <div className="text-sm sm:text-base md:text-lg font-bold">RACE</div>
                               </div>
                             </div>
                           </div>
@@ -432,7 +423,7 @@ export default function HeroSlider() {
                                 key={idx}
                                 className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg sm:rounded-xl p-2 sm:p-4 text-center text-white shadow-lg hover:bg-white/20 hover:-translate-y-1 transition-all duration-300 group cursor-pointer"
                               >
-                                <div className="text-lg sm:text-2xl md:text-3xl font-extrabold mb-0.5 sm:mb-1 group-hover:scale-110 transition-transform duration-300 text-[#B30027]">
+                                <div className="text-lg sm:text-2xl md:text-3xl font-extrabold mb-0.5 sm:mb-1 group-hover:scale-110 transition-transform duration-300 text-white">
                                   {stat.value}
                                 </div>
                                 <h3 className="text-[9px] sm:text-xs font-bold mb-0.5 leading-tight">
@@ -447,7 +438,7 @@ export default function HeroSlider() {
                         </div>
 
                         <div className="bg-transparent backdrop-blur-md border border-white/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-white shadow-2xl">
-                          <h3 className="text-sm sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 border-b border-white/20 pb-2 text-[#B30027]">
+                          <h3 className="text-sm sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 border-b border-white/20 pb-2 text-white">
                             🏆 Outstanding Performance
                           </h3>
                           <div className="space-y-2 sm:space-y-3">

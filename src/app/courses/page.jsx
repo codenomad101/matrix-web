@@ -29,7 +29,7 @@ export default function CoursesPage() {
       icon: '🎯',
       description: 'Advanced training for IIT and top engineering colleges entrance examination.',
       highlights: [
-        '12+ IIT admissions in 2025',
+        '30% increase in IIT admissions in 2025',
         'Specialized faculty for JEE Advanced',
         'Comprehensive study material',
         'Performance tracking system',

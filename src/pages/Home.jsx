@@ -182,8 +182,8 @@ function ResultsImageSlider() {
           <div
             key={idx}
             className={`absolute inset-0 transition-all duration-700 ease-in-out ${currentIndex === idx
-                ? 'opacity-100 scale-100'
-                : 'opacity-0 scale-95'
+              ? 'opacity-100 scale-100'
+              : 'opacity-0 scale-95'
               }`}
           >
             <img
@@ -221,8 +221,8 @@ function ResultsImageSlider() {
             key={idx}
             onClick={() => setCurrentIndex(idx)}
             className={`h-3 rounded-full transition-all duration-300 ${currentIndex === idx
-                ? 'w-10 bg-[#0a1a67]'
-                : 'w-3 bg-gray-300 hover:bg-gray-400'
+              ? 'w-10 bg-[#0a1a67]'
+              : 'w-3 bg-gray-300 hover:bg-gray-400'
               }`}
           />
         ))}
@@ -272,9 +272,9 @@ function ResultsSection({ topResults }) {
 
   const achievementCards = [
     {
-      value: '12+',
-      title: 'IIT Admissions',
-      desc: 'IIT Guwahati, Kharagpur, Mandi',
+      value: '30%',
+      title: 'increase in IIT admissions',
+      desc: '2025',
       subtext: 'Elite Engineering Dreams Realized',
       icon: (
         <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -349,70 +349,9 @@ function ResultsSection({ topResults }) {
         <Link href="/results" className="btn-outline hover:scale-105 transition-transform duration-300">View All Results</Link>
       </div>
 
-      {/* Achievement Highlights - Moved to top */}
+      {/* Results Image Slider */}
       <div className="mb-10">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {achievementCards.map((card, idx) => {
-            // Colors for all 6 cards
-            const bgColors = ['bg-gradient-to-br from-[#B30027] to-[#8a001e]', 'bg-gradient-to-br from-emerald-500 to-emerald-600', 'bg-gradient-to-br from-[#0a1a67] to-blue-700', 'bg-gradient-to-br from-amber-500 to-orange-500', 'bg-gradient-to-br from-purple-500 to-purple-600', 'bg-gradient-to-br from-gray-600 to-gray-700']
-            return (
-              <div
-                key={idx}
-                className={`${bgColors[idx]} rounded-3xl p-6 text-white shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 hover:scale-[1.03] relative overflow-hidden group min-h-[280px] flex flex-col justify-between cursor-pointer`}
-                onMouseEnter={() => setHoveredIndex(idx)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                {/* Background decorative elements */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
-
-                {/* Icon section */}
-                <div className="relative z-10 flex justify-between items-start">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-3 group-hover:bg-white/30 group-hover:scale-110 transition-all duration-300">
-                    <div className="text-white group-hover:rotate-12 transition-transform duration-300">
-                      {card.icon}
-                    </div>
-                  </div>
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider">
-                    {card.desc}
-                  </div>
-                </div>
-
-                {/* Content section */}
-                <div className="relative z-10 mt-4">
-                  <div className="text-5xl sm:text-6xl font-black text-white mb-2 group-hover:scale-105 transition-transform duration-300 drop-shadow-lg">
-                    {card.value}
-                  </div>
-                  <div className="text-xl font-bold text-white/95 mb-1">
-                    {card.title}
-                  </div>
-                  <div className="text-sm text-white/80 font-medium">
-                    {card.subtext}
-                  </div>
-                </div>
-
-                {/* Interactive arrow indicator */}
-                <div className="absolute bottom-4 right-4 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </div>
-
-                {/* Bottom gradient line on hover */}
-                <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r from-white/0 via-white to-white/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center"></div>
-
-                {/* Shine effect on hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-              </div>
-            )
-          })}
-        </div>
-
-        {/* Results Image Slider */}
-        <div className="mt-8">
-          <ResultsImageSlider />
-        </div>
-
+        <ResultsImageSlider />
       </div>
 
       {/* Enhanced Results Display */}
@@ -451,38 +390,6 @@ function ResultsSection({ topResults }) {
             )
           })}
         </div>
-
-        {/* Results Images */}
-        <div className="grid sm:grid-cols-2 gap-6 mt-6">
-          <div className="card bg-white rounded-2xl overflow-hidden hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
-            <div className="w-full aspect-[3/4] overflow-hidden">
-              <OptimizedImage
-                cloudinaryId="v1763783028/4_nl1ejs"
-                alt="Results Photo 1"
-                width={600}
-                height={800}
-                className="w-full h-full object-cover"
-                crop="fill"
-                quality="auto"
-                loading="eager"
-              />
-            </div>
-          </div>
-          <div className="card bg-white rounded-2xl overflow-hidden hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
-            <div className="w-full aspect-[3/4] overflow-hidden">
-              <OptimizedImage
-                cloudinaryId="v1763783015/5_c2lqwx"
-                alt="Results Photo 2"
-                width={600}
-                height={800}
-                className="w-full h-full object-cover"
-                crop="fill"
-                quality="auto"
-                loading="eager"
-              />
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )
@@ -500,6 +407,45 @@ function FeaturesAndNewsSection() {
     { icon: '💡', title: 'Doubt Sessions', desc: 'Personalized attention' },
     { icon: '🏢', title: '8 Branches', desc: 'Across Pune region' },
     { icon: '📊', title: 'Performance Tracking', desc: 'Regular assessments' },
+  ]
+
+  const courses = [
+    {
+      id: 'iit-jee',
+      icon: '🎯',
+      name: 'IIT-JEE',
+      fullName: 'Joint Entrance Examination',
+      description: 'The gateway to India\'s premier engineering institutions - IITs, NITs, and IIITs.',
+      examDates: 'JEE Main: Jan & Apr | JEE Advanced: May',
+      ourResults: '30% increase in IIT admissions in 2025',
+    },
+    {
+      id: 'mht-cet',
+      icon: '📚',
+      name: 'MHT-CET',
+      fullName: 'Maharashtra Common Entrance Test',
+      description: 'Maharashtra\'s premier entrance exam for engineering and pharmacy admissions.',
+      examDates: 'Usually conducted in May',
+      ourResults: '86 students scored 99+ percentile in 2025',
+    },
+    {
+      id: 'neet',
+      icon: '⚕️',
+      name: 'NEET',
+      fullName: 'National Eligibility cum Entrance Test',
+      description: 'The single gateway to MBBS, BDS, and AYUSH courses across India.',
+      examDates: 'Usually conducted in May',
+      ourResults: 'Perfect scores in Biology - 100/100',
+    },
+    {
+      id: 'iiser',
+      icon: '🔬',
+      name: 'IISER',
+      fullName: 'Indian Institutes of Science Education and Research',
+      description: 'Premier institutes for integrated BS-MS programs in pure sciences.',
+      examDates: 'Admission via JEE Advanced/KVPY',
+      ourResults: 'Research-focused training',
+    }
   ]
 
   const newsItems = [
@@ -571,6 +517,63 @@ function FeaturesAndNewsSection() {
         </div>
       </div>
 
+      {/* Courses Section */}
+      <div className="mt-12">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-3">Our Courses</h2>
+          <p className="text-[#0a1a67]/70 text-lg">Comprehensive preparation for competitive examinations</p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {courses.map((course) => (
+            <Link
+              key={course.id}
+              href={`/courses/${course.id}`}
+              className="bg-[#0a1a67] rounded-2xl p-6 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden block"
+            >
+              {/* Background decoration */}
+              <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500"></div>
+
+              <div className="relative z-10">
+                <div className="text-5xl mb-3 group-hover:scale-110 transition-transform duration-300">{course.icon}</div>
+                <h3 className="text-2xl font-bold mb-1">{course.name}</h3>
+                <p className="text-sm opacity-90 mb-3">{course.fullName}</p>
+                <p className="text-sm leading-relaxed mb-4 line-clamp-3">{course.description}</p>
+
+                <div className="mt-4 space-y-2">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
+                    <p className="text-xs font-bold mb-1">📅 {course.examDates}</p>
+                  </div>
+
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
+                    <p className="text-xs font-bold mb-1">🏆 {course.ourResults}</p>
+                  </div>
+                </div>
+
+                <div className="mt-4 flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all duration-300">
+                  Learn More
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="text-center mt-8">
+          <Link
+            href="/courses"
+            className="inline-flex items-center gap-2 bg-[#B30027] text-white hover:bg-[#8a001e] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+          >
+            View All Courses & Batches
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </div>
+      </div>
+
       <style jsx>{`
         @keyframes scroll-news {
           0% { transform: translateY(0); }
@@ -599,30 +602,14 @@ export default function Home() {
 
       {/* Results Section */}
 
+
+
       <ResultsSection topResults={topResults} />
 
-      {/* Latest News Section - keeping original as well */}
+      {/* Features Section */}
       <FeaturesSection />
 
-      {/* Top Images Section */}
-      <OverviewSection />
 
-      <section className="container-page py-4">
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="card bg-white rounded-2xl p-6 hover:-translate-y-1 hover:bg-[#0a1a67] hover:shadow-lg transition-all duration-300 group">
-            <h3 className="text-xl font-semibold text-[#0a1a67] group-hover:text-white transition-colors duration-300">Why MSA?</h3>
-            <p className="mt-2 text-[#0a1a67] group-hover:text-white transition-colors duration-300">150+ teachers by choice, curated content, and disciplined guidance for competitive exams.</p>
-          </div>
-          <div className="card bg-white rounded-2xl p-6 hover:-translate-y-1 hover:bg-[#0a1a67] hover:shadow-lg transition-all duration-300 group">
-            <h3 className="text-xl font-semibold text-[#0a1a67] group-hover:text-white transition-colors duration-300">Programs</h3>
-            <p className="mt-2 text-[#0a1a67] group-hover:text-white transition-colors duration-300">Leading trainers in Pune</p>
-          </div>
-          <div className="card bg-white rounded-2xl p-6 hover:-translate-y-1 hover:bg-[#0a1a67] hover:shadow-lg transition-all duration-300 group">
-            <h3 className="text-xl font-semibold text-[#0a1a67] group-hover:text-white transition-colors duration-300">Branches</h3>
-            <p className="mt-2 text-[#0a1a67] group-hover:text-white transition-colors duration-300">8 branches: Pradhikaran, Nigdi, Ravet, Shahunagar, Chinchwad, Wakad, Moshi.</p>
-          </div>
-        </div>
-      </section>
 
       {/* Testimonials Section with Slider */}
       <section className="py-12 relative overflow-hidden" style={{ backgroundColor: '#0a1a67' }}>
@@ -655,6 +642,3 @@ export default function Home() {
     </div>
   )
 }
-
-
-

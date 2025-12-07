@@ -29,21 +29,21 @@ export default function TestimonialsShowcase() {
       instituteImage: 'https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     },
     {
-        text: "The faculty here transformed my understanding of engineering. Their innovative teaching methods and personal attention helped me secure admission to my dream college.",
-        name: "Dhruv Unde",
-        college: "NIT Trichy",
-        exam: "MHT-CET",
-        image: null,
-        instituteImage: 'https://images.shiksha.com/mediadata/images/articles/1640753204phpKAryNC.jpeg'
-      },
-      {
-        text: "The faculty here transformed my understanding of engineering. Their innovative teaching methods and personal attention helped me secure admission to my dream college.",
-        name: "Soham Deshpande",
-        college: "NIT Jamshedpur",
-        exam: "MHT-CET",
-        image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/v1763882946/soham1_s7aa4m.png',
-        instituteImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kvOY7H6o7X-VGA5B4yED52IVJ6fR5Qit1w&s'
-      },
+      text: "The faculty here transformed my understanding of engineering. Their innovative teaching methods and personal attention helped me secure admission to my dream college.",
+      name: "Dhruv Unde",
+      college: "NIT Trichy",
+      exam: "MHT-CET",
+      image: null,
+      instituteImage: 'https://images.shiksha.com/mediadata/images/articles/1640753204phpKAryNC.jpeg'
+    },
+    {
+      text: "The faculty here transformed my understanding of engineering. Their innovative teaching methods and personal attention helped me secure admission to my dream college.",
+      name: "Soham Deshpande",
+      college: "NIT Jamshedpur",
+      exam: "MHT-CET",
+      image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/v1763882946/soham1_s7aa4m.png',
+      instituteImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kvOY7H6o7X-VGA5B4yED52IVJ6fR5Qit1w&s'
+    },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -89,33 +89,36 @@ export default function TestimonialsShowcase() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-12 px-4">
+    <div className="bg-white py-4 sm:py-6 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-10">
-          <h2 className="text-4xl font-bold text-gray-900 mb-3">
+        {/* Header - Outside colored section */}
+        <div className="text-center mb-4 sm:mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0a1a67] mb-2">
             Student Success Stories
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-[#0a1a67]/70 max-w-2xl mx-auto">
             Hear from students who achieved their dreams with our guidance
           </p>
         </div>
 
         {/* Slider Container */}
-        <div className="relative">
+        <div
+          className="relative"
+          onMouseEnter={() => setIsAutoPlaying(false)}
+          onMouseLeave={() => setIsAutoPlaying(true)}
+        >
           {/* Main Slider */}
-          <div className="relative overflow-hidden rounded-3xl bg-white shadow-2xl">
-            <div className="relative min-h-[450px]">
+          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white shadow-xl">
+            <div className="relative min-h-[350px] sm:min-h-[400px]">
               {testimonials.map((testimonial, idx) => (
                 <div
                   key={idx}
-                  className={`absolute top-0 left-0 w-full h-full transition-all duration-700 ease-out ${
-                    idx === currentIndex
-                      ? 'opacity-100 translate-x-0 scale-100'
-                      : idx < currentIndex
+                  className={`absolute top-0 left-0 w-full h-full transition-all duration-700 ease-out ${idx === currentIndex
+                    ? 'opacity-100 translate-x-0 scale-100'
+                    : idx < currentIndex
                       ? 'opacity-0 -translate-x-full scale-95'
                       : 'opacity-0 translate-x-full scale-95'
-                  }`}
+                    }`}
                 >
                   <TestimonialCard testimonial={testimonial} isActive={idx === currentIndex} />
                 </div>
@@ -126,40 +129,75 @@ export default function TestimonialsShowcase() {
           {/* Navigation Buttons */}
           <button
             onClick={goToPrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white hover:bg-[#0a1a67]/10 text-[#0a1a67] rounded-full p-3 md:p-4 shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 z-10"
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white hover:bg-[#0a1a67]/10 text-[#0a1a67] rounded-full p-2 sm:p-3 shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 z-10"
             aria-label="Previous testimonial"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white hover:bg-[#0a1a67]/10 text-[#0a1a67] rounded-full p-3 md:p-4 shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 z-10"
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white hover:bg-[#0a1a67]/10 text-[#0a1a67] rounded-full p-2 sm:p-3 shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 z-10"
             aria-label="Next testimonial"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
 
-        {/* Dots Indicator */}
-        <div className="flex justify-center items-center gap-3 mt-8">
+        {/* Thumbnail Previews */}
+        <div className="grid grid-cols-5 gap-2 sm:gap-3 mt-4 sm:mt-6">
+          {testimonials.map((testimonial, idx) => (
+            <button
+              key={idx}
+              onClick={() => goToSlide(idx)}
+              className={`
+                relative rounded-lg overflow-hidden transition-all duration-300
+                ${currentIndex === idx
+                  ? 'ring-4 ring-[#0a1a67] scale-105 shadow-xl'
+                  : 'opacity-60 hover:opacity-100 hover:scale-105'
+                }
+              `}
+            >
+              <div className="aspect-video bg-gradient-to-br from-[#B30027] to-[#8a001e] flex items-center justify-center">
+                {testimonial.instituteImage ? (
+                  <img
+                    src={testimonial.instituteImage}
+                    alt={testimonial.college}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.style.display = 'none'
+                    }}
+                  />
+                ) : (
+                  <div className="text-white text-xs sm:text-sm font-bold text-center p-2">
+                    {/* Empty - just show gradient */}
+                  </div>
+                )}
+              </div>
+              {currentIndex === idx && (
+                <div className="absolute inset-0 bg-[#0a1a67]/20 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Progress Indicators */}
+        <div className="flex justify-center items-center gap-2 mt-4">
           {testimonials.map((_, idx) => (
             <button
               key={idx}
               onClick={() => goToSlide(idx)}
-              className={`rounded-full transition-all duration-300 ${
-                currentIndex === idx
-                  ? 'w-12 h-3 bg-[#0a1a67]'
-                  : 'w-3 h-3 bg-gray-300 hover:bg-[#0a1a67]/50'
-              }`}
+              className={`rounded-full transition-all duration-300 ${currentIndex === idx
+                ? 'w-8 h-2 bg-[#0a1a67]'
+                : 'w-2 h-2 bg-gray-300 hover:bg-[#0a1a67]/50'
+                }`}
               aria-label={`Go to testimonial ${idx + 1}`}
             />
           ))}
-        </div>
-
-        {/* Counter */}
-        <div className="text-center mt-6 text-gray-600 font-medium">
-          {currentIndex + 1} / {testimonials.length}
         </div>
       </div>
     </div>
@@ -178,29 +216,35 @@ function TestimonialCard({ testimonial, isActive }) {
         </div>
 
         <div className="relative z-10">
+          {/* Student Name at Top */}
+          <div
+            className={`mb-4 transition-all duration-700 delay-100 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+              }`}
+          >
+            <h4 className="text-xl md:text-2xl font-bold text-white">{testimonial.name}</h4>
+            <p className="text-white/80 text-sm md:text-base">Student</p>
+          </div>
+
           {/* Quote Icon */}
           <div
-            className={`mb-6 transition-all duration-700 delay-200 ${
-              isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-            }`}
+            className={`mb-6 transition-all duration-700 delay-200 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+              }`}
           >
             <Quote className="w-12 h-12 md:w-14 md:h-14 text-white/90" />
           </div>
 
           {/* Quote Text */}
           <blockquote
-            className={`text-white text-lg md:text-xl lg:text-2xl leading-relaxed font-light transition-all duration-700 delay-300 ${
-              isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
+            className={`text-white text-lg md:text-xl lg:text-2xl leading-relaxed font-light transition-all duration-700 delay-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
           >
             "{testimonial.text}"
           </blockquote>
 
           {/* Decorative Line */}
           <div
-            className={`mt-6 w-16 h-1 bg-white/50 transition-all duration-700 delay-500 ${
-              isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
-            }`}
+            className={`mt-6 w-16 h-1 bg-white/50 transition-all duration-700 delay-500 ${isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
+              }`}
             style={{ transformOrigin: 'left' }}
           />
         </div>
@@ -210,9 +254,8 @@ function TestimonialCard({ testimonial, isActive }) {
       <div className="bg-white p-8 md:p-10 flex flex-col justify-between">
         {/* College Badge */}
         <div
-          className={`transition-all duration-700 delay-400 ${
-            isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-          }`}
+          className={`transition-all duration-700 delay-400 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+            }`}
         >
           <div className="inline-block bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-4 py-2 rounded-full text-xs md:text-sm font-semibold shadow-lg">
             {testimonial.exam}
@@ -222,9 +265,8 @@ function TestimonialCard({ testimonial, isActive }) {
         {/* Institute Image */}
         {testimonial.instituteImage && (
           <div
-            className={`my-4 transition-all duration-700 delay-450 ${
-              isActive ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
-            }`}
+            className={`my-4 transition-all duration-700 delay-450 ${isActive ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
+              }`}
           >
             <div className="relative w-full h-32 md:h-40 rounded-lg overflow-hidden shadow-md">
               <img
@@ -241,38 +283,13 @@ function TestimonialCard({ testimonial, isActive }) {
 
         {/* Institute Name */}
         <div
-          className={`my-4 transition-all duration-700 delay-500 ${
-            isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}
+          className={`my-4 transition-all duration-700 delay-500 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
         >
           <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
             {testimonial.college}
           </h3>
           <div className="w-12 md:w-16 h-1 bg-gradient-to-r from-[#B30027] to-[#8a001e] rounded-full" />
-        </div>
-
-        {/* Student Info */}
-        <div
-          className={`flex items-center gap-4 md:gap-6 transition-all duration-700 delay-600 ${
-            isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
-          }`}
-        >
-          {/* Avatar */}
-          <div className="relative">
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center text-white text-xl md:text-2xl font-bold shadow-lg">
-              {testimonial.name
-                .split(' ')
-                .map((n) => n[0])
-                .join('')}
-            </div>
-            <div className="absolute -bottom-1 -right-1 w-5 h-5 md:w-6 md:h-6 bg-green-500 rounded-full border-3 md:border-4 border-white" />
-          </div>
-
-          {/* Name and Role */}
-          <div>
-            <h4 className="text-xl md:text-2xl font-bold text-gray-900">{testimonial.name}</h4>
-            <p className="text-gray-600 text-base md:text-lg">Student</p>
-          </div>
         </div>
       </div>
     </div>

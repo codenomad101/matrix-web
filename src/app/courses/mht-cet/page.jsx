@@ -1,0 +1,185 @@
+'use client'
+import Link from 'next/link'
+
+export default function MHTCETPage() {
+    return (
+        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+            {/* Hero Section */}
+            <section className="bg-gradient-to-br from-[#B30027] to-[#8a001e] text-white py-16 md:py-24">
+                <div className="container-page">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+                            <span className="text-4xl">📚</span>
+                            <span className="font-semibold">Maharashtra State Entrance</span>
+                        </div>
+                        <h1 className="text-4xl md:text-6xl font-extrabold mb-4">MHT-CET</h1>
+                        <p className="text-xl md:text-2xl mb-2 opacity-90">Maharashtra Common Entrance Test</p>
+                        <p className="text-lg md:text-xl opacity-80 max-w-2xl mx-auto">
+                            Maharashtra's premier entrance exam for engineering and pharmacy admissions
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* About the Exam */}
+            <section className="container-page py-12 md:py-16">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-6">About MHT-CET</h2>
+                    <div className="prose prose-lg max-w-none">
+                        <p className="text-[#0a1a67]/80 text-lg leading-relaxed mb-4">
+                            The Maharashtra Common Entrance Test (MHT-CET) is a state-level entrance examination
+                            conducted by the State Common Entrance Test Cell, Government of Maharashtra, for admission
+                            to undergraduate professional courses in engineering, pharmacy, and agriculture in
+                            Maharashtra state.
+                        </p>
+                        <p className="text-[#0a1a67]/80 text-lg leading-relaxed">
+                            MHT-CET is the gateway to prestigious institutions like COEP (College of Engineering Pune),
+                            VJTI (Veermata Jijabai Technological Institute), and other top engineering colleges across
+                            Maharashtra, offering quality education at affordable costs.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* Exam Pattern */}
+            <section className="bg-gray-50 py-12 md:py-16">
+                <div className="container-page">
+                    <div className="max-w-4xl mx-auto">
+                        <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">Exam Pattern</h2>
+                        <div className="bg-white rounded-2xl p-8 shadow-lg">
+                            <ul className="space-y-4 text-[#0a1a67]/80">
+                                <li className="flex items-start gap-3">
+                                    <span className="text-blue-600 font-bold text-xl">📅</span>
+                                    <span><strong>Exam Date:</strong> Usually conducted in May</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-blue-600 font-bold text-xl">📝</span>
+                                    <span><strong>Subjects:</strong> Physics, Chemistry, Mathematics (3 separate papers)</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-blue-600 font-bold text-xl">⏱️</span>
+                                    <span><strong>Duration:</strong> 90 minutes per paper</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-blue-600 font-bold text-xl">❓</span>
+                                    <span><strong>Questions:</strong> 50 questions per paper (150 total)</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-blue-600 font-bold text-xl">💯</span>
+                                    <span><strong>Total Marks:</strong> 100 per paper (300 total)</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-blue-600 font-bold text-xl">📖</span>
+                                    <span><strong>Syllabus:</strong> Based on 11th and 12th Maharashtra State Board</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="text-blue-600 font-bold text-xl">✅</span>
+                                    <span><strong>Marking:</strong> +2 for correct, -1 for incorrect (negative marking)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* What You'll Achieve */}
+            <section className="container-page py-12 md:py-16">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">What You'll Achieve</h2>
+                    <div className="grid sm:grid-cols-2 gap-6">
+                        {[
+                            { icon: '🏛️', title: 'Top Engineering Colleges', desc: 'COEP, VJTI, PICT, and other premier institutes in Maharashtra' },
+                            { icon: '💰', title: 'Affordable Education', desc: 'Quality engineering education at government college fees' },
+                            { icon: '🎓', title: 'State Board Advantage', desc: 'Exam pattern aligned with Maharashtra State Board syllabus' },
+                            { icon: '🤝', title: 'Strong Alumni Network', desc: 'Connect with successful alumni across Maharashtra' },
+                            { icon: '💼', title: 'Excellent Placements', desc: 'Top companies recruit from Maharashtra engineering colleges' },
+                            { icon: '🏠', title: 'Study Near Home', desc: 'Colleges across Maharashtra - Pune, Mumbai, Nagpur, and more' }
+                        ].map((item, idx) => (
+                            <div key={idx} className="bg-gradient-to-br from-blue-500/10 to-blue-500/5 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
+                                <div className="text-4xl mb-3">{item.icon}</div>
+                                <h3 className="text-xl font-bold text-[#0a1a67] mb-2">{item.title}</h3>
+                                <p className="text-[#0a1a67]/70">{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Our Results */}
+            <section className="bg-[#0a1a67] text-white py-12 md:py-16">
+                <div className="container-page">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Outstanding Results</h2>
+                        <div className="text-6xl md:text-7xl font-extrabold text-blue-400 mb-4">86</div>
+                        <p className="text-xl md:text-2xl mb-6">Students Scored 99+ Percentile in 2025</p>
+                        <div className="grid sm:grid-cols-3 gap-6 mt-8">
+                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                                <div className="text-3xl font-bold mb-2">162</div>
+                                <p className="text-sm opacity-90">Students Scored 98+ Percentile</p>
+                            </div>
+                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                                <div className="text-3xl font-bold mb-2">95%</div>
+                                <p className="text-sm opacity-90">Success Rate in Top Colleges</p>
+                            </div>
+                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                                <div className="text-3xl font-bold mb-2">#1</div>
+                                <p className="text-sm opacity-90">Ranked in Pune Region</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Our Approach */}
+            <section className="container-page py-12 md:py-16">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">Our Teaching Approach</h2>
+                    <div className="space-y-6">
+                        {[
+                            { title: 'State Board Focused', desc: 'Curriculum perfectly aligned with Maharashtra State Board syllabus' },
+                            { title: 'Comprehensive Coverage', desc: 'Complete coverage of 11th and 12th standard topics with depth' },
+                            { title: 'Regular Mock Tests', desc: 'Weekly tests simulating actual MHT-CET exam pattern and difficulty' },
+                            { title: 'Time Management', desc: 'Special focus on solving 50 questions in 90 minutes efficiently' },
+                            { title: 'Previous Year Analysis', desc: 'Detailed analysis of past 10 years MHT-CET question papers' },
+                            { title: 'Doubt Clearing Sessions', desc: 'Daily doubt sessions ensuring no concept is left unclear' }
+                        ].map((item, idx) => (
+                            <div key={idx} className="flex items-start gap-4 bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300">
+                                <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                                    {idx + 1}
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold text-[#0a1a67] mb-2">{item.title}</h3>
+                                    <p className="text-[#0a1a67]/70">{item.desc}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* CTA Section */}
+            <section className="container-page py-12">
+                <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl p-8 md:p-12 text-center text-white">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Ace MHT-CET?</h2>
+                    <p className="text-lg md:text-xl mb-8 opacity-90">
+                        Join Matrix Science Academy and secure admission to top engineering colleges in Maharashtra
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <Link
+                            href="/enquiry"
+                            className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+                        >
+                            Enquire Now
+                        </Link>
+                        <Link
+                            href="/courses"
+                            className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105"
+                        >
+                            View All Courses
+                        </Link>
+                    </div>
+                </div>
+            </section>
+        </div>
+    )
+}
