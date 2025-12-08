@@ -242,8 +242,7 @@ export default function HeroSlider() {
                                 loading="lazy"
                               />
                               <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] md:text-white text-center font-semibold leading-tight">Nishant Patwardhan</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#B30027] md:text-white text-center leading-tight">MSA Nigdi</p>
+                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director, Matrix Science Academy</p>
                             </div>
                             <div className="flex flex-col items-center">
                               <OptimizedImage
@@ -256,8 +255,7 @@ export default function HeroSlider() {
                                 loading="lazy"
                               />
                               <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] md:text-white text-center font-semibold leading-tight">Ravindra Yadav</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#B30027] md:text-white text-center leading-tight">MSA Shahunagar</p>
+                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director, Matrix Science Academy</p>
                             </div>
                             <div className="flex flex-col items-center">
                               <OptimizedImage
@@ -270,8 +268,7 @@ export default function HeroSlider() {
                                 loading="lazy"
                               />
                               <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] md:text-white text-center font-semibold leading-tight">Abhishek Mehta</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#B30027] md:text-white text-center leading-tight">MSA Ravet</p>
+                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director, Matrix Science Academy</p>
                             </div>
                             <div className="flex flex-col items-center">
                               <OptimizedImage
@@ -284,8 +281,7 @@ export default function HeroSlider() {
                                 loading="lazy"
                               />
                               <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] md:text-white text-center font-semibold leading-tight">Algesh Patrike</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#B30027] md:text-white text-center leading-tight">MSA Chinchwad</p>
+                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director, Matrix Science Academy</p>
                             </div>
                             <div className="flex flex-col items-center">
                               <OptimizedImage

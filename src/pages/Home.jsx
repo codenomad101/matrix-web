@@ -688,7 +688,9 @@ function VisionSection() {
                   {branch.director || 'Director'}
                 </h3>
                 <p className="text-[10px] sm:text-xs text-[#B30027] font-medium">
-                  {branch.name}
+                  {['Mr. Nishant Patwardhan', 'Mr. Ravindra Yadav', 'Mr. Abhishek Mehta', 'Mr. Algesh Patrike'].includes(branch.director)
+                    ? 'Director, Matrix Science Academy'
+                    : branch.name}
                 </p>
               </div>
             ))}
