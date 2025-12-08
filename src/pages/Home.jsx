@@ -55,7 +55,6 @@ function LatestNewsSection() {
     "Admissions Open for 2025-26 Batch - IIT-JEE, NEET, MHT-CET",
     "86 Students scored 99+ Percentile in MHT-CET 2025",
     "12+ Students selected for IIT in 2025",
-    "New Branch Opening in Hinjewadi - Coming Soon",
     "5 selections in AIIMS and MBBS out of 53 students",
     "Free Career Counselling Sessions Every Saturday",
     "Special Crash Course for Board Exams Starting January",
@@ -456,7 +455,6 @@ function FeaturesAndNewsSection() {
     "Admissions Open for 2025-26 Batch - IIT-JEE, NEET, MHT-CET",
     "86 Students scored 99+ Percentile in MHT-CET 2025",
     "12+ Students selected for IIT in 2025",
-    "New Branch Opening in Hinjewadi - Coming Soon",
     "5 selections in AIIMS and MBBS out of 53 students",
     "Free Career Counselling Sessions Every Saturday",
     "80+ Students Qualified for JEE Advanced",
@@ -631,7 +629,7 @@ function VisionSection() {
 
   return (
     <section className="container-page py-8 sm:py-12">
-      <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+      <div className="max-w-4xl mx-auto">
         {/* Vision Text */}
         <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-gray-100">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0a1a67] mb-4 sm:mb-6">
@@ -654,47 +652,6 @@ function VisionSection() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
-        </div>
-
-        {/* Directors by Branch */}
-        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-gray-100">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0a1a67] mb-4 sm:mb-6">
-            Our Directors
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-4 sm:gap-6">
-            {branches.map((branch, idx) => (
-              <div key={idx} className="flex flex-col items-center text-center">
-                {branch.directorImage ? (
-                  <OptimizedImage
-                    cloudinaryId={branch.directorImage}
-                    alt={branch.director || branch.name}
-                    width={120}
-                    height={120}
-                    className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-cover rounded-full shadow-lg border-2 border-gray-200 mb-2 sm:mb-3"
-                    crop="fill"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full shadow-lg border-2 border-gray-200 bg-gradient-to-br from-[#0a1a67] to-[#1a2a87] flex items-center justify-center mb-2 sm:mb-3">
-                    <span className="text-white text-lg sm:text-xl md:text-2xl font-bold">
-                      {branch.director 
-                        ? branch.director.split(' ').slice(-2).map(n => n[0]).join('')
-                        : branch.name.split(' ').map(n => n[0]).join('').slice(0, 2)
-                      }
-                    </span>
-                  </div>
-                )}
-                <h3 className="text-xs sm:text-sm font-semibold text-[#0a1a67] mb-1 leading-tight">
-                  {branch.director || 'Director'}
-                </h3>
-                <p className="text-[10px] sm:text-xs text-[#B30027] font-medium">
-                  {['Mr. Nishant Patwardhan', 'Mr. Ravindra Yadav', 'Mr. Abhishek Mehta', 'Mr. Algesh Patrike'].includes(branch.director)
-                    ? 'Director, Matrix Science Academy'
-                    : branch.name}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
