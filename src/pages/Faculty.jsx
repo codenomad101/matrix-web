@@ -3,7 +3,7 @@ import OptimizedImage from '@/components/OptimizedImage'
 
 export default function Faculty() {
   // Cloudinary image ID for the faculty image
-  const facultyImageId = 'v1764994908/Pi7_faculty_main_zqsz6c'
+  const facultyImageId = 'v1765176351/faculties_lyaigl'
 
   return (
     <div className="max-w-[1320px] mx-auto py-8 px-4 sm:px-6">
@@ -16,11 +16,12 @@ export default function Faculty() {
       <OptimizedImage
         cloudinaryId={facultyImageId}
         alt="Our Faculty - Matrix Science Academy"
-        width={1200}
-        height={1600}
+        width={2400}
+        height={3200}
         className="w-full h-auto object-contain"
         crop="fit"
         quality="100"
+        loading="eager"
       />
     </div>
   )
