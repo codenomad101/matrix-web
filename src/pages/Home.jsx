@@ -177,7 +177,7 @@ function ResultsImageSlider() {
   return (
     <div className="relative overflow-hidden rounded-2xl bg-white shadow-2xl border border-gray-100">
       {/* Main Slider */}
-      <div className="relative h-[400px] md:h-[500px] lg:h-[550px] bg-white">
+      <div className="relative h-[280px] md:h-[350px] lg:h-[400px] bg-white">
         {images.map((img, idx) => (
           <div
             key={idx}
@@ -186,7 +186,7 @@ function ResultsImageSlider() {
               : 'opacity-0 scale-95'
               }`}
           >
-            <div className="w-full h-full bg-white p-4 md:p-6 lg:p-8 flex items-center justify-center">
+            <div className="w-full h-full bg-white p-2 md:p-4 lg:p-5 flex items-center justify-center">
               <div className="relative w-full h-full bg-white rounded-xl shadow-lg overflow-hidden">
                 <img
                   src={`https://res.cloudinary.com/ddqgxrgnc/image/upload/w_1200,h_800,c_fit,q_auto,f_auto/${img.cloudinaryId}`}
@@ -344,8 +344,8 @@ function ResultsSection({ topResults }) {
   ]
 
   return (
-    <section className="container-page py-6" ref={sectionRef}>
-      <div className="flex items-center justify-between mb-6 flex-col sm:flex-row gap-3 sm:gap-0">
+    <section className="container-page py-4" ref={sectionRef}>
+      <div className="flex items-center justify-between mb-4 flex-col sm:flex-row gap-3 sm:gap-0">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#0a1a67] text-center sm:text-left">
           One of the <span className="text-[#B30027]">Leading and most </span>  <span className="text-[#B30027]"> successful</span> Institutions in Pune
         </h2>
@@ -354,12 +354,12 @@ function ResultsSection({ topResults }) {
       </div>
 
       {/* Results Image Slider */}
-      <div className="mb-10">
+      <div className="mb-6">
         <ResultsImageSlider />
       </div>
 
       {/* Enhanced Results Display */}
-      <div className="mt-10">
+      <div className="mt-6">
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {topCards.filter((_, idx) => idx !== 1).map((card, filteredIdx) => {
             const bgColors = ['bg-[#B30027]', 'bg-brand-dark']
