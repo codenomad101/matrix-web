@@ -5,13 +5,14 @@ import { useEffect, useState } from 'react'
 // Format: country code + number (without + or spaces)
 // Example: '919876543210' for +91 98765 43210
 const BRANCH_WHATSAPP_NUMBERS = {
-  'Pradhikaran': '917058740609',
   'Nigdi': '917058740609',
-  'Ravet': '917058740609',
   'Shahunagar': '917058740609',
   'Chinchwad': '917058740609',
+  'Ravet': '917058740609',
   'Wakad': '917058740609',
   'Moshi': '917058740609',
+  'Kolhapur': '917058740609',
+  'Rahatani': '917058740609',
 }
 
 export default function EnquiryForm() {
@@ -39,7 +40,7 @@ export default function EnquiryForm() {
     }
 
     // Get WhatsApp number for selected branch
-    const whatsappNumber = BRANCH_WHATSAPP_NUMBERS[formValues.branch] || BRANCH_WHATSAPP_NUMBERS['Pradhikaran']
+    const whatsappNumber = BRANCH_WHATSAPP_NUMBERS[formValues.branch] || BRANCH_WHATSAPP_NUMBERS['Nigdi']
 
     // Format WhatsApp message
     const whatsappMessage = `*New Enquiry from Matrix Science Academy Website*
@@ -107,13 +108,14 @@ _This enquiry was submitted through the website._`
             <div className="sm:col-span-1">
               <label className="block text-sm font-medium text-[#0a1a67]">Preferred Branch</label>
               <select name="branch" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand">
-                <option>Pradhikaran</option>
                 <option>Nigdi</option>
-                <option>Ravet</option>
                 <option>Shahunagar</option>
                 <option>Chinchwad</option>
+                <option>Ravet</option>
                 <option>Wakad</option>
                 <option>Moshi</option>
+                <option>Kolhapur</option>
+                <option>Rahatani</option>
               </select>
             </div>
 
