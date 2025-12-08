@@ -65,8 +65,8 @@ export default function Navbar() {
                 <div className="flex-1 flex justify-start md:hidden px-2">
                     <span className="text-base font-bold whitespace-nowrap">
                         <span className="text-[#B30027]">Matrix</span>{' '}
-                        <span className="text-[#0a1a67]">Science</span>{' '}
-                        <span className="text-[#7a7a7a]">Academy</span>
+                        <span className="text-[#7a7a7a]">Science</span>{' '}
+                        <span className="text-[#0a1a67]">Academy</span>
                     </span>
                 </div>
 

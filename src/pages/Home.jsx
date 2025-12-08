@@ -598,9 +598,9 @@ function FeaturesAndNewsSection() {
 function VisionSection() {
   const branches = [
     {
-      name: 'Nigdi Pradhikaran',
+      name: 'Nigdi',
       director: 'Mr. Nishant Patwardhan',
-      directorImage: 'v1764218937/nishant_tifi1f',
+      directorImage: 'v1764218938/abhi_mehta_f6h4om',
     },
     {
       name: 'Shahunagar',
@@ -610,22 +610,22 @@ function VisionSection() {
     {
       name: 'Chinchwad',
       director: 'Mr. Algesh Patrike',
-      directorImage: null,
+      directorImage: 'v1765163829/algesh_hskjtk',
     },
     {
       name: 'Ravet',
       director: 'Mr. Abhishek Mehta',
-      directorImage: 'v1764218938/abhi_mehta_f6h4om',
+      directorImage: 'v1764218937/nishant_tifi1f',
     },
     {
       name: 'Wakad',
       director: 'Mr. Manoj Kumar',
-      directorImage: null,
+      directorImage: 'v1765163801/manoj_1_algvci',
     },
     {
       name: 'Moshi',
       director: 'Mr. Umesh Bharde',
-      directorImage: null,
+      directorImage: 'v1765163805/umesh_1_aoyp2r',
     },
   ]
 

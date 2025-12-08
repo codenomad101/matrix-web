@@ -134,7 +134,7 @@ export default function HeroSlider() {
                         <div className="bg-white shadow-xl border border-gray-200 rounded-lg sm:rounded-xl p-2 sm:p-4 mt-1 sm:mt-4 max-w-fit">
                           <h3 className="text-[10px] sm:text-sm font-bold text-[#B30027] mb-1.5 border-b border-gray-200 pb-0.5">Our Branches</h3>
                           <div className="flex flex-wrap gap-1 sm:gap-2">
-                            {['Pradhikaran', 'Nigdi', 'Ravet', 'Shahunagar', 'Chinchwad', 'Wakad', 'Moshi'].map((branch) => (
+                            {['Nigdi', 'Shahunagar', 'Chinchwad', 'Ravet', 'Wakad', 'Moshi', 'Kolhapur', 'Rahatani'].map((branch) => (
                               <div key={branch} className="bg-[#0a1a67]/10 border border-[#0a1a67]/20 rounded-full px-1.5 sm:px-3 py-0.5 sm:py-1 text-center hover:bg-[#0a1a67]/20 transition-colors">
                                 <div className="text-[8px] sm:text-xs md:text-sm font-medium text-[#0a1a67]">{branch}</div>
                               </div>
@@ -233,7 +233,7 @@ export default function HeroSlider() {
                           <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
                             <div className="flex flex-col items-center">
                               <OptimizedImage
-                                cloudinaryId="v1764218937/nishant_tifi1f"
+                                cloudinaryId="v1764218938/abhi_mehta_f6h4om"
                                 alt="Nishant Patwardhan"
                                 width={200}
                                 height={200}
@@ -243,7 +243,7 @@ export default function HeroSlider() {
                               />
                               <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] md:text-white text-center font-semibold leading-tight">Nishant Patwardhan</p>
                               <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#B30027] md:text-white text-center leading-tight">Matrix Science Academy</p>
+                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#B30027] md:text-white text-center leading-tight">MSA Nigdi</p>
                             </div>
                             <div className="flex flex-col items-center">
                               <OptimizedImage
@@ -257,11 +257,11 @@ export default function HeroSlider() {
                               />
                               <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] md:text-white text-center font-semibold leading-tight">Ravindra Yadav</p>
                               <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#B30027] md:text-white text-center leading-tight">Matrix Science Academy</p>
+                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#B30027] md:text-white text-center leading-tight">MSA Shahunagar</p>
                             </div>
                             <div className="flex flex-col items-center">
                               <OptimizedImage
-                                cloudinaryId="v1764218938/abhi_mehta_f6h4om"
+                                cloudinaryId="v1764218937/nishant_tifi1f"
                                 alt="Abhishek Mehta"
                                 width={200}
                                 height={200}
@@ -274,25 +274,43 @@ export default function HeroSlider() {
                               <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#B30027] md:text-white text-center leading-tight">MSA Ravet</p>
                             </div>
                             <div className="flex flex-col items-center">
-                              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full shadow-lg border-2 border-gray-200 bg-gradient-to-br from-[#0a1a67] to-[#1a2a87] flex items-center justify-center">
-                                <span className="text-white text-lg sm:text-xl md:text-2xl font-bold">AP</span>
-                              </div>
+                              <OptimizedImage
+                                cloudinaryId="v1765163829/algesh_hskjtk"
+                                alt="Algesh Patrike"
+                                width={200}
+                                height={200}
+                                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-cover rounded-full shadow-lg border-2 border-gray-200"
+                                crop="fill"
+                                loading="lazy"
+                              />
                               <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] md:text-white text-center font-semibold leading-tight">Algesh Patrike</p>
                               <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#B30027] md:text-white text-center leading-tight">Matrix Science Academy</p>
+                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#B30027] md:text-white text-center leading-tight">MSA Chinchwad</p>
                             </div>
                             <div className="flex flex-col items-center">
-                              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full shadow-lg border-2 border-gray-200 bg-gradient-to-br from-[#0a1a67] to-[#1a2a87] flex items-center justify-center">
-                                <span className="text-white text-lg sm:text-xl md:text-2xl font-bold">MK</span>
-                              </div>
+                              <OptimizedImage
+                                cloudinaryId="v1765163801/manoj_1_algvci"
+                                alt="Manoj Kumar"
+                                width={200}
+                                height={200}
+                                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-cover rounded-full shadow-lg border-2 border-gray-200"
+                                crop="fill"
+                                loading="lazy"
+                              />
                               <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] md:text-white text-center font-semibold leading-tight">Manoj Kumar</p>
                               <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director</p>
                               <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#B30027] md:text-white text-center leading-tight">MSA Wakad</p>
                             </div>
                             <div className="flex flex-col items-center">
-                              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full shadow-lg border-2 border-gray-200 bg-gradient-to-br from-[#0a1a67] to-[#1a2a87] flex items-center justify-center">
-                                <span className="text-white text-lg sm:text-xl md:text-2xl font-bold">UB</span>
-                              </div>
+                              <OptimizedImage
+                                cloudinaryId="v1765163805/umesh_1_aoyp2r"
+                                alt="Umesh Bharde"
+                                width={200}
+                                height={200}
+                                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-cover rounded-full shadow-lg border-2 border-gray-200"
+                                crop="fill"
+                                loading="lazy"
+                              />
                               <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] md:text-white text-center font-semibold leading-tight">Umesh Bharde</p>
                               <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director</p>
                               <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#B30027] md:text-white text-center leading-tight">MSA Moshi</p>
@@ -409,32 +427,32 @@ export default function HeroSlider() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                     </div>
 
-                    <div className="w-full h-full flex flex-col gap-0.5 p-1.5 sm:p-2 md:p-3 relative z-10 overflow-y-auto items-center justify-center">
-                      <div className="text-center shrink-0 mb-0.5 sm:mb-1">
-                        <div className="inline-flex items-center gap-1 text-[8px] sm:text-[9px] md:text-xs font-medium bg-white/10 text-white border border-white/20 w-fit px-1.5 sm:px-2 py-0.5 rounded-full backdrop-blur-sm mb-0.5">
+                    <div className="w-full h-full flex flex-col gap-0 p-1 sm:p-2 md:p-3 relative z-10 overflow-y-auto items-center justify-center">
+                      <div className="text-center shrink-0 mb-0 sm:mb-0.5">
+                        <div className="inline-flex items-center gap-1 text-[8px] sm:text-[9px] md:text-xs font-medium bg-white/10 text-white border border-white/20 w-fit px-1 sm:px-1.5 py-0.5 rounded-full backdrop-blur-sm mb-0.5">
                           <span>Our Achievements</span>
                         </div>
-                        <h1 className="text-sm sm:text-base md:text-lg lg:text-xl font-extrabold leading-tight text-white">
+                        <h1 className="text-xs sm:text-base md:text-lg lg:text-xl font-extrabold leading-tight text-white">
                           {s.title}
                         </h1>
                       </div>
 
-                      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-4 items-center">
+                      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-1.5 sm:gap-4 items-center">
                         {/* Left Column: Compact Stats Grid */}
                         <div className="grid grid-cols-2 gap-1 sm:gap-2 w-full">
                           {s.stats.map((stat, idx) => {
                             return (
                               <div
                                 key={idx}
-                                className="bg-white md:bg-white/10 md:backdrop-blur-md border border-gray-200 md:border-white/20 rounded-lg sm:rounded-lg md:rounded-xl p-1.5 sm:p-2 md:p-4 lg:p-5 text-center shadow-md hover:shadow-lg transition-all duration-300 group cursor-pointer"
+                                className="bg-white md:bg-white/10 md:backdrop-blur-md border border-gray-200 md:border-white/20 rounded-lg sm:rounded-lg md:rounded-xl p-1 sm:p-2 md:p-4 lg:p-5 text-center shadow-md hover:shadow-lg transition-all duration-300 group cursor-pointer"
                               >
-                                <div className="text-sm sm:text-lg md:text-2xl lg:text-3xl font-extrabold mb-0.5 md:mb-2 group-hover:scale-110 transition-transform duration-300 text-[#0a1a67] md:text-white">
+                                <div className="text-xs sm:text-lg md:text-2xl lg:text-3xl font-extrabold mb-0 md:mb-2 group-hover:scale-110 transition-transform duration-300 text-[#0a1a67] md:text-white">
                                   {stat.value}
                                 </div>
-                                <h3 className="text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-bold leading-tight text-[#0a1a67] md:text-white">
+                                <h3 className="text-[7px] sm:text-[9px] md:text-xs lg:text-sm font-bold leading-tight text-[#0a1a67] md:text-white">
                                   {stat.label}
                                 </h3>
-                                <p className="text-[7px] sm:text-[8px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80">
+                                <p className="text-[6px] sm:text-[8px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80">
                                   {stat.exam}
                                 </p>
                               </div>
@@ -442,52 +460,52 @@ export default function HeroSlider() {
                           })}
                         </div>
 
-                        <div className="bg-white md:bg-white/10 md:backdrop-blur-md border border-gray-200 md:border-white/20 rounded-lg sm:rounded-xl md:rounded-2xl p-2 sm:p-3 md:p-5 lg:p-6">
-                          <h3 className="text-[10px] sm:text-xs md:text-base lg:text-lg font-bold mb-1.5 sm:mb-2 md:mb-4 border-b border-gray-200 md:border-white/20 pb-1 md:pb-2 text-[#0a1a67] md:text-white">
+                        <div className="bg-white md:bg-white/10 md:backdrop-blur-md border border-gray-200 md:border-white/20 rounded-lg sm:rounded-xl md:rounded-2xl p-1.5 sm:p-3 md:p-5 lg:p-6">
+                          <h3 className="text-[9px] sm:text-xs md:text-base lg:text-lg font-bold mb-1 sm:mb-2 md:mb-4 border-b border-gray-200 md:border-white/20 pb-0.5 md:pb-2 text-[#0a1a67] md:text-white">
                             🏆 Outstanding Performance
                           </h3>
-                          <div className="space-y-1 sm:space-y-1.5 md:space-y-2 lg:space-y-3">
-                            <div className="flex items-start gap-1.5 sm:gap-2 md:gap-3">
-                              <svg className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#B30027] md:text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <div className="space-y-0.5 sm:space-y-1.5 md:space-y-2 lg:space-y-3">
+                            <div className="flex items-start gap-1 sm:gap-2 md:gap-3">
+                              <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#B30027] md:text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
                               </svg>
                               <div>
-                                <div className="text-[10px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">80+ Students</div>
-                                <div className="text-[8px] sm:text-[9px] md:text-xs lg:text-sm text-[#0a1a67]/70 md:text-white/80">Qualified for JEE Advanced</div>
+                                <div className="text-[9px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">80+ Students</div>
+                                <div className="text-[7px] sm:text-[9px] md:text-xs lg:text-sm text-[#0a1a67]/70 md:text-white/80">Qualified for JEE Advanced</div>
                               </div>
                             </div>
-                            <div className="flex items-start gap-1.5 sm:gap-2 md:gap-3">
-                              <svg className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#B30027] md:text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="flex items-start gap-1 sm:gap-2 md:gap-3">
+                              <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#B30027] md:text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                               </svg>
                               <div>
-                                <div className="text-[10px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">32 Students</div>
-                                <div className="text-[8px] sm:text-[9px] md:text-xs lg:text-sm text-[#0a1a67]/70 md:text-white/80">Scored more than 95%ile</div>
+                                <div className="text-[9px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">32 Students</div>
+                                <div className="text-[7px] sm:text-[9px] md:text-xs lg:text-sm text-[#0a1a67]/70 md:text-white/80">Scored more than 95%ile</div>
                               </div>
                             </div>
-                            <div className="flex items-start gap-1.5 sm:gap-2 md:gap-3">
-                              <svg className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#B30027] md:text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="flex items-start gap-1 sm:gap-2 md:gap-3">
+                              <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#B30027] md:text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                               </svg>
                               <div>
-                                <div className="text-[10px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">86 Students</div>
-                                <div className="text-[8px] sm:text-[9px] md:text-xs lg:text-sm text-[#0a1a67]/70 md:text-white/80">Scored 99%ile in MHT-CET</div>
+                                <div className="text-[9px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">86 Students</div>
+                                <div className="text-[7px] sm:text-[9px] md:text-xs lg:text-sm text-[#0a1a67]/70 md:text-white/80">Scored 99%ile in MHT-CET</div>
                               </div>
                             </div>
-                            <div className="flex items-start gap-1.5 sm:gap-2 md:gap-3">
-                              <svg className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#B30027] md:text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="flex items-start gap-1 sm:gap-2 md:gap-3">
+                              <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#B30027] md:text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                               </svg>
                               <div>
-                                <div className="text-[10px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">162 Students</div>
-                                <div className="text-[8px] sm:text-[9px] md:text-xs lg:text-sm text-[#0a1a67]/70 md:text-white/80">Scored 98%ile in MHT-CET</div>
+                                <div className="text-[9px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">162 Students</div>
+                                <div className="text-[7px] sm:text-[9px] md:text-xs lg:text-sm text-[#0a1a67]/70 md:text-white/80">Scored 98%ile in MHT-CET</div>
                               </div>
                             </div>
                           </div>
 
-                          <Link href="/results" className="inline-flex justify-center items-center w-full bg-[#B30027] text-white hover:bg-[#8a001e] text-[8px] sm:text-[9px] md:text-sm lg:text-base px-2 py-1.5 md:px-4 md:py-2.5 rounded-md md:rounded-lg font-bold shadow-md transition-all duration-300 hover:scale-105 mt-2 md:mt-4">
+                          <Link href="/results" className="inline-flex justify-center items-center w-full bg-[#B30027] text-white hover:bg-[#8a001e] text-[7px] sm:text-[9px] md:text-sm lg:text-base px-1.5 py-1 md:px-4 md:py-2.5 rounded-md md:rounded-lg font-bold shadow-md transition-all duration-300 hover:scale-105 mt-1.5 md:mt-4">
                             View Detailed Results
                           </Link>
                         </div>
