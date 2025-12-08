@@ -46,7 +46,7 @@ const topTestimonials = [
 const topResults = {
   mhtcet: { count: 123, percentile: '98+', highlight: '60 students scored 99+ percentile' },
   iit: { count: 12, colleges: 'IIT Guwahati, IIT Kharagpur, IIT Mandi' },
-  neet: { score: '100/100', subject: 'Biology', students: 'Multiple students' },
+  neet: { score: '5 selections', subject: 'AIIMS and MBBS', students: 'out of 53 students' },
 }
 
 // Latest News Section Component
@@ -56,7 +56,7 @@ function LatestNewsSection() {
     "86 Students scored 99+ Percentile in MHT-CET 2025",
     "12+ Students selected for IIT in 2025",
     "New Branch Opening in Hinjewadi - Coming Soon",
-    "100/100 in Biology - NEET 2025 Toppers",
+    "5 selections in AIIMS and MBBS out of 53 students",
     "Free Career Counselling Sessions Every Saturday",
     "Special Crash Course for Board Exams Starting January",
     "Matrix Science Academy ranked #1 in Pune Region",
@@ -287,9 +287,9 @@ function ResultsSection({ topResults }) {
       )
     },
     {
-      value: '100/100',
-      title: 'NEET Biology',
-      desc: 'Perfect scores achieved',
+      value: '5',
+      title: 'Selections in AIIMS & MBBS',
+      desc: 'out of 53 students',
       subtext: 'Future Doctors in Making',
       icon: (
         <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -439,7 +439,7 @@ function FeaturesAndNewsSection() {
       fullName: 'National Eligibility cum Entrance Test',
       description: 'The single gateway to MBBS, BDS, and AYUSH courses across India.',
       examDates: 'Usually conducted in May',
-      ourResults: 'Perfect scores in Biology - 100/100',
+      ourResults: '5 selections in AIIMS and MBBS out of 53 students',
     },
     {
       id: 'iiser',
@@ -457,7 +457,7 @@ function FeaturesAndNewsSection() {
     "86 Students scored 99+ Percentile in MHT-CET 2025",
     "12+ Students selected for IIT in 2025",
     "New Branch Opening in Hinjewadi - Coming Soon",
-    "100/100 in Biology - NEET 2025 Toppers",
+    "5 selections in AIIMS and MBBS out of 53 students",
     "Free Career Counselling Sessions Every Saturday",
     "80+ Students Qualified for JEE Advanced",
     "32 Students Scored more than 95%ile",

@@ -15,7 +15,7 @@ const newsItems = [
   },
   {
     id: 3,
-    text: 'Multiple students achieved perfect 100/100 in NEET Biology',
+    text: '5 selections in AIIMS and MBBS out of 53 students',
     link: '/results',
   },
   {

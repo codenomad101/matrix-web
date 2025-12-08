@@ -115,8 +115,8 @@ export default function NEETPage() {
                 <div className="container-page">
                     <div className="max-w-4xl mx-auto text-center">
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Remarkable Results</h2>
-                        <div className="text-6xl md:text-7xl font-extrabold text-emerald-400 mb-4">100/100</div>
-                        <p className="text-xl md:text-2xl mb-6">Perfect Scores in Biology</p>
+                        <div className="text-6xl md:text-7xl font-extrabold text-emerald-400 mb-4">5</div>
+                        <p className="text-xl md:text-2xl mb-6">Selections in AIIMS and MBBS out of 53 students</p>
                         <div className="grid sm:grid-cols-3 gap-6 mt-8">
                             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
                                 <div className="text-3xl font-bold mb-2">50+</div>
