@@ -84,9 +84,9 @@ export default function GalleryPage() {
         },
         {
             category: 'facilities',
-            title: 'Study Areas',
+            title: 'Parking',
             cloudinaryId: 'v1764181896/5_iksmin',
-            alt: 'Study Areas'
+            alt: 'parking area'
         },
         {
             category: 'facilities',
@@ -96,9 +96,9 @@ export default function GalleryPage() {
         },
         {
             category: 'facilities',
-            title: 'Learning Environment',
+            title: 'Office',
             cloudinaryId: 'v1764181872/4_phnnrh',
-            alt: 'Learning Environment'
+            alt: 'Office Environment'
         },
         // Academic Resources
         {
