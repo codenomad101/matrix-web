@@ -644,7 +644,7 @@ function VisionSection() {
             </p>
           </div>
           <Link 
-            href="/directors-message" 
+            href="/about" 
             className="inline-flex items-center gap-2 mt-6 text-[#B30027] hover:text-[#8a001e] font-semibold transition-colors duration-300 text-sm sm:text-base"
           >
             Read Full Message
