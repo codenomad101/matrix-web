@@ -158,8 +158,24 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div className="border-t border-white/20 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="text-white/70 text-sm">
-            © {new Date().getFullYear()} Matrix Science Academy. All rights reserved.
+          <div className="text-white/70 text-sm flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <span>© {new Date().getFullYear()} Matrix Science Academy. All rights reserved.</span>
+            <span className="hidden sm:inline">|</span>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/terms-and-conditions"
+                className="hover:text-white underline-offset-4 hover:underline transition-colors duration-300"
+              >
+                Terms &amp; Conditions
+              </Link>
+              <span className="text-white/40">•</span>
+              <Link
+                href="/privacy-policy"
+                className="hover:text-white underline-offset-4 hover:underline transition-colors duration-300"
+              >
+                Privacy Policy
+              </Link>
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <Link
