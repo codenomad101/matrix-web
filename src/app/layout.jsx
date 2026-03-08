@@ -75,7 +75,7 @@ export const metadata = {
     canonical: 'https://www.matrixscienceacademy.com',
   },
   verification: {
-    google: 'kh5Lhw6qb0rfqtFJWhX370Jqb2lKsz75k3IeLPJGpDU',
+    // google added explicitly in <head> below so it’s visible in view-source for Search Console
     // yandex: 'your-yandex-verification-code',
     // yahoo: 'your-yahoo-verification-code',
   },
@@ -138,6 +138,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Google Search Console site verification - visible in view-source for verification */}
+        <meta name="google-site-verification" content="kh5Lhw6qb0rfqtFJWhX370Jqb2lKsz75k3IeLPJGpDU" />
         {/* Google Tag Manager - as high in head as possible */}
         <script
           dangerouslySetInnerHTML={{
