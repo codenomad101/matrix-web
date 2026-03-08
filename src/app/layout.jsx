@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import FloatingInquiryButton from '@/components/FloatingInquiryButton'
 
 const GA_MEASUREMENT_ID = 'G-691QRXV0X2'
+const GTM_ID = 'GTM-5GPMKPKV'
 
 export const metadata = {
   metadataBase: new URL('https://www.matrixscienceacademy.com'),
@@ -74,8 +75,7 @@ export const metadata = {
     canonical: 'https://www.matrixscienceacademy.com',
   },
   verification: {
-    // Add your verification codes here when available
-    // google: 'your-google-verification-code',
+    google: 'kh5Lhw6qb0rfqtFJWhX370Jqb2lKsz75k3IeLPJGpDU',
     // yandex: 'your-yandex-verification-code',
     // yahoo: 'your-yahoo-verification-code',
   },
@@ -137,7 +137,29 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Google Tag Manager - as high in head as possible */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');`,
+          }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col">
+        {/* Google Tag Manager (noscript) - immediately after opening body */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+            title="Google Tag Manager"
+          />
+        </noscript>
         {/* Google tag (gtag.js) */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
