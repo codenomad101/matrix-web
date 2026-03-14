@@ -114,6 +114,9 @@ small, .text-caption, .text-small {
 .page-section-gray {
 	@apply bg-gray-50 page-section;
 }
+.page-section-tight {
+	@apply py-2 md:py-3;
+}
 .section-heading {
 	@apply text-2xl md:text-3xl font-bold text-[#0a1a67] mb-1.5;
 }
@@ -197,4 +200,61 @@ small, .text-caption, .text-small {
 .animate-fadeIn {
 	animation: fadeIn 0.3s ease-out;
 }
+
+@keyframes blink {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.4; }
+}
+
+.animate-blink {
+	animation: blink 1.2s ease-in-out infinite;
+}
+
+/* Card dynamic backgrounds: gradient shift + floating orbs */
+@keyframes card-gradient-shift {
+	0%, 100% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+}
+
+@keyframes float-orb-1 {
+	0%, 100% { transform: translate(0, 0); }
+	33% { transform: translate(6px, -8px); }
+	66% { transform: translate(-4px, 5px); }
+}
+
+@keyframes float-orb-2 {
+	0%, 100% { transform: translate(0, 0); }
+	33% { transform: translate(-5px, 6px); }
+	66% { transform: translate(8px, -4px); }
+}
+
+@keyframes float-orb-3 {
+	0%, 100% { transform: translate(0, 0); }
+	50% { transform: translate(-6px, -5px); }
+}
+
+.card-bg-gradient {
+	background: linear-gradient(
+		120deg,
+		transparent 0%,
+		rgba(179, 0, 39, 0.04) 25%,
+		rgba(179, 0, 39, 0.08) 50%,
+		rgba(179, 0, 39, 0.04) 75%,
+		transparent 100%
+	);
+	background-size: 200% 200%;
+	animation: card-gradient-shift 8s ease-in-out infinite;
+}
+
+.card-float-orb {
+	position: absolute;
+	border-radius: 50%;
+	pointer-events: none;
+	filter: blur(24px);
+	opacity: 0.5;
+}
+
+.card-float-orb-1 { animation: float-orb-1 6s ease-in-out infinite; }
+.card-float-orb-2 { animation: float-orb-2 7s ease-in-out infinite; }
+.card-float-orb-3 { animation: float-orb-3 5s ease-in-out infinite; }
 

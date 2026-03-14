@@ -192,7 +192,7 @@ function ResultsImageSlider() {
               className="flex-shrink-0 p-2 md:p-3 h-full flex items-center justify-center"
               style={{ width: `${100 / images.length}%` }}
             >
-              <div className="w-full h-full rounded-xl overflow-hidden flex items-center justify-center shadow-md border border-gray-200/60 bg-gray-50/50">
+              <div className="w-full h-full rounded-xl overflow-hidden flex items-center justify-center shadow-md border border-gray-200/60 bg-page-bg">
                 <img
                   src={`https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/${img.cloudinaryId}`}
                   alt={img.alt}
@@ -352,10 +352,10 @@ function ResultsSection({ topResults }) {
     <section className="py-3 md:py-5" ref={sectionRef}>
       <div className="container-page">
         <div className="flex items-center justify-between mb-2 flex-col sm:flex-row gap-3 sm:gap-0">
-          <h2 className="section-heading text-center sm:text-left">
-            One of the <span className="text-[#B30027]">Leading and most successful</span> Institutions in Pune
+          <h2 className="text-2xl md:text-3xl font-bold text-left text-heading mb-0">
+            One of the <span className="text-body/90">Leading and most successful</span> Institutions in Pune
           </h2>
-          <Link href="/results" className="btn-outline hover:scale-105 transition-transform duration-300 text-sm sm:text-base px-4 py-2 sm:px-5 sm:py-2.5">View All Results</Link>
+          <Link href="/results" className="inline-flex items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] transition-all duration-300 text-sm sm:text-base px-4 py-2 sm:px-5 sm:py-2.5 font-semibold">View All Results</Link>
         </div>
 
         {/* Results Image Slider - site background only, no white block */}
@@ -373,13 +373,53 @@ function ResultsSection({ topResults }) {
 // Combined Features & News Section
 function FeaturesAndNewsSection() {
   const features = [
-    { icon: '📚', title: 'Expert Faculty', desc: '150+ qualified teachers' },
-    { icon: '🎯', title: 'Focused Learning', desc: 'Structured curriculum' },
-    { icon: '🏆', title: 'Proven Results', desc: 'Top rankers every year' },
-    { icon: '💡', title: 'Doubt Sessions', desc: 'Personalized attention' },
-    { icon: '🏢', title: '8 Branches', desc: 'Across Pune region' },
-    { icon: '📊', title: 'Performance Tracking', desc: 'Regular assessments' },
+    {
+      icon: '📚',
+      title: 'Expert Faculty',
+      desc: '150+ qualified teachers',
+      body: 'Our educators are IIT/NIT alumni and experienced mentors who bring real exam insights into the classroom. Small batch sizes ensure every student gets individual attention and clarity on concepts.',
+    },
+    {
+      icon: '🎯',
+      title: 'Focused Learning',
+      desc: 'Structured curriculum',
+      body: 'Syllabus-aligned study plans, topic-wise tests, and revision cycles designed for JEE, NEET, MHT-CET, and IISER. We focus on high-weightage areas and exam patterns so you spend time where it matters most.',
+    },
+    {
+      icon: '🏆',
+      title: 'Proven Results',
+      desc: 'Top rankers every year',
+      body: 'Consistent top percentile rankers in MHT-CET, multiple IIT and NIT selections, and NEET success year on year. Our track record speaks to the effectiveness of our teaching and your hard work.',
+    },
+    {
+      icon: '💡',
+      title: 'Doubt Sessions',
+      desc: 'Personalized attention',
+      body: 'Dedicated doubt-solving hours and one-on-one support so no question goes unanswered. Faculty are accessible beyond class hours to help you stay on track and build confidence.',
+    },
+    {
+      icon: '🏢',
+      title: '8 Branches',
+      desc: 'Across Pune region',
+      body: 'Convenient locations across Pune so you can choose a branch close to home. Same quality of teaching, study material, and assessment across all our centres for a consistent learning experience.',
+    },
+    {
+      icon: '📊',
+      title: 'Performance Tracking',
+      desc: 'Regular assessments',
+      body: 'Weekly tests, full-length mocks, and detailed analytics help you and our faculty identify weak areas early. We use data to tailor revision and focus sessions for better outcomes.',
+    },
   ]
+
+  const [featureSlideIndex, setFeatureSlideIndex] = useState(0)
+  const maxFeatureSlide = Math.max(0, Math.ceil(features.length / 2) - 1)
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setFeatureSlideIndex((i) => (i >= maxFeatureSlide ? 0 : i + 1))
+    }, 4500)
+    return () => clearInterval(t)
+  }, [maxFeatureSlide])
 
   const courses = [
     {
@@ -433,25 +473,69 @@ function FeaturesAndNewsSection() {
   ]
 
   return (
-    <section className="page-section-white">
+    <section className="page-section-white page-section-tight">
       <div className="container-page">
-      <div className="grid lg:grid-cols-2 gap-6">
-        {/* Left - Features (Why Choose Us) */}
-        <div className="hidden md:block page-card">
-          <h2 className="section-heading mb-4">Why Choose Us?</h2>
-          <div className="grid grid-cols-2 gap-4">
-            {features.map((feature, idx) => (
-              <div
-                key={idx}
-                className="bg-gray-200/70 rounded-xl p-4 hover:bg-gray-200 transition-all duration-300 hover:scale-[1.02] cursor-pointer group border border-gray-200/60"
-              >
-                <span className="text-xl md:text-2xl mb-2 block group-hover:scale-105 transition-transform duration-300">{feature.icon}</span>
-                <h3 className="text-heading font-semibold text-sm md:text-base">{feature.title}</h3>
-                <p className="text-black/80 text-xs md:text-sm mt-1">{feature.desc}</p>
-              </div>
-            ))}
+      <div className="grid lg:grid-cols-2 gap-4">
+        {/* Left - Features (Why Choose Us) - 2-card slider */}
+        <div className="hidden md:block">
+          <h2 className="section-heading mb-3">Why Choose Us?</h2>
+          <div className="relative overflow-hidden">
+            <div
+              className="flex transition-transform duration-300 ease-out"
+              style={{ width: '300%', transform: `translateX(-${featureSlideIndex * (100 / 3)}%)` }}
+            >
+              {[0, 2, 4].map((startIdx) => (
+                <div key={startIdx} className="grid grid-cols-2 gap-3 flex-shrink-0 min-w-0" style={{ width: '33.333%' }}>
+                  {features.slice(startIdx, startIdx + 2).map((feature, i) => (
+                    <div
+                      key={startIdx + i}
+                      className="bg-gray-200/70 rounded-xl p-4 sm:p-5 min-h-[180px] sm:min-h-[220px] flex flex-col hover:bg-gray-200 transition-all duration-300 hover:scale-[1.01] cursor-pointer group border border-gray-200/60 relative overflow-hidden"
+                    >
+                      <div className="absolute inset-0 rounded-xl card-bg-gradient" aria-hidden />
+                      <div className="card-float-orb card-float-orb-1 w-14 h-14 bg-[#B30027]/15 -top-4 -right-4" aria-hidden />
+                      <div className="card-float-orb card-float-orb-2 w-10 h-10 bg-[#B30027]/10 bottom-2 left-2" aria-hidden />
+                      <div className="relative z-10 flex flex-col flex-1">
+                        <span className="text-2xl md:text-3xl mb-2 block group-hover:scale-105 transition-transform duration-300">{feature.icon}</span>
+                        <h3 className="text-heading font-semibold text-base md:text-lg">{feature.title}</h3>
+                        <p className="text-black/90 text-xs md:text-sm mt-0.5 font-medium">{feature.desc}</p>
+                        <p className="text-black/75 text-xs md:text-sm mt-3 leading-relaxed flex-1">{feature.body}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => setFeatureSlideIndex((i) => Math.max(0, i - 1))}
+              disabled={featureSlideIndex === 0}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-[#B30027] hover:bg-gray-50 disabled:opacity-40 disabled:pointer-events-none transition-all z-10"
+              aria-label="Previous"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => setFeatureSlideIndex((i) => Math.min(maxFeatureSlide, i + 1))}
+              disabled={featureSlideIndex >= maxFeatureSlide}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-[#B30027] hover:bg-gray-50 disabled:opacity-40 disabled:pointer-events-none transition-all z-10"
+              aria-label="Next"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </button>
+            <div className="flex justify-center gap-1.5 mt-3">
+              {[0, 1, 2].map((dotIdx) => (
+                <button
+                  key={dotIdx}
+                  type="button"
+                  onClick={() => setFeatureSlideIndex(dotIdx)}
+                  className={`w-2 h-2 rounded-full transition-colors ${featureSlideIndex === dotIdx ? 'bg-[#B30027] scale-125' : 'bg-gray-300'}`}
+                  aria-label={`Go to slide ${dotIdx + 1}`}
+                />
+              ))}
+            </div>
           </div>
-          <Link href="/about" className="inline-flex items-center gap-2 mt-6 text-black hover:text-body transition-colors duration-300 font-medium">
+          <Link href="/about" className="inline-flex items-center gap-2 mt-4 text-black hover:text-body transition-colors duration-300 font-medium">
             Learn More About Us
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -460,38 +544,32 @@ function FeaturesAndNewsSection() {
         </div>
 
         {/* Right - Latest News */}
-        <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 md:col-span-1 lg:col-span-1">
-          <div className="bg-[#B30027] p-4 md:p-6">
-            <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
-              <svg className="w-6 h-6 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-              </svg>
-              Latest News & Updates
-            </h2>
-          </div>
-          <div className="p-4 md:p-6 h-[320px] overflow-hidden relative">
-            <div className="animate-scroll-news">
-              {[...newsItems, ...newsItems].map((news, idx) => (
-                <div
-                  key={idx}
-                  className="py-3 border-b border-gray-100 last:border-0 flex items-start gap-3 group cursor-pointer hover:bg-gray-50 px-2 rounded-lg transition-colors duration-300"
-                >
-                  <span className="text-[#B30027] font-bold text-lg flex-shrink-0">›</span>
-                  <span className="text-[#0a1a67] font-medium group-hover:text-[#B30027] transition-colors duration-300 text-sm md:text-base">
-                    {news}
-                  </span>
-                </div>
-              ))}
+        <div className="md:col-span-1 lg:col-span-1 max-w-lg lg:max-w-md">
+          <h2 className="section-heading mb-3">Latest News & Updates</h2>
+          <div className="page-card overflow-hidden border border-gray-200/80 rounded-xl sm:rounded-2xl relative">
+            <div className="p-3 sm:p-4 h-[240px] overflow-hidden relative">
+              <div className="animate-scroll-news">
+                {[...newsItems, ...newsItems].map((news, idx) => (
+                  <div
+                    key={idx}
+                    className="py-1.5 sm:py-2 border-b border-gray-200/70 last:border-0 flex items-start gap-2 group cursor-pointer hover:bg-gray-100/80 px-1.5 sm:px-2 rounded-md transition-colors duration-300"
+                  >
+                    <span className="text-[#B30027] font-bold text-base flex-shrink-0">›</span>
+                    <span className="text-[#0a1a67] font-medium group-hover:text-[#B30027] transition-colors duration-300 text-xs sm:text-sm">
+                      {news}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[var(--bg-box)] to-transparent pointer-events-none" />
             </div>
-            {/* Fade effect at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
           </div>
         </div>
       </div>
 
       {/* Courses Section */}
-      <div className="mt-6">
-        <div className="text-center mb-5">
+      <div className="mt-4">
+        <div className="text-left mb-4">
           <h2 className="text-3xl md:text-4xl font-bold text-heading mb-3">Our Courses</h2>
           <p className="text-body/80 text-lg">Comprehensive preparation for competitive examinations</p>
         </div>
@@ -503,6 +581,11 @@ function FeaturesAndNewsSection() {
               href={`/courses/${course.id}`}
               className="bg-box-bg border border-gray-200/80 rounded-xl sm:rounded-2xl p-3 sm:p-6 text-black shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden block"
             >
+              {/* Dynamic background: gradient + floating orbs */}
+              <div className="absolute inset-0 rounded-xl sm:rounded-2xl card-bg-gradient" aria-hidden />
+              <div className="card-float-orb card-float-orb-1 w-20 h-20 sm:w-28 sm:h-28 bg-[#B30027]/20 -top-8 -right-8" aria-hidden />
+              <div className="card-float-orb card-float-orb-2 w-16 h-16 sm:w-24 sm:h-24 bg-[#B30027]/15 bottom-4 left-4" aria-hidden />
+              <div className="card-float-orb card-float-orb-3 w-12 h-12 sm:w-20 sm:h-20 bg-[#B30027]/10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" aria-hidden />
               <div className="relative z-10">
                 <div className="text-xl sm:text-3xl mb-2 sm:mb-3 group-hover:scale-105 transition-transform duration-300">{course.icon}</div>
                 <h3 className="text-sm sm:text-2xl font-bold mb-0.5 sm:mb-1 leading-tight text-heading">{course.name}</h3>
@@ -581,7 +664,7 @@ export default function Home() {
 
 
       {/* Testimonials Section - Student Success Stories */}
-      <section className="page-section-gray">
+      <section className="page-section-gray page-section-tight">
         <TestimonialsShowcase />
       </section>
 

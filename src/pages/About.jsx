@@ -61,7 +61,7 @@ export default function About() {
       {/* About Section - Allen-style white section */}
       <section className="page-section-white">
         <div className="container-page">
-          <div className="page-card max-w-4xl">
+          <div className="page-card">
             <h1 className="section-heading text-3xl md:text-4xl mb-6">About Matrix Science Academy</h1>
             <p className="text-lg text-[#0a1a67] leading-relaxed mb-5">
               Matrix Science Academy (MSA) is dedicated to building strong concepts and habits for

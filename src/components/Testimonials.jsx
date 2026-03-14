@@ -89,14 +89,14 @@ export default function TestimonialsShowcase() {
   };
 
   return (
-    <div className="bg-white py-4 sm:py-6 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Header - Outside colored section */}
-        <div className="text-center mb-4 sm:mb-6">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0a1a67] mb-2">
+    <div className="py-2 sm:py-3 bg-gradient-to-br from-white via-red-50/50 to-red-100/40">
+      <div className="container-page">
+        {/* Header */}
+        <div className="text-left mb-3 sm:mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#8B1538] mb-1.5">
             Student Success Stories
           </h2>
-          <p className="text-sm sm:text-base text-[#0a1a67]/70 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-[#0a1a67]/70 max-w-2xl">
             Hear from students who achieved their dreams with our guidance
           </p>
         </div>
@@ -107,9 +107,9 @@ export default function TestimonialsShowcase() {
           onMouseEnter={() => setIsAutoPlaying(false)}
           onMouseLeave={() => setIsAutoPlaying(true)}
         >
-          {/* Main Slider */}
-          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white shadow-xl">
-            <div className="relative min-h-[350px] sm:min-h-[400px]">
+          {/* Main Slider - card style like courses, no solid red */}
+          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-lg border border-gray-200/80 bg-box-bg">
+            <div className="relative min-h-[280px] sm:min-h-[320px]">
               {testimonials.map((testimonial, idx) => (
                 <div
                   key={idx}
@@ -158,7 +158,7 @@ export default function TestimonialsShowcase() {
                 }
               `}
             >
-              <div className="aspect-video bg-gradient-to-br from-[#B30027] to-[#8a001e] flex items-center justify-center">
+              <div className="aspect-video bg-gray-100 border border-gray-200/80 rounded-lg overflow-hidden flex items-center justify-center">
                 {testimonial.instituteImage ? (
                   <img
                     src={testimonial.instituteImage}
@@ -206,90 +206,50 @@ export default function TestimonialsShowcase() {
 
 function TestimonialCard({ testimonial, isActive }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 h-full">
-      {/* Left Side - Quote Section */}
-      <div className="bg-gradient-to-br from-[#B30027] to-[#8a001e] p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-center relative overflow-hidden min-h-[300px] sm:min-h-[350px]">
-        {/* Decorative Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-4 sm:top-8 right-4 sm:right-8 w-16 sm:w-24 md:w-32 h-16 sm:h-24 md:h-32 border-2 sm:border-4 border-white rounded-full" />
-          <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 w-12 sm:w-16 md:w-24 h-12 sm:h-16 md:h-24 border-2 sm:border-4 border-white rounded-full" />
-        </div>
-
-        <div className="relative z-10">
-          {/* Student Name at Top */}
-          <div
-            className={`mb-3 sm:mb-4 transition-all duration-700 delay-100 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-              }`}
-          >
-            <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-white">{testimonial.name}</h4>
-            <p className="text-white/80 text-xs sm:text-sm md:text-base">Student</p>
-          </div>
-
-          {/* Quote Icon */}
-          <div
-            className={`mb-4 sm:mb-6 transition-all duration-700 delay-200 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-              }`}
-          >
-            <Quote className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-white/90" />
-          </div>
-
-          {/* Quote Text */}
-          <blockquote
-            className={`text-white text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed font-light transition-all duration-700 delay-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-          >
-            "{testimonial.text}"
-          </blockquote>
-
-          {/* Decorative Line */}
-          <div
-            className={`mt-4 sm:mt-6 w-12 sm:w-16 h-1 bg-white/50 transition-all duration-700 delay-500 ${isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
-              }`}
-            style={{ transformOrigin: 'left' }}
-          />
-        </div>
-      </div>
-
-      {/* Right Side - Student Info */}
-      <div className="bg-white p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-between min-h-[250px] sm:min-h-[300px]">
-        {/* College Badge */}
+    <div className="grid grid-cols-1 md:grid-cols-2 h-full relative overflow-hidden">
+      {/* Left - Quote & name */}
+      <div className="relative z-10 p-4 sm:p-6 md:p-8 flex flex-col justify-center min-h-[300px] sm:min-h-[350px]">
         <div
-          className={`transition-all duration-700 delay-400 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-            }`}
+          className={`mb-3 sm:mb-4 transition-all duration-700 delay-100 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}
         >
-          <div className="inline-block bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold shadow-lg">
-            {testimonial.college}
-          </div>
+          <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-[#8B1538]">{testimonial.name}</h4>
+          <p className="text-slate-500 text-xs sm:text-sm">Student · {testimonial.exam}</p>
         </div>
-
-        {/* Institute Image */}
+        <div className={`mb-4 transition-all duration-700 delay-200 ${isActive ? 'opacity-100' : 'opacity-0'}`}>
+          <Quote className="w-8 h-8 sm:w-10 sm:h-10 text-[#B30027]/70" />
+        </div>
+        <blockquote
+          className={`text-[#0a1a67] text-sm sm:text-base md:text-lg leading-relaxed transition-all duration-700 delay-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+        >
+          "{testimonial.text}"
+        </blockquote>
+        <div
+          className={`mt-4 w-12 sm:w-16 h-0.5 bg-[#B30027]/50 transition-all duration-700 delay-500 ${isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`}
+          style={{ transformOrigin: 'left' }}
+        />
+      </div>
+      {/* Right - College & image */}
+      <div className="relative z-10 p-4 sm:p-6 md:p-8 flex flex-col justify-center min-h-[250px] sm:min-h-[300px] md:border-l border-gray-200/80">
+        <div className={`transition-all duration-700 delay-400 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
+          <span className="inline-block bg-[#B30027]/10 text-[#8B1538] px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold border border-[#B30027]/20">
+            {testimonial.college}
+          </span>
+        </div>
         {testimonial.instituteImage && (
-          <div
-            className={`my-3 sm:my-4 transition-all duration-700 delay-450 ${isActive ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
-              }`}
-          >
-            <div className="relative w-full h-24 sm:h-32 md:h-40 rounded-lg overflow-hidden shadow-md">
+          <div className={`my-3 sm:my-4 transition-all duration-700 delay-450 ${isActive ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'}`}>
+            <div className="relative w-full h-24 sm:h-32 md:h-40 rounded-lg overflow-hidden border border-gray-200/80">
               <img
                 src={testimonial.instituteImage}
                 alt={testimonial.college}
                 className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.target.style.display = 'none'
-                }}
+                onError={(e) => { e.target.style.display = 'none' }}
               />
             </div>
           </div>
         )}
-
-        {/* Institute Name */}
-        <div
-          className={`my-3 sm:my-4 transition-all duration-700 delay-500 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
-        >
-          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
-            {testimonial.college}
-          </h3>
-          <div className="w-10 sm:w-12 md:w-16 h-1 bg-gradient-to-r from-[#B30027] to-[#8a001e] rounded-full" />
+        <div className={`my-2 transition-all duration-700 delay-500 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#0a1a67]">{testimonial.college}</h3>
+          <div className="w-10 sm:w-12 h-0.5 bg-[#B30027] rounded-full mt-1" />
         </div>
       </div>
     </div>

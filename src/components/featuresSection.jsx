@@ -60,11 +60,11 @@ export default function FeaturesSection() {
     <section className="py-3 sm:py-5 bg-gray-50">
       <div className="container-page max-w-6xl mx-auto">
         {/* Header - like Our Courses */}
-        <div className="text-center mb-4 sm:mb-6">
+        <div className="text-left mb-4 sm:mb-6">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#B30027] mb-2">
             Features
           </h2>
-          <p className="text-sm sm:text-base text-[#0a1a67]/80 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-[#0a1a67]/80 max-w-2xl">
             Discover our world-class facilities designed to provide the best learning experience
           </p>
         </div>
