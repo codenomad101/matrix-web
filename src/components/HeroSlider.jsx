@@ -73,7 +73,7 @@ export default function HeroSlider() {
       <div className="container-page pt-1 pb-2 sm:pt-6 sm:pb-8 px-2 sm:px-6">
         {/* Compact height for mobile */}
         <div
-          className="relative min-h-[260px] sm:min-h-[320px] md:min-h-[380px] lg:min-h-[420px] rounded-lg sm:rounded-3xl overflow-hidden bg-white shadow-lg border border-slate-200/80"
+          className="relative min-h-[260px] sm:min-h-[320px] md:min-h-[380px] lg:min-h-[420px] rounded-lg sm:rounded-3xl overflow-hidden shadow-lg border border-slate-200/60"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
@@ -131,180 +131,90 @@ export default function HeroSlider() {
                     </div>
                   </div>
                 ) : s.type === 'courses' ? (
-                  <div className="w-full h-full relative overflow-hidden">
-                    {/* Background Image */}
-                    <div className="absolute inset-0">
-                      <OptimizedImage
-                        cloudinaryId={s.cloudinaryId}
-                        alt={s.title}
-                        width={1920}
-                        height={1080}
-                        className="w-full h-full object-cover"
-                        crop="fill"
-                        loading="lazy"
-                      />
-                      {/* Red overlay for consistent hero look */}
-                      <div className="absolute inset-0 bg-[#B30027]"></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                    </div>
-
-                    <div className="w-full h-full flex flex-col gap-0 p-1 sm:p-2 md:p-3 relative z-10 overflow-y-auto items-center justify-center">
-                      <div className="text-center shrink-0 mb-0.5">
-                        <h1 className="text-xs sm:text-sm md:text-base font-extrabold leading-tight text-white">
+                  <div className="w-full h-full relative bg-gradient-to-br from-white via-red-50/50 to-red-100/40">
+                    <div className="relative z-10 w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 lg:gap-6 pt-2 sm:pt-3 md:pt-4 lg:pt-5 px-4 sm:px-5 md:px-6 lg:px-8 pb-2 sm:pb-3 md:pb-4 overflow-y-auto items-center">
+                      {/* Left: Our Courses + Specialized Batches (shortened) */}
+                      <div className="flex flex-col justify-center min-w-0">
+                        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-[#8B1538] mb-0.5">
                           Our Courses
                         </h1>
-                      </div>
-                      <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-1.5 sm:gap-3 items-center">
-                        {/* Left Column: Compact Courses Grid */}
-                        <div className="grid grid-cols-2 gap-1 sm:gap-1.5 w-full">
+                        <p className="text-sm sm:text-base text-slate-600 mb-2 sm:mb-3">
+                          {s.subtitle}
+                        </p>
+                        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 mb-2 sm:mb-3">
                           {s.courses.map((course, idx) => (
                             <div
                               key={idx}
-                              className="bg-white/10 backdrop-blur-md border border-white/20 rounded sm:rounded-lg p-1 sm:p-2 md:p-3 text-center shadow-md hover:shadow-lg transition-all duration-300 group cursor-pointer"
+                              className="bg-white/80 border border-slate-200/80 rounded-lg p-2 sm:p-3 text-left shadow-sm"
                             >
-                              <div className="text-xs sm:text-sm md:text-lg mb-0.5 group-hover:scale-110 transition-transform duration-300">
-                                {course.icon}
-                              </div>
-                              <h3 className="text-[8px] sm:text-[9px] md:text-xs font-bold text-white leading-tight">
-                                {course.name}
-                              </h3>
-                              <p className="hidden sm:block text-[6px] sm:text-[7px] md:text-[9px] text-white/80">
-                                {course.description}
-                              </p>
+                              <span className="text-base sm:text-lg">{course.icon}</span>
+                              <h3 className="text-xs sm:text-sm font-bold text-[#8B1538] leading-tight">{course.name}</h3>
+                              <p className="text-[10px] sm:text-xs text-slate-500 line-clamp-1">{course.description}</p>
                             </div>
                           ))}
                         </div>
-
-                        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg sm:rounded-xl p-1.5 sm:p-2 md:p-4">
-                          <h3 className="text-[9px] sm:text-[10px] md:text-sm font-bold mb-1 sm:mb-2 border-b border-white/20 pb-0.5 md:pb-1 text-white">
-                            ⚡ Specialized Batches
-                          </h3>
-                          <div className="space-y-0.5 sm:space-y-1 md:space-y-1.5">
-                            <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2">
-                              <span className="text-[10px] sm:text-xs md:text-sm">🚀</span>
-                              <div className="text-[8px] sm:text-[9px] md:text-xs font-bold text-white">IMPULSE</div>
-                            </div>
-                            <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2">
-                              <span className="text-[10px] sm:text-xs md:text-sm">🏃</span>
-                              <div className="text-[8px] sm:text-[9px] md:text-xs font-bold text-white">SPRINT</div>
-                            </div>
-                            <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2">
-                              <span className="text-[10px] sm:text-xs md:text-sm">📈</span>
-                              <div className="text-[8px] sm:text-[9px] md:text-xs font-bold text-white">PACE</div>
-                            </div>
-                            <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2">
-                              <span className="text-[10px] sm:text-xs md:text-sm">🎓</span>
-                              <div className="text-[8px] sm:text-[9px] md:text-xs font-bold text-white">DRIFT</div>
-                            </div>
-                            <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2">
-                              <span className="text-[10px] sm:text-xs md:text-sm">🏆</span>
-                              <div className="text-[8px] sm:text-[9px] md:text-xs font-bold text-white">RACE</div>
-                            </div>
-                          </div>
-                          <Link href="/courses" className="inline-flex justify-center items-center w-full bg-[#B30027] text-white hover:bg-[#8a001e] text-[7px] sm:text-[8px] md:text-xs px-1.5 py-1 md:px-3 md:py-2 rounded font-bold shadow-md transition-all duration-300 hover:scale-105 mt-1.5 md:mt-3">
-                            View All Batches
-                          </Link>
+                        <div className="border-t border-red-200/80 pt-2 mb-2">
+                          <h3 className="text-sm font-bold text-[#8B1538] mb-0.5">⚡ Specialized Batches</h3>
+                          <p className="text-xs text-slate-600">IMPULSE · SPRINT · PACE · DRIFT · RACE</p>
                         </div>
+                        <Link
+                          href="/courses"
+                          className="inline-flex justify-center items-center w-fit bg-[#B30027] text-white hover:bg-[#8a001e] text-sm font-semibold px-5 py-2.5 rounded-lg shadow-md transition-all duration-200 hover:shadow-lg"
+                        >
+                          View All Batches
+                        </Link>
+                      </div>
+                      {/* Right: Image (compact, no scroll) */}
+                      <div className="flex items-center justify-center min-w-0 h-full">
+                        <img
+                          src={`https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/${s.cloudinaryId}`}
+                          alt={s.title}
+                          className="max-w-[300px] sm:max-w-[340px] md:max-w-[400px] w-full max-h-[200px] sm:max-h-[260px] md:max-h-[320px] h-auto object-contain"
+                        />
                       </div>
                     </div>
                   </div>
                 ) : s.type === 'results' ? (
-                  <div className="w-full h-full relative overflow-hidden">
-                    {/* Background Image */}
-                    <div className="absolute inset-0">
-                      <OptimizedImage
-                        cloudinaryId={s.cloudinaryId}
-                        alt={s.title}
-                        width={1920}
-                        height={1080}
-                        className="w-full h-full object-cover"
-                        crop="fill"
-                        loading="lazy"
-                      />
-                      {/* Red overlay for consistent hero look */}
-                      <div className="absolute inset-0 bg-[#B30027]"></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                    </div>
-
-                    <div className="w-full h-full flex flex-col gap-0 p-1 sm:p-2 md:p-3 relative z-10 overflow-y-auto items-center justify-center">
-                      <div className="text-center shrink-0 mb-0.5">
-                        <div className="inline-flex items-center gap-1 text-[7px] sm:text-[8px] md:text-[10px] font-medium bg-white/10 text-white border border-white/20 w-fit px-1 sm:px-1.5 py-0.5 rounded-full backdrop-blur-sm mb-0.5">
-                          <span>Our Achievements</span>
-                        </div>
-                        <h1 className="text-[10px] sm:text-sm md:text-base font-extrabold leading-tight text-white">
+                  <div className="w-full h-full relative bg-gradient-to-br from-white via-red-50/50 to-red-100/40">
+                    <div className="relative z-10 w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 lg:gap-6 pt-2 sm:pt-3 md:pt-4 lg:pt-5 px-4 sm:px-5 md:px-6 lg:px-8 pb-2 sm:pb-3 md:pb-4 overflow-y-auto items-center">
+                      {/* Left: Results in Statistics + Outstanding Performance (shortened) */}
+                      <div className="flex flex-col justify-center min-w-0">
+                        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-[#8B1538] mb-0.5">
                           {s.title}
                         </h1>
-                      </div>
-
-                      <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-1 sm:gap-3 items-center">
-                        {/* Left Column: Compact Stats Grid */}
-                        <div className="grid grid-cols-2 gap-1 sm:gap-1.5 w-full">
+                        <p className="text-sm sm:text-base text-slate-600 mb-2 sm:mb-3">
+                          {s.subtitle}
+                        </p>
+                        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 mb-2 sm:mb-3">
                           {s.stats.map((stat, idx) => (
                             <div
                               key={idx}
-                              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg sm:rounded-xl p-1 sm:p-2 md:p-3 text-center shadow-md hover:shadow-lg transition-all duration-300 group cursor-pointer"
+                              className="bg-white/80 border border-slate-200/80 rounded-lg p-2 sm:p-3 text-center shadow-sm"
                             >
-                              <div className="text-[10px] sm:text-sm md:text-lg font-extrabold mb-0 group-hover:scale-110 transition-transform duration-300 text-white">
-                                {stat.value}
-                              </div>
-                              <h3 className="text-[6px] sm:text-[8px] md:text-[10px] font-bold leading-tight text-white">
-                                {stat.label}
-                              </h3>
-                              <p className="text-[5px] sm:text-[6px] md:text-[8px] text-white/80">
-                                {stat.exam}
-                              </p>
+                              <div className="text-lg sm:text-xl font-bold text-[#8B1538]">{stat.value}</div>
+                              <h3 className="text-[10px] sm:text-xs font-bold text-slate-700 leading-tight">{stat.label}</h3>
+                              <p className="text-[9px] sm:text-[10px] text-slate-500">{stat.exam}</p>
                             </div>
                           ))}
                         </div>
-
-                        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg sm:rounded-xl p-1.5 sm:p-2 md:p-4">
-                          <h3 className="text-[8px] sm:text-[9px] md:text-sm font-bold mb-0.5 sm:mb-1.5 border-b border-white/20 pb-0.5 md:pb-1 text-white">
-                            🏆 Outstanding Performance
-                          </h3>
-                          <div className="space-y-0.5 sm:space-y-1 md:space-y-1.5">
-                            <div className="flex items-start gap-1 sm:gap-1.5 md:gap-2">
-                              <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                              </svg>
-                              <div>
-                                <div className="text-[8px] sm:text-[9px] md:text-xs font-bold text-white">80+ Students</div>
-                                <div className="text-[6px] sm:text-[7px] md:text-[9px] text-white/80">Qualified for JEE Advanced</div>
-                              </div>
-                            </div>
-                            <div className="flex items-start gap-1 sm:gap-1.5 md:gap-2">
-                              <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                              </svg>
-                              <div>
-                                <div className="text-[8px] sm:text-[9px] md:text-xs font-bold text-white">32 Students</div>
-                                <div className="text-[6px] sm:text-[7px] md:text-[9px] text-white/80">Scored more than 95%ile</div>
-                              </div>
-                            </div>
-                            <div className="flex items-start gap-1 sm:gap-1.5 md:gap-2">
-                              <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                              </svg>
-                              <div>
-                                <div className="text-[8px] sm:text-[9px] md:text-xs font-bold text-white">86 Students</div>
-                                <div className="text-[6px] sm:text-[7px] md:text-[9px] text-white/80">Scored 99%ile in MHT-CET</div>
-                              </div>
-                            </div>
-                            <div className="flex items-start gap-1 sm:gap-1.5 md:gap-2">
-                              <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                              </svg>
-                              <div>
-                                <div className="text-[8px] sm:text-[9px] md:text-xs font-bold text-white">162 Students</div>
-                                <div className="text-[6px] sm:text-[7px] md:text-[9px] text-white/80">Scored 98%ile in MHT-CET</div>
-                              </div>
-                            </div>
-                          </div>
-                          <Link href="/results" className="inline-flex justify-center items-center w-full bg-[#B30027] text-white hover:bg-[#8a001e] text-[6px] sm:text-[8px] md:text-xs px-1.5 py-1 md:px-3 md:py-2 rounded font-bold shadow-md transition-all duration-300 hover:scale-105 mt-1 md:mt-3">
-                            View Detailed Results
-                          </Link>
+                        <div className="border-t border-red-200/80 pt-2 mb-2">
+                          <h3 className="text-sm font-bold text-[#8B1538] mb-0.5">🏆 Outstanding Performance</h3>
+                          <p className="text-xs text-slate-600">80+ JEE Advanced · 32 at 95%+ · 86 at 99%ile MHT-CET · 162 at 98%ile</p>
                         </div>
+                        <Link
+                          href="/results"
+                          className="inline-flex justify-center items-center w-fit bg-[#B30027] text-white hover:bg-[#8a001e] text-sm font-semibold px-5 py-2.5 rounded-lg shadow-md transition-all duration-200 hover:shadow-lg"
+                        >
+                          View Detailed Results
+                        </Link>
+                      </div>
+                      {/* Right: Image (compact, no scroll) */}
+                      <div className="flex items-center justify-center min-w-0 h-full">
+                        <img
+                          src={`https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/${s.cloudinaryId}`}
+                          alt={s.title}
+                          className="max-w-[300px] sm:max-w-[340px] md:max-w-[400px] w-full max-h-[200px] sm:max-h-[260px] md:max-h-[320px] h-auto object-contain"
+                        />
                       </div>
                     </div>
                   </div>

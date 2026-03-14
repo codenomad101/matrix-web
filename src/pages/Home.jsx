@@ -176,9 +176,9 @@ function ResultsImageSlider() {
   }, [images.length, maxOffset])
 
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-white shadow-2xl border border-gray-100">
-      {/* Row of images - multiple visible, sliding as a group to the right */}
-      <div className="relative h-[280px] md:h-[350px] lg:h-[400px] bg-white overflow-hidden">
+    <div className="relative overflow-hidden rounded-2xl">
+      {/* Row of images - multiple visible, sliding as a group to the right; no white bg */}
+      <div className="relative h-[280px] md:h-[350px] lg:h-[400px] overflow-hidden">
         <div
           className="flex h-full transition-transform duration-700 ease-in-out"
           style={{
@@ -192,7 +192,7 @@ function ResultsImageSlider() {
               className="flex-shrink-0 p-2 md:p-3 h-full flex items-center justify-center"
               style={{ width: `${100 / images.length}%` }}
             >
-              <div className="w-full h-full bg-white rounded-xl shadow-lg overflow-hidden flex items-center justify-center">
+              <div className="w-full h-full rounded-xl overflow-hidden flex items-center justify-center shadow-md border border-gray-200/60 bg-gray-50/50">
                 <img
                   src={`https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/${img.cloudinaryId}`}
                   alt={img.alt}
@@ -207,7 +207,7 @@ function ResultsImageSlider() {
         {/* Navigation Arrows */}
         <button
           onClick={() => setOffset((prev) => (prev === 0 ? maxOffset : prev - step))}
-          className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/95 hover:bg-[#0a1a67] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border-2 border-[#0a1a67]/20 hover:border-[#0a1a67]"
+          className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[#0a1a67] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border border-gray-200/80 hover:border-[#0a1a67]"
         >
           <svg className="w-5 h-5 md:w-6 md:h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -215,7 +215,7 @@ function ResultsImageSlider() {
         </button>
         <button
           onClick={() => setOffset((prev) => (prev >= maxOffset ? 0 : prev + step))}
-          className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/95 hover:bg-[#0a1a67] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border-2 border-[#0a1a67]/20 hover:border-[#0a1a67]"
+          className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[#0a1a67] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border border-gray-200/80 hover:border-[#0a1a67]"
         >
           <svg className="w-5 h-5 md:w-6 md:h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -223,8 +223,8 @@ function ResultsImageSlider() {
         </button>
       </div>
 
-      {/* Dots - one per slide (group of images) */}
-      <div className="flex justify-center gap-2 py-3 bg-white border-t border-gray-100">
+      {/* Dots - no white bg, site background */}
+      <div className="flex justify-center gap-2 py-3">
         {Array.from({ length: maxOffset + 1 }).map((_, idx) => (
           <button
             key={idx}
@@ -349,58 +349,19 @@ function ResultsSection({ topResults }) {
   ]
 
   return (
-    <section className="page-section-white" ref={sectionRef}>
+    <section className="py-3 md:py-5" ref={sectionRef}>
       <div className="container-page">
         <div className="flex items-center justify-between mb-2 flex-col sm:flex-row gap-3 sm:gap-0">
           <h2 className="section-heading text-center sm:text-left">
             One of the <span className="text-[#B30027]">Leading and most successful</span> Institutions in Pune
           </h2>
-
-        <Link href="/results" className="btn-outline hover:scale-105 transition-transform duration-300 text-sm sm:text-base px-4 py-2 sm:px-5 sm:py-2.5">View All Results</Link>
-      </div>
-
-      {/* Results Image Slider */}
-      <div className="mb-2">
-        <ResultsImageSlider />
-      </div>
-
-      {/* Enhanced Results Display */}
-      <div className="mt-2">
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {topCards.filter((_, idx) => idx !== 1).map((card, filteredIdx) => {
-            const bgColors = ['bg-[#B30027]', 'bg-brand-dark']
-            return (
-              <div
-                key={filteredIdx}
-                className={`${bgColors[filteredIdx]} p-6 text-center text-white rounded-2xl shadow-soft transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden group min-h-[180px] flex flex-col justify-center`}
-              >
-                <h2>Our Results</h2>
-                <div className="relative z-10">
-                  <div className="text-4xl font-extrabold text-white mb-2">
-                    {card.value}
-                  </div>
-                  <div className="text-lg font-semibold text-white flex items-center justify-center gap-2">
-                    {card.title}
-                    <svg className="w-5 h-5 opacity-0 group-hover:opacity-100 transform group-hover:scale-110 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </div>
-                  <div className="text-sm text-white/90 mt-2">
-                    {card.desc}
-                  </div>
-                  {card.highlight && (
-                    <div className="text-xs text-white/80 mt-2">
-                      {card.highlight}
-                    </div>
-                  )}
-                </div>
-                {/* Hover underline effect */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></div>
-              </div>
-            )
-          })}
+          <Link href="/results" className="btn-outline hover:scale-105 transition-transform duration-300 text-sm sm:text-base px-4 py-2 sm:px-5 sm:py-2.5">View All Results</Link>
         </div>
-      </div>
+
+        {/* Results Image Slider - site background only, no white block */}
+        <div className="mb-0">
+          <ResultsImageSlider />
+        </div>
       </div>
     </section>
   )

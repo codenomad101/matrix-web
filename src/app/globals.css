@@ -95,6 +95,11 @@ small, .text-caption, .text-small {
 	@apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
+/* Wider container for top header / navbar */
+.container-header {
+	@apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
 .container-page {
 	@apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
 }
