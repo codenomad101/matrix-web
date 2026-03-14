@@ -5,7 +5,7 @@ export default function IITJEEPage() {
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
             {/* Hero Section */}
-            <section className="bg-gradient-to-br from-[#B30027] to-[#8a001e] text-white py-16 md:py-24">
+            <section className="bg-gradient-to-br from-[#B30027] to-[#8a001e] text-white py-8 md:py-12">
                 <div className="container-page">
                     <div className="max-w-4xl mx-auto text-center">
                         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
@@ -22,7 +22,7 @@ export default function IITJEEPage() {
             </section>
 
             {/* About the Exam */}
-            <section className="container-page py-12 md:py-16">
+            <section className="container-page py-5 md:py-7">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-6">About IIT-JEE</h2>
                     <div className="prose prose-lg max-w-none">
@@ -42,7 +42,7 @@ export default function IITJEEPage() {
             </section>
 
             {/* Exam Pattern */}
-            <section className="bg-gray-50 py-12 md:py-16">
+            <section className="bg-gray-50 py-5 md:py-7">
                 <div className="container-page">
                     <div className="max-w-4xl mx-auto">
                         <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">Exam Pattern</h2>
@@ -106,7 +106,7 @@ export default function IITJEEPage() {
             </section>
 
             {/* What You'll Achieve */}
-            <section className="container-page py-12 md:py-16">
+            <section className="container-page py-5 md:py-7">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">What You'll Achieve</h2>
                     <div className="grid sm:grid-cols-2 gap-6">
@@ -129,7 +129,7 @@ export default function IITJEEPage() {
             </section>
 
             {/* Our Results */}
-            <section className="bg-[#0a1a67] text-white py-12 md:py-16">
+            <section className="bg-[#0a1a67] text-white py-5 md:py-7">
                 <div className="container-page">
                     <div className="max-w-4xl mx-auto text-center">
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Results</h2>
@@ -154,7 +154,7 @@ export default function IITJEEPage() {
             </section>
 
             {/* Our Approach */}
-            <section className="container-page py-12 md:py-16">
+            <section className="container-page py-5 md:py-7">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">Our Teaching Approach</h2>
                     <div className="space-y-6">
@@ -181,7 +181,7 @@ export default function IITJEEPage() {
             </section>
 
             {/* CTA Section */}
-            <section className="container-page py-12">
+            <section className="container-page py-6">
                 <div className="bg-gradient-to-r from-[#0a1a67] to-[#B30027] rounded-3xl p-8 md:p-12 text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your IIT Journey?</h2>
                     <p className="text-lg md:text-xl mb-8 opacity-90">

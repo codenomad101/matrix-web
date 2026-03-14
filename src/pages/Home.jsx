@@ -2,7 +2,6 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import HeroSlider from '../components/HeroSlider.jsx'
-import NewsSlider from '../components/NewsSlider.jsx'
 import OptimizedImage from '@/components/OptimizedImage'
 import FeaturesSection from '@/components/featuresSection.jsx'
 
@@ -62,8 +61,8 @@ function LatestNewsSection() {
   ]
 
   return (
-    <section className="container-page py-8">
-      <div className="bg-gradient-to-r from-gray-50 to-white rounded-2xl shadow-lg overflow-hidden">
+    <section className="container-page py-5">
+      <div className="bg-box-bg rounded-2xl shadow-lg overflow-hidden border border-gray-200/60">
         <div className="grid md:grid-cols-[300px_1fr] lg:grid-cols-[350px_1fr]">
           {/* Left Side - Title and Description */}
           <div className="bg-[#0a1a67] p-6 md:p-8 flex flex-col justify-center">
@@ -158,74 +157,81 @@ function OverviewSection() {
 
 // Results Image Slider Component
 function ResultsImageSlider() {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [offset, setOffset] = useState(0)
   const images = [
     { cloudinaryId: 'v1764181799/JEE_MAIN_o7kayq', alt: 'JEE Main Results' },
     { cloudinaryId: 'v1764181794/JEE_MAIN_2025_aoxekj', alt: 'JEE Main 2025 Results' },
     { cloudinaryId: 'v1764181786/IIT_knkkka', alt: 'IIT Results' },
     { cloudinaryId: 'v1764181835/NEET_riozts', alt: 'NEET Results' },
   ]
+  const visibleCount = 2
+  const step = 1
+  const maxOffset = Math.max(0, images.length - visibleCount)
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length)
+      setOffset((prev) => (prev >= maxOffset ? 0 : prev + step))
     }, 4000)
     return () => clearInterval(timer)
-  }, [images.length])
+  }, [images.length, maxOffset])
 
   return (
     <div className="relative overflow-hidden rounded-2xl bg-white shadow-2xl border border-gray-100">
-      {/* Main Slider */}
-      <div className="relative h-[280px] md:h-[350px] lg:h-[400px] bg-white">
-        {images.map((img, idx) => (
-          <div
-            key={idx}
-            className={`absolute inset-0 transition-all duration-700 ease-in-out ${currentIndex === idx
-              ? 'opacity-100 scale-100'
-              : 'opacity-0 scale-95'
-              }`}
-          >
-            <div className="w-full h-full bg-white p-2 md:p-4 lg:p-5 flex items-center justify-center">
-              <div className="relative w-full h-full bg-white rounded-xl shadow-lg overflow-hidden">
+      {/* Row of images - multiple visible, sliding as a group to the right */}
+      <div className="relative h-[280px] md:h-[350px] lg:h-[400px] bg-white overflow-hidden">
+        <div
+          className="flex h-full transition-transform duration-700 ease-in-out"
+          style={{
+            width: `${images.length * (100 / visibleCount)}%`,
+            transform: `translateX(-${offset * (100 / images.length)}%)`,
+          }}
+        >
+          {images.map((img, idx) => (
+            <div
+              key={idx}
+              className="flex-shrink-0 p-2 md:p-3 h-full flex items-center justify-center"
+              style={{ width: `${100 / images.length}%` }}
+            >
+              <div className="w-full h-full bg-white rounded-xl shadow-lg overflow-hidden flex items-center justify-center">
                 <img
-                  src={`https://res.cloudinary.com/ddqgxrgnc/image/upload/w_1200,h_800,c_fit,q_auto,f_auto/${img.cloudinaryId}`}
+                  src={`https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/${img.cloudinaryId}`}
                   alt={img.alt}
                   className="w-full h-full object-contain"
-                  loading={idx === 0 ? 'eager' : 'lazy'}
+                  loading={idx < 2 ? 'eager' : 'lazy'}
                 />
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
 
         {/* Navigation Arrows */}
         <button
-          onClick={() => setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white hover:bg-[#0a1a67] rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border-2 border-[#0a1a67]/20 hover:border-[#0a1a67]"
+          onClick={() => setOffset((prev) => (prev === 0 ? maxOffset : prev - step))}
+          className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/95 hover:bg-[#0a1a67] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border-2 border-[#0a1a67]/20 hover:border-[#0a1a67]"
         >
-          <svg className="w-6 h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 md:w-6 md:h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
         <button
-          onClick={() => setCurrentIndex((prev) => (prev + 1) % images.length)}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white hover:bg-[#0a1a67] rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border-2 border-[#0a1a67]/20 hover:border-[#0a1a67]"
+          onClick={() => setOffset((prev) => (prev >= maxOffset ? 0 : prev + step))}
+          className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/95 hover:bg-[#0a1a67] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border-2 border-[#0a1a67]/20 hover:border-[#0a1a67]"
         >
-          <svg className="w-6 h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 md:w-6 md:h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
       </div>
 
-      {/* Dots Navigation */}
-      <div className="flex justify-center gap-3 py-4 bg-white border-t border-gray-100">
-        {images.map((_, idx) => (
+      {/* Dots - one per slide (group of images) */}
+      <div className="flex justify-center gap-2 py-3 bg-white border-t border-gray-100">
+        {Array.from({ length: maxOffset + 1 }).map((_, idx) => (
           <button
             key={idx}
-            onClick={() => setCurrentIndex(idx)}
-            className={`h-3 rounded-full transition-all duration-300 ${currentIndex === idx
-              ? 'w-10 bg-[#0a1a67] shadow-md'
-              : 'w-3 bg-gray-300 hover:bg-[#0a1a67]/50'
+            onClick={() => setOffset(idx)}
+            className={`h-2 rounded-full transition-all duration-300 ${offset === idx
+              ? 'w-6 bg-[#0a1a67]'
+              : 'w-2 bg-gray-300 hover:bg-[#0a1a67]/50'
               }`}
           />
         ))}
@@ -343,22 +349,23 @@ function ResultsSection({ topResults }) {
   ]
 
   return (
-    <section className="container-page py-4" ref={sectionRef}>
-      <div className="flex items-center justify-between mb-4 flex-col sm:flex-row gap-3 sm:gap-0">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#0a1a67] text-center sm:text-left">
-          One of the <span className="text-[#B30027]">Leading and most </span>  <span className="text-[#B30027]"> successful</span> Institutions in Pune
-        </h2>
+    <section className="page-section-white" ref={sectionRef}>
+      <div className="container-page">
+        <div className="flex items-center justify-between mb-2 flex-col sm:flex-row gap-3 sm:gap-0">
+          <h2 className="section-heading text-center sm:text-left">
+            One of the <span className="text-[#B30027]">Leading and most successful</span> Institutions in Pune
+          </h2>
 
         <Link href="/results" className="btn-outline hover:scale-105 transition-transform duration-300 text-sm sm:text-base px-4 py-2 sm:px-5 sm:py-2.5">View All Results</Link>
       </div>
 
       {/* Results Image Slider */}
-      <div className="mb-6">
+      <div className="mb-2">
         <ResultsImageSlider />
       </div>
 
       {/* Enhanced Results Display */}
-      <div className="mt-6">
+      <div className="mt-2">
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {topCards.filter((_, idx) => idx !== 1).map((card, filteredIdx) => {
             const bgColors = ['bg-[#B30027]', 'bg-brand-dark']
@@ -393,6 +400,7 @@ function ResultsSection({ topResults }) {
             )
           })}
         </div>
+      </div>
       </div>
     </section>
   )
@@ -464,24 +472,25 @@ function FeaturesAndNewsSection() {
   ]
 
   return (
-    <section className="container-page py-8">
+    <section className="page-section-white">
+      <div className="container-page">
       <div className="grid lg:grid-cols-2 gap-6">
-        {/* Left - Features */}
-        <div className="hidden md:block bg-[#0a1a67] rounded-2xl p-6 md:p-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Why Choose Us?</h2>
+        {/* Left - Features (Why Choose Us) */}
+        <div className="hidden md:block page-card">
+          <h2 className="section-heading mb-4">Why Choose Us?</h2>
           <div className="grid grid-cols-2 gap-4">
             {features.map((feature, idx) => (
               <div
                 key={idx}
-                className="bg-white/10 backdrop-blur rounded-xl p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group"
+                className="bg-gray-200/70 rounded-xl p-4 hover:bg-gray-200 transition-all duration-300 hover:scale-[1.02] cursor-pointer group border border-gray-200/60"
               >
-                <span className="text-3xl mb-2 block group-hover:scale-110 transition-transform duration-300">{feature.icon}</span>
-                <h3 className="text-white font-semibold text-sm md:text-base">{feature.title}</h3>
-                <p className="text-white/70 text-xs md:text-sm mt-1">{feature.desc}</p>
+                <span className="text-xl md:text-2xl mb-2 block group-hover:scale-105 transition-transform duration-300">{feature.icon}</span>
+                <h3 className="text-heading font-semibold text-sm md:text-base">{feature.title}</h3>
+                <p className="text-black/80 text-xs md:text-sm mt-1">{feature.desc}</p>
               </div>
             ))}
           </div>
-          <Link href="/about" className="inline-flex items-center gap-2 mt-6 text-white hover:text-white/80 transition-colors duration-300 font-medium">
+          <Link href="/about" className="inline-flex items-center gap-2 mt-6 text-black hover:text-body transition-colors duration-300 font-medium">
             Learn More About Us
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -520,10 +529,10 @@ function FeaturesAndNewsSection() {
       </div>
 
       {/* Courses Section */}
-      <div className="mt-12">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-3">Our Courses</h2>
-          <p className="text-[#0a1a67]/70 text-lg">Comprehensive preparation for competitive examinations</p>
+      <div className="mt-6">
+        <div className="text-center mb-5">
+          <h2 className="text-3xl md:text-4xl font-bold text-heading mb-3">Our Courses</h2>
+          <p className="text-body/80 text-lg">Comprehensive preparation for competitive examinations</p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
@@ -531,28 +540,25 @@ function FeaturesAndNewsSection() {
             <Link
               key={course.id}
               href={`/courses/${course.id}`}
-              className="bg-[#0a1a67] rounded-xl sm:rounded-2xl p-3 sm:p-6 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden block"
+              className="bg-box-bg border border-gray-200/80 rounded-xl sm:rounded-2xl p-3 sm:p-6 text-black shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden block"
             >
-              {/* Background decoration */}
-              <div className="absolute top-0 right-0 w-16 h-16 sm:w-24 sm:h-24 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500"></div>
-
               <div className="relative z-10">
-                <div className="text-2xl sm:text-5xl mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">{course.icon}</div>
-                <h3 className="text-sm sm:text-2xl font-bold mb-0.5 sm:mb-1 leading-tight">{course.name}</h3>
-                <p className="text-[10px] sm:text-sm opacity-90 mb-1.5 sm:mb-3 leading-tight">{course.fullName}</p>
-                <p className="text-[9px] sm:text-sm leading-relaxed mb-2 sm:mb-4 line-clamp-2 sm:line-clamp-3">{course.description}</p>
+                <div className="text-xl sm:text-3xl mb-2 sm:mb-3 group-hover:scale-105 transition-transform duration-300">{course.icon}</div>
+                <h3 className="text-sm sm:text-2xl font-bold mb-0.5 sm:mb-1 leading-tight text-heading">{course.name}</h3>
+                <p className="text-[10px] sm:text-sm text-black/80 mb-1.5 sm:mb-3 leading-tight">{course.fullName}</p>
+                <p className="text-[9px] sm:text-sm text-black/90 leading-relaxed mb-2 sm:mb-4 line-clamp-2 sm:line-clamp-3">{course.description}</p>
 
                 <div className="mt-2 sm:mt-4 space-y-1.5 sm:space-y-2">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-md sm:rounded-lg p-1.5 sm:p-3">
-                    <p className="text-[8px] sm:text-xs font-bold">📅 {course.examDates}</p>
+                  <div className="bg-gray-200/70 rounded-md sm:rounded-lg p-1.5 sm:p-3">
+                    <p className="text-[8px] sm:text-xs font-bold text-black">📅 {course.examDates}</p>
                   </div>
 
-                  <div className="bg-white/20 backdrop-blur-sm rounded-md sm:rounded-lg p-1.5 sm:p-3">
-                    <p className="text-[8px] sm:text-xs font-bold">🏆 {course.ourResults}</p>
+                  <div className="bg-gray-200/70 rounded-md sm:rounded-lg p-1.5 sm:p-3">
+                    <p className="text-[8px] sm:text-xs font-bold text-black">🏆 {course.ourResults}</p>
                   </div>
                 </div>
 
-                <div className="mt-2 sm:mt-4 flex items-center gap-1 sm:gap-2 text-[9px] sm:text-sm font-semibold group-hover:gap-2 sm:group-hover:gap-3 transition-all duration-300">
+                <div className="mt-2 sm:mt-4 flex items-center gap-1 sm:gap-2 text-[9px] sm:text-sm font-semibold text-black group-hover:gap-2 sm:group-hover:gap-3 transition-all duration-300">
                   Learn More
                   <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -563,7 +569,7 @@ function FeaturesAndNewsSection() {
           ))}
         </div>
 
-        <div className="text-center mt-8">
+        <div className="text-center mt-5">
           <Link
             href="/courses"
             className="inline-flex items-center gap-2 bg-[#B30027] text-white hover:bg-[#8a001e] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
@@ -574,6 +580,7 @@ function FeaturesAndNewsSection() {
             </svg>
           </Link>
         </div>
+      </div>
       </div>
 
       <style jsx>{`
@@ -592,76 +599,9 @@ function FeaturesAndNewsSection() {
   )
 }
 
-// Our Vision Section Component
-function VisionSection() {
-  const branches = [
-    {
-      name: 'Nigdi',
-      director: 'Mr. Nishant Patwardhan',
-      directorImage: 'v1764218938/abhi_mehta_f6h4om',
-    },
-    {
-      name: 'Shahunagar',
-      director: 'Mr. Ravindra Yadav',
-      directorImage: 'v1764990905/yadav_vv66wt',
-    },
-    {
-      name: 'Chinchwad',
-      director: 'Mr. Algesh Patrike',
-      directorImage: 'v1765163829/algesh_hskjtk',
-    },
-    {
-      name: 'Ravet',
-      director: 'Mr. Abhishek Mehta',
-      directorImage: 'v1764218937/nishant_tifi1f',
-    },
-    {
-      name: 'Wakad',
-      director: 'Mr. Manoj Kumar',
-      directorImage: 'v1765163801/manoj_1_algvci',
-    },
-    {
-      name: 'Moshi',
-      director: 'Mr. Umesh Bharde',
-      directorImage: 'v1765163805/umesh_1_aoyp2r',
-    },
-  ]
-
-  return (
-    <section className="container-page py-8 sm:py-12">
-      <div className="max-w-4xl mx-auto">
-        {/* Vision Text */}
-        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-gray-100">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0a1a67] mb-4 sm:mb-6">
-            Our Vision
-          </h2>
-          <div className="space-y-4 text-[#0a1a67] text-sm sm:text-base leading-relaxed">
-            <p>
-              <strong>We are teachers by our choice and we passionately do our job.</strong> Our aim is not to run the classes conventionally, but we are here to make a change and make a strong impact in the field of 8th to 12th Education in Maharashtra.
-            </p>
-            <p>
-              Matrix Science Academy aims to provide <strong>quality and affordable education</strong> to all students via offline as well as online mode.
-            </p>
-          </div>
-          <Link 
-            href="/about" 
-            className="inline-flex items-center gap-2 mt-6 text-[#B30027] hover:text-[#8a001e] font-semibold transition-colors duration-300 text-sm sm:text-base"
-          >
-            Read Full Message
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 export default function Home() {
   return (
     <div>
-      <NewsSlider />
       <HeroSlider />
 
       {/* Combined Features & News Section */}
@@ -674,40 +614,27 @@ export default function Home() {
 
       <ResultsSection topResults={topResults} />
 
-      {/* Our Vision Section */}
-      <VisionSection />
-
       {/* Features Section */}
       <FeaturesSection />
 
 
 
-      {/* Testimonials Section with Slider */}
-      <section className="py-12 relative overflow-hidden" style={{ backgroundColor: '#0a1a67' }}>
-
-        {/* <div className="container-page relative z-10">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="text-4xl font-bold relative text-white">
-              <span className="relative z-10">Student Testimonials</span>
-              <span className="absolute -bottom-1 left-0 w-24 h-1 bg-white rounded-full"></span>
-            </h2>
-            <Link href="/testimonials" className="btn-outline bg-white hover:scale-105 transition-transform duration-300">View All</Link>
-          </div>
-          
-          <TestimonialCard testimonials={topTestimonials} />
-        </div> */}
+      {/* Testimonials Section - Student Success Stories */}
+      <section className="page-section-gray">
         <TestimonialsShowcase />
       </section>
 
 
-      {/* CTA Section */}
-      <section className="container-page py-8">
-        <div className="rounded-2xl bg-brand/30 border border-brand/40 p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div>
-            <h3 className="text-2xl font-bold text-[#0a1a67]">Ready to start your journey?</h3>
-            <p className="text-[#0a1a67] mt-1">Speak with our counsellors and get a personalized plan.</p>
+      {/* CTA Section - Allen-style */}
+      <section className="page-section-white">
+        <div className="container-page">
+          <div className="page-card flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 className="section-heading mb-1">Ready to start your journey?</h3>
+              <p className="text-[#0a1a67]/80 text-sm">Speak with our counsellors and get a personalized plan.</p>
+            </div>
+            <Link href="/enquiry" className="inline-flex items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] transition-colors duration-300 px-5 py-2.5 font-semibold text-sm shrink-0">Enquire Now</Link>
           </div>
-          <Link href="/enquiry" className="inline-flex items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft">Enquire Now</Link>
         </div>
       </section>
     </div>

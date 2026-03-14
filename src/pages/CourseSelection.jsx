@@ -38,8 +38,8 @@ export default function CourseSelection() {
   ]
 
   return (
-    <div className="container-page py-10">
-      <div className="text-center mb-10">
+    <div className="container-page py-6">
+      <div className="text-center mb-5">
         <h1 className="text-3xl sm:text-4xl font-bold text-[#0a1a67] mb-3">Course Selection Guide</h1>
         <p className="text-[#0a1a67] text-lg">
           Choose the right course based on your career aspirations and academic goals
@@ -47,9 +47,9 @@ export default function CourseSelection() {
       </div>
 
       {/* Course Selection for 11th-12th Science */}
-      <section className="mb-12">
+      <section className="mb-6">
         <h2 className="text-2xl font-bold text-[#0a1a67] mb-6">Course Selection: 11th–12th Science</h2>
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <div className="grid md:grid-cols-2 gap-6 mb-5">
           {/* Regular Science Subjects */}
           <div className="card p-6">
             <h3 className="text-lg font-semibold text-[#0a1a67] mb-4">Regular Science Subjects</h3>
@@ -143,7 +143,7 @@ export default function CourseSelection() {
       </section>
 
       {/* Entrance Exams after 12th */}
-      <section className="mb-12">
+      <section className="mb-6">
         <h2 className="text-2xl font-bold text-[#0a1a67] mb-6">Lists of Entrance Exams after 12th</h2>
         <div className="card p-6">
           <div className="overflow-x-auto">
@@ -186,7 +186,7 @@ export default function CourseSelection() {
       </section>
 
       {/* Average Self Study Hours */}
-      <section className="mb-12">
+      <section className="mb-6">
         <h2 className="text-2xl font-bold text-[#0a1a67] mb-6">Average Self Study Hours of Toppers (According to MSA Survey)</h2>
         <div className="card p-6">
           <div className="overflow-x-auto">

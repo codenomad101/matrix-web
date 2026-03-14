@@ -8,8 +8,8 @@ export default function Performance() {
   const maxStudents = Math.max(...performanceData.map(d => d.students))
 
   return (
-    <div className="container-page py-10">
-      <div className="text-center mb-10">
+    <div className="container-page py-6">
+      <div className="text-center mb-6">
         <h1 className="text-3xl sm:text-4xl font-bold text-[#0a1a67] mb-3">
           Number of Students Scoring More than 99 Percentile
         </h1>
@@ -19,8 +19,8 @@ export default function Performance() {
       </div>
 
       {/* Visual Chart */}
-      <div className="card p-6 sm:p-8 mb-8">
-        <div className="flex flex-col sm:flex-row items-end justify-center gap-6 sm:gap-8 mb-8" style={{ minHeight: '350px', alignItems: 'flex-end' }}>
+      <div className="card p-6 sm:p-8 mb-5">
+        <div className="flex flex-col sm:flex-row items-end justify-center gap-6 sm:gap-8 mb-5" style={{ minHeight: '350px', alignItems: 'flex-end' }}>
           {performanceData.map((data, idx) => {
             const heightPercent = (data.students / maxStudents) * 100
             const barHeight = Math.max((heightPercent / 100) * 280, 80) // Minimum 80px, max 280px based on 100%
@@ -52,7 +52,7 @@ export default function Performance() {
       </div>
 
       {/* Year Cards */}
-      <div className="grid md:grid-cols-3 gap-6 mb-8">
+      <div className="grid md:grid-cols-3 gap-6 mb-5">
         <div className="card p-6 hover:-translate-y-1 transition-transform duration-300">
           <div className="text-4xl font-extrabold text-brand-dark mb-2">12</div>
           <div className="text-lg font-semibold text-[#0a1a67] mb-3">Students in 2022</div>

@@ -142,8 +142,8 @@ export default function GalleryPage() {
     }
 
     return (
-        <div className="container-page py-10">
-            <div className="text-center mb-10">
+        <div className="container-page py-6">
+            <div className="text-center mb-5">
                 <h1 className="text-3xl sm:text-4xl font-bold text-[#0a1a67] mb-3">Photo Gallery</h1>
                 <p className="text-[#0a1a67] text-lg">
                     Explore moments from our events, ceremonies, facilities, and student achievements
@@ -151,7 +151,7 @@ export default function GalleryPage() {
             </div>
 
             {/* Category Filter */}
-            <div className="flex flex-wrap justify-center gap-3 mb-10">
+            <div className="flex flex-wrap justify-center gap-3 mb-6">
                 {categories.map((cat) => (
                     <button
                         key={cat.id}

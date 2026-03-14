@@ -101,7 +101,7 @@ export default function DirectorsMessage() {
   ];
 
   return (
-    <div className="bg-gray-100 py-12">
+    <div className="bg-gray-100 py-6">
       <div className="container-page">
         <div className="bg-white p-8 rounded-lg shadow-lg">
           <h1 className="text-4xl font-bold text-[#0a1a67] mb-4">Director's Message:</h1>
@@ -128,7 +128,7 @@ export default function DirectorsMessage() {
         </div>
 
         <div className="mt-12">
-          <h2 className="text-4xl font-bold text-[#0a1a67] mb-8">Branches</h2>
+          <h2 className="text-4xl font-bold text-[#0a1a67] mb-5">Branches</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {branches.map((branch, index) => (
               <div key={index} className="bg-white p-6 rounded-lg shadow-lg">

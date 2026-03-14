@@ -6,7 +6,7 @@ export const metadata = {
 
 export default function TermsAndConditionsPage() {
   return (
-    <div className="container-page py-16">
+    <div className="container-page py-8">
       <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8">
         <h1 className="text-3xl font-bold text-[#0a1a67] mb-6">Terms &amp; Conditions</h1>
         <p className="text-sm text-gray-500 mb-6">Effective Date: January 14, 2026</p>

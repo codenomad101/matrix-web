@@ -8,6 +8,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        heading: '#B30027',
+        body: '#0a1a67',
+        'page-bg': '#f5f5f5',
+        'box-bg': '#f0f0f0',
         brand: {
           DEFAULT: '#b2dfee',
           dark: '#0a1a67',
@@ -36,8 +40,16 @@ module.exports = {
         },
       },
       fontFamily: {
-        display: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-roboto)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['var(--font-roboto)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        body: ['var(--font-roboto)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        'h1': ['clamp(2.25rem, 2.5vw + 1rem, 2.625rem)', { lineHeight: '1.2' }],
+        'h2': ['clamp(1.75rem, 1.5vw + 1rem, 2rem)', { lineHeight: '1.3' }],
+        'h3': ['clamp(1.375rem, 0.5vw + 1.1rem, 1.5rem)', { lineHeight: '1.4' }],
+        'body': ['clamp(1rem, 0.25vw + 0.9rem, 1.125rem)', { lineHeight: '1.6' }],
+        'caption': ['0.875rem', { lineHeight: '1.5' }],
       },
       boxShadow: {
         soft: '0 8px 30px rgba(0,0,0,0.08)',

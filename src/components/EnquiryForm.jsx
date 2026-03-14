@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 // WhatsApp numbers for each branch
 // Format: country code + number (without + or spaces)
@@ -15,7 +16,13 @@ const BRANCH_WHATSAPP_NUMBERS = {
   'Rahatani': '917058740609',
 }
 
+const BRANCH_OPTIONS = Object.keys(BRANCH_WHATSAPP_NUMBERS)
+
 export default function EnquiryForm() {
+  const searchParams = useSearchParams()
+  const branchParam = searchParams.get('branch')
+  const initialBranch = BRANCH_OPTIONS.includes(branchParam || '') ? branchParam : 'Nigdi'
+
   const [origin, setOrigin] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -69,7 +76,7 @@ _This enquiry was submitted through the website._`
   }
 
   return (
-    <div className="container-page py-12">
+    <div className="container-page py-6">
       <div className="grid lg:grid-cols-2 gap-8">
         <div className="card p-6 sm:p-8">
           <h2 className="text-2xl font-bold text-[#0a1a67]">Enquiry Form</h2>
@@ -107,15 +114,10 @@ _This enquiry was submitted through the website._`
 
             <div className="sm:col-span-1">
               <label className="block text-sm font-medium text-[#0a1a67]">Preferred Branch</label>
-              <select name="branch" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand">
-                <option>Nigdi</option>
-                <option>Shahunagar</option>
-                <option>Chinchwad</option>
-                <option>Ravet</option>
-                <option>Wakad</option>
-                <option>Moshi</option>
-                <option>Kolhapur</option>
-                <option>Rahatani</option>
+              <select name="branch" defaultValue={initialBranch} className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand">
+                {BRANCH_OPTIONS.map((b) => (
+                  <option key={b} value={b}>{b}</option>
+                ))}
               </select>
             </div>
 

@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 // WhatsApp numbers for each branch
 const BRANCH_WHATSAPP_NUMBERS = {
@@ -61,6 +61,15 @@ _This enquiry was submitted through the website._`
         }, 1000)
     }
 
+    const closeModal = () => setIsOpen(false)
+
+    useEffect(() => {
+        if (!isOpen) return
+        const onEscape = (e) => { if (e.key === 'Escape') closeModal() }
+        window.addEventListener('keydown', onEscape)
+        return () => window.removeEventListener('keydown', onEscape)
+    }, [isOpen])
+
     return (
         <>
             {/* Floating Button */}
@@ -82,26 +91,30 @@ _This enquiry was submitted through the website._`
                 </svg>
             </button>
 
-            {/* Modal Overlay */}
+            {/* Modal Overlay - click overlay or X to close; Escape key also closes */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[10000] flex items-center justify-center p-4"
-                    onClick={() => setIsOpen(false)}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="quick-enquiry-title"
+                    className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[10004] flex items-center justify-center p-4"
+                    onClick={closeModal}
                 >
-                    {/* Modal Content */}
+                    {/* Modal Content - stop propagation so overlay click is only on backdrop */}
                     <div
-                        className="bg-white rounded-xl shadow-2xl max-w-[320px] w-full max-h-[85vh] overflow-y-auto"
+                        className="bg-white rounded-xl shadow-2xl max-w-[320px] w-full max-h-[85vh] overflow-y-auto relative"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        {/* Header */}
+                        {/* Header with prominent close (Allen-style) - site colors */}
                         <div className="bg-gradient-to-r from-[#0a1a67] to-[#1a2a87] p-4 rounded-t-xl relative">
                             <button
-                                onClick={() => setIsOpen(false)}
-                                className="absolute top-2 right-2 text-white/80 hover:text-white transition-colors"
-                                aria-label="Close"
+                                type="button"
+                                onClick={closeModal}
+                                className="absolute top-2 right-2 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#0a1a67]"
+                                aria-label="Close enquiry"
                             >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
 
@@ -112,7 +125,7 @@ _This enquiry was submitted through the website._`
                                     </svg>
                                 </div>
                                 <div>
-                                    <h2 className="text-lg font-bold text-white">Quick Enquiry</h2>
+                                    <h2 id="quick-enquiry-title" className="text-lg font-bold text-white">Quick Enquiry</h2>
                                     <p className="text-white/80 text-xs">We'll reach out shortly</p>
                                 </div>
                             </div>
@@ -220,6 +233,13 @@ _This enquiry was submitted through the website._`
                             <p className="text-[10px] text-gray-500 text-center">
                                 Your enquiry will be sent via WhatsApp to our team
                             </p>
+                            <button
+                                type="button"
+                                onClick={closeModal}
+                                className="w-full mt-2 py-2 text-sm font-semibold text-[#0a1a67] border border-[#0a1a67] rounded-lg hover:bg-[#0a1a67] hover:text-white transition-colors"
+                            >
+                                Close window
+                            </button>
                         </form>
                     </div>
                 </div>

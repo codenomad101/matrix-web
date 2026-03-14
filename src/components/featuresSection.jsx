@@ -57,20 +57,20 @@ export default function FeaturesSection() {
   }, [features.length, isPaused])
 
   return (
-    <section className="py-4 sm:py-6 bg-white">
+    <section className="py-3 sm:py-5 bg-gray-50">
       <div className="container-page max-w-6xl mx-auto">
-        {/* Header - Outside blue section */}
+        {/* Header - like Our Courses */}
         <div className="text-center mb-4 sm:mb-6">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0a1a67] mb-2 tracking-wider">
-            FEATURES
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#B30027] mb-2">
+            Features
           </h2>
-          <p className="text-sm sm:text-base text-[#0a1a67]/70 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-[#0a1a67]/80 max-w-2xl mx-auto">
             Discover our world-class facilities designed to provide the best learning experience
           </p>
         </div>
 
         <div
-          className="bg-[#0a1a67] rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6"
+          className="bg-box-bg border border-gray-200 rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 shadow-sm"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
@@ -88,7 +88,7 @@ export default function FeaturesSection() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 items-center">
                   {/* Image */}
                   <div className="order-2 lg:order-1">
-                    <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl bg-white/10 backdrop-blur-sm p-1.5 sm:p-2">
+                    <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg bg-white border border-gray-100 p-1.5 sm:p-2">
                       <div className="rounded-lg sm:rounded-xl overflow-hidden max-h-64 sm:max-h-80">
                         {feature.cloudinaryId ? (
                           <OptimizedImage
@@ -108,23 +108,22 @@ export default function FeaturesSection() {
                           />
                         )}
                       </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a67]/10 to-transparent pointer-events-none rounded-2xl sm:rounded-3xl"></div>
                     </div>
                   </div>
 
-                  {/* Description */}
+                  {/* Description - like Our Courses: dark text, red heading */}
                   <div className="order-1 lg:order-2 space-y-2 sm:space-y-3 text-center lg:text-left">
-                    <div className="inline-flex items-center gap-2 bg-white/20 text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-semibold">
+                    <div className="inline-flex items-center gap-2 bg-gray-200/80 text-[#0a1a67] px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-semibold">
                       Feature {idx + 1} of {features.length}
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#B30027]">
                       {feature.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-white/90 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                    <p className="text-xs sm:text-sm text-[#0a1a67]/90 leading-relaxed max-w-xl mx-auto lg:mx-0">
                       {feature.description}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-2 justify-center lg:justify-start pt-1">
-                      <Link href="/enquiry" className="px-3 sm:px-5 py-1.5 sm:py-2 bg-transparent text-white rounded-full font-semibold hover:shadow-xl transition-all duration-300 border-2 border-white text-xs sm:text-sm text-center">
+                      <Link href="/enquiry" className="px-3 sm:px-5 py-1.5 sm:py-2 bg-[#B30027] text-white rounded-full font-semibold hover:bg-[#8a001e] hover:shadow-lg transition-all duration-300 text-xs sm:text-sm text-center">
                         Contact Us
                       </Link>
                     </div>
@@ -141,10 +140,10 @@ export default function FeaturesSection() {
                 key={feature.id}
                 onClick={() => setActiveTab(idx)}
                 className={`
-                relative rounded-lg overflow-hidden transition-all duration-300
+                relative rounded-lg overflow-hidden transition-all duration-300 border-2
                 ${activeTab === idx
-                    ? 'ring-4 ring-white scale-105 shadow-xl'
-                    : 'opacity-60 hover:opacity-100 hover:scale-105'
+                    ? 'ring-2 ring-[#B30027] border-[#B30027] scale-105 shadow-lg'
+                    : 'border-gray-200 opacity-70 hover:opacity-100 hover:scale-105 hover:border-gray-300'
                   }
               `}
               >
@@ -160,8 +159,8 @@ export default function FeaturesSection() {
                   />
                 </div>
                 {activeTab === idx && (
-                  <div className="absolute inset-0 bg-white/20 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <div className="absolute inset-0 bg-[#B30027]/20 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-[#B30027]" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </div>
@@ -178,7 +177,7 @@ export default function FeaturesSection() {
                 onClick={() => setActiveTab(idx)}
                 className={`
                 h-2 rounded-full transition-all duration-300
-                ${activeTab === idx ? 'w-8 bg-white' : 'w-3 bg-white/40 hover:bg-white/60'}
+                ${activeTab === idx ? 'w-8 bg-[#B30027]' : 'w-3 bg-gray-300 hover:bg-gray-400'}
               `}
               />
             ))}

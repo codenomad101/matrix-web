@@ -5,7 +5,7 @@ export default function IISERPage() {
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
             {/* Hero Section */}
-            <section className="bg-gradient-to-br from-[#B30027] to-[#8a001e] text-white py-16 md:py-24">
+            <section className="bg-gradient-to-br from-[#B30027] to-[#8a001e] text-white py-8 md:py-12">
                 <div className="container-page">
                     <div className="max-w-4xl mx-auto text-center">
                         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
@@ -22,7 +22,7 @@ export default function IISERPage() {
             </section>
 
             {/* About IISER */}
-            <section className="container-page py-12 md:py-16">
+            <section className="container-page py-5 md:py-7">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-6">About IISER</h2>
                     <div className="prose prose-lg max-w-none">
@@ -43,10 +43,10 @@ export default function IISERPage() {
             </section>
 
             {/* Admission Process */}
-            <section className="bg-gray-50 py-12 md:py-16">
+            <section className="bg-gray-50 py-5 md:py-7">
                 <div className="container-page">
                     <div className="max-w-4xl mx-auto">
-                        <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">Admission Process</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-5">Admission Process</h2>
                         <div className="grid md:grid-cols-3 gap-6">
                             {/* Channel 1 */}
                             <div className="bg-white rounded-2xl p-6 shadow-lg">
@@ -89,9 +89,9 @@ export default function IISERPage() {
             </section>
 
             {/* What You'll Achieve */}
-            <section className="container-page py-12 md:py-16">
+            <section className="container-page py-5 md:py-7">
                 <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">What You'll Achieve</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-5">What You'll Achieve</h2>
                     <div className="grid sm:grid-cols-2 gap-6">
                         {[
                             { icon: '🎓', title: 'Integrated BS-MS', desc: 'Five-year dual degree program in pure sciences' },
@@ -112,10 +112,10 @@ export default function IISERPage() {
             </section>
 
             {/* Programs Offered */}
-            <section className="bg-gray-50 py-12 md:py-16">
+            <section className="bg-gray-50 py-5 md:py-7">
                 <div className="container-page">
                     <div className="max-w-4xl mx-auto">
-                        <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">Programs Offered</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-5">Programs Offered</h2>
                         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
                             {[
                                 { icon: '🧬', name: 'Biology', desc: 'Life sciences and molecular biology' },
@@ -137,9 +137,9 @@ export default function IISERPage() {
             </section>
 
             {/* Our Approach */}
-            <section className="container-page py-12 md:py-16">
+            <section className="container-page py-5 md:py-7">
                 <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">Our Teaching Approach</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-5">Our Teaching Approach</h2>
                     <div className="space-y-6">
                         {[
                             { title: 'Science Foundation Building', desc: 'Strong foundation in fundamental science concepts across all disciplines' },
@@ -164,10 +164,10 @@ export default function IISERPage() {
             </section>
 
             {/* CTA Section */}
-            <section className="container-page py-12">
+            <section className="container-page py-6">
                 <div className="bg-gradient-to-r from-purple-600 to-purple-800 rounded-3xl p-8 md:p-12 text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Pursue Research in Science?</h2>
-                    <p className="text-lg md:text-xl mb-8 opacity-90">
+                    <p className="text-lg md:text-xl mb-5 opacity-90">
                         Join Matrix Science Academy and achieve your dream of studying at IISER
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">

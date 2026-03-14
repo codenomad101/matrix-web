@@ -33,9 +33,9 @@ const items = [
 
 export default function Testimonials() {
   return (
-    <div className="container-page py-10">
+    <div className="container-page py-6">
       <h1 className="text-3xl font-bold mb-2 text-[#0a1a67]">Testimonials</h1>
-      <p className="text-[#0a1a67] mb-8">Hear from our successful students who achieved their dreams</p>
+      <p className="text-[#0a1a67] mb-5">Hear from our successful students who achieved their dreams</p>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {items.map((t, idx) => (
           <div 

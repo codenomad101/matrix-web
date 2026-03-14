@@ -87,33 +87,32 @@ export default function Results() {
   ]
 
   return (
-    <div className="container-page py-10">
-      <h1 className="text-3xl sm:text-4xl font-bold text-[#0a1a67] mb-8 text-center">Our Results</h1>
-      
-      {/* Results Image Slider */}
-      <div className="mb-10">
-        <ResultsImageSlider />
-      </div>
-      <div className="grid sm:grid-cols-2 gap-6">
-        {resultsImages.map((image, idx) => (
-          <div 
-            key={idx} 
-            className="card bg-white rounded-2xl overflow-hidden hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
-          >
-            <div className="w-full aspect-[3/4] overflow-hidden">
-              <OptimizedImage
-                cloudinaryId={image.id}
-                alt={image.alt}
-                width={600}
-                height={800}
-                className="w-full h-full object-cover"
-                crop="fill"
-                quality="auto"
-              />
-            </div>
+    <div>
+      <section className="page-section-white">
+        <div className="container-page">
+          <h1 className="section-heading-center mb-5">Our Results</h1>
+          <div className="mb-6">
+            <ResultsImageSlider />
           </div>
-        ))}
-      </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {resultsImages.map((image, idx) => (
+              <div key={idx} className="page-card overflow-hidden p-0">
+                <div className="w-full aspect-[3/4] overflow-hidden rounded-xl">
+                  <OptimizedImage
+                    cloudinaryId={image.id}
+                    alt={image.alt}
+                    width={600}
+                    height={800}
+                    className="w-full h-full object-cover"
+                    crop="fill"
+                    quality="auto"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

@@ -66,8 +66,8 @@ export default function Activities() {
   ]
 
   return (
-    <div className="container-page py-10">
-      <div className="text-center mb-12">
+    <div className="container-page py-6">
+      <div className="text-center mb-6">
         <h1 className="text-3xl sm:text-4xl font-bold text-[#0a1a67] mb-3">Activities & Programs</h1>
         <p className="text-[#0a1a67] text-lg">
           Explore our comprehensive range of activities, timelines, and programs

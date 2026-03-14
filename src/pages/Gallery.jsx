@@ -12,9 +12,9 @@ export default function Gallery() {
   ]
 
   return (
-    <div className="container-content py-10">
+    <div className="container-content py-6">
       <h1 className="text-3xl font-bold mb-2">Photo Gallery</h1>
-      <p className="text-[#0a1a67] mb-8">Explore moments from our events, ceremonies, and student activities</p>
+      <p className="text-[#0a1a67] mb-5">Explore moments from our events, ceremonies, and student activities</p>
       
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {imageCategories.map((category, idx) => (

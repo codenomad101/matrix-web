@@ -111,21 +111,23 @@ export default function CoursesPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Hero Section */}
-      {/* Hero Section */}
-      <section className="container-page py-6 sm:py-12 md:py-16">
-        <div className="text-center mb-6 sm:mb-12">
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium bg-[#B30027]/10 text-[#B30027] px-3 py-1 sm:px-4 sm:py-2 rounded-full mb-2 sm:mb-4">
+      {/* Red Hero Strip */}
+      <section className="bg-gradient-to-br from-[#B30027] to-[#8a001e] text-white py-8 md:py-12">
+        <div className="container-page text-center">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium bg-white/20 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full mb-2 sm:mb-4">
             <span>📚 Our Programs</span>
           </div>
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0a1a67] mb-2 sm:mb-4">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-2 sm:mb-4">
             Courses We Offer
           </h1>
-          <p className="text-sm sm:text-lg md:text-xl text-[#0a1a67]/80 max-w-3xl mx-auto px-2">
+          <p className="text-sm sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto px-2">
             Comprehensive training programs designed to help you achieve excellence in competitive examinations
           </p>
         </div>
+      </section>
 
+      {/* Courses Slider Section */}
+      <section className="container-page py-5 sm:py-6 md:py-8">
         {/* Courses Slider */}
         <div className="relative">
           <div className="relative min-h-[350px] sm:min-h-[600px] md:min-h-[500px] bg-white rounded-xl sm:rounded-3xl shadow-2xl overflow-hidden">
@@ -206,8 +208,8 @@ export default function CoursesPage() {
       </section>
 
       {/* Courses Overview Grid */}
-      <section className="container-page py-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8 text-center">
+      <section className="container-page py-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-5 text-center">
           Our Courses
         </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -227,11 +229,11 @@ export default function CoursesPage() {
       </section>
 
       {/* Batches Section */}
-      <section className="container-page py-12">
+      <section className="container-page py-6">
         <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-4 text-center">
           Our Specialized Batches
         </h2>
-        <p className="text-center text-[#0a1a67]/70 mb-8 max-w-2xl mx-auto">
+        <p className="text-center text-[#0a1a67]/70 mb-5 max-w-2xl mx-auto">
           Choose the batch that best fits your preparation needs and learning pace
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
@@ -248,12 +250,12 @@ export default function CoursesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="container-page py-12">
-        <div className="bg-gradient-to-r from-[#0a1a67] to-[#B30027] rounded-3xl p-8 md:p-12 text-center text-white">
+      <section className="container-page py-6">
+        <div className="bg-gradient-to-r from-[#0a1a67] to-[#B30027] rounded-3xl p-6 md:p-8 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to Start Your Journey?
           </h2>
-          <p className="text-lg md:text-xl mb-8 opacity-90">
+          <p className="text-lg md:text-xl mb-5 opacity-90">
             Join thousands of successful students who achieved their dreams with Matrix Science Academy
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

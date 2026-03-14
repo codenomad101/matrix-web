@@ -43,9 +43,9 @@ export default function OnDemandCourses() {
   ]
 
   return (
-    <div className="container-page py-10">
+    <div className="container-page py-6">
       {/* Header */}
-      <div className="text-center mb-12" data-section data-index={0}>
+      <div className="text-center mb-6" data-section data-index={0}>
         <div className="inline-block mb-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0a1a67] mb-3">
             On Demand Courses: On-Demand
@@ -57,7 +57,7 @@ export default function OnDemandCourses() {
       </div>
 
       {/* Hero Section with Images */}
-      <div className="grid md:grid-cols-2 gap-6 mb-12" data-section data-index={1}>
+      <div className="grid md:grid-cols-2 gap-6 mb-6" data-section data-index={1}>
         <div className={`transition-all duration-1000 ease-out ${
           visibleIndex >= 1 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
         }`}>
@@ -94,8 +94,8 @@ export default function OnDemandCourses() {
       </div>
 
       {/* Main Content Section */}
-      <div className="mb-12" data-section data-index={2}>
-        <div className={`card p-8 md:p-10 mb-8 transition-all duration-1000 ease-out ${
+      <div className="mb-6" data-section data-index={2}>
+        <div className={`card p-8 md:p-10 mb-5 transition-all duration-1000 ease-out ${
           visibleIndex >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <div className="max-w-4xl mx-auto">
@@ -107,7 +107,7 @@ export default function OnDemandCourses() {
             </p>
 
             {/* Growth Statistics */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
               {stats.map((stat, idx) => (
                 <div 
                   key={idx}
@@ -147,13 +147,13 @@ export default function OnDemandCourses() {
       </div>
 
       {/* App Content Section */}
-      <div className="mb-12" data-section data-index={3}>
+      <div className="mb-6" data-section data-index={3}>
         <div className={`transition-all duration-1000 ease-out ${
           visibleIndex >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <div className="rounded-2xl bg-gradient-to-br from-brand/20 via-brand-dark/10 to-brand/20 p-8 md:p-10 border border-brand/30 shadow-xl">
             <div className="max-w-5xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-[#0a1a67] mb-8 text-center">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#0a1a67] mb-5 text-center">
                 Content Available on MATRIX APP
               </h2>
               <div className="grid md:grid-cols-3 gap-6">

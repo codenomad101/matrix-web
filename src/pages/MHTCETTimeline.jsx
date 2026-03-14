@@ -83,8 +83,8 @@ export default function MHTCETTimeline() {
   ]
 
   return (
-    <div className="container-page py-10">
-      <div className="text-center mb-12">
+    <div className="container-page py-6">
+      <div className="text-center mb-6">
         <div className="inline-block mb-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0a1a67] mb-3">
             MHT-CET Calendar

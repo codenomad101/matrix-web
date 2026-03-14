@@ -1,11 +1,21 @@
 import './globals.css'
 import Script from 'next/script'
+import { Roboto } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import FloatingInquiryButton from '@/components/FloatingInquiryButton'
+import BackToTop from '@/components/BackToTop'
+import ShowStopperPopup from '@/components/ShowStopperPopup'
 
 const GA_MEASUREMENT_ID = 'G-691QRXV0X2'
 const GTM_ID = 'GTM-5GPMKPKV'
+
+const roboto = Roboto({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto',
+})
 
 export const metadata = {
   metadataBase: new URL('https://www.matrixscienceacademy.com'),
@@ -136,7 +146,7 @@ export default function RootLayout({ children }) {
   }
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={roboto.variable}>
       <head>
         {/* Google Search Console site verification - visible in view-source for verification */}
         <meta name="google-site-verification" content="kh5Lhw6qb0rfqtFJWhX370Jqb2lKsz75k3IeLPJGpDU" />
@@ -151,7 +161,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
       </head>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col font-sans antialiased">
+        <span id="top" aria-hidden="true" className="absolute top-0 left-0" />
         {/* Google Tag Manager (noscript) - immediately after opening body */}
         <noscript>
           <iframe
@@ -184,7 +195,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           {children}
         </main>
         <Footer />
+        <BackToTop />
         <FloatingInquiryButton />
+        <ShowStopperPopup />
       </body>
     </html>
   )
