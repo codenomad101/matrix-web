@@ -29,7 +29,9 @@ export default function ShowStopperPopup() {
   useEffect(() => {
     if (!mounted || typeof window === 'undefined') return
     const dismissed = sessionStorage.getItem(SESSION_KEY)
-    if (!dismissed) setVisible(true)
+    if (dismissed) return
+    const timer = setTimeout(() => setVisible(true), 5000)
+    return () => clearTimeout(timer)
   }, [mounted])
 
   const handleClose = () => {

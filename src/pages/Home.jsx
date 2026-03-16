@@ -370,56 +370,267 @@ function ResultsSection({ topResults }) {
 // Testimonials Slider Component
 
 
-// Combined Features & News Section
-function FeaturesAndNewsSection() {
-  const features = [
-    {
-      icon: '📚',
-      title: 'Expert Faculty',
-      desc: '150+ qualified teachers',
-      body: 'Our educators are IIT/NIT alumni and experienced mentors who bring real exam insights into the classroom. Small batch sizes ensure every student gets individual attention and clarity on concepts.',
-    },
-    {
-      icon: '🎯',
-      title: 'Focused Learning',
-      desc: 'Structured curriculum',
-      body: 'Syllabus-aligned study plans, topic-wise tests, and revision cycles designed for JEE, NEET, MHT-CET, and IISER. We focus on high-weightage areas and exam patterns so you spend time where it matters most.',
-    },
-    {
-      icon: '🏆',
-      title: 'Proven Results',
-      desc: 'Top rankers every year',
-      body: 'Consistent top percentile rankers in MHT-CET, multiple IIT and NIT selections, and NEET success year on year. Our track record speaks to the effectiveness of our teaching and your hard work.',
-    },
-    {
-      icon: '💡',
-      title: 'Doubt Sessions',
-      desc: 'Personalized attention',
-      body: 'Dedicated doubt-solving hours and one-on-one support so no question goes unanswered. Faculty are accessible beyond class hours to help you stay on track and build confidence.',
-    },
-    {
-      icon: '🏢',
-      title: '8 Branches',
-      desc: 'Across Pune region',
-      body: 'Convenient locations across Pune so you can choose a branch close to home. Same quality of teaching, study material, and assessment across all our centres for a consistent learning experience.',
-    },
-    {
-      icon: '📊',
-      title: 'Performance Tracking',
-      desc: 'Regular assessments',
-      body: 'Weekly tests, full-length mocks, and detailed analytics help you and our faculty identify weak areas early. We use data to tailor revision and focus sessions for better outcomes.',
-    },
-  ]
+// What's Trending – carousel slides (replaces Why Choose Us)
+const TRENDING_SLIDES = [
+  {
+    label: 'JEE Main & Advanced 2026',
+    headline: 'IIT dream? Expert faculty & structured batches.',
+    description: 'Recorded lectures, test series & study material, all in one place across 8 branches.',
+    cta: 'Explore JEE Batches',
+    href: '/courses/iit-jee',
+    percentile: '99+',
+    name: 'Top Rankers',
+    subtext: 'JEE · MHT-CET · NEET',
+    location: 'Pune',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1763786335/output_faqujd',
+  },
+  {
+    label: 'MHT-CET 2025',
+    headline: '86 students scored 99+ percentile!',
+    description: 'Join the ranks. Structured curriculum, regular tests and doubt sessions.',
+    cta: 'Explore MHT-CET',
+    href: '/courses/mht-cet',
+    percentile: '99%ile',
+    name: 'MHT-CET Toppers',
+    subtext: 'State Rankers · Pharmacy · Engineering',
+    location: 'Pune',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1763783015/5_c2lqwx.jpg',
+  },
+  {
+    label: 'NEET 2025',
+    headline: 'AIIMS & MBBS – 5 selections from 53 students.',
+    description: 'Medical entrance prep with expert faculty and proven results.',
+    cta: 'Explore NEET',
+    href: '/courses/neet',
+    percentile: 'MBBS',
+    name: 'NEET Success',
+    subtext: 'AIIMS · MBBS · BDS',
+    location: 'Pune',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1764181879/B_r8gw6s.jpg',
+  },
+  {
+    label: 'IIT Selections 2025',
+    headline: '30% increase in IIT admissions this year.',
+    description: 'Believe, Build, Become – join Matrix Science Academy.',
+    cta: 'View Results',
+    href: '/results',
+    percentile: 'IIT',
+    name: 'IIT Achievers',
+    subtext: 'IIT Guwahati · Kharagpur · Mandi',
+    location: 'Pune',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1764181786/IIT_knkkka.jpg',
+  },
+]
 
-  const [featureSlideIndex, setFeatureSlideIndex] = useState(0)
-  const maxFeatureSlide = Math.max(0, Math.ceil(features.length / 2) - 1)
+function WhatsTrendingCarousel() {
+  const [index, setIndex] = useState(0)
 
   useEffect(() => {
-    const t = setInterval(() => {
-      setFeatureSlideIndex((i) => (i >= maxFeatureSlide ? 0 : i + 1))
-    }, 4500)
+    const t = setInterval(() => setIndex((i) => (i + 1) % TRENDING_SLIDES.length), 5000)
     return () => clearInterval(t)
-  }, [maxFeatureSlide])
+  }, [])
+
+  return (
+    <div className="w-full">
+      <h2 className="section-heading mb-4 text-center">
+        <span className="text-[#ed1c24]">What&apos;s Trending</span>
+      </h2>
+      <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-[#B30027]/20 min-h-[220px] sm:min-h-[260px] bg-[#FFF5F5]">
+        {/* Red hue / accent orbs */}
+        <div className="absolute top-0 right-0 w-24 h-24 rounded-full bg-[#B30027]/12 blur-2xl pointer-events-none" aria-hidden />
+        <div className="absolute bottom-0 left-0 w-20 h-20 rounded-full bg-[#B30027]/10 blur-xl pointer-events-none" aria-hidden />
+        <div className="flex overflow-hidden transition-transform duration-500 ease-out" style={{ width: `${TRENDING_SLIDES.length * 100}%`, transform: `translateX(-${index * (100 / TRENDING_SLIDES.length)}%)` }}>
+          {TRENDING_SLIDES.map((slide, i) => (
+            <div key={i} className="flex-shrink-0 flex flex-row p-4 sm:p-5 md:p-6 gap-3 sm:gap-4 md:gap-6 items-center" style={{ width: `${100 / TRENDING_SLIDES.length}%` }}>
+              {/* Left: label, headline, description, CTA */}
+              <div className="flex-1 flex flex-col justify-center min-w-0">
+                <span className="inline-block w-fit rounded-full bg-[#B30027] text-white text-xs sm:text-sm font-semibold px-3 py-1 mb-2">
+                  {slide.label}
+                </span>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold text-[#0a1a67] leading-tight mb-1.5 sm:mb-2">
+                  {slide.headline}
+                </h3>
+                <p className="text-body text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-none max-w-md">
+                  {slide.description}
+                </p>
+                <Link
+                  href={slide.href}
+                  className="inline-flex items-center justify-center w-fit bg-[#B30027] hover:bg-[#8a001e] text-white font-semibold px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg shadow-md transition-all duration-200 text-sm"
+                >
+                  {slide.cta}
+                </Link>
+              </div>
+              {/* Right: image + badge */}
+              <div className="flex-shrink-0 relative w-28 sm:w-36 md:w-40 lg:w-44">
+                <div className="relative flex items-end justify-end min-h-[140px] sm:min-h-[180px] md:min-h-[200px]">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-15 pointer-events-none" aria-hidden>
+                    <div className="w-4/5 max-w-[160px] rounded-xl border-2 border-[#B30027]/30 bg-white/40" />
+                  </div>
+                  <div className="relative z-10 w-24 sm:w-32 md:w-36 h-28 sm:h-36 md:h-40 rounded-xl overflow-hidden shadow-lg flex-shrink-0">
+                    <img src={slide.image} alt="" className="w-full h-full object-cover" />
+                  </div>
+                  <div
+                    className="absolute bottom-0 left-0 z-20 w-[120px] sm:w-[130px] text-white shadow-lg rounded-b-lg overflow-hidden"
+                    style={{ clipPath: 'polygon(0 18%, 100% 0, 100% 100%, 0 100%)' }}
+                  >
+                    <div className="bg-[#B30027]/95 px-2 pt-2.5 pb-0.5">
+                      <span className="text-base sm:text-lg font-extrabold text-white">{slide.percentile}</span>
+                    </div>
+                    <div className="bg-[#0a1a67] px-2 py-1.5">
+                      <p className="font-semibold text-[10px] sm:text-xs leading-tight">{slide.name}</p>
+                      <p className="text-white/80 text-[9px] sm:text-[10px] mt-0.5">{slide.subtext}</p>
+                      <p className="text-white/70 text-[8px] mt-0.5">• {slide.location}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute -top-1 right-0 flex gap-0.5 opacity-70" aria-hidden>
+                  {[0, 1, 2].map((j) => (
+                    <span key={j} className="w-1.5 h-2 bg-[#B30027]/80 rounded-full" style={{ transform: `rotate(${j * 20}deg)` }} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex justify-center gap-2 mt-4">
+        {TRENDING_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Trending slide ${i + 1}`}
+            onClick={() => setIndex(i)}
+            className={`h-2 rounded-full transition-all duration-300 ${index === i ? 'w-6 bg-[#B30027]' : 'w-2 bg-gray-400 hover:bg-gray-500'}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// Blogs section – horizontal card carousel below courses
+const BLOG_CARDS = [
+  {
+    title: 'JEE Advanced 2026: Exam pattern and key dates',
+    description: 'What you need to know about eligibility, registration and exam dates for JEE Advanced 2026.',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_280,c_fill,q_auto,f_auto/v1764181786/IIT_knkkka.jpg',
+    label: 'JEE Advanced 2026',
+    href: '#',
+  },
+  {
+    title: 'MHT-CET 2025: 86 students scored 99+ percentile',
+    description: 'Matrix Science Academy students shine in MHT-CET. Here’s how we prepare our batches.',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_280,c_fill,q_auto,f_auto/v1763783015/5_c2lqwx.jpg',
+    label: 'MHT-CET 2025',
+    href: '#',
+  },
+  {
+    title: 'NEET 2026: Application and preparation tips',
+    description: 'Eligibility, important dates and how to plan your NEET preparation effectively.',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_280,c_fill,q_auto,f_auto/v1764181879/B_r8gw6s.jpg',
+    label: 'NEET 2026',
+    href: '#',
+  },
+  {
+    title: 'IIT admissions 2025: 30% increase in selections',
+    description: 'Our students’ success in IIT JEE Advanced and what makes our batches different.',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_280,c_fill,q_auto,f_auto/v1763786335/output_faqujd',
+    label: 'IIT Selections',
+    href: '#',
+  },
+  {
+    title: 'Free career counselling and demo classes',
+    description: 'Not sure which course to choose? Book a free counselling session at Matrix Science Academy.',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_280,c_fill,q_auto,f_auto/v1764181864/A_dbzo2c.jpg',
+    label: 'Counselling',
+    href: '/counseling',
+  },
+]
+
+function BlogsSection() {
+  const scrollRef = useRef(null)
+
+  const scroll = (dir) => {
+    if (!scrollRef.current) return
+    const cardWidth = 320
+    const gap = 16
+    const step = cardWidth + gap
+    scrollRef.current.scrollBy({ left: dir * step, behavior: 'smooth' })
+  }
+
+  return (
+    <div className="mt-10 md:mt-12">
+      <h2 className="text-2xl md:text-3xl font-bold text-heading mb-4">
+        <span className="text-[#ed1c24]">Blogs</span>
+      </h2>
+      <div className="relative -mx-4 sm:-mx-6 lg:-mx-8">
+        <button
+          type="button"
+          onClick={() => scroll(-1)}
+          aria-label="Previous blogs"
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-lg flex items-center justify-center text-gray-600 hover:bg-gray-50 hover:text-[#B30027] transition-colors"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <button
+          type="button"
+          onClick={() => scroll(1)}
+          aria-label="Next blogs"
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-lg flex items-center justify-center text-gray-600 hover:bg-gray-50 hover:text-[#B30027] transition-colors"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+        </button>
+        <div
+          ref={scrollRef}
+          className="blogs-scroll flex gap-4 overflow-x-auto scroll-smooth pb-2 px-4 sm:px-6 lg:px-8"
+          style={{ scrollSnapType: 'x mandatory' }}
+        >
+          {BLOG_CARDS.map((blog, i) => (
+            <Link
+              key={i}
+              href={blog.href}
+              className="flex-shrink-0 w-[280px] sm:w-[300px] rounded-xl overflow-hidden bg-white border border-gray-200/80 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
+              style={{ scrollSnapAlign: 'start' }}
+            >
+              <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+                <img src={blog.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" aria-hidden />
+                <div className="absolute bottom-2 left-2 right-2">
+                  <span className="inline-block px-2 py-0.5 rounded bg-white/95 text-[10px] font-bold uppercase text-[#0a1a67] shadow-sm">
+                    {blog.label}
+                  </span>
+                </div>
+              </div>
+              <div className="p-4 bg-white">
+                <h3 className="font-bold text-heading text-sm sm:text-base leading-snug line-clamp-2 mb-1">
+                  {blog.title}
+                </h3>
+                <p className="text-body/70 text-xs sm:text-sm line-clamp-2">
+                  {blog.description}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+      <style jsx>{`
+        .blogs-scroll {
+          -webkit-overflow-scrolling: touch;
+        }
+        .blogs-scroll::-webkit-scrollbar {
+          display: none;
+        }
+        .blogs-scroll {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+      `}</style>
+    </div>
+  )
+}
+
+// Combined Features & News Section (What's Trending + Latest News + Our Courses)
+function FeaturesAndNewsSection() {
 
   const courses = [
     {
@@ -483,82 +694,18 @@ function FeaturesAndNewsSection() {
   ]
 
   return (
-    <section className="page-section-white page-section-tight">
+    <section className="page-section-tight bg-[var(--bg-page)]">
       <div className="container-page">
-      <div className="grid lg:grid-cols-2 gap-4">
-        {/* Left - Features (Why Choose Us) - 2-card slider */}
-        <div className="hidden md:block">
-          <h2 className="section-heading mb-3">
-            <span className="text-[#ed1c24]">Why Choose Us?</span>
-          </h2>
-          <div className="relative overflow-hidden">
-            <div
-              className="flex transition-transform duration-300 ease-out"
-              style={{ width: '300%', transform: `translateX(-${featureSlideIndex * (100 / 3)}%)` }}
-            >
-              {[0, 2, 4].map((startIdx) => (
-                <div key={startIdx} className="grid grid-cols-2 gap-3 flex-shrink-0 min-w-0" style={{ width: '33.333%' }}>
-                  {features.slice(startIdx, startIdx + 2).map((feature, i) => (
-                    <div
-                      key={startIdx + i}
-                      className="bg-gray-200/70 rounded-xl p-4 sm:p-5 min-h-[180px] sm:min-h-[220px] flex flex-col hover:bg-gray-200 transition-all duration-300 hover:scale-[1.01] cursor-pointer group border border-gray-200/60 relative overflow-hidden"
-                    >
-                      <div className="absolute inset-0 rounded-xl card-bg-gradient" aria-hidden />
-                      <div className="card-float-orb card-float-orb-1 w-14 h-14 bg-[#B30027]/15 -top-4 -right-4" aria-hidden />
-                      <div className="card-float-orb card-float-orb-2 w-10 h-10 bg-[#B30027]/10 bottom-2 left-2" aria-hidden />
-                      <div className="relative z-10 flex flex-col flex-1">
-                        <span className="text-2xl md:text-3xl mb-2 block group-hover:scale-105 transition-transform duration-300">{feature.icon}</span>
-                        <h3 className="text-heading font-semibold text-base md:text-lg">{feature.title}</h3>
-                        <p className="text-black/90 text-xs md:text-sm mt-0.5 font-medium">{feature.desc}</p>
-                        <p className="text-black/75 text-xs md:text-sm mt-3 leading-relaxed flex-1">{feature.body}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-            <button
-              type="button"
-              onClick={() => setFeatureSlideIndex((i) => Math.max(0, i - 1))}
-              disabled={featureSlideIndex === 0}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-[#B30027] hover:bg-gray-50 disabled:opacity-40 disabled:pointer-events-none transition-all z-10"
-              aria-label="Previous"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-            </button>
-            <button
-              type="button"
-              onClick={() => setFeatureSlideIndex((i) => Math.min(maxFeatureSlide, i + 1))}
-              disabled={featureSlideIndex >= maxFeatureSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-[#B30027] hover:bg-gray-50 disabled:opacity-40 disabled:pointer-events-none transition-all z-10"
-              aria-label="Next"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </button>
-            <div className="flex justify-center gap-1.5 mt-3">
-              {[0, 1, 2].map((dotIdx) => (
-                <button
-                  key={dotIdx}
-                  type="button"
-                  onClick={() => setFeatureSlideIndex(dotIdx)}
-                  className={`w-2 h-2 rounded-full transition-colors ${featureSlideIndex === dotIdx ? 'bg-[#B30027] scale-125' : 'bg-gray-300'}`}
-                  aria-label={`Go to slide ${dotIdx + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-          <Link href="/about" className="inline-flex items-center gap-2 mt-4 text-black hover:text-body transition-colors duration-300 font-medium">
-            Learn More About Us
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
+      <div className="grid grid-cols-[65%_35%] gap-4 md:gap-6">
+        {/* Left – What's Trending (65%) */}
+        <div className="min-w-0">
+          <WhatsTrendingCarousel />
         </div>
 
-        {/* Right - Latest News */}
-        <div className="md:col-span-1 lg:col-span-1 max-w-lg lg:max-w-md">
+        {/* Right - Latest News (35%) */}
+        <div className="min-w-0">
           <h2 className="section-heading mb-3">
-            <span className="text-[#ed1c24]">Latest News &amp; Updates</span>
+            <span className="text-[#ed1c24]">Latest News</span>
           </h2>
           <div className="page-card overflow-hidden border border-gray-200/80 rounded-xl sm:rounded-2xl relative">
             <div className="p-3 sm:p-4 h-[240px] overflow-hidden relative">
@@ -670,6 +817,8 @@ function FeaturesAndNewsSection() {
           </Link>
         </div>
       </div>
+
+      <BlogsSection />
       </div>
 
       <style jsx>{`
@@ -744,20 +893,31 @@ function AboutIntro() {
   )
 }
 
-// VRIKSHA highlight – featured block for the new program
+// VRIKSHA highlight – featured block with animated tree and icons
 function VrikshaHighlight() {
+  const floatIcons = [
+    { emoji: '🌱', className: 'top-2 left-2 text-lg sm:text-xl vriksha-float', style: { animationDelay: '0s' } },
+    { emoji: '📚', className: 'top-4 right-2 text-base sm:text-lg vriksha-float', style: { animationDelay: '0.4s' } },
+    { emoji: '✨', className: 'bottom-8 left-0 text-sm sm:text-base vriksha-float', style: { animationDelay: '0.8s' } },
+    { emoji: '🎯', className: 'bottom-6 right-1 text-base sm:text-lg vriksha-float', style: { animationDelay: '0.2s' } },
+    { emoji: '🌿', className: 'top-1/2 -left-1 text-sm vriksha-float', style: { animationDelay: '0.6s' } },
+    { emoji: '📖', className: 'top-1/2 -right-1 text-sm vriksha-float', style: { animationDelay: '1s' } },
+  ]
   return (
-    <section className="page-section-tight bg-gray-50">
-      <div className="container-page">
-        <Link href="/vriksha" className="group block bg-white border-2 border-[#B30027]/20 rounded-2xl p-6 md:p-8 shadow-md hover:shadow-xl hover:border-[#B30027]/40 transition-all duration-300">
-          <div className="flex flex-col md:flex-row md:items-center gap-6">
-            <div className="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#B30027]/10 flex items-center justify-center text-4xl md:text-5xl group-hover:scale-105 transition-transform">
-              🌱
-            </div>
-            <div className="flex-1">
-              <span className="inline-block px-2.5 py-1 rounded-full bg-[#B30027] text-white text-[10px] font-bold uppercase tracking-wide mb-2">New Program</span>
-              <h2 className="text-xl md:text-2xl font-bold text-heading mb-2">VRIKSHA</h2>
-              <p className="text-body/80 text-base md:text-lg mb-4 max-w-2xl">
+    <section className="page-section-tight bg-[var(--bg-page)]">
+      <div className="container-page max-w-4xl mx-auto">
+        <Link href="/vriksha" className="group block bg-white border-2 border-[#B30027]/25 rounded-2xl sm:rounded-3xl p-5 md:p-6 shadow-lg hover:shadow-xl hover:border-[#B30027]/50 transition-all duration-300 overflow-hidden">
+          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+            {/* Left: icon, badge, heading, copy, CTA */}
+            <div className="flex-1 flex flex-col justify-center min-w-0">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="flex-shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-[#B30027]/15 flex items-center justify-center text-3xl md:text-4xl group-hover:scale-105 transition-transform ring-2 ring-[#B30027]/20">
+                  🌱
+                </div>
+                <span className="inline-block px-3 py-1.5 rounded-full bg-[#B30027] text-white text-[10px] font-bold uppercase tracking-wider shadow-sm">New Program</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-heading mb-2">VRIKSHA</h2>
+              <p className="text-body/80 text-base md:text-lg mb-5 max-w-xl leading-relaxed">
                 Our newest offering designed to nurture growth and excellence. Explore a structured curriculum and dedicated support to help you reach your goals.
               </p>
               <span className="inline-flex items-center gap-2 text-[#B30027] font-semibold group-hover:gap-3 transition-all">
@@ -765,9 +925,58 @@ function VrikshaHighlight() {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </span>
             </div>
+
+            {/* Right: animated tree + floating icons */}
+            <div className="flex-shrink-0 flex items-center justify-center md:justify-end min-h-[160px] sm:min-h-[200px]">
+              <div className="relative w-[160px] sm:w-[200px] md:w-[240px] h-[160px] sm:h-[200px] md:h-[240px]">
+                {/* Green accent orb */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-emerald-500/20 blur-xl vriksha-pulse" aria-hidden />
+                </div>
+                {/* Floating icons around the tree */}
+                {floatIcons.map((item, i) => (
+                  <div
+                    key={i}
+                    className={`absolute ${item.className} w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 border-2 border-emerald-600/30 flex items-center justify-center shadow-md`}
+                    style={item.style}
+                  >
+                    {item.emoji}
+                  </div>
+                ))}
+                {/* Green tree – SVG */}
+                <div className="absolute inset-0 flex items-center justify-center vriksha-tree">
+                  <svg viewBox="0 0 80 100" className="w-28 h-32 sm:w-36 sm:h-40 md:w-44 md:h-48 text-emerald-600" fill="currentColor" aria-hidden>
+                    {/* Foliage (layered triangles) */}
+                    <path d="M40 8 L72 48 L40 42 L8 48 Z" fill="currentColor" opacity="0.95" />
+                    <path d="M40 22 L66 58 L40 52 L14 58 Z" fill="currentColor" opacity="0.9" />
+                    <path d="M40 36 L60 68 L40 62 L20 68 Z" className="text-emerald-700" fill="currentColor" opacity="0.95" />
+                    <path d="M40 50 L54 78 L40 72 L26 78 Z" className="text-emerald-700" fill="currentColor" />
+                    {/* Trunk */}
+                    <path d="M34 72 L46 72 L44 98 L36 98 Z" className="text-amber-800" fill="currentColor" opacity="0.95" />
+                  </svg>
+                </div>
+              </div>
+            </div>
           </div>
         </Link>
       </div>
+      <style jsx>{`
+        @keyframes vriksha-float {
+          0%, 100% { transform: translateY(0) scale(1); }
+          50% { transform: translateY(-6px) scale(1.05); }
+        }
+        @keyframes vriksha-pulse {
+          0%, 100% { opacity: 0.6; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.1); }
+        }
+        @keyframes vriksha-tree {
+          0%, 100% { transform: scale(1) rotate(-1deg); }
+          50% { transform: scale(1.03) rotate(1deg); }
+        }
+        .vriksha-float { animation: vriksha-float 2.5s ease-in-out infinite; }
+        .vriksha-pulse { animation: vriksha-pulse 3s ease-in-out infinite; }
+        .vriksha-tree { animation: vriksha-tree 4s ease-in-out infinite; }
+      `}</style>
     </section>
   )
 }
@@ -893,7 +1102,7 @@ export default function Home() {
     <div>
       <HeroSlider />
 
-      <AboutIntro />
+      {/* <AboutIntro /> */}
       <VrikshaHighlight />
 
       {/* Combined Features & News Section */}
@@ -901,7 +1110,10 @@ export default function Home() {
 
       <ResultsSection topResults={topResults} />
 
-      {/* <PerformanceGraph /> */}
+      <PerformanceGraph /> 
+      <CounselingCTA />
+      <DemoScholarships />
+      <PromotionalVideo />
     </div>
   )
 }
