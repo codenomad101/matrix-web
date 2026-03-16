@@ -648,7 +648,7 @@ function FeaturesAndNewsSection() {
                               : 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1764181879/B_r8gw6s.jpg'
                         }
                         alt={`${course.name} student`}
-                        className="w-full h-full object-cover -translate-y-1 sm:-translate-y-1.5 md:-translate-y-2"
+                        className="w-full h-full object-cover -translate-y-2 sm:-translate-y-3 md:-translate-y-4"
                       />
                     </div>
                   </div>
