@@ -37,7 +37,7 @@ export default function HeroSlider() {
         { name: 'NEET', icon: '⚕️', description: 'Medical Entrance Exam' },
         { name: 'IISER', icon: '🔬', description: 'Science Research Institute' },
       ],
-      cloudinaryId: 'v1763852019/booksweoffer_bciiam',
+      cloudinaryId: 'v1764181786/IIT_knkkka.jpg',
       type: 'courses',
     },
     {
@@ -125,8 +125,8 @@ export default function HeroSlider() {
                       {/* Right: Raw image, centered */}
                       <div className="flex items-center justify-center min-w-0 h-full">
                         <img
-                          src="https://res.cloudinary.com/ddqgxrgnc/image/upload/v1764181786/IIT_knkkka.jpg"
-                          alt="IIT - Matrix Science Academy"
+                          src="https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/v1764181879/B_r8gw6s.jpg"
+                          alt="Students - Matrix Science Academy"
                           className="max-w-[340px] sm:max-w-[400px] md:max-w-[460px] w-full max-h-[240px] sm:max-h-[300px] md:max-h-[360px] h-auto object-contain"
                         />
                       </div>
@@ -143,15 +143,15 @@ export default function HeroSlider() {
                         <p className="text-sm sm:text-base text-slate-600 mb-2 sm:mb-3">
                           {s.subtitle}
                         </p>
-                        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 mb-2 sm:mb-3">
+                        <div className="grid grid-cols-2 gap-1 sm:gap-1.5 mb-1.5 sm:mb-2">
                           {s.courses.map((course, idx) => (
                             <div
                               key={idx}
-                              className="bg-white/80 border border-slate-200/80 rounded-lg p-2 sm:p-3 text-left shadow-sm"
+                              className="bg-white/80 border border-slate-200/80 rounded-lg p-1.5 sm:p-2 text-left shadow-sm"
                             >
-                              <span className="text-base sm:text-lg">{course.icon}</span>
-                              <h3 className="text-xs sm:text-sm font-bold text-[#8B1538] leading-tight">{course.name}</h3>
-                              <p className="text-[10px] sm:text-xs text-slate-500 line-clamp-1">{course.description}</p>
+                              <span className="text-sm sm:text-base">{course.icon}</span>
+                              <h3 className="text-[11px] sm:text-xs font-bold text-[#8B1538] leading-tight">{course.name}</h3>
+                              <p className="text-[9px] sm:text-[10px] text-slate-500 line-clamp-1">{course.description}</p>
                             </div>
                           ))}
                         </div>
@@ -187,15 +187,15 @@ export default function HeroSlider() {
                         <p className="text-sm sm:text-base text-slate-600 mb-2 sm:mb-3">
                           {s.subtitle}
                         </p>
-                        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 mb-2 sm:mb-3">
+                        <div className="grid grid-cols-2 gap-1 sm:gap-1.5 mb-1.5 sm:mb-2">
                           {s.stats.map((stat, idx) => (
                             <div
                               key={idx}
-                              className="bg-white/80 border border-slate-200/80 rounded-lg p-2 sm:p-3 text-center shadow-sm"
+                              className="bg-white/80 border border-slate-200/80 rounded-lg p-1.5 sm:p-2 text-center shadow-sm"
                             >
-                              <div className="text-lg sm:text-xl font-bold text-[#8B1538]">{stat.value}</div>
-                              <h3 className="text-[10px] sm:text-xs font-bold text-slate-700 leading-tight">{stat.label}</h3>
-                              <p className="text-[9px] sm:text-[10px] text-slate-500">{stat.exam}</p>
+                              <div className="text-base sm:text-lg font-bold text-[#8B1538]">{stat.value}</div>
+                              <h3 className="text-[9px] sm:text-[10px] font-bold text-slate-700 leading-tight">{stat.label}</h3>
+                              <p className="text-[8px] sm:text-[9px] text-slate-500">{stat.exam}</p>
                             </div>
                           ))}
                         </div>

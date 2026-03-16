@@ -596,34 +596,61 @@ function FeaturesAndNewsSection() {
               <Link
                 key={`${course.id}-${idx}`}
                 href={course.href || `/courses/${course.id}`}
-                className="bg-box-bg border border-gray-200/80 rounded-xl sm:rounded-2xl p-3 sm:p-6 text-black shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden block flex-shrink-0 w-[280px] sm:w-[320px]"
+                className="bg-white border border-gray-200/80 rounded-2xl p-3 sm:p-5 text-black shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden block flex-shrink-0 w-[280px] sm:w-[320px]"
               >
-                {/* Dynamic background: gradient + floating orbs */}
-                <div className="absolute inset-0 rounded-xl sm:rounded-2xl card-bg-gradient" aria-hidden />
-                <div className="card-float-orb card-float-orb-1 w-20 h-20 sm:w-28 sm:h-28 bg-[#B30027]/20 -top-8 -right-8" aria-hidden />
-                <div className="card-float-orb card-float-orb-2 w-16 h-16 sm:w-24 sm:h-24 bg-[#B30027]/15 bottom-4 left-4" aria-hidden />
-                <div className="card-float-orb card-float-orb-3 w-12 h-12 sm:w-20 sm:h-20 bg-[#B30027]/10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" aria-hidden />
-                <div className="relative z-10">
-                  <div className="text-xl sm:text-3xl mb-2 sm:mb-3 group-hover:scale-105 transition-transform duration-300">{course.icon}</div>
-                  <h3 className="text-sm sm:text-2xl font-bold mb-0.5 sm:mb-1 leading-tight text-heading">{course.name}</h3>
-                  <p className="text-[10px] sm:text-sm text-black/80 mb-1.5 sm:mb-3 leading-tight">{course.fullName}</p>
-                  <p className="text-[9px] sm:text-sm text-black/90 leading-relaxed mb-2 sm:mb-4 line-clamp-2 sm:line-clamp-3">{course.description}</p>
-
-                  <div className="mt-2 sm:mt-4 space-y-1.5 sm:space-y-2">
-                    <div className="bg-gray-200/70 rounded-md sm:rounded-lg p-1.5 sm:p-3">
-                      <p className="text-[8px] sm:text-xs font-bold text-black">📅 {course.examDates}</p>
+                {/* Layout: Left text content, right accent + image */}
+                <div className="relative z-10 flex items-stretch h-full">
+                  {/* Left content */}
+                  <div className="flex-1 pr-2 sm:pr-4 flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-base sm:text-lg font-extrabold text-[#B30027] leading-tight mb-0.5">
+                        {course.name}
+                      </h3>
+                      <p className="text-[11px] sm:text-xs font-semibold text-[#0a1a67] uppercase tracking-wide">
+                        Batch
+                      </p>
+                      <p className="text-[10px] sm:text-xs text-body/90 mt-0.5 mb-1">
+                        {course.fullName}
+                      </p>
+                      <p className="text-[10px] sm:text-xs text-body/80 mb-1.5 line-clamp-2">
+                        {course.description}
+                      </p>
+                      <div className="mt-1.5 space-y-1">
+                        <p className="text-[10px] sm:text-xs font-semibold text-[#0a1a67]">
+                          📅 {course.examDates}
+                        </p>
+                        <p className="text-[9px] sm:text-[10px] font-medium text-body/80">
+                          🏆 {course.ourResults}
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="bg-gray-200/70 rounded-md sm:rounded-lg p-1.5 sm:p-3">
-                      <p className="text-[8px] sm:text-xs font-bold text-black">🏆 {course.ourResults}</p>
-                    </div>
+                    <button
+                      type="button"
+                      className="inline-flex items-center justify-center mt-2 px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold rounded-full bg-[#B30027] text-white shadow-sm group-hover:bg-[#8a001e] transition-colors"
+                    >
+                      Explore More
+                    </button>
                   </div>
 
-                  <div className="mt-2 sm:mt-4 flex items-center gap-1 sm:gap-2 text-[9px] sm:text-sm font-semibold text-black group-hover:gap-2 sm:group-hover:gap-3 transition-all duration-300">
-                    Learn More
-                    <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                  {/* Right image inside the tilted box */}
+                  <div className="relative w-24 sm:w-28 md:w-32 flex items-end justify-center">
+                    {/* Subtle red accent background similar to Why Choose Us cards */}
+                    <div className="absolute -bottom-1 -left-1 w-10 h-10 rounded-full bg-[#B30027]/15 blur-sm" aria-hidden />
+                    <div className="absolute -top-2 right-0 w-8 h-8 rounded-full bg-[#B30027]/10 blur-[2px]" aria-hidden />
+                    <div className="relative z-10 w-20 sm:w-24 md:w-28 h-32 sm:h-36 md:h-40 rounded-[2rem] bg-gradient-to-tr from-[#ffe6ea] via-[#ffe6ea] to-[#ffd0da] translate-x-3 -translate-y-2 rotate-[-8deg] group-hover:translate-y-0 group-hover:rotate-[-4deg] transition-transform duration-300 shadow-md overflow-hidden">
+                      <img
+                        src={
+                          course.id === 'iit-jee'
+                            ? 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1763786335/output_faqujd'
+                            : course.id === 'mht-cet'
+                              ? 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1763783015/5_c2lqwx.jpg'
+                              : 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1764181879/B_r8gw6s.jpg'
+                        }
+                        alt={`${course.name} student`}
+                        className="w-full h-full object-cover -translate-y-1 sm:-translate-y-1.5 md:-translate-y-2"
+                      />
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -676,19 +703,42 @@ function AboutIntro() {
   return (
     <section className="page-section-tight bg-white">
       <div className="container-page">
-        <h2 className="text-xl md:text-2xl font-bold mb-3 leading-tight">
-          <span>About </span>
-          <span className="text-[#ed1c24]">Matrix</span>{' '}
-          <span className="text-[#646262] font-black">Science</span>{' '}
-          <span className="text-[#214295] font-black">Academy</span>
-        </h2>
-        <p className="text-body/90 text-base md:text-lg max-w-3xl mb-4">
-          Matrix Science Academy is one of the leading coaching institutions in Pune, helping students achieve their dreams in IIT-JEE, NEET, MHT-CET, and IISER through expert faculty, structured learning, and proven results.
-        </p>
-        <Link href="/about" className="inline-flex items-center gap-2 text-heading font-semibold hover:underline">
-          Read more about us
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-        </Link>
+        <div className="flex flex-col md:flex-row items-stretch gap-6 md:gap-8">
+          {/* Left: Text content */}
+          <div className="flex-1 flex flex-col justify-center">
+            <h2 className="text-xl md:text-2xl font-bold mb-3 leading-tight">
+              <span>About </span>
+              <span className="text-[#ed1c24]">Matrix</span>{' '}
+              <span className="text-[#646262] font-black">Science</span>{' '}
+              <span className="text-[#214295] font-black">Academy</span>
+            </h2>
+            <p className="text-body/90 text-base md:text-lg max-w-3xl mb-4">
+              Matrix Science Academy is one of the leading coaching institutions in Pune, helping students achieve their dreams in IIT-JEE, NEET, MHT-CET, and IISER through expert faculty, structured learning, and proven results.
+            </p>
+            <Link href="/about" className="inline-flex items-center gap-2 text-heading font-semibold hover:underline">
+              Read more about us
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+
+          {/* Right: Image on tilted card, similar to course card */}
+          <div className="flex-1 flex items-center justify-center">
+            <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg h-40 sm:h-48 md:h-56 lg:h-64">
+              {/* Subtle red accent background similar to Why Choose Us cards */}
+              <div className="absolute -bottom-1 -left-1 w-12 h-12 rounded-full bg-[#B30027]/15 blur-sm" aria-hidden />
+              <div className="absolute -top-3 right-0 w-10 h-10 rounded-full bg-[#B30027]/10 blur-[2px]" aria-hidden />
+              <div className="relative z-10 w-full h-full rounded-[2rem] bg-gradient-to-tr from-[#ffe6ea] via-[#ffe6ea] to-[#ffd0da] transition-transform duration-300 shadow-md overflow-hidden">
+                <img
+                  src="https://res.cloudinary.com/ddqgxrgnc/image/upload/v1764181864/A_dbzo2c.jpg"
+                  alt="About Matrix Science Academy"
+                  className="w-full h-full object-cover -translate-y-1 sm:-translate-y-1.5 md:-translate-y-2"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )
