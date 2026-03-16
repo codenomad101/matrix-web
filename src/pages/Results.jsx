@@ -86,11 +86,46 @@ export default function Results() {
     { id: 'v1763783003/2_ocfn47', alt: 'Results Photo 3' },
   ]
 
+  const yearWiseStats = [
+    { year: '2023', mhtCet99: '45', iitSelections: '8', neetSelections: '3' },
+    { year: '2024', mhtCet99: '62', iitSelections: '10', neetSelections: '4' },
+    { year: '2025', mhtCet99: '86', iitSelections: '12+', neetSelections: '5' },
+  ]
+
   return (
-    <div>
+    <div className="min-h-screen bg-[var(--bg-page)]">
       <section className="page-section-white">
         <div className="container-page">
-          <h1 className="section-heading-center mb-5">Our Results</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-heading text-center mb-5">Our Results</h1>
+
+          {/* Year-wise progression */}
+          <div className="mb-8 rounded-2xl border border-gray-200 bg-gray-50 overflow-hidden">
+            <h2 className="text-lg font-bold text-heading px-6 py-4 border-b border-gray-200">Year-wise performance</h2>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-white border-b border-gray-200">
+                    <th className="text-left px-6 py-3 font-semibold text-[#0a1a67]">Year</th>
+                    <th className="text-left px-6 py-3 font-semibold text-[#0a1a67]">MHT-CET 99+ percentile</th>
+                    <th className="text-left px-6 py-3 font-semibold text-[#0a1a67]">IIT selections</th>
+                    <th className="text-left px-6 py-3 font-semibold text-[#0a1a67]">NEET (AIIMS/MBBS)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {yearWiseStats.map((row, i) => (
+                    <tr key={i} className="border-b border-gray-100 hover:bg-white/80">
+                      <td className="px-6 py-3 font-medium text-[#0a1a67]">{row.year}</td>
+                      <td className="px-6 py-3 text-[#0a1a67]">{row.mhtCet99}</td>
+                      <td className="px-6 py-3 text-[#0a1a67]">{row.iitSelections}</td>
+                      <td className="px-6 py-3 text-[#0a1a67]">{row.neetSelections}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="px-6 py-3 text-xs text-[#0a1a67]/60 border-t border-gray-100">Data to be updated by content team. Contact for latest figures.</p>
+          </div>
+
           <div className="mb-6">
             <ResultsImageSlider />
           </div>

@@ -3,9 +3,9 @@ import Link from 'next/link'
 
 export default function IITJEEPage() {
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        <div className="min-h-screen bg-[var(--bg-page)]">
             {/* Hero Section */}
-            <section className="bg-gradient-to-br from-[#B30027] to-[#8a001e] text-white py-8 md:py-12">
+            <section className="bg-[#B30027] text-white py-8 md:py-12">
                 <div className="container-page">
                     <div className="max-w-4xl mx-auto text-center">
                         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
@@ -22,17 +22,17 @@ export default function IITJEEPage() {
             </section>
 
             {/* About the Exam */}
-            <section className="container-page py-5 md:py-7">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-6">About IIT-JEE</h2>
+            <section className="page-section-white">
+                <div className="container-page max-w-4xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-bold text-heading mb-6">About IIT-JEE</h2>
                     <div className="prose prose-lg max-w-none">
-                        <p className="text-[#0a1a67]/80 text-lg leading-relaxed mb-4">
+                        <p className="text-body/80 text-lg leading-relaxed mb-4">
                             The Joint Entrance Examination (JEE) is India's most prestigious engineering entrance exam,
                             conducted for admission to the Indian Institutes of Technology (IITs), National Institutes of
                             Technology (NITs), Indian Institutes of Information Technology (IIITs), and other centrally
                             funded technical institutions.
                         </p>
-                        <p className="text-[#0a1a67]/80 text-lg leading-relaxed">
+                        <p className="text-body/80 text-lg leading-relaxed">
                             JEE is conducted in two stages: JEE Main and JEE Advanced. JEE Main serves as a gateway for
                             JEE Advanced and admission to NITs, IIITs, and other institutions, while JEE Advanced is
                             specifically for admission to the 23 IITs across India.
@@ -42,15 +42,15 @@ export default function IITJEEPage() {
             </section>
 
             {/* Exam Pattern */}
-            <section className="bg-gray-50 py-5 md:py-7">
+            <section className="page-section-gray">
                 <div className="container-page">
                     <div className="max-w-4xl mx-auto">
-                        <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">Exam Pattern</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-heading mb-8">Exam Pattern</h2>
                         <div className="grid md:grid-cols-2 gap-6">
                             {/* JEE Main */}
-                            <div className="bg-white rounded-2xl p-6 shadow-lg">
+                            <div className="page-card p-6">
                                 <h3 className="text-2xl font-bold text-[#B30027] mb-4">JEE Main</h3>
-                                <ul className="space-y-3 text-[#0a1a67]/80">
+                                <ul className="space-y-3 text-body/80">
                                     <li className="flex items-start gap-2">
                                         <span className="text-[#B30027] font-bold">📅</span>
                                         <span><strong>When:</strong> January & April (Two attempts per year)</span>
@@ -75,9 +75,9 @@ export default function IITJEEPage() {
                             </div>
 
                             {/* JEE Advanced */}
-                            <div className="bg-white rounded-2xl p-6 shadow-lg">
+                            <div className="page-card p-6">
                                 <h3 className="text-2xl font-bold text-[#B30027] mb-4">JEE Advanced</h3>
-                                <ul className="space-y-3 text-[#0a1a67]/80">
+                                <ul className="space-y-3 text-body/80">
                                     <li className="flex items-start gap-2">
                                         <span className="text-[#B30027] font-bold">📅</span>
                                         <span><strong>When:</strong> May (Once a year)</span>
@@ -106,9 +106,9 @@ export default function IITJEEPage() {
             </section>
 
             {/* What You'll Achieve */}
-            <section className="container-page py-5 md:py-7">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">What You'll Achieve</h2>
+            <section className="page-section-white">
+                <div className="container-page max-w-4xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-bold text-heading mb-8">What You'll Achieve</h2>
                     <div className="grid sm:grid-cols-2 gap-6">
                         {[
                             { icon: '🏛️', title: 'Access to 23 IITs', desc: 'Study at India\'s most prestigious engineering institutes' },
@@ -120,8 +120,8 @@ export default function IITJEEPage() {
                         ].map((item, idx) => (
                             <div key={idx} className="bg-gradient-to-br from-[#B30027]/10 to-[#B30027]/5 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
                                 <div className="text-4xl mb-3">{item.icon}</div>
-                                <h3 className="text-xl font-bold text-[#0a1a67] mb-2">{item.title}</h3>
-                                <p className="text-[#0a1a67]/70">{item.desc}</p>
+                                <h3 className="text-xl font-bold text-heading mb-2">{item.title}</h3>
+                                <p className="text-body/80">{item.desc}</p>
                             </div>
                         ))}
                     </div>
@@ -154,9 +154,9 @@ export default function IITJEEPage() {
             </section>
 
             {/* Our Approach */}
-            <section className="container-page py-5 md:py-7">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">Our Teaching Approach</h2>
+            <section className="page-section-gray">
+                <div className="container-page max-w-4xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-bold text-heading mb-8">Our Teaching Approach</h2>
                     <div className="space-y-6">
                         {[
                             { title: 'Conceptual Clarity', desc: 'Deep understanding of fundamental concepts with real-world applications' },
@@ -166,13 +166,13 @@ export default function IITJEEPage() {
                             { title: 'Performance Tracking', desc: 'Detailed analysis of strengths and weaknesses with improvement plans' },
                             { title: 'Expert Faculty', desc: 'IIT alumni and experienced teachers with proven track records' }
                         ].map((item, idx) => (
-                            <div key={idx} className="flex items-start gap-4 bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300">
+                            <div key={idx} className="flex items-start gap-4 page-card p-6 hover:shadow-lg transition-all duration-300">
                                 <div className="flex-shrink-0 w-8 h-8 bg-[#B30027] rounded-full flex items-center justify-center text-white font-bold">
                                     {idx + 1}
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-[#0a1a67] mb-2">{item.title}</h3>
-                                    <p className="text-[#0a1a67]/70">{item.desc}</p>
+                                    <h3 className="text-xl font-bold text-heading mb-2">{item.title}</h3>
+                                    <p className="text-body/80">{item.desc}</p>
                                 </div>
                             </div>
                         ))}
@@ -181,16 +181,17 @@ export default function IITJEEPage() {
             </section>
 
             {/* CTA Section */}
-            <section className="container-page py-6">
-                <div className="bg-gradient-to-r from-[#0a1a67] to-[#B30027] rounded-3xl p-8 md:p-12 text-center text-white">
+            <section className="page-section-white">
+                <div className="container-page">
+                <div className="bg-[#0a1a67] rounded-2xl p-8 md:p-12 text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your IIT Journey?</h2>
-                    <p className="text-lg md:text-xl mb-8 opacity-90">
+                    <p className="text-lg md:text-xl mb-8 text-white/90">
                         Join Matrix Science Academy and achieve your dream of studying at IIT
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             href="/enquiry"
-                            className="inline-flex items-center justify-center gap-2 bg-white text-[#0a1a67] hover:bg-gray-100 px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+                            className="inline-flex items-center justify-center gap-2 bg-[#B30027] text-white hover:bg-[#8a001e] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
                         >
                             Enquire Now
                         </Link>
@@ -201,6 +202,7 @@ export default function IITJEEPage() {
                             View All Courses
                         </Link>
                     </div>
+                </div>
                 </div>
             </section>
         </div>

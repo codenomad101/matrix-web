@@ -6,12 +6,13 @@ export const metadata = {
 
 export default function TermsAndConditionsPage() {
   return (
-    <div className="container-page py-8">
-      <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8">
-        <h1 className="text-3xl font-bold text-[#0a1a67] mb-6">Terms &amp; Conditions</h1>
-        <p className="text-sm text-gray-500 mb-6">Effective Date: January 14, 2026</p>
+    <div className="min-h-screen bg-[var(--bg-page)]">
+      <section className="page-section-white">
+        <div className="container-page max-w-3xl mx-auto">
+          <h1 className="text-3xl font-bold text-heading mb-6">Terms &amp; Conditions</h1>
+          <p className="text-sm text-body/80 mb-6">Effective Date: January 14, 2026</p>
 
-        <div className="space-y-4 text-gray-800 leading-relaxed">
+          <div className="space-y-4 text-body leading-relaxed">
           <p>
             By accessing <span className="font-semibold">matrixscienceacademy.co.in</span> or
             subscribing to our WhatsApp Business updates, you agree to the following terms.
@@ -44,13 +45,14 @@ export default function TermsAndConditionsPage() {
             These terms are governed by the laws of India, with jurisdiction in Maharashtra.
           </p>
 
-          <div className="mt-6 space-y-1">
+          <div className="mt-6 space-y-1 text-body">
             <p>Pune / Chinchwad, Maharashtra</p>
             <p>Email: admin@matrixscienceacademy.co.in</p>
             <p>WhatsApp: +91-7058740609</p>
           </div>
         </div>
-      </div>
+        </div>
+      </section>
     </div>
   )
 }

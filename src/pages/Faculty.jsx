@@ -6,11 +6,12 @@ export default function Faculty() {
   const facultyImageId = 'v1765176351/faculties_lyaigl'
 
   return (
-    <section className="page-section-white">
-      <div className="container-page">
+    <div className="min-h-screen bg-[var(--bg-page)]">
+      <section className="page-section-white">
+        <div className="container-page">
         <div className="text-center max-w-3xl mx-auto mb-5">
-          <h1 className="section-heading-center mb-3">Our Esteemed Faculty</h1>
-          <p className="section-subheading text-center">
+          <h1 className="text-3xl md:text-4xl font-bold text-heading text-center mb-3">Our Esteemed Faculty</h1>
+          <p className="text-body/80 text-base md:text-lg max-w-2xl mx-auto text-center">
             Our dedicated faculty members are committed to nurturing talent and guiding students towards academic excellence.
           </p>
         </div>
@@ -24,7 +25,8 @@ export default function Faculty() {
         quality="100"
         loading="eager"
       />
-      </div>
-    </section>
+        </div>
+      </section>
+    </div>
   )
 }

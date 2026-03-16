@@ -86,8 +86,10 @@ export default function HeroSlider() {
                     <div className="relative z-10 w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 pt-8 sm:pt-10 md:pt-12 lg:pt-14 px-4 sm:px-5 md:px-6 lg:px-8 pb-4 sm:pb-5 md:pb-6 lg:pb-8 overflow-y-auto items-start">
                       {/* Left: Headline, tagline, stats row, CTA */}
                       <div className="flex flex-col justify-center min-w-0 mt-4 sm:mt-6 md:mt-8">
-                        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-[#8B1538] mb-1">
-                          Matrix Science Academy
+                        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight mb-1">
+                          <span className="text-[#ed1c24]">Matrix</span>{' '}
+                          <span className="text-[#646262] font-black">Science</span>
+                          <span className="block text-[#214295] font-black">Academy</span>
                         </h1>
                         <p className="text-sm sm:text-base text-slate-600 mb-3 sm:mb-4">
                           Pune&apos;s leading coaching for JEE, NEET & MHT-CET

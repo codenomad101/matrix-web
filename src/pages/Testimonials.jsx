@@ -33,15 +33,17 @@ const items = [
 
 export default function Testimonials() {
   return (
-    <div className="container-page py-6">
-      <h1 className="text-3xl font-bold mb-2 text-[#0a1a67]">Testimonials</h1>
-      <p className="text-[#0a1a67] mb-5">Hear from our successful students who achieved their dreams</p>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {items.map((t, idx) => (
-          <div 
-            key={idx} 
-            className="bg-white rounded-2xl shadow-soft hover:shadow-xl transition-all duration-500 hover:-translate-y-2 overflow-hidden group"
-          >
+    <div className="min-h-screen bg-[var(--bg-page)]">
+      <section className="page-section-white">
+        <div className="container-page">
+          <h1 className="text-3xl font-bold mb-2 text-heading">Testimonials</h1>
+          <p className="text-body mb-5">Hear from our successful students who achieved their dreams</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {items.map((t, idx) => (
+              <div 
+                key={idx} 
+                className="page-card rounded-2xl hover:shadow-xl transition-all duration-500 hover:-translate-y-2 overflow-hidden group"
+              >
             {/* Quote Section with Brand Color */}
             <div className="relative bg-brand px-6 pt-8 pb-6">
               {/* Quote Icon */}
@@ -63,7 +65,7 @@ export default function Testimonials() {
             </div>
 
             {/* Person Details Section */}
-            <div className="px-6 py-5 bg-white border-t border-[#0a1a67]/10">
+            <div className="px-6 py-5 bg-white border-t border-gray-200/80">
               <div className="flex items-center gap-4">
                 {/* Avatar */}
                 <div className="h-12 w-12 rounded-full bg-brand/30 flex items-center justify-center text-[#0a1a67] font-bold text-lg shrink-0 group-hover:bg-brand/50 transition-colors duration-300">
@@ -72,15 +74,17 @@ export default function Testimonials() {
                 
                 {/* Details */}
                 <div className="flex-1 min-w-0">
-                  <div className="font-semibold text-[#0a1a67] text-lg">{t.name}</div>
-                  <div className="text-sm font-medium text-brand mt-0.5">{t.college}</div>
-                  <div className="text-xs text-[#0a1a67] mt-1">{t.exam}</div>
+                  <div className="font-semibold text-body text-lg">{t.name}</div>
+                  <div className="text-sm font-medium text-heading mt-0.5">{t.college}</div>
+                  <div className="text-xs text-body/80 mt-1">{t.exam}</div>
                 </div>
               </div>
             </div>
           </div>
         ))}
-      </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

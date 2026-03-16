@@ -10,19 +10,21 @@ export default function Courses() {
     { id: 'board', title: '8th–12th Boards', href: '/courses', desc: 'Boards-aligned lectures, notes, and focused writing practice.' },
   ]
   return (
-    <section className="page-section-white">
-      <div className="container-page">
-        <h1 className="section-heading mb-5">Courses</h1>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sections.map((s) => (
-            <Link key={s.id} href={s.href} className="page-card-hover block">
-              <h3 className="text-lg font-semibold text-[#0a1a67] mb-2">{s.title}</h3>
-              <p className="text-[#0a1a67]/80 text-sm leading-relaxed">{s.desc}</p>
-            </Link>
-          ))}
+    <div className="min-h-screen bg-[var(--bg-page)]">
+      <section className="page-section-white">
+        <div className="container-page">
+          <h1 className="text-3xl md:text-4xl font-bold text-heading mb-5">Courses</h1>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sections.map((s) => (
+              <Link key={s.id} href={s.href} className="page-card-hover block">
+                <h3 className="text-lg font-semibold text-heading mb-2">{s.title}</h3>
+                <p className="text-body/80 text-sm leading-relaxed">{s.desc}</p>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   )
 }
 

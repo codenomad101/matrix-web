@@ -62,8 +62,8 @@ export default function About() {
       <section className="page-section-white">
         <div className="container-page">
           <div className="page-card">
-            <h1 className="section-heading text-3xl md:text-4xl mb-6">About Matrix Science Academy</h1>
-            <p className="text-lg text-[#0a1a67] leading-relaxed mb-5">
+            <h1 className="text-3xl md:text-4xl font-bold text-heading mb-6">About Matrix Science Academy</h1>
+            <p className="text-lg text-body leading-relaxed mb-5">
               Matrix Science Academy (MSA) is dedicated to building strong concepts and habits for
               competitive exams and boards. With a blended learning approach, we offer mentor-led
               classes, quality study material, and rigorous assessments.
@@ -71,22 +71,22 @@ export default function About() {
 
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-[#0a1a67]">
-                <h3 className="text-lg font-bold text-[#0a1a67] mb-2">Our Mission</h3>
-                <p className="text-[#0a1a67] text-sm leading-relaxed">
+                <h3 className="text-lg font-bold text-heading mb-2">Our Mission</h3>
+                <p className="text-body text-sm leading-relaxed">
                   Deliver accessible, high-quality education with compassion and discipline.
                 </p>
               </div>
               <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-[#B30027]">
-                <h3 className="text-lg font-bold text-[#0a1a67] mb-2">Our Vision</h3>
-                <p className="text-[#0a1a67] text-sm leading-relaxed">
+                <h3 className="text-lg font-bold text-heading mb-2">Our Vision</h3>
+                <p className="text-body text-sm leading-relaxed">
                   Enable every learner to achieve excellence and freedom through knowledge.
                 </p>
               </div>
             </div>
 
             <div className="mt-8 p-6 bg-gray-50 rounded-xl">
-              <h3 className="text-lg font-bold text-[#0a1a67] mb-3">Our Philosophy</h3>
-              <p className="text-[#0a1a67] leading-relaxed text-sm">
+              <h3 className="text-lg font-bold text-heading mb-3">Our Philosophy</h3>
+              <p className="text-body leading-relaxed text-sm">
                 We are teachers by our choice and we passionately do our job. Our aim is not to run the classes conventionally,
                 but we are here to make a change and make a strong impact in the field of 8th to 12th Education in Maharashtra.
                 We believe education is the key to success. Matrix Science Academy aims to provide quality and affordable education
@@ -97,8 +97,8 @@ export default function About() {
 
             {/* Our Vision - Full Message */}
             <div className="mt-8 p-6 bg-gray-50 rounded-xl border-l-4 border-[#B30027]">
-              <h3 className="text-lg font-bold text-[#0a1a67] mb-3">Our Vision</h3>
-              <div className="space-y-3 text-[#0a1a67] text-sm leading-relaxed">
+              <h3 className="text-lg font-bold text-heading mb-3">Our Vision</h3>
+              <div className="space-y-3 text-body text-sm leading-relaxed">
                 <p>
                   <strong>We are teachers by our choice and we passionately do our job.</strong> Our aim is not to run the classes conventionally, but we are here to make a change and make a strong impact in the field of 8th to 12th Education in Maharashtra.
                 </p>
@@ -115,8 +115,8 @@ export default function About() {
       <section className="page-section-gray">
         <div className="container-page">
           <div className="text-center mb-6">
-            <h2 className="section-heading-center mb-3">Our Directors</h2>
-            <p className="section-subheading text-center">Leaders at each branch driving excellence</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-heading text-center mb-3">Our Directors</h2>
+            <p className="text-body/80 text-base md:text-lg max-w-2xl mx-auto text-center">Leaders at each branch driving excellence</p>
           </div>
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
@@ -131,8 +131,8 @@ export default function About() {
                     crop="fill"
                     loading="lazy"
                   />
-                  <p className="mt-3 font-semibold text-[#0a1a67]">{d.name}</p>
-                  <p className="text-sm text-[#B30027] font-medium">MSA {d.branch}</p>
+                  <p className="mt-3 font-semibold text-body">{d.name}</p>
+                  <p className="text-sm text-heading font-medium">MSA {d.branch}</p>
                 </div>
               ))}
             </div>
@@ -144,8 +144,8 @@ export default function About() {
       <section className="page-section-gray">
         <div className="container-page">
           <div className="text-center mb-6">
-            <h2 className="section-heading-center mb-3">Contact Us</h2>
-            <p className="section-subheading text-center">Visit any of our 8 branches across Pune</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-heading text-center mb-3">Contact Us</h2>
+            <p className="text-body/80 text-base md:text-lg max-w-2xl mx-auto text-center">Visit any of our 8 branches across Pune</p>
           </div>
 
           {/* General Contact Info */}
@@ -224,10 +224,10 @@ export default function About() {
 
           {/* Call to Action */}
           <div className="mt-8 text-center">
-            <p className="text-[#0a1a67] mb-3 text-sm">Ready to start your journey with us?</p>
+            <p className="text-body mb-3 text-sm">Ready to start your journey with us?</p>
             <Link
               href="/enquiry"
-              className="inline-flex items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] transition-colors duration-300 px-6 py-2.5 font-semibold text-sm"
+              className="inline-flex items-center gap-2 rounded-lg bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] transition-colors duration-300 px-6 py-2.5 font-semibold text-sm"
             >
               Enquire Now
             </Link>

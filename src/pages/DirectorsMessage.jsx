@@ -101,11 +101,12 @@ export default function DirectorsMessage() {
   ];
 
   return (
-    <div className="bg-gray-100 py-6">
-      <div className="container-page">
-        <div className="bg-white p-8 rounded-lg shadow-lg">
-          <h1 className="text-4xl font-bold text-[#0a1a67] mb-4">Director's Message:</h1>
-          <p className="text-gray-700 leading-relaxed">
+    <div className="min-h-screen bg-[var(--bg-page)]">
+      <section className="page-section-white">
+        <div className="container-page">
+          <div className="page-card p-8">
+            <h1 className="text-4xl font-bold text-heading mb-4">Director's Message:</h1>
+            <p className="text-body leading-relaxed">
             We are teachers by our choice and we passionately do our job. Our Aim is not to run the classes conventionally, but we
             are here to make a change and make a strong impact in the field of 8th to 12th Education in Maharashtra. We believe
             education is the key to success. <strong>Matrix Science Academy</strong> Aims to Provide Quality and Affordable Education to
@@ -128,26 +129,27 @@ export default function DirectorsMessage() {
         </div>
 
         <div className="mt-12">
-          <h2 className="text-4xl font-bold text-[#0a1a67] mb-5">Branches</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {branches.map((branch, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-semibold text-brand-dark flex items-center">
-                  <FaBuilding className="mr-3" /> {branch.name}
-                </h3>
-                <p className="text-gray-600 mt-3 flex items-start">
-                  <FaMapMarkerAlt className="mr-3 mt-1 flex-shrink-0" />
-                  <span>{branch.address}</span>
-                </p>
-                <p className="text-gray-600 mt-3 flex items-center">
-                  <FaPhoneAlt className="mr-3" />
-                  {branch.phone.join(' | ')}
-                </p>
-              </div>
-            ))}
+            <h2 className="text-4xl font-bold text-heading mb-5">Branches</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {branches.map((branch, index) => (
+                <div key={index} className="page-card p-6">
+                  <h3 className="text-2xl font-semibold text-heading flex items-center">
+                    <FaBuilding className="mr-3" /> {branch.name}
+                  </h3>
+                  <p className="text-body mt-3 flex items-start">
+                    <FaMapMarkerAlt className="mr-3 mt-1 flex-shrink-0" />
+                    <span>{branch.address}</span>
+                  </p>
+                  <p className="text-body mt-3 flex items-center">
+                    <FaPhoneAlt className="mr-3" />
+                    {branch.phone.join(' | ')}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

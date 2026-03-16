@@ -3,9 +3,9 @@ import Link from 'next/link'
 
 export default function MHTCETPage() {
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        <div className="min-h-screen bg-[var(--bg-page)]">
             {/* Hero Section */}
-            <section className="bg-gradient-to-br from-[#B30027] to-[#8a001e] text-white py-8 md:py-12">
+            <section className="bg-[#B30027] text-white py-8 md:py-12">
                 <div className="container-page">
                     <div className="max-w-4xl mx-auto text-center">
                         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
@@ -22,17 +22,17 @@ export default function MHTCETPage() {
             </section>
 
             {/* About the Exam */}
-            <section className="container-page py-5 md:py-7">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-6">About MHT-CET</h2>
+            <section className="page-section-white">
+                <div className="container-page max-w-4xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-bold text-heading mb-6">About MHT-CET</h2>
                     <div className="prose prose-lg max-w-none">
-                        <p className="text-[#0a1a67]/80 text-lg leading-relaxed mb-4">
+                        <p className="text-body/80 text-lg leading-relaxed mb-4">
                             The Maharashtra Common Entrance Test (MHT-CET) is a state-level entrance examination
                             conducted by the State Common Entrance Test Cell, Government of Maharashtra, for admission
                             to undergraduate professional courses in engineering, pharmacy, and agriculture in
                             Maharashtra state.
                         </p>
-                        <p className="text-[#0a1a67]/80 text-lg leading-relaxed">
+                        <p className="text-body/80 text-lg leading-relaxed">
                             MHT-CET is the gateway to prestigious institutions like COEP (College of Engineering Pune),
                             VJTI (Veermata Jijabai Technological Institute), and other top engineering colleges across
                             Maharashtra, offering quality education at affordable costs.
@@ -42,12 +42,12 @@ export default function MHTCETPage() {
             </section>
 
             {/* Exam Pattern */}
-            <section className="bg-gray-50 py-5 md:py-7">
+            <section className="page-section-gray">
                 <div className="container-page">
                     <div className="max-w-4xl mx-auto">
-                        <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">Exam Pattern</h2>
-                        <div className="bg-white rounded-2xl p-8 shadow-lg">
-                            <ul className="space-y-4 text-[#0a1a67]/80">
+                        <h2 className="text-3xl md:text-4xl font-bold text-heading mb-8">Exam Pattern</h2>
+                        <div className="page-card p-8">
+                            <ul className="space-y-4 text-body/80">
                                 <li className="flex items-start gap-3">
                                     <span className="text-blue-600 font-bold text-xl">📅</span>
                                     <span><strong>Exam Date:</strong> Usually conducted in May</span>
@@ -83,9 +83,9 @@ export default function MHTCETPage() {
             </section>
 
             {/* What You'll Achieve */}
-            <section className="container-page py-5 md:py-7">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">What You'll Achieve</h2>
+            <section className="page-section-white">
+                <div className="container-page max-w-4xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-bold text-heading mb-8">What You'll Achieve</h2>
                     <div className="grid sm:grid-cols-2 gap-6">
                         {[
                             { icon: '🏛️', title: 'Top Engineering Colleges', desc: 'COEP, VJTI, PICT, and other premier institutes in Maharashtra' },
@@ -95,10 +95,10 @@ export default function MHTCETPage() {
                             { icon: '💼', title: 'Excellent Placements', desc: 'Top companies recruit from Maharashtra engineering colleges' },
                             { icon: '🏠', title: 'Study Near Home', desc: 'Colleges across Maharashtra - Pune, Mumbai, Nagpur, and more' }
                         ].map((item, idx) => (
-                            <div key={idx} className="bg-gradient-to-br from-blue-500/10 to-blue-500/5 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
+                            <div key={idx} className="bg-[#0a1a67]/5 rounded-xl p-6 hover:shadow-lg transition-all duration-300 border border-gray-200/80">
                                 <div className="text-4xl mb-3">{item.icon}</div>
-                                <h3 className="text-xl font-bold text-[#0a1a67] mb-2">{item.title}</h3>
-                                <p className="text-[#0a1a67]/70">{item.desc}</p>
+                                <h3 className="text-xl font-bold text-heading mb-2">{item.title}</h3>
+                                <p className="text-body/80">{item.desc}</p>
                             </div>
                         ))}
                     </div>
@@ -131,9 +131,9 @@ export default function MHTCETPage() {
             </section>
 
             {/* Our Approach */}
-            <section className="container-page py-5 md:py-7">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-8">Our Teaching Approach</h2>
+            <section className="page-section-gray">
+                <div className="container-page max-w-4xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-bold text-heading mb-8">Our Teaching Approach</h2>
                     <div className="space-y-6">
                         {[
                             { title: 'State Board Focused', desc: 'Curriculum perfectly aligned with Maharashtra State Board syllabus' },
@@ -143,13 +143,13 @@ export default function MHTCETPage() {
                             { title: 'Previous Year Analysis', desc: 'Detailed analysis of past 10 years MHT-CET question papers' },
                             { title: 'Doubt Clearing Sessions', desc: 'Daily doubt sessions ensuring no concept is left unclear' }
                         ].map((item, idx) => (
-                            <div key={idx} className="flex items-start gap-4 bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300">
-                                <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                            <div key={idx} className="flex items-start gap-4 page-card p-6 hover:shadow-lg transition-all duration-300">
+                                <div className="flex-shrink-0 w-8 h-8 bg-[#B30027] rounded-full flex items-center justify-center text-white font-bold">
                                     {idx + 1}
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-[#0a1a67] mb-2">{item.title}</h3>
-                                    <p className="text-[#0a1a67]/70">{item.desc}</p>
+                                    <h3 className="text-xl font-bold text-heading mb-2">{item.title}</h3>
+                                    <p className="text-body/80">{item.desc}</p>
                                 </div>
                             </div>
                         ))}
@@ -158,26 +158,28 @@ export default function MHTCETPage() {
             </section>
 
             {/* CTA Section */}
-            <section className="container-page py-6">
-                <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl p-8 md:p-12 text-center text-white">
+            <section className="page-section-white">
+                <div className="container-page">
+                <div className="bg-[#0a1a67] rounded-2xl p-8 md:p-12 text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Ace MHT-CET?</h2>
-                    <p className="text-lg md:text-xl mb-8 opacity-90">
+                    <p className="text-lg md:text-xl mb-8 text-white/90">
                         Join Matrix Science Academy and secure admission to top engineering colleges in Maharashtra
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             href="/enquiry"
-                            className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+                            className="inline-flex items-center justify-center gap-2 bg-[#B30027] text-white hover:bg-[#8a001e] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
                         >
                             Enquire Now
                         </Link>
                         <Link
                             href="/courses"
-                            className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105"
+                            className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#0a1a67] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105"
                         >
                             View All Courses
                         </Link>
                     </div>
+                </div>
                 </div>
             </section>
         </div>

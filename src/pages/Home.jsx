@@ -457,6 +457,16 @@ function FeaturesAndNewsSection() {
       description: 'Premier institutes for integrated BS-MS programs in pure sciences.',
       examDates: 'Admission via JEE Advanced/KVPY',
       ourResults: 'Research-focused training',
+    },
+    {
+      id: 'vriksha',
+      href: '/vriksha',
+      icon: '🌱',
+      name: 'VRIKSHA',
+      fullName: 'New Program',
+      description: 'Our newest program designed to nurture growth and excellence with a structured curriculum.',
+      examDates: 'Flexible batches',
+      ourResults: 'Dedicated support & proven approach',
     }
   ]
 
@@ -478,7 +488,9 @@ function FeaturesAndNewsSection() {
       <div className="grid lg:grid-cols-2 gap-4">
         {/* Left - Features (Why Choose Us) - 2-card slider */}
         <div className="hidden md:block">
-          <h2 className="section-heading mb-3">Why Choose Us?</h2>
+          <h2 className="section-heading mb-3">
+            <span className="text-[#ed1c24]">Why Choose Us?</span>
+          </h2>
           <div className="relative overflow-hidden">
             <div
               className="flex transition-transform duration-300 ease-out"
@@ -545,7 +557,9 @@ function FeaturesAndNewsSection() {
 
         {/* Right - Latest News */}
         <div className="md:col-span-1 lg:col-span-1 max-w-lg lg:max-w-md">
-          <h2 className="section-heading mb-3">Latest News & Updates</h2>
+          <h2 className="section-heading mb-3">
+            <span className="text-[#ed1c24]">Latest News &amp; Updates</span>
+          </h2>
           <div className="page-card overflow-hidden border border-gray-200/80 rounded-xl sm:rounded-2xl relative">
             <div className="p-3 sm:p-4 h-[240px] overflow-hidden relative">
               <div className="animate-scroll-news">
@@ -567,50 +581,54 @@ function FeaturesAndNewsSection() {
         </div>
       </div>
 
-      {/* Courses Section */}
+      {/* Courses Section - horizontal slider (left to right) */}
       <div className="mt-4">
         <div className="text-left mb-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-heading mb-3">Our Courses</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3 leading-tight">
+            <span className="text-[#ed1c24]">Our Courses</span>
+          </h2>
           <p className="text-body/80 text-lg">Comprehensive preparation for competitive examinations</p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-          {courses.map((course) => (
-            <Link
-              key={course.id}
-              href={`/courses/${course.id}`}
-              className="bg-box-bg border border-gray-200/80 rounded-xl sm:rounded-2xl p-3 sm:p-6 text-black shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden block"
-            >
-              {/* Dynamic background: gradient + floating orbs */}
-              <div className="absolute inset-0 rounded-xl sm:rounded-2xl card-bg-gradient" aria-hidden />
-              <div className="card-float-orb card-float-orb-1 w-20 h-20 sm:w-28 sm:h-28 bg-[#B30027]/20 -top-8 -right-8" aria-hidden />
-              <div className="card-float-orb card-float-orb-2 w-16 h-16 sm:w-24 sm:h-24 bg-[#B30027]/15 bottom-4 left-4" aria-hidden />
-              <div className="card-float-orb card-float-orb-3 w-12 h-12 sm:w-20 sm:h-20 bg-[#B30027]/10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" aria-hidden />
-              <div className="relative z-10">
-                <div className="text-xl sm:text-3xl mb-2 sm:mb-3 group-hover:scale-105 transition-transform duration-300">{course.icon}</div>
-                <h3 className="text-sm sm:text-2xl font-bold mb-0.5 sm:mb-1 leading-tight text-heading">{course.name}</h3>
-                <p className="text-[10px] sm:text-sm text-black/80 mb-1.5 sm:mb-3 leading-tight">{course.fullName}</p>
-                <p className="text-[9px] sm:text-sm text-black/90 leading-relaxed mb-2 sm:mb-4 line-clamp-2 sm:line-clamp-3">{course.description}</p>
+        <div className="overflow-hidden -mx-4 sm:-mx-6 lg:-mx-8">
+          <div className="animate-scroll-courses flex gap-4 sm:gap-6 pb-2" style={{ width: 'max-content' }}>
+            {[...courses, ...courses].map((course, idx) => (
+              <Link
+                key={`${course.id}-${idx}`}
+                href={course.href || `/courses/${course.id}`}
+                className="bg-box-bg border border-gray-200/80 rounded-xl sm:rounded-2xl p-3 sm:p-6 text-black shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden block flex-shrink-0 w-[280px] sm:w-[320px]"
+              >
+                {/* Dynamic background: gradient + floating orbs */}
+                <div className="absolute inset-0 rounded-xl sm:rounded-2xl card-bg-gradient" aria-hidden />
+                <div className="card-float-orb card-float-orb-1 w-20 h-20 sm:w-28 sm:h-28 bg-[#B30027]/20 -top-8 -right-8" aria-hidden />
+                <div className="card-float-orb card-float-orb-2 w-16 h-16 sm:w-24 sm:h-24 bg-[#B30027]/15 bottom-4 left-4" aria-hidden />
+                <div className="card-float-orb card-float-orb-3 w-12 h-12 sm:w-20 sm:h-20 bg-[#B30027]/10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" aria-hidden />
+                <div className="relative z-10">
+                  <div className="text-xl sm:text-3xl mb-2 sm:mb-3 group-hover:scale-105 transition-transform duration-300">{course.icon}</div>
+                  <h3 className="text-sm sm:text-2xl font-bold mb-0.5 sm:mb-1 leading-tight text-heading">{course.name}</h3>
+                  <p className="text-[10px] sm:text-sm text-black/80 mb-1.5 sm:mb-3 leading-tight">{course.fullName}</p>
+                  <p className="text-[9px] sm:text-sm text-black/90 leading-relaxed mb-2 sm:mb-4 line-clamp-2 sm:line-clamp-3">{course.description}</p>
 
-                <div className="mt-2 sm:mt-4 space-y-1.5 sm:space-y-2">
-                  <div className="bg-gray-200/70 rounded-md sm:rounded-lg p-1.5 sm:p-3">
-                    <p className="text-[8px] sm:text-xs font-bold text-black">📅 {course.examDates}</p>
+                  <div className="mt-2 sm:mt-4 space-y-1.5 sm:space-y-2">
+                    <div className="bg-gray-200/70 rounded-md sm:rounded-lg p-1.5 sm:p-3">
+                      <p className="text-[8px] sm:text-xs font-bold text-black">📅 {course.examDates}</p>
+                    </div>
+
+                    <div className="bg-gray-200/70 rounded-md sm:rounded-lg p-1.5 sm:p-3">
+                      <p className="text-[8px] sm:text-xs font-bold text-black">🏆 {course.ourResults}</p>
+                    </div>
                   </div>
 
-                  <div className="bg-gray-200/70 rounded-md sm:rounded-lg p-1.5 sm:p-3">
-                    <p className="text-[8px] sm:text-xs font-bold text-black">🏆 {course.ourResults}</p>
+                  <div className="mt-2 sm:mt-4 flex items-center gap-1 sm:gap-2 text-[9px] sm:text-sm font-semibold text-black group-hover:gap-2 sm:group-hover:gap-3 transition-all duration-300">
+                    Learn More
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
                   </div>
                 </div>
-
-                <div className="mt-2 sm:mt-4 flex items-center gap-1 sm:gap-2 text-[9px] sm:text-sm font-semibold text-black group-hover:gap-2 sm:group-hover:gap-3 transition-all duration-300">
-                  Learn More
-                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
         </div>
 
         <div className="text-center mt-5">
@@ -638,7 +656,184 @@ function FeaturesAndNewsSection() {
         .animate-scroll-news:hover {
           animation-play-state: paused;
         }
+        @keyframes scroll-courses {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-scroll-courses {
+          animation: scroll-courses 35s linear infinite;
+        }
+        .animate-scroll-courses:hover {
+          animation-play-state: paused;
+        }
       `}</style>
+    </section>
+  )
+}
+
+// About intro – short orientation for new visitors
+function AboutIntro() {
+  return (
+    <section className="page-section-tight bg-white">
+      <div className="container-page">
+        <h2 className="text-xl md:text-2xl font-bold mb-3 leading-tight">
+          <span>About </span>
+          <span className="text-[#ed1c24]">Matrix</span>{' '}
+          <span className="text-[#646262] font-black">Science</span>{' '}
+          <span className="text-[#214295] font-black">Academy</span>
+        </h2>
+        <p className="text-body/90 text-base md:text-lg max-w-3xl mb-4">
+          Matrix Science Academy is one of the leading coaching institutions in Pune, helping students achieve their dreams in IIT-JEE, NEET, MHT-CET, and IISER through expert faculty, structured learning, and proven results.
+        </p>
+        <Link href="/about" className="inline-flex items-center gap-2 text-heading font-semibold hover:underline">
+          Read more about us
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </Link>
+      </div>
+    </section>
+  )
+}
+
+// VRIKSHA highlight – featured block for the new program
+function VrikshaHighlight() {
+  return (
+    <section className="page-section-tight bg-gray-50">
+      <div className="container-page">
+        <Link href="/vriksha" className="group block bg-white border-2 border-[#B30027]/20 rounded-2xl p-6 md:p-8 shadow-md hover:shadow-xl hover:border-[#B30027]/40 transition-all duration-300">
+          <div className="flex flex-col md:flex-row md:items-center gap-6">
+            <div className="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#B30027]/10 flex items-center justify-center text-4xl md:text-5xl group-hover:scale-105 transition-transform">
+              🌱
+            </div>
+            <div className="flex-1">
+              <span className="inline-block px-2.5 py-1 rounded-full bg-[#B30027] text-white text-[10px] font-bold uppercase tracking-wide mb-2">New Program</span>
+              <h2 className="text-xl md:text-2xl font-bold text-heading mb-2">VRIKSHA</h2>
+              <p className="text-body/80 text-base md:text-lg mb-4 max-w-2xl">
+                Our newest offering designed to nurture growth and excellence. Explore a structured curriculum and dedicated support to help you reach your goals.
+              </p>
+              <span className="inline-flex items-center gap-2 text-[#B30027] font-semibold group-hover:gap-3 transition-all">
+                Learn about VRIKSHA
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              </span>
+            </div>
+          </div>
+        </Link>
+      </div>
+    </section>
+  )
+}
+
+// Performance graph – 3-year improvement (CSS-only, dummy data)
+function PerformanceGraph() {
+  const years = [
+    { year: '2023', label: '2023', value: 72, color: 'bg-[#B30027]/30' },
+    { year: '2024', label: '2024', value: 85, color: 'bg-[#B30027]/60' },
+    { year: '2025', label: '2025', value: 100, color: 'bg-[#B30027]' },
+  ]
+  const maxValue = 100
+  return (
+    <section className="page-section-tight bg-white">
+      <div className="container-page">
+        <h2 className="text-2xl md:text-3xl font-bold mb-2 leading-tight">
+          <span className="text-[#ed1c24]">Results Over the Years</span>
+        </h2>
+        <p className="text-body/80 text-sm md:text-base mb-6 max-w-2xl">Our consistent improvement in student outcomes across competitive exams.</p>
+        <div className="bg-gray-50 rounded-2xl border border-gray-200/80 p-6 md:p-8">
+          <div className="flex flex-col sm:flex-row items-end justify-center gap-6 sm:gap-10 h-48 md:h-56">
+            {years.map(({ year, label, value, color }) => (
+              <div key={year} className="flex flex-col items-center gap-1.5 flex-1 max-w-[120px]">
+                <div className="w-full flex flex-col justify-end h-36 md:h-40 rounded-t-lg overflow-hidden relative">
+                  <div
+                    className={`w-full ${color} rounded-t transition-all duration-700 flex items-center justify-center min-h-[28px]`}
+                    style={{ height: `${(value / maxValue) * 100}%`, minHeight: '28px' }}
+                  >
+                    <span className={`text-sm font-bold drop-shadow-sm ${value >= 95 ? 'text-white' : 'text-[#0a1a67]'}`}>{value}</span>
+                  </div>
+                </div>
+                <span className="text-sm font-semibold text-body">{label}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-xs text-body/60 mt-4">Indexed performance (2025 = 100). Actual data to be updated by content team.</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Counseling CTA – free counseling + link
+function CounselingCTA() {
+  return (
+    <section className="page-section-tight bg-[#0a1a67]">
+      <div className="container-page">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Free Career Counseling</h2>
+            <p className="text-white/90 text-sm md:text-base max-w-xl">Not sure which course is right for you? Book a free counseling session with our experts and get a personalized plan.</p>
+          </div>
+          <Link href="/counseling" className="inline-flex items-center justify-center gap-2 bg-white text-[#0a1a67] hover:bg-gray-100 font-semibold px-6 py-3 rounded-lg transition-colors shrink-0">
+            Book free session
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Demo classes & scholarships – brief mentions + links
+function DemoScholarships() {
+  return (
+    <section className="page-section-tight bg-gray-50">
+      <div className="container-page">
+        <div className="grid md:grid-cols-2 gap-6">
+          <Link href="/enquiry" className="group block bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-[#B30027]/20 transition-all">
+            <span className="text-2xl mb-3 block">🎓</span>
+            <h3 className="text-xl font-bold text-heading mb-2">Try a Free Demo Class</h3>
+            <p className="text-body/80 text-sm mb-4">Experience our teaching style and infrastructure. Register for a demo class at your preferred branch.</p>
+            <span className="inline-flex items-center gap-1 text-[#B30027] font-semibold group-hover:gap-2 transition-all">Register for demo →</span>
+          </Link>
+          <Link href="/scholarships" className="group block bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-[#B30027]/20 transition-all">
+            <span className="text-2xl mb-3 block">🏅</span>
+            <h3 className="text-xl font-bold text-heading mb-2">Scholarships Available</h3>
+            <p className="text-body/80 text-sm mb-4">Merit-based scholarships for deserving students. Criteria and application process on our scholarships page.</p>
+            <span className="inline-flex items-center gap-1 text-[#B30027] font-semibold group-hover:gap-2 transition-all">Know more →</span>
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Promotional video – placeholder for 1–2 min campus/teaching video
+function PromotionalVideo() {
+  const videoUrl = '' // Set to YouTube/Vimeo embed URL when available, e.g. 'https://www.youtube.com/embed/VIDEO_ID'
+  return (
+    <section className="page-section-tight bg-white">
+      <div className="container-page">
+        <h2 className="text-2xl md:text-3xl font-bold mb-2 leading-tight">
+          <span className="text-[#ed1c24]">See Matrix Science Academy</span>
+        </h2>
+        <p className="text-body/80 text-sm md:text-base mb-6 max-w-2xl">Campus, teaching, infrastructure, and achievements in a short video.</p>
+        <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-lg bg-gray-100 aspect-video max-w-4xl mx-auto flex items-center justify-center">
+          {videoUrl ? (
+            <iframe
+              src={videoUrl}
+              title="Matrix Science Academy - Promotional Video"
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <div className="text-center p-8">
+              <div className="w-20 h-20 rounded-full bg-[#B30027]/20 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-10 h-10 text-[#B30027]" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+              </div>
+              <p className="text-body font-medium">Promotional video coming soon</p>
+              <p className="text-body/70 text-sm mt-1">Campus, teaching & results</p>
+            </div>
+          )}
+        </div>
+      </div>
     </section>
   )
 }
@@ -648,39 +843,15 @@ export default function Home() {
     <div>
       <HeroSlider />
 
+      <AboutIntro />
+      <VrikshaHighlight />
+
       {/* Combined Features & News Section */}
       <FeaturesAndNewsSection />
 
-
-      {/* Results Section */}
-
-
-
       <ResultsSection topResults={topResults} />
 
-      {/* Features Section */}
-      <FeaturesSection />
-
-
-
-      {/* Testimonials Section - Student Success Stories */}
-      <section className="page-section-gray page-section-tight">
-        <TestimonialsShowcase />
-      </section>
-
-
-      {/* CTA Section - Allen-style */}
-      <section className="page-section-white">
-        <div className="container-page">
-          <div className="page-card flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div>
-              <h3 className="section-heading mb-1">Ready to start your journey?</h3>
-              <p className="text-[#0a1a67]/80 text-sm">Speak with our counsellors and get a personalized plan.</p>
-            </div>
-            <Link href="/enquiry" className="inline-flex items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] transition-colors duration-300 px-5 py-2.5 font-semibold text-sm shrink-0">Enquire Now</Link>
-          </div>
-        </div>
-      </section>
+      <PerformanceGraph />
     </div>
   )
 }

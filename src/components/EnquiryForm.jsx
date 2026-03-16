@@ -1,6 +1,6 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useState } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
 
 // WhatsApp numbers for each branch
 // Format: country code + number (without + or spaces)
@@ -18,23 +18,26 @@ const BRANCH_WHATSAPP_NUMBERS = {
 
 const BRANCH_OPTIONS = Object.keys(BRANCH_WHATSAPP_NUMBERS)
 
-export default function EnquiryForm() {
+const ENQUIRY_EMAIL = 'jadhavsbj755@gmail.com'
+const SITE_NAME = 'Matrix Science Academy'
+
+export default function EnquiryForm({ initialMessage = '' }) {
   const searchParams = useSearchParams()
+  const router = useRouter()
   const branchParam = searchParams.get('branch')
   const initialBranch = BRANCH_OPTIONS.includes(branchParam || '') ? branchParam : 'Nigdi'
+  const fromCounseling = searchParams.get('counseling') === '1' || initialMessage
+  const messagePlaceholder = fromCounseling ? "E.g. I'd like to schedule a free career counseling session." : 'Tell us about your goals'
+  const defaultMessage = initialMessage || (fromCounseling ? 'I am interested in free career counseling session.' : '')
 
-  const [origin, setOrigin] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setOrigin(window.location.origin)
-    }
-  }, [])
+  const [submitError, setSubmitError] = useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const submitType = e.nativeEvent?.submitter?.value || 'whatsapp' // 'whatsapp' | 'email'
     setIsSubmitting(true)
+    setSubmitError(null)
 
     const formData = new FormData(e.target)
     const formValues = {
@@ -46,11 +49,39 @@ export default function EnquiryForm() {
       message: formData.get('message') || 'No message provided'
     }
 
-    // Get WhatsApp number for selected branch
-    const whatsappNumber = BRANCH_WHATSAPP_NUMBERS[formValues.branch] || BRANCH_WHATSAPP_NUMBERS['Nigdi']
+    if (submitType === 'email') {
+      // FormSubmit: submit in-place via AJAX, no mail app, no redirect away (formsubmit.co)
+      const formSubmitPayload = {
+        name: formValues.name,
+        phone: formValues.phone,
+        email: formValues.email,
+        course: formValues.course,
+        branch: formValues.branch,
+        message: formValues.message,
+        site: SITE_NAME,
+        _replyto: formValues.email,
+        _subject: `${SITE_NAME} – Enquiry: ${formValues.name} – ${formValues.course} (${formValues.branch})`,
+      }
+      try {
+        const res = await fetch(`https://formsubmit.co/ajax/${ENQUIRY_EMAIL}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(formSubmitPayload),
+        })
+        const data = await res.json().catch(() => ({}))
+        if (!res.ok) throw new Error(data.message || 'Submit failed')
+        router.push('/thank-you')
+        return
+      } catch (err) {
+        setSubmitError('Could not send. Please try "Send WhatsApp details" or call us.')
+        setIsSubmitting(false)
+        return
+      }
+    }
 
-    // Format WhatsApp message
-    const whatsappMessage = `*New Enquiry from Matrix Science Academy Website*
+    // WhatsApp: get number and open WhatsApp with pre-filled message
+    const whatsappNumber = BRANCH_WHATSAPP_NUMBERS[formValues.branch] || BRANCH_WHATSAPP_NUMBERS['Nigdi']
+    const whatsappMessage = `*New Enquiry from ${SITE_NAME} Website*
 
 *Name:* ${formValues.name}
 *Phone:* ${formValues.phone}
@@ -60,15 +91,9 @@ export default function EnquiryForm() {
 *Message:* ${formValues.message}
 
 _This enquiry was submitted through the website._`
-
-    // Encode message for URL
     const encodedMessage = encodeURIComponent(whatsappMessage)
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank')
 
-    // Open WhatsApp with pre-filled message
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`
-    window.open(whatsappUrl, '_blank')
-
-    // Reset form after a short delay
     setTimeout(() => {
       e.target.reset()
       setIsSubmitting(false)
@@ -76,34 +101,38 @@ _This enquiry was submitted through the website._`
   }
 
   return (
-    <div className="container-page py-6">
-      <div className="grid lg:grid-cols-2 gap-8">
-        <div className="card p-6 sm:p-8">
-          <h2 className="text-2xl font-bold text-[#0a1a67]">Enquiry Form</h2>
-          <p className="mt-1 text-[#0a1a67]">Fill this and our team will reach out shortly.</p>
+    <div className="py-4">
+      <div className="grid lg:grid-cols-2 gap-6">
+        <div className="page-card p-6 sm:p-8">
+          <h2 className="text-xl font-bold text-heading">Enquiry Form</h2>
+          <p className="mt-1 text-body text-sm">Fill your details and choose how to send.</p>
+
+          {submitError && (
+            <p className="mt-3 text-sm text-[#B30027]" role="alert">{submitError}</p>
+          )}
 
           <form
             className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4"
             onSubmit={handleSubmit}
           >
             <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-[#0a1a67]">Full Name</label>
-              <input required name="name" type="text" placeholder="Your name" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand" />
+              <label className="block text-sm font-medium text-body">Full Name</label>
+              <input required name="name" type="text" placeholder="Your name" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]" />
             </div>
 
             <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-[#0a1a67]">Phone</label>
-              <input required name="phone" type="tel" placeholder="98765 43210" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand" />
+              <label className="block text-sm font-medium text-body">Phone</label>
+              <input required name="phone" type="tel" placeholder="98765 43210" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]" />
             </div>
 
             <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-[#0a1a67]">Email</label>
-              <input required name="email" type="email" placeholder="you@example.com" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand" />
+              <label className="block text-sm font-medium text-body">Email</label>
+              <input required name="email" type="email" placeholder="you@example.com" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]" />
             </div>
 
             <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-[#0a1a67]">Course</label>
-              <select name="course" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand">
+              <label className="block text-sm font-medium text-body">Course</label>
+              <select name="course" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]">
                 <option>IIT-JEE (Main/Advanced)</option>
                 <option>MHT-CET</option>
                 <option>NEET</option>
@@ -113,8 +142,8 @@ _This enquiry was submitted through the website._`
             </div>
 
             <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-[#0a1a67]">Preferred Branch</label>
-              <select name="branch" defaultValue={initialBranch} className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand">
+              <label className="block text-sm font-medium text-body">Preferred Branch</label>
+              <select name="branch" defaultValue={initialBranch} className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]">
                 {BRANCH_OPTIONS.map((b) => (
                   <option key={b} value={b}>{b}</option>
                 ))}
@@ -122,33 +151,44 @@ _This enquiry was submitted through the website._`
             </div>
 
             <div className="sm:col-span-2">
-              <label className="block text-sm font-medium text-[#0a1a67]">Message</label>
-              <textarea name="message" rows="4" placeholder="Tell us about your goals" className="mt-1 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand"></textarea>
+              <label className="block text-sm font-medium text-body">Message</label>
+              <textarea name="message" rows="4" placeholder={messagePlaceholder} defaultValue={defaultMessage} className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]"></textarea>
             </div>
 
-            <div className="sm:col-span-2 flex flex-col sm:flex-row gap-3">
+            <div className="sm:col-span-2 flex flex-wrap gap-3">
               <button
                 type="submit"
-                className="btn-primary inline-flex justify-center"
+                name="submitType"
+                value="whatsapp"
+                className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#25D366] text-white hover:bg-[#20bd5a] px-4 py-2.5 font-semibold text-sm transition-colors disabled:opacity-70"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Submitting...' : 'Submit Enquiry'}
+                {isSubmitting ? 'Sending...' : 'Send WhatsApp details'}
               </button>
-              <a href="tel:+91XXXXXXXXXX" className="btn-outline inline-flex justify-center">Call Us</a>
+              <button
+                type="submit"
+                name="submitType"
+                value="email"
+                className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] px-4 py-2.5 font-semibold text-sm transition-colors disabled:opacity-70"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : 'Submit via email'}
+              </button>
+              <a href="tel:7058740609" className="inline-flex justify-center items-center gap-2 rounded-lg border-2 border-[#0a1a67] text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white px-4 py-2.5 font-semibold text-sm transition-colors">Call Us</a>
             </div>
           </form>
         </div>
 
-        <div className="rounded-2xl bg-brand/20 border border-brand/30 p-6 sm:p-8">
-          <h3 className="text-xl font-semibold text-[#0a1a67]">Why enquire?</h3>
-          <ul className="mt-3 space-y-2 text-[#0a1a67]">
+        <div className="rounded-2xl bg-gray-50 border border-gray-200 p-6 sm:p-8">
+          <h3 className="text-xl font-semibold text-heading">Why enquire?</h3>
+          <ul className="mt-3 space-y-2 text-body">
             <li>• Get a personalized study plan</li>
             <li>• Fee details and scholarship options</li>
             <li>• Centre timings and batch schedules</li>
             <li>• Meet counsellors and mentors</li>
           </ul>
-          <div className="mt-6 text-sm text-[#0a1a67]">
-            We'll send your enquiry via WhatsApp to the selected branch and email your details to our team instantly.
+          <div className="mt-6 text-sm text-body/80">
+            <strong>Send WhatsApp details</strong> opens WhatsApp with your details pre-filled. <strong>Submit via email</strong> sends your enquiry to our team by email—no mail app opens.
           </div>
         </div>
       </div>

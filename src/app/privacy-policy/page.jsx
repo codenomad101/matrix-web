@@ -6,12 +6,13 @@ export const metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="container-page py-8">
-      <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8">
-        <h1 className="text-3xl font-bold text-[#0a1a67] mb-6">Privacy Policy</h1>
-        <p className="text-sm text-gray-500 mb-6">Effective Date: January 14, 2026</p>
+    <div className="min-h-screen bg-[var(--bg-page)]">
+      <section className="page-section-white">
+        <div className="container-page max-w-3xl mx-auto">
+          <h1 className="text-3xl font-bold text-heading mb-6">Privacy Policy</h1>
+          <p className="text-sm text-body/80 mb-6">Effective Date: January 14, 2026</p>
 
-        <div className="space-y-4 text-gray-800 leading-relaxed">
+          <div className="space-y-4 text-body leading-relaxed">
           <p>Matrix Science Academy values your privacy.</p>
 
           <p>
@@ -38,13 +39,14 @@ export default function PrivacyPolicyPage() {
 
           <p>Reasonable security measures are used to protect your data.</p>
 
-          <div className="mt-6 space-y-1">
+          <div className="mt-6 space-y-1 text-body">
             <p>Pune / Chinchwad, Maharashtra</p>
             <p>Email: admin@matrixscienceacademy.co.in</p>
             <p>WhatsApp: +91-7058740609</p>
           </div>
         </div>
-      </div>
+        </div>
+      </section>
     </div>
   )
 }

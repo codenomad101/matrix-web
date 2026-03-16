@@ -66,37 +66,41 @@ export default function Activities() {
   ]
 
   return (
-    <div className="container-page py-6">
-      <div className="text-center mb-6">
-        <h1 className="text-3xl sm:text-4xl font-bold text-[#0a1a67] mb-3">Activities & Programs</h1>
-        <p className="text-[#0a1a67] text-lg">
-          Explore our comprehensive range of activities, timelines, and programs
-        </p>
-      </div>
+    <div className="min-h-screen bg-[var(--bg-page)]">
+      <section className="page-section-white">
+        <div className="container-page">
+          <div className="text-center mb-6">
+            <h1 className="text-3xl sm:text-4xl font-bold text-heading mb-3">Activities & Programs</h1>
+            <p className="text-body text-lg">
+              Explore our comprehensive range of activities, timelines, and programs
+            </p>
+          </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {activities.map((activity, idx) => (
-          <Link 
-            key={idx} 
-            href={activity.link}
-            className="card p-6 hover:-translate-y-2 transition-all duration-300 group"
-          >
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-xl bg-brand/20 text-brand-dark group-hover:bg-brand/30 transition-colors duration-300 flex-shrink-0">
-                {activity.icon}
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-bold text-[#0a1a67] mb-2 group-hover:text-brand-dark transition-colors duration-300">
-                  {activity.title}
-                </h3>
-                <p className="text-[#0a1a67] text-sm">
-                  {activity.description}
-                </p>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {activities.map((activity, idx) => (
+              <Link 
+                key={idx} 
+                href={activity.link}
+                className="page-card p-6 hover:-translate-y-2 transition-all duration-300 group"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-xl bg-[#0a1a67]/10 text-[#0a1a67] group-hover:bg-[#0a1a67]/20 transition-colors duration-300 flex-shrink-0">
+                    {activity.icon}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-heading mb-2 group-hover:text-[#0a1a67] transition-colors duration-300">
+                      {activity.title}
+                    </h3>
+                    <p className="text-body text-sm">
+                      {activity.description}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
