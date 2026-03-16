@@ -851,7 +851,7 @@ export default function Home() {
 
       <ResultsSection topResults={topResults} />
 
-      <PerformanceGraph />
+      {/* <PerformanceGraph /> */}
     </div>
   )
 }
