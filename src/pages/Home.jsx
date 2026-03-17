@@ -920,28 +920,54 @@ function FeaturesAndNewsSection() {
   )
 }
 
-// Academic Support + Enter Matrix – two columns side by side
-function AcademicSupportAndEnterMatrixRow() {
+// Merged: Choose Right Support + Enter Matrix + Our Proven Methodology (one section)
+const METHODOLOGY_STEPS = [
+  { label: 'Concept Explanation', icon: '📖' },
+  { label: 'Practice Sessions', icon: '✏️' },
+  { label: 'Doubt Solving', icon: '💬' },
+  { label: 'Periodic Tests', icon: '📋' },
+  { label: 'Feedback', icon: '📊' },
+]
+
+function AcademicSupportMethodologySection() {
   return (
     <section className="home-section">
       <div className="container-page">
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-stretch">
-          <div className="rounded-2xl p-6 md:p-8 flex flex-col justify-center border border-gray-200/80 bg-gray-50/50">
-            <h2 className="home-section-subtitle text-xl md:text-2xl mb-2">
-              Choosing the Right Academic Support for Your Child Can Be Challenging
-            </h2>
+        <h2 className="home-section-title">Our Proven Methodology</h2>
+        <p className="home-section-body max-w-2xl mb-6">
+          Choosing the right support matters. At Matrix Science Academy we combine a structured, step-by-step approach with a partner mindset to turn stress into success.
+        </p>
+
+        {/* Two intro cards: Choosing Right Support | Enter Matrix */}
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
+          <div className="rounded-2xl p-5 md:p-6 flex flex-col justify-center border border-gray-200/80 bg-white hover:border-[#B30027]/30 hover:shadow-md transition-all duration-200">
+            <h3 className="home-section-subtitle text-lg md:text-xl mb-2">
+              Choosing the Right Academic Support Can Be Challenging
+            </h3>
             <p className="home-section-body max-w-xl">
               As a parent, you want the best for your child, but navigating the education landscape is tough. Between choosing the right institute, ensuring concept clarity, managing exam pressure, and keeping motivation high—it can feel overwhelming.
             </p>
           </div>
-          <div className="rounded-2xl p-6 md:p-8 flex flex-col justify-center border border-gray-200/80 bg-gray-50/50">
-            <h2 className="home-section-subtitle text-xl md:text-2xl mb-2">
+          <div className="rounded-2xl p-5 md:p-6 flex flex-col justify-center border border-gray-200/80 bg-white hover:border-[#B30027]/30 hover:shadow-md transition-all duration-200">
+            <h3 className="home-section-subtitle text-lg md:text-xl mb-2">
               Enter Matrix Science Academy
-            </h2>
+            </h3>
             <p className="home-section-body max-w-xl">
               We&apos;ve built an ecosystem specifically designed to address these challenges. We partner with parents to provide transparent, structured, and highly effective academic coaching that turns stress into success.
             </p>
           </div>
+        </div>
+
+        {/* How we do it: 5 methodology steps */}
+        <p className="home-section-body font-semibold text-gray-800 mb-4">How we do it</p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          {METHODOLOGY_STEPS.map((s, i) => (
+            <div key={i} className="rounded-2xl border border-gray-200/80 bg-white p-4 flex flex-col items-center text-center hover:border-[#B30027]/30 hover:shadow-md transition-all duration-200">
+              <span className="w-9 h-9 rounded-full bg-[#B30027]/10 text-[#B30027] flex items-center justify-center text-sm font-bold mb-2">{i + 1}</span>
+              <span className="text-2xl mb-1.5 block" aria-hidden>{s.icon}</span>
+              <span className="text-sm font-semibold text-gray-800">{s.label}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -979,36 +1005,6 @@ function CounselingFormRow() {
             <p className="text-body/80 text-sm mb-4">Fill out the form below and our academic counsellor will call you.</p>
             <EnquiryForm initialMessage="I am interested in free career counseling session." minimal />
           </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// Our Proven Methodology – 5 steps (card grid)
-function MethodologySection() {
-  const steps = [
-    { label: 'Concept Explanation', icon: '📖' },
-    { label: 'Practice Sessions', icon: '✏️' },
-    { label: 'Doubt Solving', icon: '💬' },
-    { label: 'Periodic Tests', icon: '📋' },
-    { label: 'Feedback', icon: '📊' },
-  ]
-  return (
-    <section className="home-section">
-      <div className="container-page">
-        <h2 className="home-section-title">Our Proven Methodology</h2>
-        <p className="home-section-body max-w-2xl mb-6">
-          A structured, step-by-step approach that builds clarity, practice, and confidence.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {steps.map((s, i) => (
-            <div key={i} className="rounded-2xl border border-gray-200/80 bg-white p-5 flex flex-col items-center text-center hover:border-[#B30027]/30 hover:shadow-md transition-all duration-200">
-              <span className="w-10 h-10 rounded-full bg-[#B30027]/10 text-[#B30027] flex items-center justify-center text-sm font-bold mb-3">{i + 1}</span>
-              <span className="text-3xl mb-2 block" aria-hidden>{s.icon}</span>
-              <span className="text-sm font-semibold text-gray-800">{s.label}</span>
-            </div>
-          ))}
         </div>
       </div>
     </section>
@@ -1345,13 +1341,12 @@ export default function Home() {
     <div className="bg-white">
       <HeroSlider />
 
-      {/* Academic Support + Enter Matrix (two columns), then Vriksha full width */}
-      <AcademicSupportAndEnterMatrixRow />
+      {/* Choose Right Support + Enter Matrix + Our Proven Methodology (merged), then Vriksha */}
+      <AcademicSupportMethodologySection />
       <VrikshaHighlight />
 
-      {/* Counselling + Form row, Methodology, Achievements + Results row */}
+      {/* Counselling + Form, Achievements + Results */}
       <CounselingFormRow />
-      <MethodologySection />
       <AchievementsAndResultsRow />
 
       {/* Our Courses (tabbed layout + existing slider), Specialized Batches, Student Voices */}
