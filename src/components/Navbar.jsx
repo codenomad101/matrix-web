@@ -4,12 +4,27 @@ import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+function formatDateTime() {
+    const d = new Date()
+    const dateStr = d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })
+    const timeStr = d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })
+    return { dateStr, timeStr }
+}
+
 export default function Navbar() {
     const pathname = usePathname()
     const [mobileOpen, setMobileOpen] = useState(false)
     const [coursesOpen, setCoursesOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
     const [mounted, setMounted] = useState(false)
+    const [dateTime, setDateTime] = useState({ dateStr: '', timeStr: '' })
+
+    // Live date and time
+    useEffect(() => {
+        setDateTime(formatDateTime())
+        const t = setInterval(() => setDateTime(formatDateTime()), 1000)
+        return () => clearInterval(t)
+    }, [])
 
     // Ensure component is mounted on client
     useEffect(() => {
@@ -48,21 +63,26 @@ export default function Navbar() {
 
     return (
         <>
-            {/* Top header: branch names with white lines between */}
+            {/* Top header: date/time (left) + branches (right) */}
             <div className="bg-[var(--brand-red)] text-white">
-                <div className="container-header py-1.5 flex flex-wrap items-center justify-center gap-y-1 text-xs font-medium">
-                    <span className="whitespace-nowrap pr-2">Branches:</span>
-                    {BRANCHES.map((branch, idx) => (
-                        <span key={branch} className="inline-flex items-center">
-                            {idx > 0 && <span className="w-px h-4 bg-white flex-shrink-0 mx-1.5" aria-hidden />}
-                            <Link
-                                href={`/enquiry?branch=${encodeURIComponent(branch)}`}
-                                className="hover:underline underline-offset-2 whitespace-nowrap px-0.5"
-                            >
-                                {branch}
-                            </Link>
-                        </span>
-                    ))}
+                <div className="container-header py-1.5 flex flex-wrap items-center justify-between gap-y-1 text-xs font-medium">
+                    <span className="whitespace-nowrap tabular-nums" suppressHydrationWarning>
+                        {dateTime.dateStr} | {dateTime.timeStr}
+                    </span>
+                    <div className="flex flex-wrap items-center justify-end gap-y-1 ml-4">
+                        <span className="whitespace-nowrap pr-2">Branches:</span>
+                        {BRANCHES.map((branch, idx) => (
+                            <span key={branch} className="inline-flex items-center">
+                                {idx > 0 && <span className="w-px h-4 bg-white flex-shrink-0 mx-1.5" aria-hidden />}
+                                <Link
+                                    href={`/enquiry?branch=${encodeURIComponent(branch)}`}
+                                    className="hover:underline underline-offset-2 whitespace-nowrap px-0.5"
+                                >
+                                    {branch}
+                                </Link>
+                            </span>
+                        ))}
+                    </div>
                 </div>
             </div>
 
