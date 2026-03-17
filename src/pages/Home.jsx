@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import HeroSlider from '../components/HeroSlider.jsx'
 import OptimizedImage from '@/components/OptimizedImage'
 import FeaturesSection from '@/components/featuresSection.jsx'
-
 import TestimonialsShowcase from '@/components/Testimonials.jsx'
+import EnquiryForm from '@/components/EnquiryForm.jsx'
 
 const topTestimonials = [
   {
@@ -61,7 +61,7 @@ function LatestNewsSection() {
   ]
 
   return (
-    <section className="container-page py-5">
+    <section className="container-page py-6 md:py-8">
       <div className="bg-box-bg rounded-2xl shadow-lg overflow-hidden border border-gray-200/60">
         <div className="grid md:grid-cols-[300px_1fr] lg:grid-cols-[350px_1fr]">
           {/* Left Side - Title and Description */}
@@ -128,7 +128,7 @@ function OverviewSection() {
   ]
 
   return (
-    <section className="container-page py-4">
+    <section className="container-page py-6 md:py-8">
       <div className="mb-6">
         <h2 className="text-4xl font-semibold text-[#0a1a67] py-2">Overview and Features</h2>
       </div>
@@ -349,7 +349,7 @@ function ResultsSection({ topResults }) {
   ]
 
   return (
-    <section className="py-3 md:py-5" ref={sectionRef}>
+    <section className="py-6 md:py-8" ref={sectionRef}>
       <div className="container-page">
         <div className="flex items-center justify-between mb-2 flex-col sm:flex-row gap-3 sm:gap-0">
           <h2 className="text-2xl md:text-3xl font-bold text-left text-heading mb-0">
@@ -360,6 +360,7 @@ function ResultsSection({ topResults }) {
 
         {/* Results Image Slider - site background only, no white block */}
         <div className="mb-0">
+          <h3 className="text-lg md:text-xl font-bold text-[#0a1a67] mb-3">Results &amp; Achievements Gallery</h3>
           <ResultsImageSlider />
         </div>
       </div>
@@ -432,61 +433,43 @@ function WhatsTrendingCarousel() {
 
   return (
     <div className="w-full">
-      <h2 className="section-heading mb-4 text-center">
-        <span className="text-[#ed1c24]">What&apos;s Trending</span>
-      </h2>
-      <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-[#B30027]/20 min-h-[220px] sm:min-h-[260px] bg-[#FFF5F5]">
-        {/* Red hue / accent orbs */}
-        <div className="absolute top-0 right-0 w-24 h-24 rounded-full bg-[#B30027]/12 blur-2xl pointer-events-none" aria-hidden />
-        <div className="absolute bottom-0 left-0 w-20 h-20 rounded-full bg-[#B30027]/10 blur-xl pointer-events-none" aria-hidden />
+      <h2 className="home-section-title mb-4 text-center">What&apos;s Trending</h2>
+      <div className="relative rounded-xl overflow-hidden border border-gray-300 bg-white min-h-[220px] sm:min-h-[260px] shadow-sm">
         <div className="flex overflow-hidden transition-transform duration-500 ease-out" style={{ width: `${TRENDING_SLIDES.length * 100}%`, transform: `translateX(-${index * (100 / TRENDING_SLIDES.length)}%)` }}>
           {TRENDING_SLIDES.map((slide, i) => (
             <div key={i} className="flex-shrink-0 flex flex-row p-4 sm:p-5 md:p-6 gap-3 sm:gap-4 md:gap-6 items-center" style={{ width: `${100 / TRENDING_SLIDES.length}%` }}>
-              {/* Left: label, headline, description, CTA */}
               <div className="flex-1 flex flex-col justify-center min-w-0">
-                <span className="inline-block w-fit rounded-full bg-[#B30027] text-white text-xs sm:text-sm font-semibold px-3 py-1 mb-2">
+                <span className="inline-block w-fit rounded-full bg-gray-200 text-gray-800 text-xs sm:text-sm font-semibold px-3 py-1 mb-2">
                   {slide.label}
                 </span>
-                <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold text-[#0a1a67] leading-tight mb-1.5 sm:mb-2">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 leading-tight mb-1.5 sm:mb-2">
                   {slide.headline}
                 </h3>
-                <p className="text-body text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-none max-w-md">
+                <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-none max-w-md">
                   {slide.description}
                 </p>
                 <Link
                   href={slide.href}
-                  className="inline-flex items-center justify-center w-fit bg-[#B30027] hover:bg-[#8a001e] text-white font-semibold px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg shadow-md transition-all duration-200 text-sm"
+                  className="inline-flex items-center justify-center w-fit bg-[#B30027] hover:bg-[#8a001e] text-white font-medium px-4 py-2 sm:px-5 sm:py-2.5 rounded transition-colors text-sm"
                 >
                   {slide.cta}
                 </Link>
               </div>
-              {/* Right: image + badge */}
               <div className="flex-shrink-0 relative w-28 sm:w-36 md:w-40 lg:w-44">
                 <div className="relative flex items-end justify-end min-h-[140px] sm:min-h-[180px] md:min-h-[200px]">
-                  <div className="absolute inset-0 flex items-center justify-center opacity-15 pointer-events-none" aria-hidden>
-                    <div className="w-4/5 max-w-[160px] rounded-xl border-2 border-[#B30027]/30 bg-white/40" />
-                  </div>
-                  <div className="relative z-10 w-24 sm:w-32 md:w-36 h-28 sm:h-36 md:h-40 rounded-xl overflow-hidden shadow-lg flex-shrink-0">
+                  <div className="relative z-10 w-24 sm:w-32 md:w-36 h-28 sm:h-36 md:h-40 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
                     <img src={slide.image} alt="" className="w-full h-full object-cover" />
                   </div>
-                  <div
-                    className="absolute bottom-0 left-0 z-20 w-[120px] sm:w-[130px] text-white shadow-lg rounded-b-lg overflow-hidden"
-                    style={{ clipPath: 'polygon(0 18%, 100% 0, 100% 100%, 0 100%)' }}
-                  >
-                    <div className="bg-[#B30027]/95 px-2 pt-2.5 pb-0.5">
-                      <span className="text-base sm:text-lg font-extrabold text-white">{slide.percentile}</span>
+                  <div className="absolute bottom-0 left-0 z-20 w-[120px] sm:w-[130px] text-white rounded-b-lg overflow-hidden shadow" style={{ clipPath: 'polygon(0 18%, 100% 0, 100% 100%, 0 100%)' }}>
+                    <div className="bg-gray-800 px-2 pt-2.5 pb-0.5">
+                      <span className="text-base sm:text-lg font-bold text-white">{slide.percentile}</span>
                     </div>
-                    <div className="bg-[#0a1a67] px-2 py-1.5">
-                      <p className="font-semibold text-[10px] sm:text-xs leading-tight">{slide.name}</p>
+                    <div className="bg-gray-700 px-2 py-1.5">
+                      <p className="font-semibold text-[10px] sm:text-xs leading-tight text-white">{slide.name}</p>
                       <p className="text-white/80 text-[9px] sm:text-[10px] mt-0.5">{slide.subtext}</p>
                       <p className="text-white/70 text-[8px] mt-0.5">• {slide.location}</p>
                     </div>
                   </div>
-                </div>
-                <div className="absolute -top-1 right-0 flex gap-0.5 opacity-70" aria-hidden>
-                  {[0, 1, 2].map((j) => (
-                    <span key={j} className="w-1.5 h-2 bg-[#B30027]/80 rounded-full" style={{ transform: `rotate(${j * 20}deg)` }} />
-                  ))}
                 </div>
               </div>
             </div>
@@ -500,7 +483,7 @@ function WhatsTrendingCarousel() {
             type="button"
             aria-label={`Trending slide ${i + 1}`}
             onClick={() => setIndex(i)}
-            className={`h-2 rounded-full transition-all duration-300 ${index === i ? 'w-6 bg-[#B30027]' : 'w-2 bg-gray-400 hover:bg-gray-500'}`}
+            className={`h-2 rounded-full transition-all duration-300 ${index === i ? 'w-6 bg-gray-700' : 'w-2 bg-gray-300 hover:bg-gray-400'}`}
           />
         ))}
       </div>
@@ -559,58 +542,59 @@ function BlogsSection() {
   }
 
   return (
-    <div className="mt-10 md:mt-12">
-      <h2 className="text-2xl md:text-3xl font-bold text-heading mb-4">
-        <span className="text-[#ed1c24]">Blogs</span>
-      </h2>
-      <div className="relative -mx-4 sm:-mx-6 lg:-mx-8">
-        <button
-          type="button"
-          onClick={() => scroll(-1)}
-          aria-label="Previous blogs"
-          className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-lg flex items-center justify-center text-gray-600 hover:bg-gray-50 hover:text-[#B30027] transition-colors"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-        </button>
-        <button
-          type="button"
-          onClick={() => scroll(1)}
-          aria-label="Next blogs"
-          className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-lg flex items-center justify-center text-gray-600 hover:bg-gray-50 hover:text-[#B30027] transition-colors"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-        </button>
-        <div
-          ref={scrollRef}
-          className="blogs-scroll flex gap-4 overflow-x-auto scroll-smooth pb-2 px-4 sm:px-6 lg:px-8"
-          style={{ scrollSnapType: 'x mandatory' }}
-        >
-          {BLOG_CARDS.map((blog, i) => (
-            <Link
-              key={i}
-              href={blog.href}
-              className="flex-shrink-0 w-[280px] sm:w-[300px] rounded-xl overflow-hidden bg-white border border-gray-200/80 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
-              style={{ scrollSnapAlign: 'start' }}
-            >
-              <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
-                <img src={blog.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" aria-hidden />
-                <div className="absolute bottom-2 left-2 right-2">
-                  <span className="inline-block px-2 py-0.5 rounded bg-white/95 text-[10px] font-bold uppercase text-[#0a1a67] shadow-sm">
-                    {blog.label}
-                  </span>
+    <section className="home-section bg-white">
+      <div className="container-page">
+        <h2 className="home-section-title mb-4">Blogs</h2>
+        <p className="home-section-body max-w-2xl mb-6">Latest updates, exam tips, and success stories.</p>
+        <div className="relative -mx-4 sm:-mx-6 lg:-mx-8">
+          <button
+            type="button"
+            onClick={() => scroll(-1)}
+            aria-label="Previous blogs"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-300 shadow-md flex items-center justify-center text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-colors"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          <button
+            type="button"
+            onClick={() => scroll(1)}
+            aria-label="Next blogs"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-300 shadow-md flex items-center justify-center text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-colors"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          </button>
+          <div
+            ref={scrollRef}
+            className="blogs-scroll flex gap-4 overflow-x-auto scroll-smooth pb-2 px-4 sm:px-6 lg:px-8"
+            style={{ scrollSnapType: 'x mandatory' }}
+          >
+            {BLOG_CARDS.map((blog, i) => (
+              <Link
+                key={i}
+                href={blog.href}
+                className="flex-shrink-0 w-[280px] sm:w-[300px] rounded-xl overflow-hidden bg-white border border-gray-300 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 group"
+                style={{ scrollSnapAlign: 'start' }}
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+                  <img src={blog.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" aria-hidden />
+                  <div className="absolute bottom-2 left-2 right-2">
+                    <span className="inline-block px-2 py-0.5 rounded bg-white/95 text-[10px] font-semibold uppercase text-gray-800 shadow-sm">
+                      {blog.label}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="p-4 bg-white">
-                <h3 className="font-bold text-heading text-sm sm:text-base leading-snug line-clamp-2 mb-1">
-                  {blog.title}
-                </h3>
-                <p className="text-body/70 text-xs sm:text-sm line-clamp-2">
-                  {blog.description}
-                </p>
-              </div>
-            </Link>
-          ))}
+                <div className="p-4 bg-white">
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base leading-snug line-clamp-2 mb-1">
+                    {blog.title}
+                  </h3>
+                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed line-clamp-2">
+                    {blog.description}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
       <style jsx>{`
@@ -625,7 +609,110 @@ function BlogsSection() {
           -ms-overflow-style: none;
         }
       `}</style>
-    </div>
+    </section>
+  )
+}
+
+// Tabbed Courses Section – NEET first, active tab red
+const COURSES_TAB_DATA = [
+  {
+    id: 'neet',
+    name: 'NEET',
+    href: '/courses/neet',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_600,h_400,c_fit,q_auto,f_auto/v1764181879/B_r8gw6s.jpg',
+    heading: 'NEET – Medical Entrance',
+    description: 'Targeted preparation for the National Eligibility cum Entrance Test for MBBS, BDS, and AYUSH courses. We emphasize conceptual clarity in Biology, Chemistry, and Physics, along with extensive practice and revision cycles. Our results speak for the quality of coaching and mentorship we provide.',
+  },
+  {
+    id: 'iit-jee',
+    name: 'IIT-JEE',
+    href: '/courses/iit-jee',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_500,c_fill,q_auto,f_auto/v1763786335/output_faqujd',
+    heading: 'IIT-JEE (Main & Advanced)',
+    description: 'Comprehensive preparation for India\'s premier engineering entrance. Our structured program covers JEE Main and Advanced with concept clarity, rigorous test series, and personalized doubt-solving. We focus on building strong fundamentals in Physics, Chemistry, and Mathematics to help students secure top ranks and admissions to IITs, NITs, and IIITs.',
+  },
+  {
+    id: 'mht-cet',
+    name: 'MHT-CET',
+    href: '/courses/mht-cet',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_500,c_fill,q_auto,f_auto/v1763783015/5_c2lqwx.jpg',
+    heading: 'MHT-CET Preparation',
+    description: 'Maharashtra\'s premier entrance exam for engineering and pharmacy admissions. Our MHT-CET program combines in-depth syllabus coverage with state-specific strategy, regular full-length mocks, and performance analytics. Students benefit from small batches and expert faculty to achieve top percentiles.',
+  },
+  {
+    id: 'iiser',
+    name: 'IISER',
+    href: '/courses/iiser',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_600,h_400,c_fit,q_auto,f_auto/v1764181786/IIT_knkkka.jpg',
+    heading: 'IISER Foundation',
+    description: 'For students aiming at the Indian Institutes of Science Education and Research and other research-oriented programs. Our IISER track builds strong foundations in science and mathematics, aligned with JEE Advanced and KVPY preparation, to help students excel in competitive and research pathways.',
+  },
+  {
+    id: 'vriksha',
+    name: 'VRIKSHA',
+    href: '/vriksha',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_600,h_400,c_fit,q_auto,f_auto/v1764181864/A_dbzo2c.jpg',
+    heading: 'VRIKSHA – Holistic Growth',
+    description: 'Our newest program designed to nurture overall development—strong academics, mental strength, sports, and competitive focus. VRIKSHA combines structured learning with holistic activities to build confident, well-rounded students ready for future success.',
+  },
+]
+
+function CoursesTabSection() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const course = COURSES_TAB_DATA[activeIndex]
+
+  return (
+    <section className="home-section">
+      <div className="container-page max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="home-section-title">Our Courses</h2>
+
+        {/* Tabs: active = red bg + white text, inactive = dark text only */}
+        <div className="flex flex-wrap gap-4 md:gap-6 mb-8">
+          {COURSES_TAB_DATA.map((tab, i) => (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => setActiveIndex(i)}
+              className={`px-5 py-3 text-sm font-semibold transition-all duration-200 ${
+                i === activeIndex
+                  ? 'bg-[#B30027] text-white rounded border-b-2 border-[#B30027]'
+                  : 'text-gray-800 bg-transparent hover:text-gray-600'
+              }`}
+            >
+              {tab.name}
+            </button>
+          ))}
+        </div>
+
+        {/* Content: image LEFT, text RIGHT – two columns, clean alignment */}
+        <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-stretch bg-white rounded-lg overflow-hidden shadow-sm">
+          {/* Left column – large rectangular image, grayscale, label overlay bottom-right */}
+          <Link href={course.href} className="relative block min-h-[260px] md:min-h-[320px] bg-gray-200">
+            <img
+              src={course.image}
+              alt={course.heading}
+              className="w-full h-full object-cover grayscale"
+            />
+            <span className="absolute bottom-4 right-4 text-white text-lg font-bold drop-shadow-md">
+              {course.name}
+            </span>
+          </Link>
+
+          {/* Right column – heading (bold) + paragraph (lighter, smaller) */}
+          <div className="flex flex-col justify-center p-6 md:p-8">
+            <h3 className="home-section-subtitle">{course.heading}</h3>
+            <p className="home-section-body mb-5">{course.description}</p>
+            <Link
+              href={course.href}
+              className="inline-flex items-center gap-2 text-gray-800 font-semibold hover:underline text-sm"
+            >
+              Learn more
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -694,7 +781,7 @@ function FeaturesAndNewsSection() {
   ]
 
   return (
-    <section className="page-section-tight bg-[var(--bg-page)]">
+    <section className="home-section bg-white">
       <div className="container-page">
       <div className="grid grid-cols-[65%_35%] gap-4 md:gap-6">
         {/* Left – What's Trending (65%) */}
@@ -702,40 +789,33 @@ function FeaturesAndNewsSection() {
           <WhatsTrendingCarousel />
         </div>
 
-        {/* Right - Latest News (35%) */}
+        {/* Right - Latest News (35%): no card background, plain list */}
         <div className="min-w-0">
-          <h2 className="section-heading mb-3">
-            <span className="text-[#ed1c24]">Latest News</span>
-          </h2>
-          <div className="page-card overflow-hidden border border-gray-200/80 rounded-xl sm:rounded-2xl relative">
-            <div className="p-3 sm:p-4 h-[240px] overflow-hidden relative">
-              <div className="animate-scroll-news">
-                {[...newsItems, ...newsItems].map((news, idx) => (
-                  <div
-                    key={idx}
-                    className="py-1.5 sm:py-2 border-b border-gray-200/70 last:border-0 flex items-start gap-2 group cursor-pointer hover:bg-gray-100/80 px-1.5 sm:px-2 rounded-md transition-colors duration-300"
-                  >
-                    <span className="text-[#B30027] font-bold text-base flex-shrink-0">›</span>
-                    <span className="text-[#0a1a67] font-medium group-hover:text-[#B30027] transition-colors duration-300 text-xs sm:text-sm">
-                      {news}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[var(--bg-box)] to-transparent pointer-events-none" />
+          <h2 className="home-section-title mb-3">Latest News</h2>
+          <p className="home-section-body mb-4">Announcements and achievements.</p>
+          <div className="h-[240px] overflow-hidden relative">
+            <div className="animate-scroll-news">
+              {[...newsItems, ...newsItems].map((news, idx) => (
+                <div
+                  key={idx}
+                  className="py-2 border-b border-gray-200 last:border-0 flex items-start gap-2"
+                >
+                  <span className="text-gray-400 font-medium text-sm flex-shrink-0">›</span>
+                  <span className="text-gray-700 text-sm leading-snug">
+                    {news}
+                  </span>
+                </div>
+              ))}
             </div>
+            <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent pointer-events-none" />
           </div>
         </div>
       </div>
 
       {/* Courses Section - horizontal slider (left to right) */}
-      <div className="mt-4">
-        <div className="text-left mb-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-3 leading-tight">
-            <span className="text-[#ed1c24]">Our Courses</span>
-          </h2>
-          <p className="text-body/80 text-lg">Comprehensive preparation for competitive examinations</p>
-        </div>
+      <div className="mt-8">
+        <h2 className="home-section-title mb-2">Our Courses – All Programs</h2>
+        <p className="home-section-body max-w-2xl mb-6">Comprehensive preparation for competitive examinations.</p>
 
         <div className="overflow-hidden -mx-4 sm:-mx-6 lg:-mx-8">
           <div className="animate-scroll-courses flex gap-4 sm:gap-6 pb-2" style={{ width: 'max-content' }}>
@@ -743,49 +823,42 @@ function FeaturesAndNewsSection() {
               <Link
                 key={`${course.id}-${idx}`}
                 href={course.href || `/courses/${course.id}`}
-                className="bg-white border border-gray-200/80 rounded-2xl p-3 sm:p-5 text-black shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden block flex-shrink-0 w-[280px] sm:w-[320px]"
+                className="rounded-2xl border border-gray-200/80 bg-white p-3 sm:p-5 shadow-sm hover:border-[#B30027]/30 hover:shadow-md hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden block flex-shrink-0 w-[280px] sm:w-[320px]"
               >
-                {/* Layout: Left text content, right accent + image */}
+                {/* Layout: Left text content, right image (tilted box) */}
                 <div className="relative z-10 flex items-stretch h-full">
                   {/* Left content */}
-                  <div className="flex-1 pr-2 sm:pr-4 flex flex-col justify-between">
+                  <div className="flex-1 pr-2 sm:pr-4 flex flex-col justify-between min-w-0">
                     <div>
-                      <h3 className="text-base sm:text-lg font-extrabold text-[#B30027] leading-tight mb-0.5">
+                      <h3 className="text-base sm:text-lg font-bold text-[#B30027] leading-tight mb-0.5">
                         {course.name}
                       </h3>
-                      <p className="text-[11px] sm:text-xs font-semibold text-[#0a1a67] uppercase tracking-wide">
+                      <p className="text-[11px] sm:text-xs font-semibold text-gray-500 uppercase tracking-wide">
                         Batch
                       </p>
-                      <p className="text-[10px] sm:text-xs text-body/90 mt-0.5 mb-1">
+                      <p className="text-[10px] sm:text-xs text-gray-600 mt-0.5 mb-1">
                         {course.fullName}
                       </p>
-                      <p className="text-[10px] sm:text-xs text-body/80 mb-1.5 line-clamp-2">
+                      <p className="text-[10px] sm:text-xs text-gray-600 mb-1.5 line-clamp-2">
                         {course.description}
                       </p>
                       <div className="mt-1.5 space-y-1">
-                        <p className="text-[10px] sm:text-xs font-semibold text-[#0a1a67]">
+                        <p className="text-[10px] sm:text-xs font-semibold text-gray-700">
                           📅 {course.examDates}
                         </p>
-                        <p className="text-[9px] sm:text-[10px] font-medium text-body/80">
+                        <p className="text-[9px] sm:text-[10px] font-medium text-gray-500">
                           🏆 {course.ourResults}
                         </p>
                       </div>
                     </div>
-
-                    <button
-                      type="button"
-                      className="inline-flex items-center justify-center mt-2 px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold rounded-full bg-[#B30027] text-white shadow-sm group-hover:bg-[#8a001e] transition-colors"
-                    >
+                    <span className="inline-flex items-center justify-center mt-2 px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold rounded-full bg-[#B30027] text-white group-hover:bg-[#8a001e] transition-colors">
                       Explore More
-                    </button>
+                    </span>
                   </div>
 
-                  {/* Right image inside the tilted box */}
-                  <div className="relative w-24 sm:w-28 md:w-32 flex items-end justify-center">
-                    {/* Subtle red accent background similar to Why Choose Us cards */}
-                    <div className="absolute -bottom-1 -left-1 w-10 h-10 rounded-full bg-[#B30027]/15 blur-sm" aria-hidden />
-                    <div className="absolute -top-2 right-0 w-8 h-8 rounded-full bg-[#B30027]/10 blur-[2px]" aria-hidden />
-                    <div className="relative z-10 w-20 sm:w-24 md:w-28 h-32 sm:h-36 md:h-40 rounded-[2rem] bg-gradient-to-tr from-[#ffe6ea] via-[#ffe6ea] to-[#ffd0da] translate-x-3 -translate-y-2 rotate-[-8deg] group-hover:translate-y-0 group-hover:rotate-[-4deg] transition-transform duration-300 shadow-md overflow-hidden">
+                  {/* Right: image inside tilted box */}
+                  <div className="relative w-24 sm:w-28 md:w-32 flex items-end justify-center flex-shrink-0">
+                    <div className="relative z-10 w-20 sm:w-24 md:w-28 h-32 sm:h-36 md:h-40 rounded-[2rem] bg-gray-100 translate-x-3 -translate-y-2 rotate-[-8deg] group-hover:translate-y-0 group-hover:rotate-[-4deg] transition-transform duration-300 shadow-md overflow-hidden">
                       <img
                         src={
                           course.id === 'iit-jee'
@@ -794,7 +867,7 @@ function FeaturesAndNewsSection() {
                               ? 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1763783015/5_c2lqwx.jpg'
                               : 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1764181879/B_r8gw6s.jpg'
                         }
-                        alt={`${course.name} student`}
+                        alt={`${course.name}`}
                         className="w-full h-full object-cover -translate-y-2 sm:-translate-y-3 md:-translate-y-4"
                       />
                     </div>
@@ -847,6 +920,183 @@ function FeaturesAndNewsSection() {
   )
 }
 
+// Academic Support + Enter Matrix – two columns side by side
+function AcademicSupportAndEnterMatrixRow() {
+  return (
+    <section className="home-section">
+      <div className="container-page">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-stretch">
+          <div className="rounded-2xl p-6 md:p-8 flex flex-col justify-center border border-gray-200/80 bg-gray-50/50">
+            <h2 className="home-section-subtitle text-xl md:text-2xl mb-2">
+              Choosing the Right Academic Support for Your Child Can Be Challenging
+            </h2>
+            <p className="home-section-body max-w-xl">
+              As a parent, you want the best for your child, but navigating the education landscape is tough. Between choosing the right institute, ensuring concept clarity, managing exam pressure, and keeping motivation high—it can feel overwhelming.
+            </p>
+          </div>
+          <div className="rounded-2xl p-6 md:p-8 flex flex-col justify-center border border-gray-200/80 bg-gray-50/50">
+            <h2 className="home-section-subtitle text-xl md:text-2xl mb-2">
+              Enter Matrix Science Academy
+            </h2>
+            <p className="home-section-body max-w-xl">
+              We&apos;ve built an ecosystem specifically designed to address these challenges. We partner with parents to provide transparent, structured, and highly effective academic coaching that turns stress into success.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Counselling (left) + Book Your Session form (right)
+function CounselingFormRow() {
+  const steps = ['Coaching Session', 'Exam Planning', 'Performance Test', 'Study Roadmap', 'Personalized Guidance']
+  return (
+    <section className="home-section">
+      <div className="container-page">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
+          <div className="rounded-2xl p-6 md:p-8 flex flex-col justify-center border border-gray-200/80 bg-gray-50/50">
+            <h2 className="home-section-subtitle text-xl md:text-2xl mb-2">
+              Free Academic Counselling for Students and Parents
+            </h2>
+            <p className="home-section-body max-w-xl mb-6">
+              Not sure which path to take? Our expert counsellors help you evaluate academic performance, plan for competitive exams, and create a personalized study roadmap for your child.
+            </p>
+            <div className="flex flex-wrap gap-4 mb-6">
+              {steps.map((label, i) => (
+                <div key={i} className="flex flex-col items-center gap-1">
+                  <span className="w-10 h-10 rounded-full bg-[#0a1a67]/10 text-[#0a1a67] flex items-center justify-center text-sm font-bold">{i + 1}</span>
+                  <span className="text-xs font-medium text-body">{label}</span>
+                </div>
+              ))}
+            </div>
+            <Link href="/enquiry?counseling=1" className="inline-flex items-center gap-2 bg-[#B30027] text-white hover:bg-[#8a001e] font-semibold px-6 py-3 rounded-lg transition-colors">
+              Book Your Free Session Now
+            </Link>
+          </div>
+          <div className="bg-white border-2 border-[#0a1a67]/20 rounded-2xl p-6 md:p-8 shadow-lg">
+            <h3 className="text-xl font-bold text-[#0a1a67] mb-1">Book Your Session</h3>
+            <p className="text-body/80 text-sm mb-4">Fill out the form below and our academic counsellor will call you.</p>
+            <EnquiryForm initialMessage="I am interested in free career counseling session." minimal />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Our Proven Methodology – 5 steps (card grid)
+function MethodologySection() {
+  const steps = [
+    { label: 'Concept Explanation', icon: '📖' },
+    { label: 'Practice Sessions', icon: '✏️' },
+    { label: 'Doubt Solving', icon: '💬' },
+    { label: 'Periodic Tests', icon: '📋' },
+    { label: 'Feedback', icon: '📊' },
+  ]
+  return (
+    <section className="home-section">
+      <div className="container-page">
+        <h2 className="home-section-title">Our Proven Methodology</h2>
+        <p className="home-section-body max-w-2xl mb-6">
+          A structured, step-by-step approach that builds clarity, practice, and confidence.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {steps.map((s, i) => (
+            <div key={i} className="rounded-2xl border border-gray-200/80 bg-white p-5 flex flex-col items-center text-center hover:border-[#B30027]/30 hover:shadow-md transition-all duration-200">
+              <span className="w-10 h-10 rounded-full bg-[#B30027]/10 text-[#B30027] flex items-center justify-center text-sm font-bold mb-3">{i + 1}</span>
+              <span className="text-3xl mb-2 block" aria-hidden>{s.icon}</span>
+              <span className="text-sm font-semibold text-gray-800">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Achievement cards data (first 5 for Our Achievements)
+const ACHIEVEMENT_CARDS = [
+  { value: '30%', title: 'Increase in IIT admissions', desc: 'Elite Engineering Dreams Realized', icon: '📈' },
+  { value: '5', title: 'Selections in AIIMS & MBBS', desc: 'out of 53 students', icon: '❤️' },
+  { value: '86', title: 'Students 99+ Percentile', desc: 'MHT-CET 2025', icon: '🎓' },
+  { value: '32', title: 'Students Scored 95%+', desc: 'JEE Advanced 2025', icon: '⭐' },
+  { value: '80+', title: 'Qualified for JEE Adv 2025', desc: 'Breaking Barriers', icon: '🚀' },
+]
+
+// Our Achievements (left) + JEE Results gallery (right)
+function AchievementsAndResultsRow() {
+  return (
+    <section className="home-section py-4 md:py-5">
+      <div className="container-page">
+        <div className="grid lg:grid-cols-2 gap-4 md:gap-6 items-stretch">
+          {/* Left: Achievements in a card */}
+          <div className="rounded-2xl border border-gray-200/80 bg-white p-4 md:p-5 shadow-sm flex flex-col">
+            <h2 className="home-section-title mb-1">Our Achievements</h2>
+            <p className="home-section-body mb-4 text-sm">
+              One of the leading and most successful institutions in Pune. Our results speak for the quality of education and dedication of our expert faculty.
+            </p>
+            <div className="grid grid-cols-2 gap-3 flex-1">
+              {ACHIEVEMENT_CARDS.map((card, i) => (
+                <div key={i} className="rounded-xl border border-gray-200/80 bg-gray-50/50 p-3 flex flex-col justify-center hover:border-[#B30027]/30 transition-colors duration-200">
+                  <span className="text-xl mb-1 block" aria-hidden>{card.icon}</span>
+                  <span className="text-xl md:text-2xl font-bold text-[#B30027] leading-tight">{card.value}</span>
+                  <p className="text-xs font-semibold text-gray-800 mt-0.5">{card.title}</p>
+                  <p className="text-[11px] text-gray-500 mt-0.5">{card.desc}</p>
+                </div>
+              ))}
+            </div>
+            <Link href="/results" className="inline-flex items-center gap-2 mt-4 text-[#B30027] font-semibold hover:underline">
+              View All Results
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </Link>
+          </div>
+          {/* Right: JEE Results in a card */}
+          <div className="rounded-2xl border border-gray-200/80 bg-white p-4 md:p-5 shadow-sm flex flex-col min-h-0">
+            <h3 className="home-section-subtitle text-lg md:text-xl mb-3">JEE Mains 2024 Results in percentile</h3>
+            <div className="flex-1 min-h-0">
+              <ResultsImageSlider />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Specialized Batches – card grid like Methodology / Achievements
+function SpecializedBatchesSection() {
+  const batches = [
+    { name: 'IMPULSE', icon: '⚡' },
+    { name: 'SPRINT', icon: '⏱️' },
+    { name: 'PACE', icon: '✓' },
+    { name: 'DRIFT', icon: '🌊' },
+    { name: 'RACE', icon: '🏁' },
+  ]
+  return (
+    <section className="home-section">
+      <div className="container-page">
+        <h2 className="home-section-title">Specialized Batches</h2>
+        <p className="home-section-body max-w-2xl mb-6">
+          Choose the batch that fits your pace and goals—from intensive prep to steady progress.
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          {batches.map((b, i) => (
+            <Link
+              key={i}
+              href="/courses"
+              className="rounded-2xl border border-gray-200/80 bg-white p-5 flex flex-col items-center text-center hover:border-[#B30027]/30 hover:shadow-md transition-all duration-200 group"
+            >
+              <span className="text-3xl mb-2 block group-hover:scale-110 transition-transform" aria-hidden>{b.icon}</span>
+              <span className="text-sm font-semibold text-gray-800">{b.name}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // About intro – short orientation for new visitors
 function AboutIntro() {
   return (
@@ -893,90 +1143,87 @@ function AboutIntro() {
   )
 }
 
-// VRIKSHA highlight – featured block with animated tree and icons
-function VrikshaHighlight() {
-  const floatIcons = [
-    { emoji: '🌱', className: 'top-2 left-2 text-lg sm:text-xl vriksha-float', style: { animationDelay: '0s' } },
-    { emoji: '📚', className: 'top-4 right-2 text-base sm:text-lg vriksha-float', style: { animationDelay: '0.4s' } },
-    { emoji: '✨', className: 'bottom-8 left-0 text-sm sm:text-base vriksha-float', style: { animationDelay: '0.8s' } },
-    { emoji: '🎯', className: 'bottom-6 right-1 text-base sm:text-lg vriksha-float', style: { animationDelay: '0.2s' } },
-    { emoji: '🌿', className: 'top-1/2 -left-1 text-sm vriksha-float', style: { animationDelay: '0.6s' } },
-    { emoji: '📖', className: 'top-1/2 -right-1 text-sm vriksha-float', style: { animationDelay: '1s' } },
-  ]
-  return (
-    <section className="page-section-tight bg-[var(--bg-page)]">
-      <div className="container-page max-w-4xl mx-auto">
-        <Link href="/vriksha" className="group block bg-white border-2 border-[#B30027]/25 rounded-2xl sm:rounded-3xl p-5 md:p-6 shadow-lg hover:shadow-xl hover:border-[#B30027]/50 transition-all duration-300 overflow-hidden">
-          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-            {/* Left: icon, badge, heading, copy, CTA */}
+// VRIKSHA highlight – watering + tree grows + points moving toward tree
+const VRIKSHA_POINTS = [
+  { icon: '📚', label: 'Academics' },
+  { icon: '🧠', label: 'Mindset' },
+  { icon: '🏃', label: 'Sports' },
+  { icon: '🎯', label: 'Exams' },
+  { icon: '🌱', label: 'Growth' },
+  { icon: '🚀', label: 'Success' },
+]
+
+function VrikshaHighlight({ embedded = false }) {
+  const card = (
+    <Link href="/vriksha" className="group block bg-white/95 border-2 border-[#0a1a67]/20 rounded-2xl sm:rounded-3xl p-4 md:p-6 shadow-lg hover:shadow-xl hover:border-[#0a1a67]/40 transition-all duration-300 overflow-hidden h-full relative">
+          {/* Tree as background at end of card – below slider, same position */}
+          <div className="absolute bottom-0 right-0 flex items-end justify-end pointer-events-none w-[45%] md:w-[40%] min-h-[160px] md:min-h-[180px]" aria-hidden>
+            <div className="vriksha-tree-bg flex items-end justify-center w-full max-w-[200px] md:max-w-[240px] lg:max-w-[280px] h-[140px] md:h-[180px] opacity-90">
+              <svg viewBox="0 0 80 100" className="w-full h-full text-emerald-500/50 drop-shadow-sm" fill="currentColor">
+                <path d="M40 8 L72 48 L40 42 L8 48 Z" fill="currentColor" opacity="0.9" />
+                <path d="M40 22 L66 58 L40 52 L14 58 Z" fill="currentColor" opacity="0.85" />
+                <path d="M40 36 L60 68 L40 62 L20 68 Z" className="text-emerald-600" fill="currentColor" opacity="0.9" />
+                <path d="M40 50 L54 78 L40 72 L26 78 Z" className="text-emerald-600" fill="currentColor" />
+                <path d="M34 72 L46 72 L44 98 L36 98 Z" className="text-amber-700" fill="currentColor" opacity="0.9" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Content row: text | slider (slider sits above tree so it touches it) */}
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
             <div className="flex-1 flex flex-col justify-center min-w-0">
               <div className="flex items-center gap-3 mb-3">
-                <div className="flex-shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-[#B30027]/15 flex items-center justify-center text-3xl md:text-4xl group-hover:scale-105 transition-transform ring-2 ring-[#B30027]/20">
+                <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#0a1a67]/10 flex items-center justify-center text-2xl md:text-3xl group-hover:scale-105 transition-transform ring-2 ring-[#0a1a67]/15">
                   🌱
                 </div>
-                <span className="inline-block px-3 py-1.5 rounded-full bg-[#B30027] text-white text-[10px] font-bold uppercase tracking-wider shadow-sm">New Program</span>
+                <span className="inline-block px-3 py-1 rounded-full bg-[#0a1a67] text-white text-xs font-semibold uppercase tracking-widest">New</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-heading mb-2">VRIKSHA</h2>
-              <p className="text-body/80 text-base md:text-lg mb-5 max-w-xl leading-relaxed">
-                Our newest offering designed to nurture growth and excellence. Explore a structured curriculum and dedicated support to help you reach your goals.
+              <h2 className="home-section-subtitle text-[#0a1a67] mb-2">VRIKSHA</h2>
+              <p className="home-section-body mb-4 max-w-xl">
+                Holistic learning: academics, wellness, and competitive readiness in one program.
               </p>
-              <span className="inline-flex items-center gap-2 text-[#B30027] font-semibold group-hover:gap-3 transition-all">
-                Learn about VRIKSHA
+              <span className="inline-flex items-center gap-2 text-[#0a1a67] font-semibold text-sm md:text-base group-hover:gap-3 transition-all">
+                Explore VRIKSHA
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </span>
+              {/* Mobile: flowing feature pills – above tree */}
+              <div className="md:hidden overflow-hidden -mx-1 mt-3 relative z-10">
+                <div className="vriksha-flow flex gap-4 w-max py-3 items-stretch">
+                  {[...VRIKSHA_POINTS, ...VRIKSHA_POINTS].map((item, i) => (
+                    <span key={i} className="flex items-center gap-3 shrink-0 px-5 py-4 rounded-xl bg-[#0a1a67]/8 border border-[#0a1a67]/15 text-sm font-semibold text-[#0a1a67] whitespace-nowrap backdrop-blur-sm min-h-[72px]">
+                      <span className="text-2xl" aria-hidden>{item.icon}</span>
+                      {item.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Right: animated tree + floating icons */}
-            <div className="flex-shrink-0 flex items-center justify-center md:justify-end min-h-[160px] sm:min-h-[200px]">
-              <div className="relative w-[160px] sm:w-[200px] md:w-[240px] h-[160px] sm:h-[200px] md:h-[240px]">
-                {/* Green accent orb */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-emerald-500/20 blur-xl vriksha-pulse" aria-hidden />
-                </div>
-                {/* Floating icons around the tree */}
-                {floatIcons.map((item, i) => (
-                  <div
+            {/* Desktop: flowing feature pills – above tree, slider touches tree */}
+            <div className="hidden md:block flex-shrink-0 overflow-hidden min-h-[160px] w-[520px] lg:w-[680px] xl:w-[800px] relative z-10">
+              <div className="vriksha-flow flex gap-5 w-max py-4 items-stretch">
+                {[...VRIKSHA_POINTS, ...VRIKSHA_POINTS].map((item, i) => (
+                  <span
                     key={i}
-                    className={`absolute ${item.className} w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 border-2 border-emerald-600/30 flex items-center justify-center shadow-md`}
-                    style={item.style}
+                    className="flex items-center gap-3 shrink-0 px-6 py-6 rounded-xl bg-[#0a1a67]/8 border border-[#0a1a67]/15 text-sm font-semibold text-[#0a1a67] whitespace-nowrap backdrop-blur-sm min-h-[96px]"
                   >
-                    {item.emoji}
-                  </div>
+                    <span className="text-3xl" aria-hidden>{item.icon}</span>
+                    {item.label}
+                  </span>
                 ))}
-                {/* Green tree – SVG */}
-                <div className="absolute inset-0 flex items-center justify-center vriksha-tree">
-                  <svg viewBox="0 0 80 100" className="w-28 h-32 sm:w-36 sm:h-40 md:w-44 md:h-48 text-emerald-600" fill="currentColor" aria-hidden>
-                    {/* Foliage (layered triangles) */}
-                    <path d="M40 8 L72 48 L40 42 L8 48 Z" fill="currentColor" opacity="0.95" />
-                    <path d="M40 22 L66 58 L40 52 L14 58 Z" fill="currentColor" opacity="0.9" />
-                    <path d="M40 36 L60 68 L40 62 L20 68 Z" className="text-emerald-700" fill="currentColor" opacity="0.95" />
-                    <path d="M40 50 L54 78 L40 72 L26 78 Z" className="text-emerald-700" fill="currentColor" />
-                    {/* Trunk */}
-                    <path d="M34 72 L46 72 L44 98 L36 98 Z" className="text-amber-800" fill="currentColor" opacity="0.95" />
-                  </svg>
-                </div>
               </div>
             </div>
           </div>
         </Link>
+  )
+  if (embedded) {
+    return card
+  }
+  return (
+    <section className="home-section">
+      <div className="container-page max-w-5xl mx-auto">
+        {card}
       </div>
-      <style jsx>{`
-        @keyframes vriksha-float {
-          0%, 100% { transform: translateY(0) scale(1); }
-          50% { transform: translateY(-6px) scale(1.05); }
-        }
-        @keyframes vriksha-pulse {
-          0%, 100% { opacity: 0.6; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.1); }
-        }
-        @keyframes vriksha-tree {
-          0%, 100% { transform: scale(1) rotate(-1deg); }
-          50% { transform: scale(1.03) rotate(1deg); }
-        }
-        .vriksha-float { animation: vriksha-float 2.5s ease-in-out infinite; }
-        .vriksha-pulse { animation: vriksha-pulse 3s ease-in-out infinite; }
-        .vriksha-tree { animation: vriksha-tree 4s ease-in-out infinite; }
-      `}</style>
     </section>
   )
 }
@@ -990,12 +1237,10 @@ function PerformanceGraph() {
   ]
   const maxValue = 100
   return (
-    <section className="page-section-tight bg-white">
+    <section className="home-section-alt">
       <div className="container-page">
-        <h2 className="text-2xl md:text-3xl font-bold mb-2 leading-tight">
-          <span className="text-[#ed1c24]">Results Over the Years</span>
-        </h2>
-        <p className="text-body/80 text-sm md:text-base mb-6 max-w-2xl">Our consistent improvement in student outcomes across competitive exams.</p>
+        <h2 className="home-section-title mb-2">Results Over the Years</h2>
+        <p className="home-section-body mb-6 max-w-2xl">Our consistent improvement in student outcomes across competitive exams.</p>
         <div className="bg-gray-50 rounded-2xl border border-gray-200/80 p-6 md:p-8">
           <div className="flex flex-col sm:flex-row items-end justify-center gap-6 sm:gap-10 h-48 md:h-56">
             {years.map(({ year, label, value, color }) => (
@@ -1012,7 +1257,7 @@ function PerformanceGraph() {
               </div>
             ))}
           </div>
-          <p className="text-center text-xs text-body/60 mt-4">Indexed performance (2025 = 100). Actual data to be updated by content team.</p>
+          <p className="text-center text-xs text-gray-500 mt-4">Indexed performance (2025 = 100). Actual data to be updated by content team.</p>
         </div>
       </div>
     </section>
@@ -1042,19 +1287,19 @@ function CounselingCTA() {
 // Demo classes & scholarships – brief mentions + links
 function DemoScholarships() {
   return (
-    <section className="page-section-tight bg-gray-50">
+    <section className="home-section">
       <div className="container-page">
         <div className="grid md:grid-cols-2 gap-6">
           <Link href="/enquiry" className="group block bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-[#B30027]/20 transition-all">
             <span className="text-2xl mb-3 block">🎓</span>
-            <h3 className="text-xl font-bold text-heading mb-2">Try a Free Demo Class</h3>
-            <p className="text-body/80 text-sm mb-4">Experience our teaching style and infrastructure. Register for a demo class at your preferred branch.</p>
+            <h3 className="home-section-subtitle text-lg mb-2">Try a Free Demo Class</h3>
+            <p className="home-section-body mb-4">Experience our teaching style and infrastructure. Register for a demo class at your preferred branch.</p>
             <span className="inline-flex items-center gap-1 text-[#B30027] font-semibold group-hover:gap-2 transition-all">Register for demo →</span>
           </Link>
           <Link href="/scholarships" className="group block bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-[#B30027]/20 transition-all">
             <span className="text-2xl mb-3 block">🏅</span>
-            <h3 className="text-xl font-bold text-heading mb-2">Scholarships Available</h3>
-            <p className="text-body/80 text-sm mb-4">Merit-based scholarships for deserving students. Criteria and application process on our scholarships page.</p>
+            <h3 className="home-section-subtitle text-lg mb-2">Scholarships Available</h3>
+            <p className="home-section-body mb-4">Merit-based scholarships for deserving students. Criteria and application process on our scholarships page.</p>
             <span className="inline-flex items-center gap-1 text-[#B30027] font-semibold group-hover:gap-2 transition-all">Know more →</span>
           </Link>
         </div>
@@ -1067,12 +1312,10 @@ function DemoScholarships() {
 function PromotionalVideo() {
   const videoUrl = '' // Set to YouTube/Vimeo embed URL when available, e.g. 'https://www.youtube.com/embed/VIDEO_ID'
   return (
-    <section className="page-section-tight bg-white">
+    <section className="home-section-alt">
       <div className="container-page">
-        <h2 className="text-2xl md:text-3xl font-bold mb-2 leading-tight">
-          <span className="text-[#ed1c24]">See Matrix Science Academy</span>
-        </h2>
-        <p className="text-body/80 text-sm md:text-base mb-6 max-w-2xl">Campus, teaching, infrastructure, and achievements in a short video.</p>
+        <h2 className="home-section-title mb-2">See Matrix Science Academy</h2>
+        <p className="home-section-body mb-6 max-w-2xl">Campus, teaching, infrastructure, and achievements in a short video.</p>
         <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-lg bg-gray-100 aspect-video max-w-4xl mx-auto flex items-center justify-center">
           {videoUrl ? (
             <iframe
@@ -1099,19 +1342,27 @@ function PromotionalVideo() {
 
 export default function Home() {
   return (
-    <div>
+    <div className="bg-white">
       <HeroSlider />
 
-      {/* <AboutIntro /> */}
+      {/* Academic Support + Enter Matrix (two columns), then Vriksha full width */}
+      <AcademicSupportAndEnterMatrixRow />
       <VrikshaHighlight />
 
-      {/* Combined Features & News Section */}
+      {/* Counselling + Form row, Methodology, Achievements + Results row */}
+      <CounselingFormRow />
+      <MethodologySection />
+      <AchievementsAndResultsRow />
+
+      {/* Our Courses (tabbed layout + existing slider), Specialized Batches, Student Voices */}
+      <CoursesTabSection />
       <FeaturesAndNewsSection />
+      <SpecializedBatchesSection />
+      <TestimonialsShowcase />
 
-      <ResultsSection topResults={topResults} />
-
-      <PerformanceGraph /> 
-      <CounselingCTA />
+      {/* Features (facilities), then optional extras */}
+      <FeaturesSection />
+      <PerformanceGraph />
       <DemoScholarships />
       <PromotionalVideo />
     </div>

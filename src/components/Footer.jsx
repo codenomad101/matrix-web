@@ -28,6 +28,55 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* Get in Touch: contact info + map */}
+      <div className="border-b border-gray-300 bg-[#0a1a67]/5">
+        <div className="container-page py-8">
+          <h2 className="text-xl font-bold text-[#0a1a67] mb-6">Get in Touch</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <span className="text-[#B30027] mt-0.5" aria-hidden>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                </span>
+                <div>
+                  <p className="font-semibold text-[#0a1a67]">Visit Us</p>
+                  <p className="text-[#0a1a67]/80 text-sm">Nigdi, Pune and 7 other branches across Pune</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-[#B30027] mt-0.5" aria-hidden>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V21a2 2 0 01-2 2h-1C9.716 23 3 16.284 3 8V5z" /></svg>
+                </span>
+                <div>
+                  <p className="font-semibold text-[#0a1a67]">Call Us</p>
+                  <a href="tel:7058740609" className="text-[#0a1a67]/80 text-sm hover:text-[#B30027]">+91 7058740609</a>
+                  <p className="text-[#0a1a67]/60 text-xs mt-0.5">Mon–Sat, 8:00 AM – 6:00 PM</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-[#B30027] mt-0.5" aria-hidden>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                </span>
+                <div>
+                  <p className="font-semibold text-[#0a1a67]">Email Us</p>
+                  <a href="mailto:msapcmc@gmail.com" className="text-[#0a1a67]/80 text-sm hover:text-[#B30027] block">msapcmc@gmail.com</a>
+                </div>
+              </div>
+            </div>
+            <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-100 aspect-video min-h-[200px]">
+              <iframe
+                title="Matrix Science Academy location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.069758926!2d73.7674!3d18.6579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDM5JzI4LjQiTiA3M8KwNDYnMDIuNiJF!5e0!3m2!1sen!2sin!4v=1"
+                className="w-full h-full min-h-[200px]"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Multi-column links - Allen style */}
       <div className="container-page py-6">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">

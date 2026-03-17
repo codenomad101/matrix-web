@@ -31,13 +31,13 @@ body {
 	font-family: inherit !important;
 }
 
-/* Typography scale: clean hierarchy. Headings red, rest blue. */
+/* Typography scale: reduced sizes, clean hierarchy. */
 body {
 	background: var(--bg-page);
 	color: var(--body);
 	@apply antialiased;
-	font-size: 16px;
-	line-height: 1.6;
+	font-size: 15px;
+	line-height: 1.55;
 	font-weight: 400;
 }
 
@@ -47,47 +47,47 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, label, input, select, textarea, button, 
 }
 
 h1, .text-h1 {
-	font-size: clamp(1.125rem, 2.5vw + 1rem, 2.625rem); /* 36px–42px */
-	font-weight: 700;
-	line-height: 1.2;
+	font-size: clamp(1.25rem, 2vw + 0.85rem, 2rem); /* 20px–32px */
+	font-weight: 600;
+	line-height: 1.25;
 	color: var(--heading);
 }
 
 h2, .text-h2 {
-	font-size: clamp(1.375rem, 1.5vw + 1rem, 2rem); /* 28px–32px */
+	font-size: clamp(1.125rem, 1.2vw + 0.85rem, 1.5rem); /* 18px–24px */
 	font-weight: 600;
 	line-height: 1.3;
 	color: var(--heading);
 }
 
 h3, .text-h3 {
-	font-size: clamp(1.25rem, 0.5vw + 1.1rem, 1.5rem); /* 22px–24px */
+	font-size: clamp(1.0625rem, 0.4vw + 0.95rem, 1.25rem); /* 17px–20px */
 	font-weight: 600;
-	line-height: 1.4;
+	line-height: 1.35;
 	color: var(--heading);
 }
 
 p, .text-body {
-	font-size: clamp(1rem, 0.25vw + 0.9rem, 1.125rem); /* 16px–18px */
+	font-size: clamp(0.9375rem, 0.2vw + 0.85rem, 1rem); /* 15px–16px */
 	font-weight: 400;
-	line-height: 1.6;
+	line-height: 1.55;
 	color: var(--body);
 }
 
 small, .text-caption, .text-small {
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: 400;
 	line-height: 1.5;
 	color: var(--body);
 }
 
-/* Navbar: force font size so body/global styles don't override */
+/* Navbar: normal weight, slightly smaller */
 .nav-bar-items,
 .nav-bar-items .nav-item,
 .nav-bar-items a,
 .nav-bar-items button {
-	font-size: 14px !important;
-	font-weight: 600 ;
+	font-size: 13px !important;
+	font-weight: 500 !important;
 }
 
 /******** Utilities – same width for navbar, body, and all sections ********/
@@ -105,7 +105,7 @@ small, .text-caption, .text-small {
 }
 
 .container-page {
-	@apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+	@apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
 /* Allen-style page sections: compact vertical spacing */
@@ -121,14 +121,32 @@ small, .text-caption, .text-small {
 .page-section-tight {
 	@apply py-2 md:py-3;
 }
+
+/* Homepage: professional section style (Our Courses look) – white bg, clear typography */
+.home-section {
+	@apply py-6 md:py-8 bg-white;
+}
+.home-section-alt {
+	@apply py-6 md:py-8 bg-gray-50;
+}
+.home-section-title {
+	@apply text-2xl md:text-3xl font-bold text-gray-800 border-b-4 border-[#B30027] pb-1 inline-block mb-6;
+}
+.home-section-subtitle {
+	@apply text-xl md:text-2xl font-bold text-gray-900 mb-4 leading-tight;
+}
+.home-section-body {
+	@apply text-gray-600 text-sm md:text-base leading-relaxed;
+}
+
 .section-heading {
-	@apply text-2xl md:text-3xl font-bold text-[#0a1a67] mb-1.5;
+	@apply text-xl md:text-2xl font-semibold text-[#0a1a67] mb-1.5;
 }
 .section-heading-center {
 	@apply section-heading text-center;
 }
 .section-subheading {
-	@apply text-base md:text-lg text-[#0a1a67]/80 max-w-2xl mx-auto;
+	@apply text-sm md:text-base text-[#0a1a67]/80 max-w-2xl mx-auto;
 }
 /* Allen-style card for content blocks */
 .page-card {
@@ -205,6 +223,22 @@ small, .text-caption, .text-small {
 	animation: fadeIn 0.3s ease-out;
 }
 
+@keyframes dropdownIn {
+	from {
+		opacity: 0;
+		transform: translateY(-8px) scale(0.96);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+.animate-dropdownIn {
+	animation: dropdownIn 0.2s ease-out;
+	transform-origin: top;
+}
+
 @keyframes blink {
 	0%, 100% { opacity: 1; }
 	50% { opacity: 0.4; }
@@ -261,4 +295,21 @@ small, .text-caption, .text-small {
 .card-float-orb-1 { animation: float-orb-1 6s ease-in-out infinite; }
 .card-float-orb-2 { animation: float-orb-2 7s ease-in-out infinite; }
 .card-float-orb-3 { animation: float-orb-3 5s ease-in-out infinite; }
+
+/* Vriksha section: tree background + feature animations */
+@keyframes vriksha-tree-grow {
+	0% { transform: scale(0.5) translateY(12%); opacity: 0.75; }
+	45% { transform: scale(1) translateY(0); opacity: 0.95; }
+	55% { transform: scale(1) translateY(0); opacity: 0.95; }
+	100% { transform: scale(0.5) translateY(12%); opacity: 0.75; }
+}
+@keyframes vriksha-flow {
+	0% { transform: translateX(-50%); }
+	100% { transform: translateX(0); }
+}
+.vriksha-tree-bg {
+	animation: vriksha-tree-grow 8s ease-in-out infinite;
+	transform-origin: center bottom;
+}
+.vriksha-flow { animation: vriksha-flow 20s linear infinite; }
 

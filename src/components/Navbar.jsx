@@ -50,7 +50,7 @@ export default function Navbar() {
         <>
             {/* Top header: branch names with white lines between */}
             <div className="bg-[var(--brand-red)] text-white">
-                <div className="container-header py-1.5 flex flex-wrap items-center justify-center gap-y-1 text-xs font-semibold">
+                <div className="container-header py-1.5 flex flex-wrap items-center justify-center gap-y-1 text-xs font-medium">
                     <span className="whitespace-nowrap pr-2">Branches:</span>
                     {BRANCHES.map((branch, idx) => (
                         <span key={branch} className="inline-flex items-center">
@@ -66,7 +66,7 @@ export default function Navbar() {
                 </div>
             </div>
 
-            <header className={`sticky top-0 !z-[10001] transition-all duration-500 ${scrolled
+            <header className={`sticky top-0 !z-[10001] transition-all duration-300 ease-out ${scrolled
                 ? 'backdrop-blur-md bg-white border-b-2 border-brand/20 shadow-lg'
                 : 'backdrop-blur-sm bg-white border-b-2 border-gray-200'
                 }`}>
@@ -87,15 +87,15 @@ export default function Navbar() {
 
                 {/* Academy Name - mobile only */}
                 <div className="flex-1 flex justify-start md:hidden px-2">
-                    <span className="text-sm font-bold leading-tight">
+                    <span className="text-sm font-medium leading-tight">
                         <span className="text-[#ed1c24]">Matrix</span>{' '}
-                        <span className="text-[#646262] font-black">Science</span>
-                        <span className="block text-[#214295] font-black">Academy</span>
+                        <span className="text-[#646262]">Science</span>
+                        <span className="block text-[#214295]">Academy</span>
                     </span>
                 </div>
 
                 {/* Right: nav text + CTA - compact so all items fit on one row */}
-                <div className="ml-auto relative flex items-center gap-1.5 md:gap-2 nav-bar-items" style={{ fontSize: '13px' }} onMouseLeave={() => setCoursesOpen(false)}>
+                <div className="ml-auto relative flex items-center gap-1.5 md:gap-2 nav-bar-items" onMouseLeave={() => setCoursesOpen(false)}>
                     <nav className="hidden md:flex items-center gap-1.5 flex-wrap justify-end">
                         {navItems.map((item) => (
                             item.hasSubmenu && item.submenuKey === 'courses' ? (
@@ -106,28 +106,70 @@ export default function Navbar() {
                                 >
                                     <button
                                         type="button"
-                                        className={`nav-item py-1 font-black uppercase flex items-center gap-0.5 ${coursesOpen
+                                        className={`nav-item py-1 uppercase flex items-center gap-0.5 transition-colors duration-200 ${coursesOpen
                                             ? 'text-[var(--brand-red)]'
-                                            : 'text-[var(--body)] hover:text-[var(--brand-red)]'
+                                            : 'text-black hover:text-[var(--brand-red)]'
                                             }`}
                                         aria-expanded={coursesOpen}
                                         aria-haspopup="true"
                                     >
                                         {item.label}
-                                        <svg className={`w-3 h-3 transition-transform ${coursesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                        <svg className={`w-3 h-3 transition-transform duration-200 ${coursesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                                     </button>
+                                    {/* Small dropdown (replaces mega menu) */}
+                                    {coursesOpen && (
+                                        <div
+                                            className="absolute top-full left-0 mt-1 min-w-[200px] py-1.5 bg-white border border-gray-200 rounded-lg shadow-lg z-50 animate-dropdownIn"
+                                            role="menu"
+                                        >
+                                            {COURSES.map((course) => (
+                                                <Link
+                                                    key={course.id}
+                                                    href={course.href}
+                                                    role="menuitem"
+                                                    className="flex items-center gap-2 px-3 py-2 text-sm text-black hover:bg-[var(--brand-red)]/10 hover:text-[var(--brand-red)] transition-colors duration-150 first:rounded-t-md last:rounded-b-md"
+                                                >
+                                                    <span className="text-base">{course.icon}</span>
+                                                    <span>{course.name}</span>
+                                                </Link>
+                                            ))}
+                                            <div className="border-t border-gray-100 my-1" />
+                                            <Link
+                                                href="/courses"
+                                                role="menuitem"
+                                                className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-[var(--brand-red)] hover:bg-[var(--brand-red)]/10 transition-colors duration-150 rounded-b-md"
+                                            >
+                                                View all courses →
+                                            </Link>
+                                        </div>
+                                    )}
                                 </div>
                             ) : (
-                                <Link
-                                    key={item.href}
-                                    href={item.href}
-                                    className={`nav-item py-1 font-black uppercase ${pathname === item.href
-                                        ? 'text-[var(--brand-red)] border-b-2 border-[var(--brand-red)] pb-0.5'
-                                        : 'text-[var(--body)] hover:text-[var(--brand-red)]'
-                                        }`}
-                                >
-                                    {item.label}
-                                </Link>
+                                item.href === '/counseling' ? (
+                                    <span key={item.href} className="relative inline-flex items-center">
+                                        <span className="absolute bottom-full left-1/2 -translate-x-1/2 -mb-0.5 -rotate-6 text-[10px] font-bold text-[var(--brand-red)] animate-blink leading-none whitespace-nowrap">NEW</span>
+                                        <Link
+                                            href={item.href}
+                                            className={`nav-item py-1 uppercase transition-colors duration-200 ${pathname === item.href
+                                                ? 'text-[var(--brand-red)] border-b-2 border-[var(--brand-red)] pb-0.5'
+                                                : 'text-black hover:text-[var(--brand-red)]'
+                                                }`}
+                                        >
+                                            {item.label}
+                                        </Link>
+                                    </span>
+                                ) : (
+                                    <Link
+                                        key={item.href}
+                                        href={item.href}
+                                        className={`nav-item py-1 uppercase transition-colors duration-200 ${pathname === item.href
+                                            ? 'text-[var(--brand-red)] border-b-2 border-[var(--brand-red)] pb-0.5'
+                                            : 'text-black hover:text-[var(--brand-red)]'
+                                            }`}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                )
                             )
                         ))}
                     </nav>
@@ -135,13 +177,13 @@ export default function Navbar() {
                     <div className="flex items-center gap-2 flex-shrink-0">
                     <Link
                         href="/enquiry"
-                        className="hidden md:inline-flex items-center rounded bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] font-black uppercase px-2.5 py-1 transition-colors"
+                        className="hidden md:inline-flex items-center rounded bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] uppercase px-2.5 py-1 transition-all duration-200 hover:shadow-md"
                     >
                         Enquire Now
                     </Link>
 
                     <button
-                        className={`md:hidden inline-flex items-center justify-center h-9 w-9 rounded border transition-colors ${mobileOpen
+                        className={`md:hidden inline-flex items-center justify-center h-9 w-9 rounded border transition-all duration-200 ${mobileOpen
                             ? 'bg-box-bg border-gray-300'
                             : 'border-gray-300 hover:bg-box-bg'
                             }`}
@@ -173,41 +215,6 @@ export default function Navbar() {
                     </button>
                     </div>
 
-                    {/* Courses mega menu - spans only menu section */}
-                    {coursesOpen && (
-                        <div className="absolute top-full left-0 right-0 mt-0 pt-1 z-50">
-                            <div className="bg-white border-t border-b-2 border-gray-200 shadow-xl rounded-b-xl overflow-hidden pb-4">
-                                <div className="py-5 px-4">
-                                    <h3 className="text-sm font-bold text-[#0a1a67] uppercase tracking-wide mb-4">Our Courses — JEE, NEET, MHT-CET & more</h3>
-                                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                                        {COURSES.map((course) => (
-                                            <Link
-                                                key={course.id}
-                                                href={course.href}
-                                                className="flex items-start gap-2 px-4 py-3 rounded-lg border border-gray-100 bg-gray-50/50 hover:bg-[#B30027]/10 hover:border-[#B30027]/30 text-[#0a1a67] font-semibold text-sm transition-all duration-200 group"
-                                            >
-                                                <span className="w-8 h-8 rounded-full bg-[#B30027]/10 flex items-center justify-center text-base group-hover:bg-[#B30027] group-hover:text-white transition-colors shrink-0">
-                                                    {course.icon}
-                                                </span>
-                                                <div>
-                                                    <span className="block font-bold">{course.name}</span>
-                                                    <span className="block text-xs font-normal text-gray-500 mt-0.5">{course.shortDesc}</span>
-                                                </div>
-                                            </Link>
-                                        ))}
-                                    </div>
-                                    <p className="mt-4 text-xs text-gray-500">Comprehensive preparation for competitive examinations. Expert faculty and proven results.</p>
-                                    <div className="mt-5 pt-4 border-t border-gray-100 flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-xs text-gray-500">
-                                        <span className="font-medium text-[#0a1a67]/80">Structured curriculum</span>
-                                        <span>·</span>
-                                        <span>Doubt sessions & test series</span>
-                                        <span>·</span>
-                                        <Link href="/courses" className="hover:text-[#B30027] font-semibold">View all courses →</Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
                 </div>
             </div>
 
@@ -217,10 +224,10 @@ export default function Navbar() {
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-black/80" onClick={() => setMobileOpen(false)}></div>
                     {/* Panel */}
-                    <div className="absolute right-0 top-0 h-full w-4/5 max-w-sm bg-white text-[var(--body)] shadow-2xl animate-slideInRight flex flex-col">
+                    <div className="absolute right-0 top-0 h-full w-4/5 max-w-sm bg-white text-black shadow-2xl animate-slideInRight flex flex-col">
                         <div className="p-4 border-b flex items-center justify-between bg-white flex-shrink-0 z-10">
                             <div>
-                                <div className="font-extrabold">
+                                <div className="font-medium">
                                     <span className="text-[var(--brand-red)]">Matrix</span>{' '}
                                     <span className="text-[var(--brand-blue)]">Science</span>{' '}
                                     <span className="text-gray-500">Academy</span>
@@ -234,32 +241,39 @@ export default function Navbar() {
                             {navItems.map((item) => (
                                 item.hasSubmenu && item.submenuKey === 'courses' ? (
                                     <div key="courses-mobile">
-                                        <p className="px-2 py-1.5 text-[10px] font-bold text-[var(--brand-blue)]/80 uppercase tracking-wide">Courses</p>
+                                        <p className="px-2 py-1.5 text-[10px] font-medium text-[var(--brand-blue)]/80 uppercase tracking-wide">Courses</p>
                                         <div className="flex flex-col gap-0.5 pl-2">
                                             {COURSES.map((course) => (
                                                 <Link
                                                     key={course.id}
                                                     href={course.href}
-                                                    className="block px-2 py-1.5 rounded-lg text-xs font-bold text-[var(--body)] hover:bg-[var(--brand-blue)] hover:text-white transition-all duration-300"
+                                                    className="block px-2 py-1.5 rounded-lg text-xs font-medium text-black hover:bg-[var(--brand-blue)] hover:text-white transition-all duration-300"
                                                     onClick={() => setMobileOpen(false)}
                                                 >
                                                     {course.icon} {course.name}
                                                 </Link>
                                             ))}
-                                            <Link href="/courses" className="block px-2 py-1.5 rounded-lg text-xs font-bold text-[var(--brand-red)] hover:bg-[var(--brand-red)] hover:text-white transition-all duration-300" onClick={() => setMobileOpen(false)}>View all courses →</Link>
+                                            <Link href="/courses" className="block px-2 py-1.5 rounded-lg text-xs font-medium text-[var(--brand-red)] hover:bg-[var(--brand-red)] hover:text-white transition-all duration-300" onClick={() => setMobileOpen(false)}>View all courses →</Link>
                                         </div>
                                     </div>
                                 ) : (
                                     <Link
                                         key={item.href}
                                         href={item.href}
-                                        className={`block px-2 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 ${pathname === item.href
+                                        className={`block px-2 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 ${pathname === item.href
                                             ? 'bg-[var(--brand-blue)] text-white'
-                                            : 'text-[var(--body)] hover:bg-[var(--brand-blue)] hover:text-white'
+                                            : 'text-black hover:bg-[var(--brand-blue)] hover:text-white'
                                             }`}
                                         onClick={() => setMobileOpen(false)}
                                     >
-                                        {item.label}
+                                        {item.href === '/counseling' ? (
+                                            <span className="flex items-center gap-1.5">
+                                                <span className="text-[10px] font-bold text-[var(--brand-red)] animate-blink">NEW</span>
+                                                {item.label}
+                                            </span>
+                                        ) : (
+                                            item.label
+                                        )}
                                     </Link>
                                 )
                             ))}

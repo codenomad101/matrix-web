@@ -1,15 +1,16 @@
 'use client'
-import { useEffect, useMemo, useState } from 'react'
+
+import { useEffect, useState } from 'react'
 
 const Link = ({ href, children, className, ...props }) => (
   <a href={href} className={className} {...props}>{children}</a>
 )
 
 const HERO_CAROUSEL_IMAGES = [
-  { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/v1764181879/B_r8gw6s.jpg', alt: 'Matrix Science Academy' },
-  { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/v1764181786/IIT_knkkka.jpg', alt: 'IIT Results' },
-  { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/v1763783028/4_nl1ejs', alt: 'Our success' },
-  { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/v1764181864/A_dbzo2c.jpg', alt: 'Academy' },
+  { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/v1764181879/B_r8gw6s.jpg', alt: 'Matrix Science Academy', heading: 'Campus & Learning' },
+  { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/v1764181786/IIT_knkkka.jpg', alt: 'IIT Results', heading: 'IIT & Top Engineering Results' },
+  { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/v1763783028/4_nl1ejs', alt: 'Our success', heading: 'Our Success Stories' },
+  { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/v1764181864/A_dbzo2c.jpg', alt: 'Academy', heading: 'About Matrix Science Academy' },
 ]
 const CAROUSEL_INTERVAL_MS = 4500
 
@@ -24,51 +25,54 @@ export default function HeroSlider() {
   }, [])
 
   return (
-    <section className="relative overflow-hidden">
-      <div className="container-page pt-1 pb-2 sm:pt-4 sm:pb-5 px-2 sm:px-6">
-        <div className="relative min-h-[200px] sm:min-h-[260px] md:min-h-[300px] lg:min-h-[340px] rounded-lg sm:rounded-3xl overflow-hidden shadow-lg border border-slate-200/60">
-          <div className="w-full h-full relative bg-gradient-to-br from-white via-red-50/50 to-red-100/40">
-            <div className="relative z-10 w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 lg:gap-6 pt-4 sm:pt-5 md:pt-6 lg:pt-7 px-4 sm:px-5 md:px-6 lg:px-8 pb-3 sm:pb-4 md:pb-5 overflow-y-auto items-start">
-              {/* Left: Hero 1 – Headline, tagline, stats, CTA */}
-              <div className="flex flex-col justify-center min-w-0 mt-2 sm:mt-3 md:mt-4">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight mb-1">
-                  <span className="text-[#ed1c24]">Matrix</span>{' '}
-                  <span className="text-[#646262] font-black">Science</span>
-                  <span className="block text-[#214295] font-black">Academy</span>
-                </h1>
-                <p className="text-sm sm:text-base text-slate-600 mb-3 sm:mb-4">
-                  Pune&apos;s leading coaching for JEE, NEET & MHT-CET
-                </p>
-                <div className="flex flex-wrap gap-3 sm:gap-4 mb-2 sm:mb-3">
-                  <div className="flex flex-col">
-                    <span className="text-lg sm:text-xl font-bold text-[#8B1538]">8</span>
-                    <span className="text-[10px] sm:text-xs text-slate-500">Branches</span>
-                  </div>
-                  <div className="w-px bg-red-200/80 hidden sm:block" />
-                  <div className="flex flex-col">
-                    <span className="text-lg sm:text-xl font-bold text-[#8B1538]">30K+</span>
-                    <span className="text-[10px] sm:text-xs text-slate-500">Alumni</span>
-                  </div>
-                  <div className="w-px bg-red-200/80 hidden sm:block" />
-                  <div className="flex flex-col">
-                    <span className="text-lg sm:text-xl font-bold text-[#8B1538]">86</span>
-                    <span className="text-[10px] sm:text-xs text-slate-500">99+ Percentile</span>
-                  </div>
-                </div>
+    <section className="bg-white">
+      <div className="container-page pt-4 pb-5 sm:pt-6 sm:pb-8 px-4 sm:px-6">
+        <div className="border-2 border-gray-300 rounded-lg sm:rounded-xl overflow-hidden bg-white shadow-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 p-4 sm:p-5 md:p-6 lg:p-8 min-h-[200px] sm:min-h-[260px] md:min-h-[280px] lg:min-h-[300px]">
+            {/* Left: headline, description, list, CTAs */}
+            <div className="flex flex-col justify-center">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-black leading-tight mb-2 sm:mb-3">
+                Build strong academic foundations in science and mathematics
+              </h1>
+              <p className="text-sm sm:text-base text-gray-800 mb-3 max-w-lg">
+                Concept-based coaching and personalized academic guidance to help students excel in school and competitive examinations.
+              </p>
+              <ul className="space-y-1.5 mb-4 text-sm text-black">
+                {[
+                  'Small batch sizes for individual attention',
+                  'Concept-based learning over rote memorization',
+                  'Regular tests and rigorous performance tracking',
+                  'Personalized student guidance and mentoring',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-2">
+                    <span className="text-black shrink-0" aria-hidden>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-3">
                 <Link
-                  href="/enquiry"
-                  className="inline-flex justify-center items-center w-fit bg-[#B30027] text-white hover:bg-[#8a001e] text-sm font-semibold px-5 py-2.5 rounded-lg shadow-md transition-all duration-200 hover:shadow-lg"
+                  href="/counseling"
+                  className="inline-flex items-center justify-center bg-[#B30027] text-white hover:bg-[#8a001e] text-sm font-medium px-5 py-2.5 rounded transition-colors"
                 >
-                  Enquire Now
+                  Book Free Counselling
                 </Link>
-                <p className="text-[10px] sm:text-xs text-slate-400 mt-2">
-                  Nigdi · Shahunagar · Chinchwad · Ravet · Wakad · Moshi · Kolhapur · Rahatani
-                </p>
+                <Link
+                  href="/courses"
+                  className="inline-flex items-center justify-center border-2 border-gray-300 text-black hover:bg-gray-100 text-sm font-medium px-5 py-2.5 rounded transition-colors"
+                >
+                  Explore Courses
+                </Link>
               </div>
+            </div>
 
-              {/* Right: Image carousel (2nd box) */}
-              <div className="flex items-center justify-center min-w-0 h-full relative">
-                <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[380px] aspect-[4/3] rounded-xl overflow-hidden bg-slate-100">
+            {/* Right: slider title + image carousel */}
+            <div className="flex flex-col justify-center items-center lg:items-end">
+              <h2 className="text-base sm:text-lg font-bold text-black mb-2 w-full text-center lg:text-right max-w-[280px] sm:max-w-[320px] transition-opacity duration-300">
+                {HERO_CAROUSEL_IMAGES[carouselIndex].heading}
+              </h2>
+              <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[380px]">
+                <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-gray-100 border border-gray-300">
                   {HERO_CAROUSEL_IMAGES.map((img, i) => (
                     <div
                       key={i}
@@ -83,14 +87,14 @@ export default function HeroSlider() {
                     </div>
                   ))}
                 </div>
-                <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
                   {HERO_CAROUSEL_IMAGES.map((_, i) => (
                     <button
                       key={i}
                       type="button"
                       aria-label={`Image ${i + 1}`}
                       onClick={() => setCarouselIndex(i)}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${i === carouselIndex ? 'w-5 bg-[#B30027]' : 'w-1.5 bg-white/80 hover:bg-white'}`}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${i === carouselIndex ? 'w-5 bg-gray-600' : 'w-1.5 bg-gray-300 hover:bg-gray-500'}`}
                     />
                   ))}
                 </div>

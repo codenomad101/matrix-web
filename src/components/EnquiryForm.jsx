@@ -21,7 +21,7 @@ const BRANCH_OPTIONS = Object.keys(BRANCH_WHATSAPP_NUMBERS)
 const ENQUIRY_EMAIL = 'jadhavsbj755@gmail.com'
 const SITE_NAME = 'Matrix Science Academy'
 
-export default function EnquiryForm({ initialMessage = '' }) {
+export default function EnquiryForm({ initialMessage = '', minimal = false }) {
   const searchParams = useSearchParams()
   const router = useRouter()
   const branchParam = searchParams.get('branch')
@@ -41,11 +41,11 @@ export default function EnquiryForm({ initialMessage = '' }) {
 
     const formData = new FormData(e.target)
     const formValues = {
-      name: formData.get('name'),
-      phone: formData.get('phone'),
-      email: formData.get('email'),
-      course: formData.get('course'),
-      branch: formData.get('branch'),
+      name: minimal ? '—' : (formData.get('name') || ''),
+      phone: formData.get('phone') || '',
+      email: formData.get('email') || '',
+      course: minimal ? '—' : (formData.get('course') || ''),
+      branch: minimal ? '—' : (formData.get('branch') || initialBranch),
       message: formData.get('message') || 'No message provided'
     }
 
@@ -100,6 +100,91 @@ _This enquiry was submitted through the website._`
     }, 1000)
   }
 
+  const formFields = (
+    <form
+      className={minimal ? 'grid grid-cols-1 gap-4' : 'mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4'}
+      onSubmit={handleSubmit}
+    >
+      {!minimal && (
+        <div className="sm:col-span-1">
+          <label className="block text-sm font-medium text-body">Full Name</label>
+          <input required name="name" type="text" placeholder="Your name" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]" />
+        </div>
+      )}
+
+      <div className={minimal ? '' : 'sm:col-span-1'}>
+        <label className="block text-sm font-medium text-body">Phone</label>
+        <input required name="phone" type="tel" placeholder="98765 43210" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]" />
+      </div>
+
+      <div className={minimal ? '' : 'sm:col-span-1'}>
+        <label className="block text-sm font-medium text-body">Email</label>
+        <input required name="email" type="email" placeholder="you@example.com" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]" />
+      </div>
+
+      {!minimal && (
+        <>
+          <div className="sm:col-span-1">
+            <label className="block text-sm font-medium text-body">Course</label>
+            <select name="course" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]">
+              <option>IIT-JEE (Main/Advanced)</option>
+              <option>MHT-CET</option>
+              <option>NEET</option>
+              <option>IISER Foundation</option>
+              <option>8th–12th Boards</option>
+            </select>
+          </div>
+          <div className="sm:col-span-1">
+            <label className="block text-sm font-medium text-body">Preferred Branch</label>
+            <select name="branch" defaultValue={initialBranch} className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]">
+              {BRANCH_OPTIONS.map((b) => (
+                <option key={b} value={b}>{b}</option>
+              ))}
+            </select>
+          </div>
+        </>
+      )}
+
+      <div className={minimal ? '' : 'sm:col-span-2'}>
+        <label className="block text-sm font-medium text-body">Message</label>
+        <textarea name="message" rows={minimal ? 3 : 4} placeholder={messagePlaceholder} defaultValue={defaultMessage} className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]"></textarea>
+      </div>
+
+      <div className={minimal ? 'flex flex-wrap gap-3' : 'sm:col-span-2 flex flex-wrap gap-3'}>
+        <button
+          type="submit"
+          name="submitType"
+          value="whatsapp"
+          className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#25D366] text-white hover:bg-[#20bd5a] px-4 py-2.5 font-semibold text-sm transition-colors disabled:opacity-70"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Sending...' : 'Send WhatsApp details'}
+        </button>
+        <button
+          type="submit"
+          name="submitType"
+          value="email"
+          className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] px-4 py-2.5 font-semibold text-sm transition-colors disabled:opacity-70"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Sending...' : 'Submit via email'}
+        </button>
+        <a href="tel:7058740609" className="inline-flex justify-center items-center gap-2 rounded-lg border-2 border-[#0a1a67] text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white px-4 py-2.5 font-semibold text-sm transition-colors">Call Us</a>
+      </div>
+    </form>
+  )
+
+  if (minimal) {
+    return (
+      <div>
+        {submitError && (
+          <p className="mb-3 text-sm text-[#B30027]" role="alert">{submitError}</p>
+        )}
+        {formFields}
+      </div>
+    )
+  }
+
   return (
     <div className="py-4">
       <div className="grid lg:grid-cols-2 gap-6">
@@ -111,72 +196,7 @@ _This enquiry was submitted through the website._`
             <p className="mt-3 text-sm text-[#B30027]" role="alert">{submitError}</p>
           )}
 
-          <form
-            className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4"
-            onSubmit={handleSubmit}
-          >
-            <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-body">Full Name</label>
-              <input required name="name" type="text" placeholder="Your name" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]" />
-            </div>
-
-            <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-body">Phone</label>
-              <input required name="phone" type="tel" placeholder="98765 43210" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]" />
-            </div>
-
-            <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-body">Email</label>
-              <input required name="email" type="email" placeholder="you@example.com" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]" />
-            </div>
-
-            <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-body">Course</label>
-              <select name="course" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]">
-                <option>IIT-JEE (Main/Advanced)</option>
-                <option>MHT-CET</option>
-                <option>NEET</option>
-                <option>IISER Foundation</option>
-                <option>8th–12th Boards</option>
-              </select>
-            </div>
-
-            <div className="sm:col-span-1">
-              <label className="block text-sm font-medium text-body">Preferred Branch</label>
-              <select name="branch" defaultValue={initialBranch} className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]">
-                {BRANCH_OPTIONS.map((b) => (
-                  <option key={b} value={b}>{b}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="sm:col-span-2">
-              <label className="block text-sm font-medium text-body">Message</label>
-              <textarea name="message" rows="4" placeholder={messagePlaceholder} defaultValue={defaultMessage} className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]"></textarea>
-            </div>
-
-            <div className="sm:col-span-2 flex flex-wrap gap-3">
-              <button
-                type="submit"
-                name="submitType"
-                value="whatsapp"
-                className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#25D366] text-white hover:bg-[#20bd5a] px-4 py-2.5 font-semibold text-sm transition-colors disabled:opacity-70"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Sending...' : 'Send WhatsApp details'}
-              </button>
-              <button
-                type="submit"
-                name="submitType"
-                value="email"
-                className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] px-4 py-2.5 font-semibold text-sm transition-colors disabled:opacity-70"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Sending...' : 'Submit via email'}
-              </button>
-              <a href="tel:7058740609" className="inline-flex justify-center items-center gap-2 rounded-lg border-2 border-[#0a1a67] text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white px-4 py-2.5 font-semibold text-sm transition-colors">Call Us</a>
-            </div>
-          </form>
+          {formFields}
         </div>
 
         <div className="rounded-2xl bg-gray-50 border border-gray-200 p-6 sm:p-8">
