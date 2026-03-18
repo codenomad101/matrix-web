@@ -947,7 +947,6 @@ function AcademicSupportMethodologySection() {
       <div className="container-page">
         {/* Redesigned intro + "How we do it" (single cohesive section card) */}
         <div className="rounded-2xl border border-gray-200/80 bg-white shadow-sm overflow-hidden">
-          <div className="h-1.5 bg-[#B30027]" aria-hidden />
           <div className="p-6 md:p-8">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
               <div className="min-w-0">
@@ -1017,7 +1016,13 @@ function AcademicSupportMethodologySection() {
 
 // Counselling (left) + Book Your Session form (right)
 function CounselingFormRow() {
-  const steps = ['Coaching Session', 'Exam Planning', 'Performance Test', 'Study Roadmap', 'Personalized Guidance']
+  const steps = [
+    { label: 'Coaching Session', icon: '🎯' },
+    { label: 'Exam Planning', icon: '🗓️' },
+    { label: 'Performance Test', icon: '📈' },
+    { label: 'Study Roadmap', icon: '🗺️' },
+    { label: 'Personalized Guidance', icon: '🤝' },
+  ]
   return (
     <section className="home-section">
       <div className="container-page">
@@ -1029,20 +1034,38 @@ function CounselingFormRow() {
             <p className="home-section-body max-w-xl mb-6">
               Not sure which path to take? Our expert counsellors help you evaluate academic performance, plan for competitive exams, and create a personalized study roadmap for your child.
             </p>
-            <div className="flex flex-wrap gap-4 mb-6">
-              {steps.map((label, i) => (
-                <div key={i} className="flex flex-col items-center gap-1">
-                  <span className="w-10 h-10 rounded-full bg-[#B30027]/10 text-[#B30027] flex items-center justify-center text-sm font-bold">{i + 1}</span>
-                  <span className="text-xs font-medium text-gray-600">{label}</span>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+              {steps.map((step, i) => (
+                <div
+                  key={i}
+                  className="rounded-xl border border-gray-200/80 bg-gray-50/40 p-3 flex items-center gap-3 hover:border-gray-300/90 hover:shadow-sm transition-all duration-200"
+                >
+                  <span
+                    className="w-9 h-9 rounded-full bg-[#0a1a67]/10 text-[#0a1a67] flex items-center justify-center text-sm font-bold shrink-0"
+                    aria-hidden
+                  >
+                    {i + 1}
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-sm font-semibold text-gray-900 leading-tight">
+                      {step.label}
+                    </span>
+                    <span className="block text-xs text-gray-500 leading-tight" aria-hidden>
+                      {step.icon}
+                    </span>
+                  </span>
                 </div>
               ))}
             </div>
-            <Link href="/enquiry?counseling=1" className="inline-flex items-center gap-2 bg-[#B30027] text-white hover:bg-[#8a001e] font-semibold px-6 py-3 rounded-lg transition-colors">
+            <Link
+              href="/enquiry?counseling=1"
+              className="inline-flex items-center justify-center gap-2 bg-[#0a1a67] text-white hover:bg-[#0a1a67]/90 font-semibold px-6 py-3 rounded-lg transition-colors"
+            >
               Book Your Free Session Now
             </Link>
           </div>
           <div className="rounded-2xl border border-gray-200/80 bg-white shadow-sm overflow-hidden">
-            <div className="h-1.5 bg-[#B30027]" aria-hidden />
+            <div className="h-1.5 bg-[#0a1a67]/15" aria-hidden />
             <div className="p-6 md:p-8">
               <h3 className="home-section-subtitle text-lg md:text-xl mb-1">Book Your Session</h3>
               <p className="home-section-body text-sm mb-4">Fill out the form below and our academic counsellor will call you.</p>
@@ -1080,22 +1103,27 @@ function AchievementsAndResultsRow() {
         <div className="grid lg:grid-cols-2 gap-4 md:gap-6 items-stretch">
           {/* Left: Achievements in a card */}
           <div className="rounded-2xl border border-gray-200/80 bg-white p-4 md:p-5 shadow-sm flex flex-col">
-            <h2 className="home-section-title mb-1">Our Achievements</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 border-b-4 border-gray-300 pb-1 inline-block mb-1">
+              Our Achievements
+            </h2>
             <p className="home-section-body mb-4 text-sm">
-              <span className="font-bold text-[#B30027]">One of the leading and most successful institutions in Pune.</span>{' '}
+              <span className="font-bold text-gray-900">One of the leading and most successful institutions in Pune.</span>{' '}
               Our results speak for the quality of education and dedication of our expert faculty.
             </p>
             <div className="grid grid-cols-2 gap-3 flex-1">
               {ACHIEVEMENT_CARDS.map((card, i) => (
-                <div key={i} className="rounded-xl border border-gray-200/80 bg-gray-50/50 p-3 flex flex-col justify-center hover:border-[#B30027]/30 transition-colors duration-200">
+                <div
+                  key={i}
+                  className="rounded-xl border border-gray-200/80 bg-gray-50/50 p-3 flex flex-col justify-center hover:border-gray-300/80 transition-colors duration-200"
+                >
                   <span className="text-xl mb-1 block" aria-hidden>{card.icon}</span>
-                  <span className="text-xl md:text-2xl font-bold text-[#B30027] leading-tight">{card.value}</span>
+                  <span className="text-xl md:text-2xl font-bold text-gray-900 leading-tight">{card.value}</span>
                   <p className="text-xs font-semibold text-gray-800 mt-0.5">{card.title}</p>
                   <p className="text-[11px] text-gray-500 mt-0.5">{card.desc}</p>
                 </div>
               ))}
             </div>
-            <Link href="/results" className="inline-flex items-center gap-2 mt-4 text-[#B30027] font-semibold hover:underline">
+            <Link href="/results" className="inline-flex items-center gap-2 mt-4 text-gray-900 font-semibold hover:underline">
               View All Results
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
@@ -1396,19 +1424,21 @@ export default function Home() {
       <AcademicSupportMethodologySection />
       <VrikshaHighlight />
 
+      {/* Our Courses + What's Trending (moved to be directly below Vriksha) */}
+      <CoursesTabSection />
+      <FeaturesAndNewsSection />
+
       {/* Counselling + Form, Achievements + Results */}
       <CounselingFormRow />
       <AchievementsAndResultsRow />
 
-      {/* Our Courses (tabbed layout + existing slider), Specialized Batches, Student Voices */}
-      <CoursesTabSection />
-      <FeaturesAndNewsSection />
+      {/* Specialized Batches, Student Voices */}
       <SpecializedBatchesSection />
       <TestimonialsShowcase />
 
       {/* Features (facilities), then optional extras */}
       <FeaturesSection />
-      <PerformanceGraph />
+      {/* <PerformanceGraph /> removed from homepage (Results Over the Years) */}
       <DemoScholarships />
       <PromotionalVideo />
     </div>
