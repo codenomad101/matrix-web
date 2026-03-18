@@ -697,7 +697,7 @@ function CoursesTabSection() {
         </div>
 
         {/* Content: image LEFT, text RIGHT – two columns, clean alignment */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-stretch bg-white rounded-lg overflow-hidden shadow-sm">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-stretch bg-white rounded-2xl border border-gray-200/80 overflow-hidden shadow-sm">
           {/* Left column – large rectangular image, grayscale, label overlay bottom-right */}
           <Link href={course.href} className="relative block min-h-[260px] md:min-h-[320px] bg-gray-200">
             <img
@@ -947,8 +947,8 @@ function AcademicSupportMethodologySection() {
       <div className="container-page">
         {/* Redesigned intro + "How we do it" (single cohesive section card) */}
         <div className="rounded-2xl border border-gray-200/80 bg-white shadow-sm overflow-hidden">
-          <div className="p-6 md:p-8">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+          <div className="p-5 md:p-6">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4">
               <div className="min-w-0">
                 <h2 className="home-section-title mb-2">Our Proven Methodology</h2>
                 <p className="home-section-body max-w-2xl">
@@ -995,12 +995,12 @@ function AcademicSupportMethodologySection() {
             </div>
 
             {/* How we do it: 5 methodology steps (kept inside same card) */}
-            <div className="mt-6 pt-6 border-t border-gray-100">
-              <p className="home-section-body font-semibold text-gray-800 mb-4">How we do it</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            <div className="mt-4 pt-4 border-t border-gray-100">
+              <p className="home-section-body font-semibold text-gray-800 mb-3">How we do it</p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
                 {METHODOLOGY_STEPS.map((s, i) => (
-                  <div key={i} className="rounded-2xl border border-gray-200/80 bg-white p-3 flex flex-col items-center text-center hover:border-[#B30027]/30 hover:shadow-md transition-all duration-200">
-                    <span className="w-7 h-7 rounded-full bg-[#B30027]/10 text-[#B30027] flex items-center justify-center text-[11px] font-semibold mb-1.5">{i + 1}</span>
+                  <div key={i} className="rounded-2xl border border-gray-200/80 bg-white p-2.5 flex flex-col items-center text-center hover:border-[#B30027]/30 hover:shadow-md transition-all duration-200">
+                    <span className="w-6 h-6 rounded-full bg-[#B30027]/10 text-[#B30027] flex items-center justify-center text-[11px] font-semibold mb-1">{i + 1}</span>
                     <span className="text-lg mb-1 block" aria-hidden>{s.icon}</span>
                     <span className="text-[11px] sm:text-xs font-semibold text-gray-800 leading-tight">{s.label}</span>
                   </div>
@@ -1230,9 +1230,12 @@ const VRIKSHA_POINTS = [
 
 function VrikshaHighlight({ embedded = false }) {
   const card = (
-    <Link href="/vriksha" className="group block bg-white/95 border-2 border-[#0a1a67]/20 rounded-2xl sm:rounded-3xl p-4 md:p-6 shadow-lg hover:shadow-xl hover:border-[#0a1a67]/40 transition-all duration-300 overflow-hidden h-full relative">
+    <Link
+      href="/vriksha"
+      className="group block bg-white border border-gray-200/80 rounded-2xl sm:rounded-3xl p-4 md:p-6 shadow-sm transition-all duration-300 overflow-hidden h-full relative"
+    >
           {/* Tree as background at end of card – below slider, same position */}
-          <div className="absolute bottom-0 right-0 flex items-end justify-end pointer-events-none w-[45%] md:w-[40%] min-h-[160px] md:min-h-[180px]" aria-hidden>
+          <div className="absolute bottom-4 right-0 flex items-end justify-end pointer-events-none w-[45%] md:w-[40%] min-h-[160px] md:min-h-[180px]" aria-hidden>
             <div className="vriksha-tree-bg flex items-end justify-center w-full max-w-[200px] md:max-w-[240px] lg:max-w-[280px] h-[140px] md:h-[180px] opacity-90">
               <svg viewBox="0 0 80 100" className="w-full h-full text-emerald-500/50 drop-shadow-sm" fill="currentColor">
                 <path d="M40 8 L72 48 L40 42 L8 48 Z" fill="currentColor" opacity="0.9" />

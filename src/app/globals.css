@@ -124,16 +124,16 @@ small, .text-caption, .text-small {
 
 /* Homepage: professional section style (Our Courses look) – white bg, clear typography */
 .home-section {
-	@apply py-6 md:py-8 bg-white;
+	@apply py-3 md:py-5 bg-white;
 }
 .home-section-alt {
-	@apply py-6 md:py-8 bg-gray-50;
+	@apply py-3 md:py-5 bg-gray-50;
 }
 .home-section-title {
-	@apply text-2xl md:text-3xl font-bold text-gray-800 border-b-4 border-[#B30027] pb-1 inline-block mb-6;
+	@apply text-2xl md:text-3xl font-bold text-gray-800 border-b-4 border-[#B30027] pb-1 inline-block mb-4;
 }
 .home-section-subtitle {
-	@apply text-xl md:text-2xl font-bold text-gray-900 mb-4 leading-tight;
+	@apply text-xl md:text-2xl font-bold text-gray-900 mb-3 leading-tight;
 }
 .home-section-body {
 	@apply text-gray-600 text-sm md:text-base leading-relaxed;
