@@ -81,13 +81,13 @@ small, .text-caption, .text-small {
 	color: var(--body);
 }
 
-/* Navbar: normal weight, slightly smaller */
+/* Navbar: light weight, slightly smaller */
 .nav-bar-items,
 .nav-bar-items .nav-item,
 .nav-bar-items a,
 .nav-bar-items button {
 	font-size: 13px !important;
-	font-weight: 500 !important;
+	font-weight: 450 !important;
 }
 
 /******** Utilities – same width for navbar, body, and all sections ********/

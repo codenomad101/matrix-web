@@ -100,77 +100,78 @@ _This enquiry was submitted through the website._`
                     className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[10004] flex items-center justify-center p-4"
                     onClick={closeModal}
                 >
-                    {/* Modal Content - stop propagation so overlay click is only on backdrop */}
+                    {/* Modal Content – red top, white body, match site card style */}
                     <div
-                        className="bg-white rounded-xl shadow-2xl max-w-[320px] w-full max-h-[85vh] overflow-y-auto relative"
+                        className="bg-white rounded-2xl border border-gray-200/80 shadow-xl max-w-[320px] w-full max-h-[85vh] overflow-y-auto relative"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        {/* Header with prominent close (Allen-style) - site colors */}
-                        <div className="bg-gradient-to-r from-[#0a1a67] to-[#1a2a87] p-4 rounded-t-xl relative">
-                            <button
-                                type="button"
-                                onClick={closeModal}
-                                className="absolute top-2 right-2 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#0a1a67]"
-                                aria-label="Close enquiry"
-                            >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-
+                        {/* Red bar at top */}
+                        <div className="h-1.5 bg-[#B30027] rounded-t-2xl" aria-hidden />
+                        {/* Header with close */}
+                        <div className="p-4 border-b border-gray-100 flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                                <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
-                                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div className="w-10 h-10 rounded-xl bg-[#B30027]/10 flex items-center justify-center">
+                                    <svg className="w-5 h-5 text-[#B30027]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                                     </svg>
                                 </div>
                                 <div>
-                                    <h2 id="quick-enquiry-title" className="text-lg font-bold text-white">Quick Enquiry</h2>
-                                    <p className="text-white/80 text-xs">We'll reach out shortly</p>
+                                    <h2 id="quick-enquiry-title" className="text-lg font-bold text-gray-800">Quick Enquiry</h2>
+                                    <p className="text-gray-500 text-xs">We&apos;ll reach out shortly</p>
                                 </div>
                             </div>
+                            <button
+                                type="button"
+                                onClick={closeModal}
+                                className="w-9 h-9 rounded-lg border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-600 flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:ring-offset-2"
+                                aria-label="Close enquiry"
+                            >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
                         </div>
 
                         {/* Form */}
                         <form onSubmit={handleSubmit} className="p-4 space-y-3">
                             <div>
-                                <label className="block text-xs font-medium text-[#0a1a67] mb-1">Full Name *</label>
+                                <label className="block text-xs font-medium text-gray-700 mb-1">Full Name *</label>
                                 <input
                                     required
                                     name="name"
                                     type="text"
                                     placeholder="Your name"
-                                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0a1a67] focus:border-transparent transition-all"
+                                    className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-transparent transition-all"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-xs font-medium text-[#0a1a67] mb-1">Phone *</label>
+                                <label className="block text-xs font-medium text-gray-700 mb-1">Phone *</label>
                                 <input
                                     required
                                     name="phone"
                                     type="tel"
                                     placeholder="98765 43210"
-                                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0a1a67] focus:border-transparent transition-all"
+                                    className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-transparent transition-all"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-xs font-medium text-[#0a1a67] mb-1">Email *</label>
+                                <label className="block text-xs font-medium text-gray-700 mb-1">Email *</label>
                                 <input
                                     required
                                     name="email"
                                     type="email"
                                     placeholder="you@example.com"
-                                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0a1a67] focus:border-transparent transition-all"
+                                    className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-transparent transition-all"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-xs font-medium text-[#0a1a67] mb-1">Course *</label>
+                                <label className="block text-xs font-medium text-gray-700 mb-1">Course *</label>
                                 <select
                                     name="course"
-                                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0a1a67] focus:border-transparent transition-all"
+                                    className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-transparent transition-all"
                                 >
                                     <option>IIT-JEE (Main/Advanced)</option>
                                     <option>MHT-CET</option>
@@ -181,10 +182,10 @@ _This enquiry was submitted through the website._`
                             </div>
 
                             <div>
-                                <label className="block text-xs font-medium text-[#0a1a67] mb-1">Preferred Branch *</label>
+                                <label className="block text-xs font-medium text-gray-700 mb-1">Preferred Branch *</label>
                                 <select
                                     name="branch"
-                                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0a1a67] focus:border-transparent transition-all"
+                                    className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-transparent transition-all"
                                 >
                                     <option>Nigdi</option>
                                     <option>Shahunagar</option>
@@ -198,18 +199,18 @@ _This enquiry was submitted through the website._`
                             </div>
 
                             <div>
-                                <label className="block text-xs font-medium text-[#0a1a67] mb-1">Message (Optional)</label>
+                                <label className="block text-xs font-medium text-gray-700 mb-1">Message (Optional)</label>
                                 <textarea
                                     name="message"
                                     rows="2"
                                     placeholder="Tell us about your goals"
-                                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0a1a67] focus:border-transparent transition-all resize-none"
+                                    className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-transparent transition-all resize-none"
                                 ></textarea>
                             </div>
 
                             <button
                                 type="submit"
-                                className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold py-2.5 px-4 rounded-lg transition-all duration-300 hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2 text-sm"
+                                className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold py-2.5 px-4 rounded-lg transition-all duration-300 hover:scale-[1.02] shadow-md flex items-center justify-center gap-2 text-sm"
                                 disabled={isSubmitting}
                             >
                                 {isSubmitting ? (
@@ -236,7 +237,7 @@ _This enquiry was submitted through the website._`
                             <button
                                 type="button"
                                 onClick={closeModal}
-                                className="w-full mt-2 py-2 text-sm font-semibold text-[#0a1a67] border border-[#0a1a67] rounded-lg hover:bg-[#0a1a67] hover:text-white transition-colors"
+                                className="w-full mt-2 py-2 text-sm font-semibold text-[#B30027] border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
                             >
                                 Close window
                             </button>

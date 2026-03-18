@@ -167,7 +167,7 @@ export default function Navbar() {
                             ) : (
                                 item.href === '/counseling' ? (
                                     <span key={item.href} className="relative inline-flex items-center">
-                                        <span className="absolute bottom-full left-1/2 -translate-x-1/2 -mb-0.5 -rotate-6 text-[10px] font-bold text-[var(--brand-red)] animate-blink leading-none whitespace-nowrap">NEW</span>
+                                        <span className="absolute bottom-full left-1/2 -translate-x-1/2 -mb-0.5 -rotate-6 text-[10px] font-medium text-[var(--brand-red)] animate-blink leading-none whitespace-nowrap">NEW</span>
                                         <Link
                                             href={item.href}
                                             className={`nav-item py-1 uppercase transition-colors duration-200 ${pathname === item.href
@@ -288,7 +288,7 @@ export default function Navbar() {
                                     >
                                         {item.href === '/counseling' ? (
                                             <span className="flex items-center gap-1.5">
-                                                <span className="text-[10px] font-bold text-[var(--brand-red)] animate-blink">NEW</span>
+                                                <span className="text-[10px] font-medium text-[var(--brand-red)] animate-blink">NEW</span>
                                                 {item.label}
                                             </span>
                                         ) : (

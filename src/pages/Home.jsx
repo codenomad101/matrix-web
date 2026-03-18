@@ -981,7 +981,7 @@ function CounselingFormRow() {
     <section className="home-section">
       <div className="container-page">
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
-          <div className="rounded-2xl p-6 md:p-8 flex flex-col justify-center border border-gray-200/80 bg-gray-50/50">
+          <div className="rounded-2xl p-6 md:p-8 flex flex-col justify-center border border-gray-200/80 bg-white shadow-sm">
             <h2 className="home-section-subtitle text-xl md:text-2xl mb-2">
               Free Academic Counselling for Students and Parents
             </h2>
@@ -991,8 +991,8 @@ function CounselingFormRow() {
             <div className="flex flex-wrap gap-4 mb-6">
               {steps.map((label, i) => (
                 <div key={i} className="flex flex-col items-center gap-1">
-                  <span className="w-10 h-10 rounded-full bg-[#0a1a67]/10 text-[#0a1a67] flex items-center justify-center text-sm font-bold">{i + 1}</span>
-                  <span className="text-xs font-medium text-body">{label}</span>
+                  <span className="w-10 h-10 rounded-full bg-[#B30027]/10 text-[#B30027] flex items-center justify-center text-sm font-bold">{i + 1}</span>
+                  <span className="text-xs font-medium text-gray-600">{label}</span>
                 </div>
               ))}
             </div>
@@ -1000,10 +1000,13 @@ function CounselingFormRow() {
               Book Your Free Session Now
             </Link>
           </div>
-          <div className="bg-white border-2 border-[#0a1a67]/20 rounded-2xl p-6 md:p-8 shadow-lg">
-            <h3 className="text-xl font-bold text-[#0a1a67] mb-1">Book Your Session</h3>
-            <p className="text-body/80 text-sm mb-4">Fill out the form below and our academic counsellor will call you.</p>
-            <EnquiryForm initialMessage="I am interested in free career counseling session." minimal />
+          <div className="rounded-2xl border border-gray-200/80 bg-white shadow-sm overflow-hidden">
+            <div className="h-1.5 bg-[#B30027]" aria-hidden />
+            <div className="p-6 md:p-8">
+              <h3 className="home-section-subtitle text-lg md:text-xl mb-1">Book Your Session</h3>
+              <p className="home-section-body text-sm mb-4">Fill out the form below and our academic counsellor will call you.</p>
+              <EnquiryForm initialMessage="I am interested in free career counseling session." minimal />
+            </div>
           </div>
         </div>
       </div>
@@ -1182,12 +1185,12 @@ function VrikshaHighlight({ embedded = false }) {
                 Explore VRIKSHA
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </span>
-              {/* Mobile: flowing feature pills – above tree */}
+              {/* Mobile: flowing feature pills – reduced height, card style */}
               <div className="md:hidden overflow-hidden -mx-1 mt-3 relative z-10">
-                <div className="vriksha-flow flex gap-4 w-max py-3 items-stretch">
+                <div className="vriksha-flow flex gap-3 w-max py-2 items-stretch">
                   {[...VRIKSHA_POINTS, ...VRIKSHA_POINTS].map((item, i) => (
-                    <span key={i} className="flex items-center gap-3 shrink-0 px-5 py-4 rounded-xl bg-[#0a1a67]/8 border border-[#0a1a67]/15 text-sm font-semibold text-[#0a1a67] whitespace-nowrap backdrop-blur-sm min-h-[72px]">
-                      <span className="text-2xl" aria-hidden>{item.icon}</span>
+                    <span key={i} className="flex items-center gap-2 shrink-0 px-4 py-2.5 rounded-2xl border border-gray-200/80 bg-white text-sm font-semibold text-gray-800 whitespace-nowrap shadow-sm min-h-[52px]">
+                      <span className="text-xl" aria-hidden>{item.icon}</span>
                       {item.label}
                     </span>
                   ))}
@@ -1195,15 +1198,15 @@ function VrikshaHighlight({ embedded = false }) {
               </div>
             </div>
 
-            {/* Desktop: flowing feature pills – above tree, slider touches tree */}
-            <div className="hidden md:block flex-shrink-0 overflow-hidden min-h-[160px] w-[520px] lg:w-[680px] xl:w-[800px] relative z-10">
-              <div className="vriksha-flow flex gap-5 w-max py-4 items-stretch">
+            {/* Desktop: flowing feature pills – reduced height, card style */}
+            <div className="hidden md:block flex-shrink-0 overflow-hidden min-h-[120px] w-[520px] lg:w-[680px] xl:w-[800px] relative z-10">
+              <div className="vriksha-flow flex gap-4 w-max py-3 items-stretch">
                 {[...VRIKSHA_POINTS, ...VRIKSHA_POINTS].map((item, i) => (
                   <span
                     key={i}
-                    className="flex items-center gap-3 shrink-0 px-6 py-6 rounded-xl bg-[#0a1a67]/8 border border-[#0a1a67]/15 text-sm font-semibold text-[#0a1a67] whitespace-nowrap backdrop-blur-sm min-h-[96px]"
+                    className="flex items-center gap-2 shrink-0 px-5 py-4 rounded-2xl border border-gray-200/80 bg-white text-sm font-semibold text-gray-800 whitespace-nowrap shadow-sm min-h-[64px]"
                   >
-                    <span className="text-3xl" aria-hidden>{item.icon}</span>
+                    <span className="text-2xl" aria-hidden>{item.icon}</span>
                     {item.label}
                   </span>
                 ))}
