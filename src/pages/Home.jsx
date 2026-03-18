@@ -156,15 +156,12 @@ function OverviewSection() {
 }
 
 // Results Image Slider Component
-function ResultsImageSlider() {
+function ResultsImageSlider({ visibleCount = 2, showControls = true, showDots = true, heightClassName = 'h-[280px] md:h-[350px] lg:h-[400px]', framed = true } = {}) {
   const [offset, setOffset] = useState(0)
   const images = [
-    { cloudinaryId: 'v1764181799/JEE_MAIN_o7kayq', alt: 'JEE Main Results' },
-    { cloudinaryId: 'v1764181794/JEE_MAIN_2025_aoxekj', alt: 'JEE Main 2025 Results' },
-    { cloudinaryId: 'v1764181786/IIT_knkkka', alt: 'IIT Results' },
-    { cloudinaryId: 'v1764181835/NEET_riozts', alt: 'NEET Results' },
+    { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/v1763783015/5_c2lqwx.jpg', alt: 'Results image 1' },
+    { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/v1763783028/7_cgvboz.jpg', alt: 'Results image 2' },
   ]
-  const visibleCount = 2
   const step = 1
   const maxOffset = Math.max(0, images.length - visibleCount)
 
@@ -178,7 +175,7 @@ function ResultsImageSlider() {
   return (
     <div className="relative overflow-hidden rounded-2xl">
       {/* Row of images - multiple visible, sliding as a group to the right; no white bg */}
-      <div className="relative h-[280px] md:h-[350px] lg:h-[400px] overflow-hidden">
+      <div className={`relative ${heightClassName} overflow-hidden`}>
         <div
           className="flex h-full transition-transform duration-700 ease-in-out"
           style={{
@@ -189,53 +186,68 @@ function ResultsImageSlider() {
           {images.map((img, idx) => (
             <div
               key={idx}
-              className="flex-shrink-0 p-2 md:p-3 h-full flex items-center justify-center"
+              className={`flex-shrink-0 ${framed ? 'p-2 md:p-3' : 'p-0'} h-full flex items-center justify-center`}
               style={{ width: `${100 / images.length}%` }}
             >
-              <div className="w-full h-full rounded-xl overflow-hidden flex items-center justify-center shadow-md border border-gray-200/60 bg-page-bg">
+              {framed ? (
+                <div className="w-full h-full rounded-xl overflow-hidden flex items-center justify-center shadow-md border border-gray-200/60 bg-page-bg">
+                  <img
+                    src={img.src ?? `https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/${img.cloudinaryId}`}
+                    alt={img.alt}
+                    className="w-full h-full object-contain"
+                    loading={idx < 2 ? 'eager' : 'lazy'}
+                  />
+                </div>
+              ) : (
                 <img
-                  src={`https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/${img.cloudinaryId}`}
+                  src={img.src ?? `https://res.cloudinary.com/ddqgxrgnc/image/upload/w_1200,h_1200,c_fit,q_auto,f_auto/${img.cloudinaryId}`}
                   alt={img.alt}
                   className="w-full h-full object-contain"
                   loading={idx < 2 ? 'eager' : 'lazy'}
                 />
-              </div>
+              )}
             </div>
           ))}
         </div>
 
         {/* Navigation Arrows */}
-        <button
-          onClick={() => setOffset((prev) => (prev === 0 ? maxOffset : prev - step))}
-          className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[#0a1a67] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border border-gray-200/80 hover:border-[#0a1a67]"
-        >
-          <svg className="w-5 h-5 md:w-6 md:h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          onClick={() => setOffset((prev) => (prev >= maxOffset ? 0 : prev + step))}
-          className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[#0a1a67] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border border-gray-200/80 hover:border-[#0a1a67]"
-        >
-          <svg className="w-5 h-5 md:w-6 md:h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+        {showControls && (
+          <>
+            <button
+              onClick={() => setOffset((prev) => (prev === 0 ? maxOffset : prev - step))}
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[#0a1a67] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border border-gray-200/80 hover:border-[#0a1a67]"
+            >
+              <svg className="w-5 h-5 md:w-6 md:h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={() => setOffset((prev) => (prev >= maxOffset ? 0 : prev + step))}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[#0a1a67] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border border-gray-200/80 hover:border-[#0a1a67]"
+            >
+              <svg className="w-5 h-5 md:w-6 md:h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </>
+        )}
       </div>
 
       {/* Dots - no white bg, site background */}
-      <div className="flex justify-center gap-2 py-3">
-        {Array.from({ length: maxOffset + 1 }).map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setOffset(idx)}
-            className={`h-2 rounded-full transition-all duration-300 ${offset === idx
-              ? 'w-6 bg-[#0a1a67]'
-              : 'w-2 bg-gray-300 hover:bg-[#0a1a67]/50'
-              }`}
-          />
-        ))}
-      </div>
+      {showDots && (
+        <div className="flex justify-center gap-2 py-3">
+          {Array.from({ length: maxOffset + 1 }).map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setOffset(idx)}
+              className={`h-2 rounded-full transition-all duration-300 ${offset === idx
+                ? 'w-6 bg-[#0a1a67]'
+                : 'w-2 bg-gray-300 hover:bg-[#0a1a67]/50'
+                }`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
@@ -933,41 +945,70 @@ function AcademicSupportMethodologySection() {
   return (
     <section className="home-section">
       <div className="container-page">
-        <h2 className="home-section-title">Our Proven Methodology</h2>
-        <p className="home-section-body max-w-2xl mb-6">
-          Choosing the right support matters. At Matrix Science Academy we combine a structured, step-by-step approach with a partner mindset to turn stress into success.
-        </p>
-
-        {/* Two intro cards: Choosing Right Support | Enter Matrix */}
-        <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
-          <div className="rounded-2xl p-5 md:p-6 flex flex-col justify-center border border-gray-200/80 bg-white hover:border-[#B30027]/30 hover:shadow-md transition-all duration-200">
-            <h3 className="home-section-subtitle text-lg md:text-xl mb-2">
-              Choosing the Right Academic Support Can Be Challenging
-            </h3>
-            <p className="home-section-body max-w-xl">
-              As a parent, you want the best for your child, but navigating the education landscape is tough. Between choosing the right institute, ensuring concept clarity, managing exam pressure, and keeping motivation high—it can feel overwhelming.
-            </p>
-          </div>
-          <div className="rounded-2xl p-5 md:p-6 flex flex-col justify-center border border-gray-200/80 bg-white hover:border-[#B30027]/30 hover:shadow-md transition-all duration-200">
-            <h3 className="home-section-subtitle text-lg md:text-xl mb-2">
-              Enter Matrix Science Academy
-            </h3>
-            <p className="home-section-body max-w-xl">
-              We&apos;ve built an ecosystem specifically designed to address these challenges. We partner with parents to provide transparent, structured, and highly effective academic coaching that turns stress into success.
-            </p>
-          </div>
-        </div>
-
-        {/* How we do it: 5 methodology steps */}
-        <p className="home-section-body font-semibold text-gray-800 mb-4">How we do it</p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-          {METHODOLOGY_STEPS.map((s, i) => (
-            <div key={i} className="rounded-2xl border border-gray-200/80 bg-white p-4 flex flex-col items-center text-center hover:border-[#B30027]/30 hover:shadow-md transition-all duration-200">
-              <span className="w-9 h-9 rounded-full bg-[#B30027]/10 text-[#B30027] flex items-center justify-center text-sm font-bold mb-2">{i + 1}</span>
-              <span className="text-2xl mb-1.5 block" aria-hidden>{s.icon}</span>
-              <span className="text-sm font-semibold text-gray-800">{s.label}</span>
+        {/* Redesigned intro + "How we do it" (single cohesive section card) */}
+        <div className="rounded-2xl border border-gray-200/80 bg-white shadow-sm overflow-hidden">
+          <div className="h-1.5 bg-[#B30027]" aria-hidden />
+          <div className="p-6 md:p-8">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+              <div className="min-w-0">
+                <h2 className="home-section-title mb-2">Our Proven Methodology</h2>
+                <p className="home-section-body max-w-2xl">
+                  Choosing the right support matters. We combine a structured approach with a partner mindset to turn stress into success.
+                </p>
+              </div>
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <span className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700">
+                  <span className="w-2 h-2 rounded-full bg-[#B30027]" aria-hidden />
+                  Parent-friendly guidance
+                </span>
+                <span className="hidden sm:inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700">
+                  <span className="w-2 h-2 rounded-full bg-[#0a1a67]" aria-hidden />
+                  Student-first learning
+                </span>
+              </div>
             </div>
-          ))}
+
+            {/* Two story cards */}
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+              <div className="rounded-2xl p-5 md:p-6 border border-gray-200/80 bg-gray-50/50">
+                <div className="flex items-start gap-3 mb-2">
+                  <span className="w-10 h-10 rounded-xl bg-[#B30027]/10 text-[#B30027] flex items-center justify-center text-lg font-semibold flex-shrink-0" aria-hidden>1</span>
+                  <h3 className="home-section-subtitle text-lg md:text-xl mb-0">
+                    Choosing the Right Academic Support Can Be Challenging
+                  </h3>
+                </div>
+                <p className="home-section-body max-w-xl">
+                  As a parent, you want the best for your child, but navigating the education landscape is tough. Between choosing the right institute, ensuring concept clarity, managing exam pressure, and keeping motivation high—it can feel overwhelming.
+                </p>
+              </div>
+
+              <div className="rounded-2xl p-5 md:p-6 border border-gray-200/80 bg-gray-50/50">
+                <div className="flex items-start gap-3 mb-2">
+                  <span className="w-10 h-10 rounded-xl bg-[#0a1a67]/10 text-[#0a1a67] flex items-center justify-center text-lg font-semibold flex-shrink-0" aria-hidden>2</span>
+                  <h3 className="home-section-subtitle text-lg md:text-xl mb-0">
+                    Enter Matrix Science Academy
+                  </h3>
+                </div>
+                <p className="home-section-body max-w-xl">
+                  We&apos;ve built an ecosystem specifically designed to address these challenges. We partner with parents to provide transparent, structured, and highly effective academic coaching that turns stress into success.
+                </p>
+              </div>
+            </div>
+
+            {/* How we do it: 5 methodology steps (kept inside same card) */}
+            <div className="mt-6 pt-6 border-t border-gray-100">
+              <p className="home-section-body font-semibold text-gray-800 mb-4">How we do it</p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                {METHODOLOGY_STEPS.map((s, i) => (
+                  <div key={i} className="rounded-2xl border border-gray-200/80 bg-white p-3 flex flex-col items-center text-center hover:border-[#B30027]/30 hover:shadow-md transition-all duration-200">
+                    <span className="w-7 h-7 rounded-full bg-[#B30027]/10 text-[#B30027] flex items-center justify-center text-[11px] font-semibold mb-1.5">{i + 1}</span>
+                    <span className="text-lg mb-1 block" aria-hidden>{s.icon}</span>
+                    <span className="text-[11px] sm:text-xs font-semibold text-gray-800 leading-tight">{s.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1041,7 +1082,8 @@ function AchievementsAndResultsRow() {
           <div className="rounded-2xl border border-gray-200/80 bg-white p-4 md:p-5 shadow-sm flex flex-col">
             <h2 className="home-section-title mb-1">Our Achievements</h2>
             <p className="home-section-body mb-4 text-sm">
-              One of the leading and most successful institutions in Pune. Our results speak for the quality of education and dedication of our expert faculty.
+              <span className="font-bold text-[#B30027]">One of the leading and most successful institutions in Pune.</span>{' '}
+              Our results speak for the quality of education and dedication of our expert faculty.
             </p>
             <div className="grid grid-cols-2 gap-3 flex-1">
               {ACHIEVEMENT_CARDS.map((card, i) => (
@@ -1058,12 +1100,10 @@ function AchievementsAndResultsRow() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
           </div>
-          {/* Right: JEE Results in a card */}
-          <div className="rounded-2xl border border-gray-200/80 bg-white p-4 md:p-5 shadow-sm flex flex-col min-h-0">
+          {/* Right: single image slider (one at a time), bordered like other sections */}
+          <div className="rounded-2xl border border-gray-200/80 bg-transparent p-4 md:p-5 shadow-none flex flex-col min-h-0">
             <h3 className="home-section-subtitle text-lg md:text-xl mb-3">JEE Mains 2024 Results in percentile</h3>
-            <div className="flex-1 min-h-0">
-              <ResultsImageSlider />
-            </div>
+            <ResultsImageSlider visibleCount={1} showControls={false} showDots={false} framed={false} heightClassName="h-[490px] md:h-[570px]" />
           </div>
         </div>
       </div>
