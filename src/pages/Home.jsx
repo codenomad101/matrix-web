@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import HeroSlider from '../components/HeroSlider.jsx'
 import OptimizedImage from '@/components/OptimizedImage'
 import FeaturesSection from '@/components/featuresSection.jsx'
@@ -1005,7 +1005,15 @@ function CounselingFormRow() {
             <div className="p-6 md:p-8">
               <h3 className="home-section-subtitle text-lg md:text-xl mb-1">Book Your Session</h3>
               <p className="home-section-body text-sm mb-4">Fill out the form below and our academic counsellor will call you.</p>
-              <EnquiryForm initialMessage="I am interested in free career counseling session." minimal />
+              <Suspense
+                fallback={
+                  <div className="rounded-xl border border-gray-200 bg-white p-4 md:p-6">
+                    <p className="text-body text-sm">Loading form…</p>
+                  </div>
+                }
+              >
+                <EnquiryForm initialMessage="I am interested in free career counseling session." minimal />
+              </Suspense>
             </div>
           </div>
         </div>

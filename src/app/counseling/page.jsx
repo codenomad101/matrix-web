@@ -1,5 +1,5 @@
-'use client'
 import EnquiryForm from '@/components/EnquiryForm'
+import { Suspense } from 'react'
 
 export default function CounselingPage() {
   return (
@@ -17,7 +17,15 @@ export default function CounselingPage() {
             <li>• No obligation—just clarity</li>
           </ul>
           <h2 className="text-xl font-bold text-heading mb-4">Request a callback for counseling</h2>
-          <EnquiryForm initialMessage="I am interested in a free career counseling session." />
+          <Suspense
+            fallback={
+              <div className="rounded-xl border border-gray-200 bg-white p-4 md:p-6">
+                <p className="text-body text-sm">Loading form…</p>
+              </div>
+            }
+          >
+            <EnquiryForm initialMessage="I am interested in a free career counseling session." />
+          </Suspense>
         </div>
       </section>
     </main>
