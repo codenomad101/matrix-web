@@ -29,7 +29,7 @@ export default function Footer() {
       </div>
 
       {/* Get in Touch: contact info + map */}
-      <div className="border-b border-gray-300 bg-[#0a1a67]/5">
+      <div className="border-b border-gray-300">
         <div className="container-page py-8">
           <h2 className="text-xl font-bold text-[#0a1a67] mb-6">Get in Touch</h2>
           <div className="grid md:grid-cols-2 gap-8">
