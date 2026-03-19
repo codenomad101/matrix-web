@@ -27,7 +27,7 @@ export default function HeroSlider() {
   return (
     <section className="bg-white">
       <div className="container-page pt-4 pb-5 sm:pt-6 sm:pb-8 px-4 sm:px-6">
-        <div className="border-2 border-gray-300 rounded-lg sm:rounded-xl overflow-hidden bg-white shadow-sm">
+        <div className="border border-gray-200/80 rounded-lg sm:rounded-xl overflow-hidden bg-white shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 p-4 sm:p-5 md:p-6 lg:p-8 min-h-[200px] sm:min-h-[260px] md:min-h-[280px] lg:min-h-[300px]">
             {/* Left: headline, description, list, CTAs */}
             <div className="flex flex-col justify-center">
@@ -59,7 +59,7 @@ export default function HeroSlider() {
                 </Link>
                 <Link
                   href="/courses"
-                  className="inline-flex items-center justify-center border-2 border-gray-300 text-black hover:bg-gray-100 text-sm font-medium px-5 py-2.5 rounded transition-colors"
+                  className="inline-flex items-center justify-center border border-gray-200/80 text-black hover:bg-gray-100 text-sm font-medium px-5 py-2.5 rounded transition-colors"
                 >
                   Explore Courses
                 </Link>
@@ -72,7 +72,7 @@ export default function HeroSlider() {
                 {HERO_CAROUSEL_IMAGES[carouselIndex].heading}
               </h2>
               <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[380px]">
-                <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-gray-100 border border-gray-300">
+                <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-gray-100 border border-gray-200/80">
                   {HERO_CAROUSEL_IMAGES.map((img, i) => (
                     <div
                       key={i}
