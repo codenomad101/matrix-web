@@ -73,7 +73,7 @@ export default function EnquiryForm({ initialMessage = '', minimal = false }) {
         router.push('/thank-you')
         return
       } catch (err) {
-        setSubmitError('Could not send. Please try "Send WhatsApp details" or call us.')
+        setSubmitError('Could not send. Please try "Send via WhatsApp" or call us.')
         setIsSubmitting(false)
         return
       }
@@ -155,16 +155,16 @@ _This enquiry was submitted through the website._`
           type="submit"
           name="submitType"
           value="whatsapp"
-          className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#25D366] text-white hover:bg-[#20bd5a] px-4 py-2.5 font-semibold text-sm transition-colors disabled:opacity-70"
+          className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] px-4 py-2.5 font-semibold text-sm transition-colors disabled:opacity-70"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Sending...' : 'Send WhatsApp details'}
+          {isSubmitting ? 'Sending...' : 'Send via WhatsApp'}
         </button>
         <button
           type="submit"
           name="submitType"
           value="email"
-          className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] px-4 py-2.5 font-semibold text-sm transition-colors disabled:opacity-70"
+          className="inline-flex justify-center items-center gap-2 rounded-lg border-2 border-[#0a1a67] bg-white text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white px-4 py-2.5 font-semibold text-sm transition-colors disabled:opacity-70"
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Sending...' : 'Submit via email'}
@@ -208,7 +208,7 @@ _This enquiry was submitted through the website._`
             <li>• Meet counsellors and mentors</li>
           </ul>
           <div className="mt-6 text-sm text-body/80">
-            <strong>Send WhatsApp details</strong> opens WhatsApp with your details pre-filled. <strong>Submit via email</strong> sends your enquiry to our team by email—no mail app opens.
+            <strong>Send via WhatsApp</strong> opens WhatsApp with your details pre-filled. <strong>Submit via email</strong> sends your enquiry to our team by email—no mail app opens.
           </div>
         </div>
       </div>

@@ -210,7 +210,7 @@ _This enquiry was submitted through the website._`
 
                             <button
                                 type="submit"
-                                className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold py-2.5 px-4 rounded-lg transition-all duration-300 hover:scale-[1.02] shadow-md flex items-center justify-center gap-2 text-sm"
+                                className="w-full bg-[#B30027] hover:bg-[#8a001e] text-white font-bold py-2.5 px-4 rounded-lg transition-all duration-300 hover:scale-[1.02] shadow-md flex items-center justify-center gap-2 text-sm"
                                 disabled={isSubmitting}
                             >
                                 {isSubmitting ? (

@@ -184,6 +184,27 @@ small, .text-caption, .text-small {
 	color: var(--heading);
 }
 
+@keyframes sway {
+	0%, 100% {
+		transform: rotate(-1deg);
+	}
+	50% {
+		transform: rotate(1deg);
+	}
+}
+
+.animate-sway {
+	animation: sway 8s ease-in-out infinite;
+}
+
+.animate-sway-delay-1 {
+	animation: sway 7s ease-in-out 0.2s infinite;
+}
+
+.animate-sway-delay-2 {
+	animation: sway 6s ease-in-out 0.4s infinite;
+}
+
 @keyframes bounce-slow {
 	0%, 100% {
 		transform: translateY(0);
@@ -313,3 +334,67 @@ small, .text-caption, .text-small {
 }
 .vriksha-flow { animation: vriksha-flow 20s linear infinite; }
 
+
+/* Hero section: growth chart — visible motion (container + stroke draw + fill + arrow) */
+@keyframes hero-growth-container {
+	0%, 100% {
+		opacity: 0.88;
+		transform: translateY(4px);
+	}
+	50% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes hero-growth-stroke-draw {
+	0% {
+		stroke-dashoffset: 100;
+	}
+	40% {
+		stroke-dashoffset: 0;
+	}
+	65% {
+		stroke-dashoffset: 0;
+	}
+	100% {
+		stroke-dashoffset: 100;
+	}
+}
+@keyframes hero-growth-fill-pulse {
+	0%, 100% {
+		opacity: 0.55;
+	}
+	50% {
+		opacity: 0.9;
+	}
+}
+@keyframes hero-growth-arrow-nudge {
+	0%, 100% {
+		transform: translate(0, 0);
+		opacity: 0.55;
+	}
+	50% {
+		transform: translate(1px, -3px);
+		opacity: 0.85;
+	}
+}
+.hero-growth-chart {
+	animation: hero-growth-container 4s ease-in-out infinite;
+	transform-origin: center bottom;
+	will-change: transform, opacity;
+}
+.hero-growth-path {
+	stroke-dasharray: 100;
+	stroke-dashoffset: 100;
+	animation: hero-growth-stroke-draw 5.5s ease-in-out infinite;
+	will-change: stroke-dashoffset;
+}
+.hero-growth-fill {
+	animation: hero-growth-fill-pulse 4s ease-in-out infinite;
+	transform-origin: center bottom;
+}
+.hero-growth-arrow {
+	animation: hero-growth-arrow-nudge 2.5s ease-in-out infinite;
+	transform-box: fill-box;
+	transform-origin: center;
+}

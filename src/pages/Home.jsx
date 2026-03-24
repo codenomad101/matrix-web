@@ -544,6 +544,7 @@ const BLOG_CARDS = [
 
 function BlogsSection() {
   const scrollRef = useRef(null)
+  const [isBlogsPaused, setIsBlogsPaused] = useState(false)
 
   const scroll = (dir) => {
     if (!scrollRef.current) return
@@ -552,6 +553,30 @@ function BlogsSection() {
     const step = cardWidth + gap
     scrollRef.current.scrollBy({ left: dir * step, behavior: 'smooth' })
   }
+
+  useEffect(() => {
+    const scroller = scrollRef.current
+    if (!scroller || isBlogsPaused) return
+
+    const cardWidth = 320
+    const gap = 16
+    const step = cardWidth + gap
+
+    const timer = setInterval(() => {
+      if (!scrollRef.current) return
+      const maxScrollLeft = scrollRef.current.scrollWidth - scrollRef.current.clientWidth
+      const nextLeft = scrollRef.current.scrollLeft + step
+
+      if (nextLeft >= maxScrollLeft - 8) {
+        scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' })
+        return
+      }
+
+      scrollRef.current.scrollBy({ left: step, behavior: 'smooth' })
+    }, 2600)
+
+    return () => clearInterval(timer)
+  }, [isBlogsPaused])
 
   return (
     <section className="home-section bg-white">
@@ -579,6 +604,8 @@ function BlogsSection() {
             ref={scrollRef}
             className="blogs-scroll flex gap-4 overflow-x-auto scroll-smooth pb-2 px-4 sm:px-6 lg:px-8"
             style={{ scrollSnapType: 'x mandatory' }}
+            onMouseEnter={() => setIsBlogsPaused(true)}
+            onMouseLeave={() => setIsBlogsPaused(false)}
           >
             {BLOG_CARDS.map((blog, i) => (
               <Link
@@ -727,6 +754,32 @@ function CoursesTabSection() {
     </section>
   )
 }
+
+// Two promo cards below Our Courses: Choosing Right Academic Support + Enter Matrix Science Academy (reference design)
+const ACADEMIC_SUPPORT_CARDS = [
+  {
+    title: 'Choosing the Right Academic Support Can Be Challenging',
+    tagline: '',
+    subTagline: '',
+    description: 'As a parent, you want the best for your child, but navigating the education landscape is tough. Between choosing the right institute, ensuring concept clarity, managing exam pressure, and keeping motivation high-it can feel overwhelming.',
+    trustLine: 'Trusted by thousands of students and parents across Pune.',
+    cta: 'Explore now',
+    href: '/counseling',
+    image: 'https://images.unsplash.com/photo-1692269726203-fa0d613eec37?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGluZGlzbiUyMGF0dXNlbnRzJTIwY2hpbGRyZW4lMjBpbiUyMHNjaG9vbHxlbnwwfHwwfHx8MA%3D%3D',
+    imageAlt: 'Students and academic success',
+  },
+  {
+    title: 'Enter Matrix Science Academy',
+    tagline: '',
+    subTagline: '',
+    description: 'We\'ve built an ecosystem specifically designed to address these challenges. We partner with parents to provide transparent, structured, and highly effective academic coaching that turns stress into success.',
+    trustLine: 'One of the leading coaching institutions in Pune.',
+    cta: 'Explore now',
+    href: '/about',
+    image: 'https://images.pexels.com/photos/1720186/pexels-photo-1720186.jpeg',
+    imageAlt: 'Matrix Science Academy achievements',
+  },
+]
 
 // Combined Features & News Section (What's Trending + Latest News + Our Courses)
 function FeaturesAndNewsSection() {
@@ -967,31 +1020,37 @@ function AcademicSupportMethodologySection() {
               </div>
             </div>
 
-            {/* Two story cards */}
-            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
-              <div className="rounded-2xl p-5 md:p-6 border border-gray-200/80 bg-gray-50/50">
-                <div className="flex items-start gap-3 mb-2">
-                  <span className="w-10 h-10 rounded-xl bg-[#B30027]/10 text-[#B30027] flex items-center justify-center text-lg font-semibold flex-shrink-0" aria-hidden>1</span>
-                  <h3 className="home-section-subtitle text-lg md:text-xl mb-0">
-                    Choosing the Right Academic Support Can Be Challenging
-                  </h3>
-                </div>
-                <p className="home-section-body max-w-xl">
-                  As a parent, you want the best for your child, but navigating the education landscape is tough. Between choosing the right institute, ensuring concept clarity, managing exam pressure, and keeping motivation high—it can feel overwhelming.
-                </p>
-              </div>
-
-              <div className="rounded-2xl p-5 md:p-6 border border-gray-200/80 bg-gray-50/50">
-                <div className="flex items-start gap-3 mb-2">
-                  <span className="w-10 h-10 rounded-xl bg-[#0a1a67]/10 text-[#0a1a67] flex items-center justify-center text-lg font-semibold flex-shrink-0" aria-hidden>2</span>
-                  <h3 className="home-section-subtitle text-lg md:text-xl mb-0">
-                    Enter Matrix Science Academy
-                  </h3>
-                </div>
-                <p className="home-section-body max-w-xl">
-                  We&apos;ve built an ecosystem specifically designed to address these challenges. We partner with parents to provide transparent, structured, and highly effective academic coaching that turns stress into success.
-                </p>
-              </div>
+            {/* Two cards: Choosing Right Academic Support + Enter Matrix Science Academy */}
+            <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
+              {ACADEMIC_SUPPORT_CARDS.map((card, i) => (
+                <Link
+                  key={i}
+                  href={card.href}
+                  className="group relative flex rounded-2xl border border-gray-200/80 bg-white shadow-sm overflow-hidden h-[380px] sm:h-[410px] md:h-[390px] hover:shadow-md transition-all duration-300"
+                  style={{
+                    backgroundImage: `url(${card.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  <div className="absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-[#8f001f] via-[#6d0018] to-transparent pointer-events-none" aria-hidden />
+                  <div className="absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-black/15 via-transparent to-transparent pointer-events-none" aria-hidden />
+                  <div className="relative z-10 flex flex-col justify-center p-5 sm:p-6 md:p-7 w-full max-w-[64%] min-w-0">
+                    <h3 className="home-section-subtitle !text-white text-xl md:text-2xl mb-1">{card.title}</h3>
+                    {card.tagline && (
+                      <p className="text-sm sm:text-base font-semibold text-white mb-0.5">{card.tagline}</p>
+                    )}
+                    {card.subTagline && (
+                      <p className="text-sm sm:text-base font-semibold text-white mb-2">{card.subTagline}</p>
+                    )}
+                    <p className="text-xs sm:text-sm leading-snug text-white/90 mb-3">{card.description}</p>
+                    <p className="text-sm font-semibold text-white mb-3">{card.trustLine}</p>
+                    <span className="inline-flex items-center justify-center w-fit bg-[#B30027] text-white text-xs font-semibold uppercase tracking-wide px-4 py-2 rounded-lg group-hover:bg-[#8a001e] transition-colors">
+                      {card.cta}
+                    </span>
+                  </div>
+                </Link>
+              ))}
             </div>
 
             {/* How we do it: 5 methodology steps (kept inside same card) */}
@@ -1027,30 +1086,35 @@ function CounselingFormRow() {
     <section className="home-section">
       <div className="container-page">
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
-          <div className="rounded-2xl p-6 md:p-8 flex flex-col justify-center border border-gray-200/80 bg-white shadow-sm">
-            <h2 className="home-section-subtitle text-xl md:text-2xl mb-2">
+          <div className="rounded-2xl p-6 md:p-8 flex flex-col justify-center border border-[#B30027]/25 bg-gradient-to-br from-[#B30027] via-[#8f001f] to-[#0a1a67] shadow-lg overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-36 h-36 rounded-full bg-white/10 blur-2xl pointer-events-none" aria-hidden />
+            <div className="absolute -bottom-8 -left-8 w-44 h-44 rounded-full bg-black/20 blur-2xl pointer-events-none" aria-hidden />
+            <span className="relative z-10 inline-flex items-center gap-2 w-fit rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase text-white/95 mb-3">
+              Student Success Style
+            </span>
+            <h2 className="relative z-10 text-white text-2xl md:text-3xl font-bold leading-tight mb-2">
               Free Academic Counselling for Students and Parents
             </h2>
-            <p className="home-section-body max-w-xl mb-6">
+            <p className="relative z-10 text-white/90 text-sm md:text-base leading-relaxed max-w-xl mb-6">
               Not sure which path to take? Our expert counsellors help you evaluate academic performance, plan for competitive exams, and create a personalized study roadmap for your child.
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+            <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
               {steps.map((step, i) => (
                 <div
                   key={i}
-                  className="rounded-xl border border-gray-200/80 bg-gray-50/40 p-3 flex items-center gap-3 hover:border-gray-300/90 hover:shadow-sm transition-all duration-200"
+                  className="rounded-xl border border-white/25 bg-white/10 backdrop-blur-sm p-3 flex items-center gap-3 hover:bg-white/15 transition-all duration-200"
                 >
                   <span
-                    className="w-9 h-9 rounded-full bg-[#0a1a67]/10 text-[#0a1a67] flex items-center justify-center text-sm font-bold shrink-0"
+                    className="w-9 h-9 rounded-full bg-white/20 text-white flex items-center justify-center text-sm font-bold shrink-0"
                     aria-hidden
                   >
                     {i + 1}
                   </span>
                   <span className="min-w-0">
-                    <span className="block text-sm font-semibold text-gray-900 leading-tight">
+                    <span className="block text-sm font-semibold text-white leading-tight">
                       {step.label}
                     </span>
-                    <span className="block text-xs text-gray-500 leading-tight" aria-hidden>
+                    <span className="block text-xs text-white/80 leading-tight" aria-hidden>
                       {step.icon}
                     </span>
                   </span>
@@ -1059,16 +1123,16 @@ function CounselingFormRow() {
             </div>
             <Link
               href="/enquiry?counseling=1"
-              className="inline-flex items-center justify-center gap-2 bg-[#0a1a67] text-white hover:bg-[#0a1a67]/90 font-semibold px-6 py-3 rounded-lg transition-colors"
+              className="relative z-10 inline-flex items-center justify-center gap-2 bg-white text-[#B30027] hover:bg-white/90 font-bold px-6 py-3 rounded-lg transition-colors w-fit"
             >
               Book Your Free Session Now
             </Link>
           </div>
-          <div className="rounded-2xl border border-gray-200/80 bg-white shadow-sm overflow-hidden">
-            <div className="h-1.5 bg-[#0a1a67]/15" aria-hidden />
+          <div className="rounded-2xl border border-gray-200/80 bg-white shadow-lg overflow-hidden">
+            <div className="h-1.5 bg-gradient-to-r from-[#B30027] to-[#0a1a67]" aria-hidden />
             <div className="p-6 md:p-8">
-              <h3 className="home-section-subtitle text-lg md:text-xl mb-1">Book Your Session</h3>
-              <p className="home-section-body text-sm mb-4">Fill out the form below and our academic counsellor will call you.</p>
+              <h3 className="text-[#0a1a67] text-xl md:text-2xl font-bold mb-1">Book Your Session</h3>
+              <p className="text-gray-600 text-sm md:text-base mb-4">Fill out the form below and our academic counsellor will call you.</p>
               <Suspense
                 fallback={
                   <div className="rounded-xl border border-gray-200 bg-white p-4 md:p-6">
@@ -1218,6 +1282,9 @@ function AboutIntro() {
   )
 }
 
+// Pexels image for Vriksha section background (child laughing)
+const PEXELS_CHILD_LAUGHING = 'https://images.pexels.com/photos/8617938/pexels-photo-8617938.jpeg'
+
 // VRIKSHA highlight – watering + tree grows + points moving toward tree
 const VRIKSHA_POINTS = [
   { icon: '📚', label: 'Academics' },
@@ -1298,8 +1365,27 @@ function VrikshaHighlight({ embedded = false }) {
     return card
   }
   return (
-    <section className="home-section">
-      <div className="container-page max-w-5xl mx-auto">
+    <section className="relative overflow-hidden py-15 md:py-10">
+      {/* Background: child laughing (Pexels) */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50"
+        style={{ backgroundImage: `url(${PEXELS_CHILD_LAUGHING})` }}
+        aria-hidden
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/88 via-white/78 to-white/92" aria-hidden />
+      {/* Tree silhouette + subtle sway animation */}
+      <div className="absolute inset-0 pointer-events-none flex items-end justify-center" aria-hidden>
+        <div className="w-full max-w-2xl h-[140px] md:h-[180px] flex items-end opacity-30">
+          <svg viewBox="0 0 120 100" className="w-full h-full text-emerald-600/60" fill="currentColor">
+            <path d="M60 5 L95 45 L60 38 L25 45 Z" className="animate-sway" />
+            <path d="M60 22 L88 55 L60 48 L32 55 Z" className="animate-sway-delay-1" />
+            <path d="M60 38 L80 65 L60 58 L40 65 Z" className="animate-sway-delay-2" />
+            <path d="M60 52 L72 78 L60 72 L48 78 Z" fill="currentColor" />
+            <path d="M54 72 L66 72 L64 98 L56 98 Z" className="text-amber-800/80" fill="currentColor" />
+          </svg>
+        </div>
+      </div>
+      <div className="container-page max-w-5xl mx-auto relative z-10">
         {card}
       </div>
     </section>
