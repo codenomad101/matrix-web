@@ -84,11 +84,11 @@ export default function Activities() {
                 className="page-card p-6 hover:-translate-y-2 transition-all duration-300 group"
               >
                 <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-xl bg-[#0a1a67]/10 text-[#0a1a67] group-hover:bg-[#0a1a67]/20 transition-colors duration-300 flex-shrink-0">
+                  <div className="p-3 rounded-xl bg-[var(--brand-red)]/10 text-[var(--brand-red)] group-hover:bg-[var(--brand-red)]/20 transition-colors duration-300 flex-shrink-0">
                     {activity.icon}
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-heading mb-2 group-hover:text-[#0a1a67] transition-colors duration-300">
+                    <h3 className="text-xl font-bold text-heading mb-2 group-hover:text-[var(--brand-red)] transition-colors duration-300">
                       {activity.title}
                     </h3>
                     <p className="text-body text-sm">

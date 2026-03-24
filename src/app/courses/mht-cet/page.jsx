@@ -5,7 +5,7 @@ export default function MHTCETPage() {
     return (
         <div className="min-h-screen bg-[var(--bg-page)]">
             {/* Hero Section */}
-            <section className="bg-[#B30027] text-white py-8 md:py-12">
+            <section className="bg-[var(--brand-red)] text-white py-8 md:py-12">
                 <div className="container-page">
                     <div className="max-w-4xl mx-auto text-center">
                         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
@@ -95,7 +95,7 @@ export default function MHTCETPage() {
                             { icon: '💼', title: 'Excellent Placements', desc: 'Top companies recruit from Maharashtra engineering colleges' },
                             { icon: '🏠', title: 'Study Near Home', desc: 'Colleges across Maharashtra - Pune, Mumbai, Nagpur, and more' }
                         ].map((item, idx) => (
-                            <div key={idx} className="bg-[#0a1a67]/5 rounded-xl p-6 hover:shadow-lg transition-all duration-300 border border-gray-200/80">
+                            <div key={idx} className="bg-[var(--brand-red)]/5 rounded-xl p-6 hover:shadow-lg transition-all duration-300 border border-gray-200/80">
                                 <div className="text-4xl mb-3">{item.icon}</div>
                                 <h3 className="text-xl font-bold text-heading mb-2">{item.title}</h3>
                                 <p className="text-body/80">{item.desc}</p>
@@ -106,7 +106,7 @@ export default function MHTCETPage() {
             </section>
 
             {/* Our Results */}
-            <section className="bg-[#0a1a67] text-white py-5 md:py-7">
+            <section className="bg-[var(--brand-red)] text-white py-5 md:py-7">
                 <div className="container-page">
                     <div className="max-w-4xl mx-auto text-center">
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Outstanding Results</h2>
@@ -144,7 +144,7 @@ export default function MHTCETPage() {
                             { title: 'Doubt Clearing Sessions', desc: 'Daily doubt sessions ensuring no concept is left unclear' }
                         ].map((item, idx) => (
                             <div key={idx} className="flex items-start gap-4 page-card p-6 hover:shadow-lg transition-all duration-300">
-                                <div className="flex-shrink-0 w-8 h-8 bg-[#B30027] rounded-full flex items-center justify-center text-white font-bold">
+                                <div className="flex-shrink-0 w-8 h-8 bg-[var(--brand-red)] rounded-full flex items-center justify-center text-white font-bold">
                                     {idx + 1}
                                 </div>
                                 <div>
@@ -160,7 +160,7 @@ export default function MHTCETPage() {
             {/* CTA Section */}
             <section className="page-section-white">
                 <div className="container-page">
-                <div className="bg-[#0a1a67] rounded-2xl p-8 md:p-12 text-center text-white">
+                <div className="bg-[var(--brand-red)] rounded-2xl p-8 md:p-12 text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Ace MHT-CET?</h2>
                     <p className="text-lg md:text-xl mb-8 text-white/90">
                         Join Matrix Science Academy and secure admission to top engineering colleges in Maharashtra
@@ -168,13 +168,13 @@ export default function MHTCETPage() {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             href="/enquiry"
-                            className="inline-flex items-center justify-center gap-2 bg-[#B30027] text-white hover:bg-[#8a001e] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+                            className="inline-flex items-center justify-center gap-2 bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
                         >
                             Enquire Now
                         </Link>
                         <Link
                             href="/courses"
-                            className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#0a1a67] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105"
+                            className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-[var(--brand-red)] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105"
                         >
                             View All Courses
                         </Link>

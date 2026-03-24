@@ -8,13 +8,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        heading: '#B30027',
-        body: '#0a1a67',
+        heading: 'var(--heading)',
+        body: 'var(--body)',
         'page-bg': '#f5f5f5',
         'box-bg': '#f0f0f0',
         brand: {
           DEFAULT: '#b2dfee',
-          dark: '#0a1a67',
+          dark: 'var(--brand-red)',
           50: '#f2faff',
           100: '#e4f4fb',
           200: '#cdeafa',
@@ -32,7 +32,7 @@ module.exports = {
           200: '#99c3df',
           300: '#66a5cf',
           400: '#3387bf',
-          500: '#0a1a67',
+          500: 'var(--brand-red)',
           600: '#003d72',
           700: '#002e56',
           800: '#001f3a',

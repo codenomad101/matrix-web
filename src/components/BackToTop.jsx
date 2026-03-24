@@ -16,7 +16,7 @@ function BackToTopButton({ showAfterScroll, visible, onClick }) {
         pointerEvents: isVisible ? 'auto' : 'none',
         transition: 'opacity 0.25s ease',
       }}
-      className="fixed bottom-6 right-20 sm:right-24 z-[10001] w-12 h-12 bg-[#B30027] hover:bg-[#8a001e] text-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:ring-offset-2"
+      className="fixed bottom-6 right-20 sm:right-24 z-[10001] w-12 h-12 bg-[var(--brand-red)] hover:bg-[var(--brand-red-hover)] text-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:ring-offset-2"
       aria-label="Back to top"
     >
       <svg

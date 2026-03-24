@@ -48,14 +48,14 @@ export default function Testimonials() {
             <div className="relative bg-brand px-6 pt-8 pb-6">
               {/* Quote Icon */}
               <div className="absolute top-4 left-6 opacity-20">
-                <svg className="w-16 h-16 text-[#0a1a67]" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-16 h-16 text-[var(--brand-red)]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.481.967-4.996 2.848-4.996 7.153 0 3.031 1.214 5.555 3.003 7.266h-7.986zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.481.967-5 2.848-5 7.153 0 3.031 1.214 5.555 3.003 7.266h-7.003z"/>
                 </svg>
               </div>
               
               {/* Quote Text */}
               <div className="relative z-10">
-                <p className="text-[#0a1a67] text-base leading-relaxed font-medium italic">
+                <p className="text-[var(--brand-red)] text-base leading-relaxed font-medium italic">
                   "{t.text}"
                 </p>
               </div>
@@ -68,7 +68,7 @@ export default function Testimonials() {
             <div className="px-6 py-5 bg-white border-t border-gray-200/80">
               <div className="flex items-center gap-4">
                 {/* Avatar */}
-                <div className="h-12 w-12 rounded-full bg-brand/30 flex items-center justify-center text-[#0a1a67] font-bold text-lg shrink-0 group-hover:bg-brand/50 transition-colors duration-300">
+                <div className="h-12 w-12 rounded-full bg-brand/30 flex items-center justify-center text-[var(--brand-red)] font-bold text-lg shrink-0 group-hover:bg-brand/50 transition-colors duration-300">
                   {t.name.split(' ').map(n => n[0]).join('')}
                 </div>
                 

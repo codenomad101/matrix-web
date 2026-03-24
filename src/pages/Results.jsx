@@ -46,7 +46,7 @@ function ResultsImageSlider() {
           onClick={() => setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
           className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
         >
-          <svg className="w-6 h-6 text-[#0a1a67]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 text-[var(--brand-red)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
@@ -54,7 +54,7 @@ function ResultsImageSlider() {
           onClick={() => setCurrentIndex((prev) => (prev + 1) % images.length)}
           className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
         >
-          <svg className="w-6 h-6 text-[#0a1a67]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 text-[var(--brand-red)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
@@ -68,7 +68,7 @@ function ResultsImageSlider() {
             onClick={() => setCurrentIndex(idx)}
             className={`h-3 rounded-full transition-all duration-300 ${
               currentIndex === idx 
-                ? 'w-10 bg-[#0a1a67]' 
+                ? 'w-10 bg-[var(--brand-red)]' 
                 : 'w-3 bg-gray-300 hover:bg-gray-400'
             }`}
           />
@@ -105,25 +105,25 @@ export default function Results() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-white border-b border-gray-200">
-                    <th className="text-left px-6 py-3 font-semibold text-[#0a1a67]">Year</th>
-                    <th className="text-left px-6 py-3 font-semibold text-[#0a1a67]">MHT-CET 99+ percentile</th>
-                    <th className="text-left px-6 py-3 font-semibold text-[#0a1a67]">IIT selections</th>
-                    <th className="text-left px-6 py-3 font-semibold text-[#0a1a67]">NEET (AIIMS/MBBS)</th>
+                    <th className="text-left px-6 py-3 font-semibold text-[var(--brand-red)]">Year</th>
+                    <th className="text-left px-6 py-3 font-semibold text-[var(--brand-red)]">MHT-CET 99+ percentile</th>
+                    <th className="text-left px-6 py-3 font-semibold text-[var(--brand-red)]">IIT selections</th>
+                    <th className="text-left px-6 py-3 font-semibold text-[var(--brand-red)]">NEET (AIIMS/MBBS)</th>
                   </tr>
                 </thead>
                 <tbody>
                   {yearWiseStats.map((row, i) => (
                     <tr key={i} className="border-b border-gray-100 hover:bg-white/80">
-                      <td className="px-6 py-3 font-medium text-[#0a1a67]">{row.year}</td>
-                      <td className="px-6 py-3 text-[#0a1a67]">{row.mhtCet99}</td>
-                      <td className="px-6 py-3 text-[#0a1a67]">{row.iitSelections}</td>
-                      <td className="px-6 py-3 text-[#0a1a67]">{row.neetSelections}</td>
+                      <td className="px-6 py-3 font-medium text-[var(--brand-red)]">{row.year}</td>
+                      <td className="px-6 py-3 text-[var(--brand-red)]">{row.mhtCet99}</td>
+                      <td className="px-6 py-3 text-[var(--brand-red)]">{row.iitSelections}</td>
+                      <td className="px-6 py-3 text-[var(--brand-red)]">{row.neetSelections}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <p className="px-6 py-3 text-xs text-[#0a1a67]/60 border-t border-gray-100">Data to be updated by content team. Contact for latest figures.</p>
+            <p className="px-6 py-3 text-xs text-[var(--brand-red)]/60 border-t border-gray-100">Data to be updated by content team. Contact for latest figures.</p>
           </div>
 
           <div className="mb-6">

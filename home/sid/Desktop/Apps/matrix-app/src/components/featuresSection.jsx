@@ -34,7 +34,7 @@ export default function FeaturesSection() {
               onClick={() => setActiveIndex(i)}
               className={`px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
                 i === activeIndex
-                  ? 'bg-[#B30027] text-white border-b-2 border-[#B30027]'
+                  ? 'bg-[#0a1a67] text-white border-b-2 border-[#0a1a67]'
                   : 'text-gray-800 bg-transparent hover:text-gray-600'
               }`}
             >

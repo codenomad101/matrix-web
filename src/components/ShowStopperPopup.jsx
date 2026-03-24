@@ -139,7 +139,7 @@ export default function ShowStopperPopup() {
           <span className="text-lg" aria-hidden>
             ✨
           </span>
-          <span className="font-black text-[#B30027] text-sm sm:text-base tracking-[0.12em] uppercase">
+          <span className="font-black text-[var(--brand-red)] text-sm sm:text-base tracking-[0.12em] uppercase">
             Register now
           </span>
           <span className="text-lg" aria-hidden>
@@ -147,7 +147,7 @@ export default function ShowStopperPopup() {
           </span>
         </div>
 
-        <div className="flex items-center justify-between gap-3 px-4 py-3 bg-gradient-to-r from-[#B30027] to-[#0a1a67]">
+        <div className="flex items-center justify-between gap-3 px-4 py-3 bg-gradient-to-r from-[var(--brand-red)] to-[var(--brand-red)]">
           <div className="min-w-0 flex items-center gap-2">
             <span className="hidden sm:flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/15 text-white" aria-hidden>
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -184,11 +184,11 @@ export default function ShowStopperPopup() {
                 We also offer scholarships — register to know more.
               </p>
               <p className="mt-3 text-[11px] text-gray-500">
-                <Link href="/counseling" className="text-[#B30027] font-medium hover:underline" onClick={handleClose}>
+                <Link href="/counseling" className="text-[var(--brand-red)] font-medium hover:underline" onClick={handleClose}>
                   Counselling
                 </Link>
                 {' · '}
-                <Link href="/scholarships" className="text-[#B30027] font-medium hover:underline" onClick={handleClose}>
+                <Link href="/scholarships" className="text-[var(--brand-red)] font-medium hover:underline" onClick={handleClose}>
                   Scholarships
                 </Link>
               </p>
@@ -198,7 +198,7 @@ export default function ShowStopperPopup() {
               <div className="space-y-2.5">
                 <div>
                   <label htmlFor="showstopper-email" className="flex items-center gap-1.5 text-[11px] font-medium text-body mb-1">
-                    <IconMail className="w-3.5 h-3.5 text-[#B30027]" />
+                    <IconMail className="w-3.5 h-3.5 text-[var(--brand-red)]" />
                     Email
                   </label>
                   <div className="relative">
@@ -213,13 +213,13 @@ export default function ShowStopperPopup() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
-                      className="w-full rounded-lg border border-gray-200 bg-white pl-9 pr-2.5 py-2 text-sm text-body focus:outline-none focus:ring-2 focus:ring-[#B30027]/30 focus:border-[#B30027]"
+                      className="w-full rounded-lg border border-gray-200 bg-white pl-9 pr-2.5 py-2 text-sm text-body focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)]/30 focus:border-[var(--brand-red)]"
                     />
                   </div>
                 </div>
                 <div>
                   <label htmlFor="showstopper-phone" className="flex items-center gap-1.5 text-[11px] font-medium text-body mb-1">
-                    <IconPhone className="w-3.5 h-3.5 text-[#B30027]" />
+                    <IconPhone className="w-3.5 h-3.5 text-[var(--brand-red)]" />
                     Phone
                   </label>
                   <div className="relative">
@@ -234,13 +234,13 @@ export default function ShowStopperPopup() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="98765 43210"
-                      className="w-full rounded-lg border border-gray-200 bg-white pl-9 pr-2.5 py-2 text-sm text-body focus:outline-none focus:ring-2 focus:ring-[#B30027]/30 focus:border-[#B30027]"
+                      className="w-full rounded-lg border border-gray-200 bg-white pl-9 pr-2.5 py-2 text-sm text-body focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)]/30 focus:border-[var(--brand-red)]"
                     />
                   </div>
                 </div>
                 <div>
                   <label htmlFor="showstopper-course" className="flex items-center gap-1.5 text-[11px] font-medium text-body mb-1">
-                    <IconBook className="w-3.5 h-3.5 text-[#B30027]" />
+                    <IconBook className="w-3.5 h-3.5 text-[var(--brand-red)]" />
                     Course
                   </label>
                   <div className="relative">
@@ -252,7 +252,7 @@ export default function ShowStopperPopup() {
                       name="course"
                       value={course}
                       onChange={(e) => setCourse(e.target.value)}
-                      className="w-full appearance-none rounded-lg border border-gray-200 bg-white pl-9 pr-8 py-2 text-sm text-body focus:outline-none focus:ring-2 focus:ring-[#B30027]/30 focus:border-[#B30027]"
+                      className="w-full appearance-none rounded-lg border border-gray-200 bg-white pl-9 pr-8 py-2 text-sm text-body focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)]/30 focus:border-[var(--brand-red)]"
                     >
                       {COURSE_OPTIONS.map((opt) => (
                         <option key={opt} value={opt}>
@@ -264,12 +264,12 @@ export default function ShowStopperPopup() {
                   </div>
                 </div>
               </div>
-              {submitError && <p className="text-xs text-[#B30027]">{submitError}</p>}
+              {submitError && <p className="text-xs text-[var(--brand-red)]">{submitError}</p>}
               <div className="flex flex-wrap gap-2 pt-0.5">
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="inline-flex justify-center items-center gap-1.5 rounded-lg bg-[#B30027] hover:bg-[#8a001e] disabled:opacity-70 text-white text-sm font-bold px-5 py-2.5 shadow-md"
+                  className="inline-flex justify-center items-center gap-1.5 rounded-lg bg-[var(--brand-red)] hover:bg-[var(--brand-red-hover)] disabled:opacity-70 text-white text-sm font-bold px-5 py-2.5 shadow-md"
                 >
                   <span aria-hidden>✓</span>
                   {submitting ? 'Registering…' : 'Register for free'}
@@ -287,7 +287,7 @@ export default function ShowStopperPopup() {
         ) : (
           <div className="p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-t border-gray-100">
             <div className="flex gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#B30027]/15 text-[#B30027]" aria-hidden>
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--brand-red)]/15 text-[var(--brand-red)]" aria-hidden>
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
@@ -302,7 +302,7 @@ export default function ShowStopperPopup() {
             <button
               type="button"
               onClick={handleClose}
-              className="shrink-0 inline-flex justify-center rounded-lg bg-[#B30027] hover:bg-[#8a001e] text-white text-sm font-semibold px-5 py-2.5"
+              className="shrink-0 inline-flex justify-center rounded-lg bg-[var(--brand-red)] hover:bg-[var(--brand-red-hover)] text-white text-sm font-semibold px-5 py-2.5"
             >
               Close
             </button>

@@ -65,7 +65,7 @@ function LatestNewsSection() {
       <div className="bg-box-bg rounded-2xl shadow-lg overflow-hidden border border-gray-200/60">
         <div className="grid md:grid-cols-[300px_1fr] lg:grid-cols-[350px_1fr]">
           {/* Left Side - Title and Description */}
-          <div className="bg-[#0a1a67] p-6 md:p-8 flex flex-col justify-center">
+          <div className="bg-[var(--brand-red)] p-6 md:p-8 flex flex-col justify-center">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
               Latest News & Updates
             </h2>
@@ -73,7 +73,7 @@ function LatestNewsSection() {
               Stay updated with the latest happenings, achievements, and announcements from Matrix Science Academy.
             </p>
             <div className="mt-4 flex items-center gap-2 text-white/60 text-sm">
-              <svg className="w-5 h-5 animate-pulse text-[#B30027]" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-5 h-5 animate-pulse text-[var(--brand-red)]" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
               </svg>
               <span></span>
@@ -88,8 +88,8 @@ function LatestNewsSection() {
                   key={idx}
                   className="py-3 border-b border-gray-100 last:border-0 flex items-start gap-3 group cursor-pointer hover:bg-gray-50 px-2 rounded-lg transition-colors duration-300"
                 >
-                  <span className="text-[#B30027] font-bold text-lg">›</span>
-                  <span className="text-[#0a1a67] font-medium group-hover:text-[#B30027] transition-colors duration-300">
+                  <span className="text-[var(--brand-red)] font-bold text-lg">›</span>
+                  <span className="text-[var(--brand-red)] font-medium group-hover:text-[var(--brand-red)] transition-colors duration-300">
                     {news}
                   </span>
                 </div>
@@ -130,7 +130,7 @@ function OverviewSection() {
   return (
     <section className="container-page py-6 md:py-8">
       <div className="mb-6">
-        <h2 className="text-4xl font-semibold text-[#0a1a67] py-2">Overview and Features</h2>
+        <h2 className="text-4xl font-semibold text-[var(--brand-red)] py-2">Overview and Features</h2>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
@@ -215,17 +215,17 @@ function ResultsImageSlider({ visibleCount = 2, showControls = true, showDots = 
           <>
             <button
               onClick={() => setOffset((prev) => (prev === 0 ? maxOffset : prev - step))}
-              className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[#0a1a67] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border border-gray-200/80 hover:border-[#0a1a67]"
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[var(--brand-red)] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border border-gray-200/80 hover:border-[var(--brand-red)]"
             >
-              <svg className="w-5 h-5 md:w-6 md:h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 md:w-6 md:h-6 text-[var(--brand-red)] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <button
               onClick={() => setOffset((prev) => (prev >= maxOffset ? 0 : prev + step))}
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[#0a1a67] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border border-gray-200/80 hover:border-[#0a1a67]"
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[var(--brand-red)] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border border-gray-200/80 hover:border-[var(--brand-red)]"
             >
-              <svg className="w-5 h-5 md:w-6 md:h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 md:w-6 md:h-6 text-[var(--brand-red)] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -241,8 +241,8 @@ function ResultsImageSlider({ visibleCount = 2, showControls = true, showDots = 
               key={idx}
               onClick={() => setOffset(idx)}
               className={`h-2 rounded-full transition-all duration-300 ${offset === idx
-                ? 'w-6 bg-[#0a1a67]'
-                : 'w-2 bg-gray-300 hover:bg-[#0a1a67]/50'
+                ? 'w-6 bg-[var(--brand-red)]'
+                : 'w-2 bg-gray-300 hover:bg-[var(--brand-red)]/50'
                 }`}
             />
           ))}
@@ -367,12 +367,12 @@ function ResultsSection({ topResults }) {
           <h2 className="text-2xl md:text-3xl font-bold text-left text-heading mb-0">
             One of the <span className="text-body/90">Leading and most successful</span> Institutions in Pune
           </h2>
-          <Link href="/results" className="inline-flex items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] transition-all duration-300 text-sm sm:text-base px-4 py-2 sm:px-5 sm:py-2.5 font-semibold">View All Results</Link>
+          <Link href="/results" className="inline-flex items-center gap-2 rounded-lg bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] transition-all duration-300 text-sm sm:text-base px-4 py-2 sm:px-5 sm:py-2.5 font-semibold">View All Results</Link>
         </div>
 
         {/* Results Image Slider - site background only, no white block */}
         <div className="mb-0">
-          <h3 className="text-lg md:text-xl font-bold text-[#0a1a67] mb-3">Results &amp; Achievements Gallery</h3>
+          <h3 className="text-lg md:text-xl font-bold text-[var(--brand-red)] mb-3">Results &amp; Achievements Gallery</h3>
           <ResultsImageSlider />
         </div>
       </div>
@@ -462,7 +462,7 @@ function WhatsTrendingCarousel() {
                 </p>
                 <Link
                   href={slide.href}
-                  className="inline-flex items-center justify-center w-fit bg-[#B30027] hover:bg-[#8a001e] text-white font-medium px-4 py-2 sm:px-5 sm:py-2.5 rounded transition-colors text-sm"
+                  className="inline-flex items-center justify-center w-fit bg-[var(--brand-red)] hover:bg-[var(--brand-red-hover)] text-white font-medium px-4 py-2 sm:px-5 sm:py-2.5 rounded transition-colors text-sm"
                 >
                   {slide.cta}
                 </Link>
@@ -712,9 +712,9 @@ function CoursesTabSection() {
               key={tab.id}
               type="button"
               onClick={() => setActiveIndex(i)}
-              className={`px-5 py-3 text-sm font-semibold transition-all duration-200 ${
+              className={`px-5 py-3 text-sm font-bold transition-all duration-200 ${
                 i === activeIndex
-                  ? 'bg-[#B30027] text-white rounded border-b-2 border-[#B30027]'
+                  ? 'bg-[var(--brand-red)] text-white rounded border-b-2 border-[var(--brand-red)]'
                   : 'text-gray-800 bg-transparent hover:text-gray-600'
               }`}
             >
@@ -725,14 +725,14 @@ function CoursesTabSection() {
 
         {/* Content: image LEFT, text RIGHT – two columns, clean alignment */}
         <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-stretch bg-white rounded-2xl border border-gray-200/80 overflow-hidden shadow-sm">
-          {/* Left column – large rectangular image, grayscale, label overlay bottom-right */}
+          {/* Left column – full-color image, label bottom-right */}
           <Link href={course.href} className="relative block min-h-[260px] md:min-h-[320px] bg-gray-200">
             <img
               src={course.image}
               alt={course.heading}
-              className="w-full h-full object-cover grayscale"
+              className="w-full h-full object-cover"
             />
-            <span className="absolute bottom-4 right-4 text-white text-lg font-bold drop-shadow-md">
+            <span className="absolute bottom-4 right-4 text-white text-lg font-bold drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)]">
               {course.name}
             </span>
           </Link>
@@ -888,14 +888,14 @@ function FeaturesAndNewsSection() {
               <Link
                 key={`${course.id}-${idx}`}
                 href={course.href || `/courses/${course.id}`}
-                className="rounded-2xl border border-gray-200/80 bg-white p-3 sm:p-5 shadow-sm hover:border-[#B30027]/30 hover:shadow-md hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden block flex-shrink-0 w-[280px] sm:w-[320px]"
+                className="rounded-2xl border border-gray-200/80 bg-white p-3 sm:p-5 shadow-sm hover:border-[var(--brand-red)]/30 hover:shadow-md hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden block flex-shrink-0 w-[280px] sm:w-[320px]"
               >
                 {/* Layout: Left text content, right image (tilted box) */}
                 <div className="relative z-10 flex items-stretch h-full">
                   {/* Left content */}
                   <div className="flex-1 pr-2 sm:pr-4 flex flex-col justify-between min-w-0">
                     <div>
-                      <h3 className="text-base sm:text-lg font-bold text-[#B30027] leading-tight mb-0.5">
+                      <h3 className="text-base sm:text-lg font-bold text-[var(--brand-red)] leading-tight mb-0.5">
                         {course.name}
                       </h3>
                       <p className="text-[11px] sm:text-xs font-semibold text-gray-500 uppercase tracking-wide">
@@ -916,7 +916,7 @@ function FeaturesAndNewsSection() {
                         </p>
                       </div>
                     </div>
-                    <span className="inline-flex items-center justify-center mt-2 px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold rounded-full bg-[#B30027] text-white group-hover:bg-[#8a001e] transition-colors">
+                    <span className="inline-flex items-center justify-center mt-2 px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold rounded-full bg-[var(--brand-red)] text-white group-hover:bg-[var(--brand-red-hover)] transition-colors">
                       Explore More
                     </span>
                   </div>
@@ -946,7 +946,7 @@ function FeaturesAndNewsSection() {
         <div className="text-center mt-5">
           <Link
             href="/courses"
-            className="inline-flex items-center gap-2 bg-[#B30027] text-white hover:bg-[#8a001e] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+            className="inline-flex items-center gap-2 bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
           >
             View All Courses & Batches
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1010,11 +1010,11 @@ function AcademicSupportMethodologySection() {
               </div>
               <div className="flex items-center gap-2 flex-shrink-0">
                 <span className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700">
-                  <span className="w-2 h-2 rounded-full bg-[#B30027]" aria-hidden />
+                  <span className="w-2 h-2 rounded-full bg-[var(--brand-red)]" aria-hidden />
                   Parent-friendly guidance
                 </span>
                 <span className="hidden sm:inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700">
-                  <span className="w-2 h-2 rounded-full bg-[#0a1a67]" aria-hidden />
+                  <span className="w-2 h-2 rounded-full bg-[var(--brand-red)]" aria-hidden />
                   Student-first learning
                 </span>
               </div>
@@ -1033,8 +1033,7 @@ function AcademicSupportMethodologySection() {
                     backgroundPosition: 'center',
                   }}
                 >
-                  <div className="absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-[#8f001f] via-[#6d0018] to-transparent pointer-events-none" aria-hidden />
-                  <div className="absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-black/15 via-transparent to-transparent pointer-events-none" aria-hidden />
+                  <div className="absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-[var(--brand-gradient-mid)] via-[var(--brand-red)] to-transparent pointer-events-none" aria-hidden />
                   <div className="relative z-10 flex flex-col justify-center p-5 sm:p-6 md:p-7 w-full max-w-[64%] min-w-0">
                     <h3 className="home-section-subtitle !text-white text-xl md:text-2xl mb-1">{card.title}</h3>
                     {card.tagline && (
@@ -1045,7 +1044,7 @@ function AcademicSupportMethodologySection() {
                     )}
                     <p className="text-xs sm:text-sm leading-snug text-white/90 mb-3">{card.description}</p>
                     <p className="text-sm font-semibold text-white mb-3">{card.trustLine}</p>
-                    <span className="inline-flex items-center justify-center w-fit bg-[#B30027] text-white text-xs font-semibold uppercase tracking-wide px-4 py-2 rounded-lg group-hover:bg-[#8a001e] transition-colors">
+                    <span className="inline-flex items-center justify-center w-fit bg-[var(--brand-red)] text-white text-xs font-semibold uppercase tracking-wide px-4 py-2 rounded-lg group-hover:bg-[var(--brand-red-hover)] transition-colors">
                       {card.cta}
                     </span>
                   </div>
@@ -1058,8 +1057,8 @@ function AcademicSupportMethodologySection() {
               <p className="home-section-body font-semibold text-gray-800 mb-3">How we do it</p>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
                 {METHODOLOGY_STEPS.map((s, i) => (
-                  <div key={i} className="rounded-2xl border border-gray-200/80 bg-white p-2.5 flex flex-col items-center text-center hover:border-[#B30027]/30 hover:shadow-md transition-all duration-200">
-                    <span className="w-6 h-6 rounded-full bg-[#B30027]/10 text-[#B30027] flex items-center justify-center text-[11px] font-semibold mb-1">{i + 1}</span>
+                  <div key={i} className="rounded-2xl border border-gray-200/80 bg-white p-2.5 flex flex-col items-center text-center hover:border-[var(--brand-red)]/30 hover:shadow-md transition-all duration-200">
+                    <span className="w-6 h-6 rounded-full bg-[var(--brand-red)]/10 text-[var(--brand-red)] flex items-center justify-center text-[11px] font-semibold mb-1">{i + 1}</span>
                     <span className="text-lg mb-1 block" aria-hidden>{s.icon}</span>
                     <span className="text-[11px] sm:text-xs font-semibold text-gray-800 leading-tight">{s.label}</span>
                   </div>
@@ -1086,7 +1085,7 @@ function CounselingFormRow() {
     <section className="home-section">
       <div className="container-page">
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
-          <div className="rounded-2xl p-6 md:p-8 flex flex-col justify-center border border-[#B30027]/25 bg-gradient-to-br from-[#B30027] via-[#8f001f] to-[#0a1a67] shadow-lg overflow-hidden relative">
+          <div className="rounded-2xl p-6 md:p-8 flex flex-col justify-center border border-[var(--brand-red)]/25 bg-gradient-to-br from-[var(--brand-red)] via-[var(--brand-gradient-mid)] to-[var(--brand-red)] shadow-lg overflow-hidden relative">
             <div className="absolute top-0 right-0 w-36 h-36 rounded-full bg-white/10 blur-2xl pointer-events-none" aria-hidden />
             <div className="absolute -bottom-8 -left-8 w-44 h-44 rounded-full bg-black/20 blur-2xl pointer-events-none" aria-hidden />
             <span className="relative z-10 inline-flex items-center gap-2 w-fit rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase text-white/95 mb-3">
@@ -1123,15 +1122,15 @@ function CounselingFormRow() {
             </div>
             <Link
               href="/enquiry?counseling=1"
-              className="relative z-10 inline-flex items-center justify-center gap-2 bg-white text-[#B30027] hover:bg-white/90 font-bold px-6 py-3 rounded-lg transition-colors w-fit"
+              className="relative z-10 inline-flex items-center justify-center gap-2 bg-white text-[var(--brand-red)] hover:bg-white/90 font-bold px-6 py-3 rounded-lg transition-colors w-fit"
             >
               Book Your Free Session Now
             </Link>
           </div>
           <div className="rounded-2xl border border-gray-200/80 bg-white shadow-lg overflow-hidden">
-            <div className="h-1.5 bg-gradient-to-r from-[#B30027] to-[#0a1a67]" aria-hidden />
+            <div className="h-1.5 bg-gradient-to-r from-[var(--brand-red)] to-[var(--brand-red)]" aria-hidden />
             <div className="p-6 md:p-8">
-              <h3 className="text-[#0a1a67] text-xl md:text-2xl font-bold mb-1">Book Your Session</h3>
+              <h3 className="text-[var(--brand-red)] text-xl md:text-2xl font-bold mb-1">Book Your Session</h3>
               <p className="text-gray-600 text-sm md:text-base mb-4">Fill out the form below and our academic counsellor will call you.</p>
               <Suspense
                 fallback={
@@ -1224,7 +1223,7 @@ function SpecializedBatchesSection() {
             <Link
               key={i}
               href="/courses"
-              className="rounded-2xl border border-gray-200/80 bg-white p-5 flex flex-col items-center text-center hover:border-[#B30027]/30 hover:shadow-md transition-all duration-200 group"
+              className="rounded-2xl border border-gray-200/80 bg-white p-5 flex flex-col items-center text-center hover:border-[var(--brand-red)]/30 hover:shadow-md transition-all duration-200 group"
             >
               <span className="text-3xl mb-2 block group-hover:scale-110 transition-transform" aria-hidden>{b.icon}</span>
               <span className="text-sm font-semibold text-gray-800">{b.name}</span>
@@ -1265,8 +1264,8 @@ function AboutIntro() {
           <div className="flex-1 flex items-center justify-center">
             <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg h-40 sm:h-48 md:h-56 lg:h-64">
               {/* Subtle red accent background similar to Why Choose Us cards */}
-              <div className="absolute -bottom-1 -left-1 w-12 h-12 rounded-full bg-[#B30027]/15 blur-sm" aria-hidden />
-              <div className="absolute -top-3 right-0 w-10 h-10 rounded-full bg-[#B30027]/10 blur-[2px]" aria-hidden />
+              <div className="absolute -bottom-1 -left-1 w-12 h-12 rounded-full bg-[var(--brand-red)]/15 blur-sm" aria-hidden />
+              <div className="absolute -top-3 right-0 w-10 h-10 rounded-full bg-[var(--brand-red)]/10 blur-[2px]" aria-hidden />
               <div className="relative z-10 w-full h-full rounded-[2rem] bg-gradient-to-tr from-[#ffe6ea] via-[#ffe6ea] to-[#ffd0da] transition-transform duration-300 shadow-md overflow-hidden">
                 <img
                   src="https://res.cloudinary.com/ddqgxrgnc/image/upload/v1764181864/A_dbzo2c.jpg"
@@ -1318,16 +1317,16 @@ function VrikshaHighlight({ embedded = false }) {
           <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
             <div className="flex-1 flex flex-col justify-center min-w-0">
               <div className="flex items-center gap-3 mb-3">
-                <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#0a1a67]/10 flex items-center justify-center text-2xl md:text-3xl group-hover:scale-105 transition-transform ring-2 ring-[#0a1a67]/15">
+                <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[var(--brand-red)]/10 flex items-center justify-center text-2xl md:text-3xl group-hover:scale-105 transition-transform ring-2 ring-[var(--brand-red)]/15">
                   🌱
                 </div>
-                <span className="inline-block px-3 py-1 rounded-full bg-[#0a1a67] text-white text-xs font-semibold uppercase tracking-widest">New</span>
+                <span className="inline-block px-3 py-1 rounded-full bg-[var(--brand-red)] text-white text-xs font-semibold uppercase tracking-widest">New</span>
               </div>
-              <h2 className="home-section-subtitle text-[#0a1a67] mb-2">VRIKSHA</h2>
+              <h2 className="home-section-subtitle text-[var(--brand-red)] mb-2">VRIKSHA</h2>
               <p className="home-section-body mb-4 max-w-xl">
                 Holistic learning: academics, wellness, and competitive readiness in one program.
               </p>
-              <span className="inline-flex items-center gap-2 text-[#0a1a67] font-semibold text-sm md:text-base group-hover:gap-3 transition-all">
+              <span className="inline-flex items-center gap-2 text-[var(--brand-red)] font-semibold text-sm md:text-base group-hover:gap-3 transition-all">
                 Explore VRIKSHA
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </span>
@@ -1395,9 +1394,9 @@ function VrikshaHighlight({ embedded = false }) {
 // Performance graph – 3-year improvement (CSS-only, dummy data)
 function PerformanceGraph() {
   const years = [
-    { year: '2023', label: '2023', value: 72, color: 'bg-[#B30027]/30' },
-    { year: '2024', label: '2024', value: 85, color: 'bg-[#B30027]/60' },
-    { year: '2025', label: '2025', value: 100, color: 'bg-[#B30027]' },
+    { year: '2023', label: '2023', value: 72, color: 'bg-[var(--brand-red)]/30' },
+    { year: '2024', label: '2024', value: 85, color: 'bg-[var(--brand-red)]/60' },
+    { year: '2025', label: '2025', value: 100, color: 'bg-[var(--brand-red)]' },
   ]
   const maxValue = 100
   return (
@@ -1414,7 +1413,7 @@ function PerformanceGraph() {
                     className={`w-full ${color} rounded-t transition-all duration-700 flex items-center justify-center min-h-[28px]`}
                     style={{ height: `${(value / maxValue) * 100}%`, minHeight: '28px' }}
                   >
-                    <span className={`text-sm font-bold drop-shadow-sm ${value >= 95 ? 'text-white' : 'text-[#0a1a67]'}`}>{value}</span>
+                    <span className={`text-sm font-bold drop-shadow-sm ${value >= 95 ? 'text-white' : 'text-[var(--brand-red)]'}`}>{value}</span>
                   </div>
                 </div>
                 <span className="text-sm font-semibold text-body">{label}</span>
@@ -1431,14 +1430,14 @@ function PerformanceGraph() {
 // Counseling CTA – free counseling + link
 function CounselingCTA() {
   return (
-    <section className="page-section-tight bg-[#0a1a67]">
+    <section className="page-section-tight bg-[var(--brand-red)]">
       <div className="container-page">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Free Career Counseling</h2>
             <p className="text-white/90 text-sm md:text-base max-w-xl">Not sure which course is right for you? Book a free counseling session with our experts and get a personalized plan.</p>
           </div>
-          <Link href="/counseling" className="inline-flex items-center justify-center gap-2 bg-white text-[#0a1a67] hover:bg-gray-100 font-semibold px-6 py-3 rounded-lg transition-colors shrink-0">
+          <Link href="/counseling" className="inline-flex items-center justify-center gap-2 bg-white text-[var(--brand-red)] hover:bg-gray-100 font-semibold px-6 py-3 rounded-lg transition-colors shrink-0">
             Book free session
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </Link>
@@ -1454,17 +1453,17 @@ function DemoScholarships() {
     <section className="home-section">
       <div className="container-page">
         <div className="grid md:grid-cols-2 gap-6">
-          <Link href="/enquiry" className="group block bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-[#B30027]/20 transition-all">
+          <Link href="/enquiry" className="group block bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-[var(--brand-red)]/20 transition-all">
             <span className="text-2xl mb-3 block">🎓</span>
             <h3 className="home-section-subtitle text-lg mb-2">Try a Free Demo Class</h3>
             <p className="home-section-body mb-4">Experience our teaching style and infrastructure. Register for a demo class at your preferred branch.</p>
-            <span className="inline-flex items-center gap-1 text-[#B30027] font-semibold group-hover:gap-2 transition-all">Register for demo →</span>
+            <span className="inline-flex items-center gap-1 text-[var(--brand-red)] font-semibold group-hover:gap-2 transition-all">Register for demo →</span>
           </Link>
-          <Link href="/scholarships" className="group block bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-[#B30027]/20 transition-all">
+          <Link href="/scholarships" className="group block bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-[var(--brand-red)]/20 transition-all">
             <span className="text-2xl mb-3 block">🏅</span>
             <h3 className="home-section-subtitle text-lg mb-2">Scholarships Available</h3>
             <p className="home-section-body mb-4">Merit-based scholarships for deserving students. Criteria and application process on our scholarships page.</p>
-            <span className="inline-flex items-center gap-1 text-[#B30027] font-semibold group-hover:gap-2 transition-all">Know more →</span>
+            <span className="inline-flex items-center gap-1 text-[var(--brand-red)] font-semibold group-hover:gap-2 transition-all">Know more →</span>
           </Link>
         </div>
       </div>
@@ -1491,8 +1490,8 @@ function PromotionalVideo() {
             />
           ) : (
             <div className="text-center p-8">
-              <div className="w-20 h-20 rounded-full bg-[#B30027]/20 flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-[#B30027]" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+              <div className="w-20 h-20 rounded-full bg-[var(--brand-red)]/20 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-10 h-10 text-[var(--brand-red)]" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
               </div>
               <p className="text-body font-medium">Promotional video coming soon</p>
               <p className="text-body/70 text-sm mt-1">Campus, teaching & results</p>

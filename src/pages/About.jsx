@@ -70,13 +70,13 @@ export default function About() {
             </p>
 
             <div className="grid sm:grid-cols-2 gap-6">
-              <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-[#0a1a67]">
+              <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-[var(--brand-red)]">
                 <h3 className="text-lg font-bold text-heading mb-2">Our Mission</h3>
                 <p className="text-body text-sm leading-relaxed">
                   Deliver accessible, high-quality education with compassion and discipline.
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-[#B30027]">
+              <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-[var(--brand-red)]">
                 <h3 className="text-lg font-bold text-heading mb-2">Our Vision</h3>
                 <p className="text-body text-sm leading-relaxed">
                   Enable every learner to achieve excellence and freedom through knowledge.
@@ -96,7 +96,7 @@ export default function About() {
             </div>
 
             {/* Our Vision - Full Message */}
-            <div className="mt-8 p-6 bg-gray-50 rounded-xl border-l-4 border-[#B30027]">
+            <div className="mt-8 p-6 bg-gray-50 rounded-xl border-l-4 border-[var(--brand-red)]">
               <h3 className="text-lg font-bold text-heading mb-3">Our Vision</h3>
               <div className="space-y-3 text-body text-sm leading-relaxed">
                 <p>
@@ -121,7 +121,7 @@ export default function About() {
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
               {directors.map((d, idx) => (
-                <div key={idx} className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:border-[#0a1a67]/30 hover:shadow-xl transition-all duration-300 text-center">
+                <div key={idx} className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:border-[var(--brand-red)]/30 hover:shadow-xl transition-all duration-300 text-center">
                   <OptimizedImage
                     cloudinaryId={d.cloudinaryId}
                     alt={d.name}
@@ -149,7 +149,7 @@ export default function About() {
           </div>
 
           {/* General Contact Info */}
-          <div className="bg-[#0a1a67] text-white rounded-xl p-4 md:p-6 mb-6 shadow-sm">
+          <div className="bg-[var(--brand-red)] text-white rounded-xl p-4 md:p-6 mb-6 shadow-sm">
             <div className="flex flex-col md:flex-row items-center justify-center gap-8">
               <div className="flex items-center gap-3">
                 <div className="bg-white/20 p-4 rounded-full">
@@ -188,29 +188,29 @@ export default function About() {
             {branches.map((branch, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow-lg p-6 border-2 border-gray-100 hover:border-[#0a1a67] hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="bg-white rounded-xl shadow-lg p-6 border-2 border-gray-100 hover:border-[var(--brand-red)] hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
-                <h3 className="text-xl font-bold text-[#0a1a67] flex items-center mb-4">
-                  <div className="bg-[#0a1a67]/10 p-3 rounded-lg mr-3">
-                    <FaBuilding className="text-[#0a1a67]" />
+                <h3 className="text-xl font-bold text-[var(--brand-red)] flex items-center mb-4">
+                  <div className="bg-[var(--brand-red)]/10 p-3 rounded-lg mr-3">
+                    <FaBuilding className="text-[var(--brand-red)]" />
                   </div>
                   {branch.name}
                 </h3>
 
                 <div className="space-y-3">
-                  <div className="flex items-start text-[#0a1a67]">
-                    <FaMapMarkerAlt className="mr-3 mt-1 flex-shrink-0 text-[#B30027]" />
+                  <div className="flex items-start text-[var(--brand-red)]">
+                    <FaMapMarkerAlt className="mr-3 mt-1 flex-shrink-0 text-[var(--brand-red)]" />
                     <span className="text-sm">{branch.address}</span>
                   </div>
 
-                  <div className="flex items-center text-[#0a1a67]">
-                    <FaPhoneAlt className="mr-3 flex-shrink-0 text-[#B30027]" />
+                  <div className="flex items-center text-[var(--brand-red)]">
+                    <FaPhoneAlt className="mr-3 flex-shrink-0 text-[var(--brand-red)]" />
                     <div className="flex flex-wrap gap-2">
                       {branch.phone.map((phone, idx) => (
                         <a
                           key={idx}
                           href={`tel:${phone.replace(/\s/g, '')}`}
-                          className="text-sm font-medium hover:text-[#B30027] transition-colors duration-300"
+                          className="text-sm font-medium hover:text-[var(--brand-red)] transition-colors duration-300"
                         >
                           {phone}
                         </a>

@@ -20,7 +20,7 @@ export default function CoursesPage() {
         'Regular mock tests and assessments',
         'Doubt clearing sessions',
       ],
-      color: 'from-[#0a1a67] to-[#051139]',
+      color: 'from-[var(--brand-red)] to-[var(--brand-gradient-end)]',
     },
     {
       id: 'iit-jee',
@@ -34,7 +34,7 @@ export default function CoursesPage() {
         'Comprehensive study material',
         'Performance tracking system',
       ],
-      color: 'from-[#0a1a67] to-[#051139]',
+      color: 'from-[var(--brand-red)] to-[var(--brand-gradient-end)]',
     },
     {
       id: 'neet',
@@ -48,7 +48,7 @@ export default function CoursesPage() {
         'NCERT-based comprehensive coverage',
         'Regular practice tests',
       ],
-      color: 'from-[#0a1a67] to-[#051139]',
+      color: 'from-[var(--brand-red)] to-[var(--brand-gradient-end)]',
     },
     {
       id: 'iiser',
@@ -62,7 +62,7 @@ export default function CoursesPage() {
         'Expert mentorship',
         'Aptitude development',
       ],
-      color: 'from-[#0a1a67] to-[#051139]',
+      color: 'from-[var(--brand-red)] to-[var(--brand-gradient-end)]',
     },
   ]
 
@@ -112,7 +112,7 @@ export default function CoursesPage() {
   return (
     <div className="min-h-screen bg-[var(--bg-page)]">
       {/* Red Hero Strip */}
-      <section className="bg-[#B30027] text-white py-8 md:py-12">
+      <section className="bg-[var(--brand-red)] text-white py-8 md:py-12">
         <div className="container-page text-center">
           <div className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium bg-white/20 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full mb-2 sm:mb-4">
             <span>📚 Our Programs</span>
@@ -145,24 +145,24 @@ export default function CoursesPage() {
 
                   {/* Right Side - Details */}
                   <div className="flex-1 w-full">
-                    <p className="text-xs sm:text-lg md:text-xl text-[#0a1a67] mb-2 sm:mb-6 leading-relaxed">
+                    <p className="text-xs sm:text-lg md:text-xl text-[var(--brand-red)] mb-2 sm:mb-6 leading-relaxed">
                       {course.description}
                     </p>
                     <div className="space-y-1 sm:space-y-3">
-                      <h3 className="text-sm sm:text-xl font-bold text-[#0a1a67] mb-1 sm:mb-4">Key Highlights:</h3>
+                      <h3 className="text-sm sm:text-xl font-bold text-[var(--brand-red)] mb-1 sm:mb-4">Key Highlights:</h3>
                       {course.highlights.map((highlight, hIdx) => (
                         <div key={hIdx} className="flex items-start gap-1.5 sm:gap-3">
-                          <div className="flex-shrink-0 w-3 h-3 sm:w-6 sm:h-6 bg-[#B30027] rounded-full flex items-center justify-center text-white text-[8px] sm:text-sm">
+                          <div className="flex-shrink-0 w-3 h-3 sm:w-6 sm:h-6 bg-[var(--brand-red)] rounded-full flex items-center justify-center text-white text-[8px] sm:text-sm">
                             ✓
                           </div>
-                          <p className="text-[10px] sm:text-base text-[#0a1a67]/90 leading-tight">{highlight}</p>
+                          <p className="text-[10px] sm:text-base text-[var(--brand-red)]/90 leading-tight">{highlight}</p>
                         </div>
                       ))}
                     </div>
                     <div className="mt-3 sm:mt-8 flex justify-center md:justify-start">
                       <Link
                         href="/enquiry"
-                        className="inline-flex items-center gap-1 sm:gap-2 bg-[#B30027] text-white hover:bg-[#8a001e] px-3 py-1.5 sm:px-6 sm:py-3 rounded sm:rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-[10px] sm:text-base"
+                        className="inline-flex items-center gap-1 sm:gap-2 bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] px-3 py-1.5 sm:px-6 sm:py-3 rounded sm:rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-[10px] sm:text-base"
                       >
                         Enquire Now
                         <svg className="w-3 h-3 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -180,7 +180,7 @@ export default function CoursesPage() {
               onClick={prevSlide}
               className="absolute left-1.5 sm:left-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-12 sm:h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
             >
-              <svg className="w-4 h-4 sm:w-6 sm:h-6 text-[#0a1a67]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-6 sm:h-6 text-[var(--brand-red)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
@@ -188,7 +188,7 @@ export default function CoursesPage() {
               onClick={nextSlide}
               className="absolute right-1.5 sm:right-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-12 sm:h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
             >
-              <svg className="w-4 h-4 sm:w-6 sm:h-6 text-[#0a1a67]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-6 sm:h-6 text-[var(--brand-red)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -199,7 +199,7 @@ export default function CoursesPage() {
                 <button
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 ${currentIndex === idx ? 'w-6 sm:w-8 bg-[#B30027]' : 'w-1.5 sm:w-2 bg-gray-300 hover:bg-gray-400'
+                  className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 ${currentIndex === idx ? 'w-6 sm:w-8 bg-[var(--brand-red)]' : 'w-1.5 sm:w-2 bg-gray-300 hover:bg-gray-400'
                     }`}
                 />
               ))}
@@ -245,7 +245,7 @@ export default function CoursesPage() {
           {batches.map((batch) => (
             <div
               key={batch.id}
-              className="bg-gradient-to-br from-[#0a1a67] to-[#051139] rounded-xl p-6 text-white text-center hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
+              className="bg-gradient-to-br from-[var(--brand-red)] to-[var(--brand-gradient-end)] rounded-xl p-6 text-white text-center hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
             >
               <div className="text-4xl sm:text-5xl mb-3">{batch.icon}</div>
               <h3 className="text-lg sm:text-xl font-bold">{batch.name}</h3>
@@ -258,7 +258,7 @@ export default function CoursesPage() {
       {/* CTA Section */}
       <section className="page-section-gray">
         <div className="container-page">
-        <div className="bg-[#0a1a67] rounded-2xl p-6 md:p-8 text-center text-white">
+        <div className="bg-[var(--brand-red)] rounded-2xl p-6 md:p-8 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to Start Your Journey?
           </h2>
@@ -268,13 +268,13 @@ export default function CoursesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/enquiry"
-              className="inline-flex items-center justify-center gap-2 bg-[#B30027] text-white hover:bg-[#8a001e] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+              className="inline-flex items-center justify-center gap-2 bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
             >
               Enquire Now
             </Link>
             <Link
               href="/results"
-              className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#0a1a67] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-[var(--brand-red)] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105"
             >
               View Results
             </Link>

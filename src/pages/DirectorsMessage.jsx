@@ -7,7 +7,7 @@ function DirectorImage({ src, name }) {
 
   if (imageError || !src) {
     return (
-      <div className="w-40 h-40 rounded-full bg-gradient-to-br from-[#0a1a67] to-[#1a3a97] border-4 border-white shadow-md flex items-center justify-center">
+      <div className="w-40 h-40 rounded-full bg-gradient-to-br from-[var(--brand-red)] to-[#1a3a97] border-4 border-white shadow-md flex items-center justify-center">
         <FaUser className="text-white text-6xl" />
       </div>
     );

@@ -34,7 +34,7 @@ export default function HeroSlider() {
               {/* Background: upward trend + arrow (readability: gradient scrim on the left) */}
               <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-lg" aria-hidden>
                 <div className="absolute inset-0 bg-gradient-to-r from-white from-[28%] via-white/92 to-white/40 sm:from-[32%] sm:via-white/88 sm:to-transparent z-[1]" />
-                <div className="hero-growth-chart absolute -right-2 sm:right-0 bottom-0 w-[min(100%,280px)] sm:w-[min(100%,320px)] md:w-[340px] h-[min(75%,200px)] sm:h-[210px] md:h-[230px] text-[#0a1a67] z-0">
+                <div className="hero-growth-chart absolute -right-2 sm:right-0 bottom-0 w-[min(100%,280px)] sm:w-[min(100%,320px)] md:w-[340px] h-[min(75%,200px)] sm:h-[210px] md:h-[230px] text-[var(--brand-red)] z-0">
                   <svg
                     viewBox="0 0 240 140"
                     className="w-full h-full"
@@ -44,12 +44,12 @@ export default function HeroSlider() {
                   >
                     <defs>
                       <linearGradient id="heroGrowthFill" x1="0" y1="1" x2="1" y2="0">
-                        <stop offset="0%" stopColor="#B30027" stopOpacity="0.12" />
-                        <stop offset="100%" stopColor="#0a1a67" stopOpacity="0.1" />
+                        <stop offset="0%" stopColor="var(--brand-red)" stopOpacity="0.12" />
+                        <stop offset="100%" stopColor="var(--brand-red)" stopOpacity="0.1" />
                       </linearGradient>
                       <linearGradient id="heroGrowthLine" x1="0" y1="0" x2="1" y2="0">
-                        <stop offset="0%" stopColor="#B30027" />
-                        <stop offset="100%" stopColor="#0a1a67" />
+                        <stop offset="0%" stopColor="var(--brand-red)" />
+                        <stop offset="100%" stopColor="var(--brand-red)" />
                       </linearGradient>
                     </defs>
                     {/* faint grid */}
@@ -75,12 +75,12 @@ export default function HeroSlider() {
                     <g className="hero-growth-arrow" opacity="0.65">
                       <path
                         d="M 218 26 L 228 18 M 218 26 L 210 18"
-                        stroke="#B30027"
+                        stroke="var(--brand-red)"
                         strokeWidth="2.2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
-                      <path d="M 228 18 L 224 12 L 220 18" fill="#B30027" />
+                      <path d="M 228 18 L 224 12 L 220 18" fill="var(--brand-red)" />
                     </g>
                   </svg>
                 </div>
@@ -91,7 +91,7 @@ export default function HeroSlider() {
                 Build strong academic foundations in science and mathematics
               </h1>
               <p className="text-base sm:text-lg md:text-xl mb-3 max-w-lg leading-relaxed">
-                <span className="font-bold text-[#0a1a67]">
+                <span className="font-bold text-[var(--brand-red)]">
                   Concept-based coaching and personalized academic guidance
                 </span>
                 <span className="text-gray-700 font-normal">
@@ -115,7 +115,7 @@ export default function HeroSlider() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/counseling"
-                  className="inline-flex items-center justify-center bg-[#B30027] text-white hover:bg-[#8a001e] text-sm font-medium px-5 py-2.5 rounded transition-colors"
+                  className="inline-flex items-center justify-center bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] text-sm font-medium px-5 py-2.5 rounded transition-colors"
                 >
                   Book Free Counselling
                 </Link>

@@ -16,7 +16,7 @@ export default function ScholarshipsPage() {
             <li>• Maximum scholarship percentage as per institute policy</li>
           </ul>
           <p className="text-body/80 text-sm mb-8">For current scholarship criteria and to apply, please enquire at your preferred branch or fill the enquiry form.</p>
-          <Link href="/enquiry" className="inline-flex items-center gap-2 bg-[#B30027] text-white hover:bg-[#8a001e] px-5 py-2.5 rounded-lg font-semibold transition-colors">
+          <Link href="/enquiry" className="inline-flex items-center gap-2 bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] px-5 py-2.5 rounded-lg font-semibold transition-colors">
             Enquire about scholarships
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </Link>

@@ -3,19 +3,33 @@
 @tailwind components;
 @tailwind utilities;
 
-/* CSS variables for brand colors (blue, red, gray) */
-:root {
+/* CSS variables — accent toggles via html[data-theme="blue"|"red"] (see ThemeToggle) */
+:root,
+html[data-theme="blue"] {
 	--brand: #b2dfee;
-	--brand-dark: #0a1a67;
-	--brand-blue: #0a1a67;
-	--brand-red: #B30027;
-	--brand-red-hover: #8a001e;
+	--brand-red: #0a1a67;
+	--brand-red-hover: #071247;
+	--brand-gradient-mid: #132a8f;
+	--brand-gradient-end: #051139;
+	--brand-dark: var(--brand-red);
+	--brand-blue: var(--brand-red);
 	--brand-gray: #f5f5f5;
-	--heading: #B30027;
+	--heading: var(--brand-red);
 	--body: #0a1a67;
 	--bg-page: #f5f5f5;
 	--bg-box: #f0f0f0;
 	--font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+html[data-theme="red"] {
+	--brand-red: #b30027;
+	--brand-red-hover: #8a001e;
+	--brand-gradient-mid: #c41e3a;
+	--brand-gradient-end: #4a0010;
+	--brand-dark: var(--brand-red);
+	--brand-blue: var(--brand-red);
+	--heading: var(--brand-red);
+	--body: #334155;
 }
 
 html, body {
@@ -81,13 +95,13 @@ small, .text-caption, .text-small {
 	color: var(--body);
 }
 
-/* Navbar: light weight, slightly smaller */
+/* Navbar: compact size, bold labels */
 .nav-bar-items,
 .nav-bar-items .nav-item,
 .nav-bar-items a,
 .nav-bar-items button {
 	font-size: 13px !important;
-	font-weight: 450 !important;
+	font-weight: 700 !important;
 }
 
 /******** Utilities – same width for navbar, body, and all sections ********/
@@ -130,7 +144,7 @@ small, .text-caption, .text-small {
 	@apply py-3 md:py-5 bg-gray-50;
 }
 .home-section-title {
-	@apply text-2xl md:text-3xl font-bold text-gray-800 border-b-4 border-[#B30027] pb-1 inline-block mb-4;
+	@apply text-2xl md:text-3xl font-bold text-gray-800 border-b-4 border-[var(--brand-red)] pb-1 inline-block mb-4;
 }
 .home-section-subtitle {
 	@apply text-xl md:text-2xl font-bold text-gray-900 mb-3 leading-tight;
@@ -140,13 +154,14 @@ small, .text-caption, .text-small {
 }
 
 .section-heading {
-	@apply text-xl md:text-2xl font-semibold text-[#0a1a67] mb-1.5;
+	@apply text-xl md:text-2xl font-semibold text-[var(--brand-red)] mb-1.5;
 }
 .section-heading-center {
 	@apply section-heading text-center;
 }
 .section-subheading {
-	@apply text-sm md:text-base text-[#0a1a67]/80 max-w-2xl mx-auto;
+	@apply text-sm md:text-base max-w-2xl mx-auto;
+	color: color-mix(in srgb, var(--brand-red) 80%, transparent);
 }
 /* Allen-style card for content blocks */
 .page-card {
@@ -157,11 +172,14 @@ small, .text-caption, .text-small {
 }
 
 .btn-primary {
-	@apply items-center gap-2 rounded-lg bg-brand text-[#0a1a67] hover:bg-brand-dark transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium shadow-soft;
+	@apply items-center gap-2 rounded-lg bg-brand text-[var(--brand-red)] hover:bg-brand-dark transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium shadow-soft;
 }
 
 .btn-outline {
-	@apply items-center gap-2 rounded-lg border border-brand text-brand hover:bg-[#0a1a67]/10 transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium;
+	@apply items-center gap-2 rounded-lg border border-brand text-brand transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium;
+}
+.btn-outline:hover {
+	background-color: color-mix(in srgb, var(--brand-red) 10%, transparent);
 }
 
 .nav-link {
@@ -296,9 +314,9 @@ small, .text-caption, .text-small {
 	background: linear-gradient(
 		120deg,
 		transparent 0%,
-		rgba(179, 0, 39, 0.04) 25%,
-		rgba(179, 0, 39, 0.08) 50%,
-		rgba(179, 0, 39, 0.04) 75%,
+		color-mix(in srgb, var(--brand-red) 4%, transparent) 25%,
+		color-mix(in srgb, var(--brand-red) 8%, transparent) 50%,
+		color-mix(in srgb, var(--brand-red) 4%, transparent) 75%,
 		transparent 100%
 	);
 	background-size: 200% 200%;

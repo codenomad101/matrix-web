@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import ThemeToggle from '@/components/ThemeToggle'
 
 function formatDateTime() {
     const d = new Date()
@@ -65,11 +66,12 @@ export default function Navbar() {
         <>
             {/* Top header: date/time (left) + branches (right) */}
             <div className="bg-[var(--brand-red)] text-white">
-                <div className="container-header py-1.5 flex flex-wrap items-center justify-between gap-y-1 text-xs font-medium">
+                <div className="container-header py-1.5 flex flex-wrap items-center justify-between gap-y-2 gap-x-3 text-xs font-medium">
                     <span className="whitespace-nowrap tabular-nums" suppressHydrationWarning>
                         {dateTime.dateStr} | {dateTime.timeStr}
                     </span>
-                    <div className="flex flex-wrap items-center justify-end gap-y-1 ml-4">
+                    <ThemeToggle />
+                    <div className="flex flex-wrap items-center justify-end gap-y-1 sm:ml-auto">
                         <span className="whitespace-nowrap pr-2">Branches:</span>
                         {BRANCHES.map((branch, idx) => (
                             <span key={branch} className="inline-flex items-center">
@@ -147,7 +149,7 @@ export default function Navbar() {
                                                     key={course.id}
                                                     href={course.href}
                                                     role="menuitem"
-                                                    className="flex items-center gap-2 px-3 py-2 text-sm text-black hover:bg-[var(--brand-red)]/10 hover:text-[var(--brand-red)] transition-colors duration-150 first:rounded-t-md last:rounded-b-md"
+                                                    className="flex items-center gap-2 px-3 py-2 text-sm font-bold text-black hover:bg-[var(--brand-red)]/10 hover:text-[var(--brand-red)] transition-colors duration-150 first:rounded-t-md last:rounded-b-md"
                                                 >
                                                     <span className="text-base">{course.icon}</span>
                                                     <span>{course.name}</span>
@@ -157,7 +159,7 @@ export default function Navbar() {
                                             <Link
                                                 href="/courses"
                                                 role="menuitem"
-                                                className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-[var(--brand-red)] hover:bg-[var(--brand-red)]/10 transition-colors duration-150 rounded-b-md"
+                                                className="flex items-center gap-2 px-3 py-2 text-sm font-bold text-[var(--brand-red)] hover:bg-[var(--brand-red)]/10 transition-colors duration-150 rounded-b-md"
                                             >
                                                 View all courses →
                                             </Link>
@@ -197,7 +199,7 @@ export default function Navbar() {
                     <div className="flex items-center gap-2 flex-shrink-0">
                     <Link
                         href="/enquiry"
-                        className="hidden md:inline-flex items-center rounded bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] uppercase px-2.5 py-1 transition-all duration-200 hover:shadow-md"
+                        className="hidden md:inline-flex items-center rounded bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] uppercase px-2.5 py-1 font-bold transition-all duration-200 hover:shadow-md"
                     >
                         Enquire Now
                     </Link>
@@ -267,20 +269,20 @@ export default function Navbar() {
                                                 <Link
                                                     key={course.id}
                                                     href={course.href}
-                                                    className="block px-2 py-1.5 rounded-lg text-xs font-medium text-black hover:bg-[var(--brand-blue)] hover:text-white transition-all duration-300"
+                                                    className="block px-2 py-1.5 rounded-lg text-xs font-bold text-black hover:bg-[var(--brand-blue)] hover:text-white transition-all duration-300"
                                                     onClick={() => setMobileOpen(false)}
                                                 >
                                                     {course.icon} {course.name}
                                                 </Link>
                                             ))}
-                                            <Link href="/courses" className="block px-2 py-1.5 rounded-lg text-xs font-medium text-[var(--brand-red)] hover:bg-[var(--brand-red)] hover:text-white transition-all duration-300" onClick={() => setMobileOpen(false)}>View all courses →</Link>
+                                            <Link href="/courses" className="block px-2 py-1.5 rounded-lg text-xs font-bold text-[var(--brand-red)] hover:bg-[var(--brand-red)] hover:text-white transition-all duration-300" onClick={() => setMobileOpen(false)}>View all courses →</Link>
                                         </div>
                                     </div>
                                 ) : (
                                     <Link
                                         key={item.href}
                                         href={item.href}
-                                        className={`block px-2 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 ${pathname === item.href
+                                        className={`block px-2 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 ${pathname === item.href
                                             ? 'bg-[var(--brand-blue)] text-white'
                                             : 'text-black hover:bg-[var(--brand-blue)] hover:text-white'
                                             }`}
@@ -299,7 +301,7 @@ export default function Navbar() {
                             ))}
 
                             <div className="pt-4 mt-2 border-t border-gray-200 flex flex-col gap-2 flex-shrink-0">
-                                <Link href="/enquiry" className="inline-flex justify-center items-center gap-2 rounded-lg bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft" onClick={() => setMobileOpen(false)}>Enquire Now</Link>
+                                <Link href="/enquiry" className="inline-flex justify-center items-center gap-2 rounded-lg bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] transition-colors duration-300 px-5 py-2.5 font-bold shadow-soft" onClick={() => setMobileOpen(false)}>Enquire Now</Link>
                             </div>
                         </div>
                     </div>

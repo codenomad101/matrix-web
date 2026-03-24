@@ -15,8 +15,8 @@ export default function Felicitation() {
   return (
     <div className="container-page py-6">
       <div className="text-center mb-5">
-        <h1 className="text-3xl sm:text-4xl font-bold text-[#0a1a67] mb-3">Felicitation Ceremonies</h1>
-        <p className="text-[#0a1a67] text-lg">
+        <h1 className="text-3xl sm:text-4xl font-bold text-[var(--brand-red)] mb-3">Felicitation Ceremonies</h1>
+        <p className="text-[var(--brand-red)] text-lg">
           Celebrating the outstanding achievements of our students
         </p>
       </div>
@@ -24,7 +24,7 @@ export default function Felicitation() {
       <div className="space-y-12">
         {felicitationImages.map((item, idx) => (
           <div key={idx}>
-            <h2 className="text-3xl font-bold text-[#0a1a67] mb-5">{item.title}</h2>
+            <h2 className="text-3xl font-bold text-[var(--brand-red)] mb-5">{item.title}</h2>
             <div className="flex justify-center">
               <div className="rounded-2xl overflow-hidden shadow-lg max-w-4xl w-full">
                 <img 

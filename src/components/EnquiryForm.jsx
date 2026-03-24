@@ -108,25 +108,25 @@ _This enquiry was submitted through the website._`
       {!minimal && (
         <div className="sm:col-span-1">
           <label className="block text-sm font-medium text-body">Full Name</label>
-          <input required name="name" type="text" placeholder="Your name" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]" />
+          <input required name="name" type="text" placeholder="Your name" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]" />
         </div>
       )}
 
       <div className={minimal ? '' : 'sm:col-span-1'}>
         <label className="block text-sm font-medium text-body">Phone</label>
-        <input required name="phone" type="tel" placeholder="98765 43210" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]" />
+        <input required name="phone" type="tel" placeholder="98765 43210" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]" />
       </div>
 
       <div className={minimal ? '' : 'sm:col-span-1'}>
         <label className="block text-sm font-medium text-body">Email</label>
-        <input required name="email" type="email" placeholder="you@example.com" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]" />
+        <input required name="email" type="email" placeholder="you@example.com" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]" />
       </div>
 
       {!minimal && (
         <>
           <div className="sm:col-span-1">
             <label className="block text-sm font-medium text-body">Course</label>
-            <select name="course" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]">
+            <select name="course" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]">
               <option>IIT-JEE (Main/Advanced)</option>
               <option>MHT-CET</option>
               <option>NEET</option>
@@ -136,7 +136,7 @@ _This enquiry was submitted through the website._`
           </div>
           <div className="sm:col-span-1">
             <label className="block text-sm font-medium text-body">Preferred Branch</label>
-            <select name="branch" defaultValue={initialBranch} className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]">
+            <select name="branch" defaultValue={initialBranch} className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]">
               {BRANCH_OPTIONS.map((b) => (
                 <option key={b} value={b}>{b}</option>
               ))}
@@ -147,7 +147,7 @@ _This enquiry was submitted through the website._`
 
       <div className={minimal ? '' : 'sm:col-span-2'}>
         <label className="block text-sm font-medium text-body">Message</label>
-        <textarea name="message" rows={minimal ? 3 : 4} placeholder={messagePlaceholder} defaultValue={defaultMessage} className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#B30027] focus:border-[#B30027]"></textarea>
+        <textarea name="message" rows={minimal ? 3 : 4} placeholder={messagePlaceholder} defaultValue={defaultMessage} className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]"></textarea>
       </div>
 
       <div className={minimal ? 'flex flex-wrap gap-3' : 'sm:col-span-2 flex flex-wrap gap-3'}>
@@ -155,7 +155,7 @@ _This enquiry was submitted through the website._`
           type="submit"
           name="submitType"
           value="whatsapp"
-          className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] px-4 py-2.5 font-semibold text-sm transition-colors disabled:opacity-70"
+          className="inline-flex justify-center items-center gap-2 rounded-lg bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] px-4 py-2.5 font-semibold text-sm transition-colors disabled:opacity-70"
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Sending...' : 'Send via WhatsApp'}
@@ -164,12 +164,12 @@ _This enquiry was submitted through the website._`
           type="submit"
           name="submitType"
           value="email"
-          className="inline-flex justify-center items-center gap-2 rounded-lg border-2 border-[#0a1a67] bg-white text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white px-4 py-2.5 font-semibold text-sm transition-colors disabled:opacity-70"
+          className="inline-flex justify-center items-center gap-2 rounded-lg border-2 border-[var(--brand-red)] bg-white text-[var(--brand-red)] hover:bg-[var(--brand-red)] hover:text-white px-4 py-2.5 font-semibold text-sm transition-colors disabled:opacity-70"
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Sending...' : 'Submit via email'}
         </button>
-        <a href="tel:7058740609" className="inline-flex justify-center items-center gap-2 rounded-lg border-2 border-[#0a1a67] text-[#0a1a67] hover:bg-[#0a1a67] hover:text-white px-4 py-2.5 font-semibold text-sm transition-colors">Call Us</a>
+        <a href="tel:7058740609" className="inline-flex justify-center items-center gap-2 rounded-lg border-2 border-[var(--brand-red)] text-[var(--brand-red)] hover:bg-[var(--brand-red)] hover:text-white px-4 py-2.5 font-semibold text-sm transition-colors">Call Us</a>
       </div>
     </form>
   )
@@ -178,7 +178,7 @@ _This enquiry was submitted through the website._`
     return (
       <div>
         {submitError && (
-          <p className="mb-3 text-sm text-[#B30027]" role="alert">{submitError}</p>
+          <p className="mb-3 text-sm text-[var(--brand-red)]" role="alert">{submitError}</p>
         )}
         {formFields}
       </div>
@@ -193,7 +193,7 @@ _This enquiry was submitted through the website._`
           <p className="mt-1 text-body text-sm">Fill your details and choose how to send.</p>
 
           {submitError && (
-            <p className="mt-3 text-sm text-[#B30027]" role="alert">{submitError}</p>
+            <p className="mt-3 text-sm text-[var(--brand-red)]" role="alert">{submitError}</p>
           )}
 
           {formFields}

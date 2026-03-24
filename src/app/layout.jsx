@@ -148,6 +148,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning className={roboto.variable}>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var t=localStorage.getItem('msa-theme');if(t==='red'||t==='blue')document.documentElement.setAttribute('data-theme',t);else document.documentElement.setAttribute('data-theme','blue');}catch(e){document.documentElement.setAttribute('data-theme','blue');}})();",
+          }}
+        />
         {/* Google Search Console site verification - visible in view-source for verification */}
         <meta name="google-site-verification" content="kh5Lhw6qb0rfqtFJWhX370Jqb2lKsz75k3IeLPJGpDU" />
         {/* Google Tag Manager - as high in head as possible */}

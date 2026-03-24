@@ -62,20 +62,20 @@ export default function Performance() {
                 The number of students scoring above 99 percentile was 12.
               </p>
             </div>
-            <div className="page-card p-6 hover:-translate-y-1 transition-transform duration-300 border-2 border-[#0a1a67]/20">
+            <div className="page-card p-6 hover:-translate-y-1 transition-transform duration-300 border-2 border-[var(--brand-red)]/20">
               <div className="flex items-center justify-between mb-2">
                 <div className="text-4xl font-extrabold text-heading">36</div>
-                <div className="px-3 py-1 rounded-full bg-[#0a1a67]/10 text-[#0a1a67] text-sm font-bold">+200%</div>
+                <div className="px-3 py-1 rounded-full bg-[var(--brand-red)]/10 text-[var(--brand-red)] text-sm font-bold">+200%</div>
               </div>
               <div className="text-lg font-semibold text-body mb-3">Students in 2023</div>
               <p className="text-body text-sm">
                 The number increased significantly to 36 students, reflecting a growth of 200% from the previous year.
               </p>
             </div>
-            <div className="page-card p-6 hover:-translate-y-1 transition-transform duration-300 border-2 border-[#0a1a67]/20">
+            <div className="page-card p-6 hover:-translate-y-1 transition-transform duration-300 border-2 border-[var(--brand-red)]/20">
               <div className="flex items-center justify-between mb-2">
                 <div className="text-4xl font-extrabold text-heading">60</div>
-                <div className="px-3 py-1 rounded-full bg-[#0a1a67]/10 text-[#0a1a67] text-sm font-bold">+66.7%</div>
+                <div className="px-3 py-1 rounded-full bg-[var(--brand-red)]/10 text-[var(--brand-red)] text-sm font-bold">+66.7%</div>
               </div>
               <div className="text-lg font-semibold text-body mb-3">Students in 2024</div>
               <p className="text-body text-sm">
@@ -85,10 +85,10 @@ export default function Performance() {
           </div>
 
           {/* Summary Section */}
-          <div className="rounded-2xl bg-[#0a1a67]/5 p-8 sm:p-10 border border-gray-200/80">
+          <div className="rounded-2xl bg-[var(--brand-red)]/5 p-8 sm:p-10 border border-gray-200/80">
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 mb-4">
-                <svg className="w-6 h-6 text-[#0a1a67]" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-6 h-6 text-[var(--brand-red)]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 <h3 className="text-2xl font-bold text-heading">Achievement Summary</h3>

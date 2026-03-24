@@ -144,8 +144,8 @@ export default function GalleryPage() {
     return (
         <div className="container-page py-6">
             <div className="text-center mb-5">
-                <h1 className="text-3xl sm:text-4xl font-bold text-[#0a1a67] mb-3">Photo Gallery</h1>
-                <p className="text-[#0a1a67] text-lg">
+                <h1 className="text-3xl sm:text-4xl font-bold text-[var(--brand-red)] mb-3">Photo Gallery</h1>
+                <p className="text-[var(--brand-red)] text-lg">
                     Explore moments from our events, ceremonies, facilities, and student achievements
                 </p>
             </div>
@@ -157,8 +157,8 @@ export default function GalleryPage() {
                         key={cat.id}
                         onClick={() => setSelectedCategory(cat.id)}
                         className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 ${selectedCategory === cat.id
-                            ? 'bg-[#0a1a67] text-white shadow-lg scale-105'
-                            : 'bg-white text-[#0a1a67] border-2 border-[#0a1a67]/20 hover:border-[#0a1a67] hover:shadow-md hover:scale-105'
+                            ? 'bg-[var(--brand-red)] text-white shadow-lg scale-105'
+                            : 'bg-white text-[var(--brand-red)] border-2 border-[var(--brand-red)]/20 hover:border-[var(--brand-red)] hover:shadow-md hover:scale-105'
                             }`}
                     >
                         <span>{cat.icon}</span>
@@ -186,7 +186,7 @@ export default function GalleryPage() {
                                 quality="auto"
                             />
                             {/* Overlay on hover */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a67]/80 via-[#0a1a67]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div className="absolute inset-0 bg-gradient-to-t from-[var(--brand-red)]/80 via-[var(--brand-red)]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                 <div className="text-white text-center">
                                     <svg className="w-16 h-16 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
@@ -196,8 +196,8 @@ export default function GalleryPage() {
                             </div>
                         </div>
                         <div className="p-4">
-                            <h3 className="font-semibold text-[#0a1a67] text-lg">{image.title}</h3>
-                            <p className="text-sm text-[#0a1a67]/70 capitalize mt-1">{image.category}</p>
+                            <h3 className="font-semibold text-[var(--brand-red)] text-lg">{image.title}</h3>
+                            <p className="text-sm text-[var(--brand-red)]/70 capitalize mt-1">{image.category}</p>
                         </div>
                     </div>
                 ))}
@@ -205,7 +205,7 @@ export default function GalleryPage() {
 
             {filteredImages.length === 0 && (
                 <div className="text-center py-20">
-                    <p className="text-[#0a1a67] text-lg">No images found in this category.</p>
+                    <p className="text-[var(--brand-red)] text-lg">No images found in this category.</p>
                 </div>
             )}
 

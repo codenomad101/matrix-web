@@ -5,7 +5,7 @@ export default function IISERPage() {
     return (
         <div className="min-h-screen bg-[var(--bg-page)]">
             {/* Hero Section */}
-            <section className="bg-[#B30027] text-white py-8 md:py-12">
+            <section className="bg-[var(--brand-red)] text-white py-8 md:py-12">
                 <div className="container-page">
                     <div className="max-w-4xl mx-auto text-center">
                         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
@@ -24,9 +24,9 @@ export default function IISERPage() {
             {/* About IISER */}
             <section className="container-page py-5 md:py-7">
                 <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-6">About IISER</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-[var(--brand-red)] mb-6">About IISER</h2>
                     <div className="prose prose-lg max-w-none">
-                        <p className="text-[#0a1a67]/80 text-lg leading-relaxed mb-4">
+                        <p className="text-[var(--brand-red)]/80 text-lg leading-relaxed mb-4">
                             The Indian Institutes of Science Education and Research (IISERs) are a group of premier
                             autonomous public institutions in India, established by the Ministry of Education for
                             research and teaching in basic sciences. Currently, there are seven IISERs located in
@@ -101,7 +101,7 @@ export default function IISERPage() {
                             { icon: '💡', title: 'Innovation & Discovery', desc: 'Work on cutting-edge scientific problems' },
                             { icon: '🏛️', title: 'World-Class Faculty', desc: 'Learn from renowned scientists and researchers' }
                         ].map((item, idx) => (
-                            <div key={idx} className="bg-[#0a1a67]/5 rounded-xl p-6 hover:shadow-lg transition-all duration-300 border border-gray-200/80">
+                            <div key={idx} className="bg-[var(--brand-red)]/5 rounded-xl p-6 hover:shadow-lg transition-all duration-300 border border-gray-200/80">
                                 <div className="text-4xl mb-3">{item.icon}</div>
                                 <h3 className="text-xl font-bold text-heading mb-2">{item.title}</h3>
                                 <p className="text-body/80">{item.desc}</p>
@@ -150,7 +150,7 @@ export default function IISERPage() {
                             { title: 'Mentorship Program', desc: 'Guidance from IISER alumni and current students' }
                         ].map((item, idx) => (
                             <div key={idx} className="flex items-start gap-4 page-card p-6 hover:shadow-lg transition-all duration-300">
-                                <div className="flex-shrink-0 w-8 h-8 bg-[#B30027] rounded-full flex items-center justify-center text-white font-bold">
+                                <div className="flex-shrink-0 w-8 h-8 bg-[var(--brand-red)] rounded-full flex items-center justify-center text-white font-bold">
                                     {idx + 1}
                                 </div>
                                 <div>
@@ -166,7 +166,7 @@ export default function IISERPage() {
             {/* CTA Section */}
             <section className="page-section-gray">
                 <div className="container-page">
-                <div className="bg-[#0a1a67] rounded-2xl p-8 md:p-12 text-center text-white">
+                <div className="bg-[var(--brand-red)] rounded-2xl p-8 md:p-12 text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Pursue Research in Science?</h2>
                     <p className="text-lg md:text-xl mb-5 text-white/90">
                         Join Matrix Science Academy and achieve your dream of studying at IISER
@@ -174,13 +174,13 @@ export default function IISERPage() {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             href="/enquiry"
-                            className="inline-flex items-center justify-center gap-2 bg-[#B30027] text-white hover:bg-[#8a001e] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+                            className="inline-flex items-center justify-center gap-2 bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
                         >
                             Enquire Now
                         </Link>
                         <Link
                             href="/courses"
-                            className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#0a1a67] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105"
+                            className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-[var(--brand-red)] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105"
                         >
                             View All Courses
                         </Link>

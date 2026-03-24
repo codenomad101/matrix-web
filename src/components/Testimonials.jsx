@@ -67,7 +67,7 @@ export default function TestimonialsShowcase() {
         <div className="mt-8 text-center">
           <Link
             href="/testimonials"
-            className="text-[#B30027] font-medium hover:underline"
+            className="text-[var(--brand-red)] font-medium hover:underline"
           >
             View all success stories →
           </Link>
