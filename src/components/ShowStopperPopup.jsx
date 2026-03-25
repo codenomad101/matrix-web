@@ -132,31 +132,46 @@ export default function ShowStopperPopup() {
         className="relative w-full max-w-3xl rounded-xl shadow-xl overflow-hidden animate-fadeIn max-h-[min(92vh,640px)] overflow-y-auto border border-gray-200 bg-white"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Catchy blinking CTA strip */}
+        {/* Decorative background (red hue + Vriksha-style green tree) */}
         <div
-          className="register-now-blink flex items-center justify-center gap-2 py-2.5 px-3 bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 border-b-2 border-amber-400/80"
+          className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-[var(--brand-red)]/20 via-transparent to-transparent"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute -top-10 -right-10 z-0 w-40 h-40 rounded-full bg-[var(--brand-red)]/10 blur-2xl"
+          aria-hidden
+        />
+        {/* Floating red circles (animated background) */}
+        <div className="pointer-events-none absolute z-0 top-16 left-8 w-16 h-16 rounded-full bg-[var(--brand-red)]/15 blur-2xl red-orb-1" aria-hidden />
+        <div className="pointer-events-none absolute z-0 top-28 right-8 w-12 h-12 rounded-full bg-[var(--brand-red)]/15 blur-2xl red-orb-2" aria-hidden />
+        <div className="pointer-events-none absolute z-0 bottom-16 left-10 w-14 h-14 rounded-full bg-[var(--brand-red)]/15 blur-2xl red-orb-3" aria-hidden />
+
+        {/* Vriksha-style tree on the LEFT side */}
+        <div
+          className="pointer-events-none absolute left-0 top-20 z-0 flex items-end justify-start w-[50%] min-w-[160px]"
+          aria-hidden
         >
-          <span className="text-lg" aria-hidden>
-            ✨
-          </span>
-          <span className="font-black text-[var(--brand-red)] text-sm sm:text-base tracking-[0.12em] uppercase">
-            Register now
-          </span>
-          <span className="text-lg" aria-hidden>
-            ✨
-          </span>
+          <div className="vriksha-tree-bg flex items-end justify-center w-full max-w-[240px] h-[160px] sm:h-[170px] opacity-80">
+            <svg viewBox="0 0 80 100" className="w-full h-full text-emerald-500/50 drop-shadow-sm" fill="currentColor">
+              <path d="M40 8 L72 48 L40 42 L8 48 Z" fill="currentColor" opacity="0.9" />
+              <path d="M40 22 L66 58 L40 52 L14 58 Z" fill="currentColor" opacity="0.85" />
+              <path d="M40 36 L60 68 L40 62 L20 68 Z" className="text-emerald-600" fill="currentColor" opacity="0.9" />
+              <path d="M40 50 L54 78 L40 72 L26 78 Z" className="text-emerald-600" fill="currentColor" />
+              <path d="M34 72 L46 72 L44 98 L36 98 Z" className="text-amber-700" fill="currentColor" opacity="0.9" />
+            </svg>
+          </div>
         </div>
 
-        <div className="flex items-center justify-between gap-3 px-4 py-3 bg-gradient-to-r from-[var(--brand-red)] to-[var(--brand-red)]">
+        <div className="relative z-10 flex items-center justify-between gap-3 px-4 py-3 bg-white border-b border-gray-100">
           <div className="min-w-0 flex items-center gap-2">
-            <span className="hidden sm:flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/15 text-white" aria-hidden>
+            <span className="hidden sm:flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--brand-red)]/10 text-[var(--brand-red)]" aria-hidden>
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
               </svg>
             </span>
             <div>
-              <p className="text-[10px] uppercase tracking-wide text-white/80">Matrix Science Academy</p>
-              <h2 id="showstopper-title" className="text-white text-sm sm:text-base font-bold leading-tight">
+              <p className="text-[10px] uppercase tracking-wide text-gray-500">Matrix Science Academy</p>
+              <h2 id="showstopper-title" className="text-[var(--brand-red)] text-sm sm:text-base font-bold leading-tight">
                 Counselling &amp; scholarships — register free
               </h2>
             </div>
@@ -164,7 +179,7 @@ export default function ShowStopperPopup() {
           <button
             type="button"
             onClick={handleClose}
-            className="shrink-0 w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center text-xl leading-none"
+            className="shrink-0 w-9 h-9 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center text-xl leading-none border border-gray-200"
             aria-label="Close"
           >
             ×
@@ -172,7 +187,7 @@ export default function ShowStopperPopup() {
         </div>
 
         {!submitted ? (
-          <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(280px,320px)] md:divide-x divide-gray-200">
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(280px,320px)] gap-4 md:gap-6">
             <div className="p-4 md:p-5 text-sm">
               <p className="text-heading font-semibold text-sm leading-snug">
                 Free academic counselling every Saturday — register for free.
@@ -183,18 +198,35 @@ export default function ShowStopperPopup() {
               <p className="mt-2 text-xs text-body leading-relaxed">
                 We also offer scholarships — register to know more.
               </p>
-              <p className="mt-3 text-[11px] text-gray-500">
-                <Link href="/counseling" className="text-[var(--brand-red)] font-medium hover:underline" onClick={handleClose}>
-                  Counselling
-                </Link>
-                {' · '}
-                <Link href="/scholarships" className="text-[var(--brand-red)] font-medium hover:underline" onClick={handleClose}>
-                  Scholarships
-                </Link>
-              </p>
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                <span className="text-[11px] text-gray-500">
+                  <Link
+                    href="/counseling"
+                    className="text-[var(--brand-red)] font-medium hover:underline"
+                    onClick={handleClose}
+                  >
+                    Counselling
+                  </Link>
+                  <span className="text-gray-400">·</span>
+                  <Link
+                    href="/scholarships"
+                    className="text-[var(--brand-red)] font-medium hover:underline"
+                    onClick={handleClose}
+                  >
+                    Scholarships
+                  </Link>
+                </span>
+
+                {/* Small blinking badge placed next to the links */}
+                <span
+                  className="register-now-blink inline-flex items-center justify-center rounded-full border border-[var(--brand-red)]/30 bg-[var(--brand-red)]/10 px-3 py-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.12em] text-[var(--brand-red)] whitespace-nowrap"
+                >
+                  REGISTER NOW
+                </span>
+              </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-4 md:p-5 flex flex-col gap-3 bg-gray-50/60 md:bg-white">
+            <form onSubmit={handleSubmit} className="p-4 md:p-5 flex flex-col gap-3">
               <div className="space-y-2.5">
                 <div>
                   <label htmlFor="showstopper-email" className="flex items-center gap-1.5 text-[11px] font-medium text-body mb-1">
@@ -285,7 +317,7 @@ export default function ShowStopperPopup() {
             </form>
           </div>
         ) : (
-          <div className="p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-t border-gray-100">
+          <div className="relative z-10 p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-t border-gray-100">
             <div className="flex gap-3">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--brand-red)]/15 text-[var(--brand-red)]" aria-hidden>
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -313,17 +345,34 @@ export default function ShowStopperPopup() {
       <style jsx>{`
         @keyframes registerNowBlink {
           0%,
-          100% {
-            opacity: 1;
-            filter: brightness(1);
-          }
-          50% {
-            opacity: 0.88;
-            filter: brightness(1.08);
-          }
+          100% { opacity: 1; }
+          50% { opacity: 0.68; }
         }
         .register-now-blink {
           animation: registerNowBlink 1.15s ease-in-out infinite;
+        }
+
+        @keyframes redOrbFloat1 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.9; }
+          50% { transform: translate(12px, -10px); opacity: 1; }
+        }
+        @keyframes redOrbFloat2 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.85; }
+          50% { transform: translate(-10px, 14px); opacity: 1; }
+        }
+        @keyframes redOrbFloat3 {
+          0%, 100% { transform: translate(0, 0); opacity: 0.8; }
+          50% { transform: translate(8px, 10px); opacity: 1; }
+        }
+
+        .red-orb-1 {
+          animation: redOrbFloat1 6.5s ease-in-out infinite;
+        }
+        .red-orb-2 {
+          animation: redOrbFloat2 8s ease-in-out infinite;
+        }
+        .red-orb-3 {
+          animation: redOrbFloat3 7.2s ease-in-out infinite;
         }
       `}</style>
     </div>

@@ -449,7 +449,7 @@ function WhatsTrendingCarousel() {
       <div className="relative rounded-xl overflow-hidden border border-gray-300 bg-white min-h-[220px] sm:min-h-[260px] shadow-sm">
         <div className="flex overflow-hidden transition-transform duration-500 ease-out" style={{ width: `${TRENDING_SLIDES.length * 100}%`, transform: `translateX(-${index * (100 / TRENDING_SLIDES.length)}%)` }}>
           {TRENDING_SLIDES.map((slide, i) => (
-            <div key={i} className="flex-shrink-0 flex flex-row p-4 sm:p-5 md:p-6 gap-3 sm:gap-4 md:gap-6 items-center" style={{ width: `${100 / TRENDING_SLIDES.length}%` }}>
+            <div key={i} className="flex-shrink-0 flex flex-col sm:flex-row p-4 sm:p-5 md:p-6 gap-3 sm:gap-4 md:gap-6 items-center" style={{ width: `${100 / TRENDING_SLIDES.length}%` }}>
               <div className="flex-1 flex flex-col justify-center min-w-0">
                 <span className="inline-block w-fit rounded-full bg-gray-200 text-gray-800 text-xs sm:text-sm font-semibold px-3 py-1 mb-2">
                   {slide.label}
@@ -848,7 +848,7 @@ function FeaturesAndNewsSection() {
   return (
     <section className="home-section bg-white">
       <div className="container-page">
-      <div className="grid grid-cols-[65%_35%] gap-4 md:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-[65%_35%] gap-4 md:gap-6">
         {/* Left – What's Trending (65%) */}
         <div className="min-w-0">
           <WhatsTrendingCarousel />

@@ -17,8 +17,15 @@ const roboto = Roboto({
   variable: '--font-roboto',
 })
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+}
+
 export const metadata = {
   metadataBase: new URL('https://www.matrixscienceacademy.com'),
+
   title: {
     default: 'Matrix Science Academy | Leading IIT-JEE, NEET, MHT-CET Coaching in Pune',
     template: '%s | Matrix Science Academy',
@@ -208,6 +215,4 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </html>
   )
 }
-
-
 

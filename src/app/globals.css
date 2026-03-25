@@ -37,6 +37,21 @@ html, body {
 	overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
+/* Mobile safety: prevent images/forms from overflowing containers */
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+input, select, textarea {
+	max-width: 100%;
+}
+
+button {
+	max-width: 100%;
+}
+
 /* Uniform font: sans-serif everywhere, important so nothing overrides */
 html {
 	font-family: var(--font-sans) !important;
