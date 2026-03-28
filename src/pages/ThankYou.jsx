@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function ThankYou() {
   return (
-    <div className="min-h-screen bg-[var(--bg-page)]">
+    <div className="min-h-screen bg-white">
       <section className="page-section-white">
         <div className="container-page py-8 text-center">
           <h1 className="text-3xl font-bold text-heading">Thank you!</h1>

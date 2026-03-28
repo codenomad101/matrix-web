@@ -129,7 +129,7 @@ function HeroUspTimeline() {
 
 export default function HeroUsps() {
   return (
-    <section className="relative bg-[var(--bg-page)]" aria-labelledby="hero-usps-heading">
+    <section className="relative bg-white" aria-labelledby="hero-usps-heading">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" aria-hidden />
       <div className="container-page px-4 py-10 sm:px-6 sm:py-12 md:py-14">
         <div className="mx-auto max-w-3xl text-center">

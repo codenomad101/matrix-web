@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function ScholarshipsPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg-page)]">
+    <main className="min-h-screen bg-white">
       <section className="page-section-white">
         <div className="container-page max-w-4xl">
           <h1 className="text-3xl md:text-4xl font-bold text-heading mb-4">Scholarships</h1>

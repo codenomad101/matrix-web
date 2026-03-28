@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function VrikshaPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg-page)]">
+    <main className="min-h-screen bg-white">
       <section className="page-section-white">
         <div className="container-page max-w-4xl">
           <span className="inline-block px-3 py-1 rounded-full bg-[var(--brand-red)] text-white text-sm font-bold uppercase tracking-wide mb-4">New Program</span>

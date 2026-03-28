@@ -204,7 +204,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Navbar />
-        <main className="flex-1">
+        <main className="flex-1 bg-white">
           {children}
         </main>
         <Footer />

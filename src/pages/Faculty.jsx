@@ -7,7 +7,7 @@ export default function Faculty() {
   const facultyImageId = 'v1765176351/faculties_lyaigl'
 
   return (
-    <div className="min-h-screen bg-[var(--bg-page)]">
+    <div className="min-h-screen bg-white">
       <section className="page-section-white">
         <div className="container-page">
           <div className="text-center max-w-3xl mx-auto mb-5">
@@ -29,7 +29,7 @@ export default function Faculty() {
         </div>
       </section>
 
-      <section className="border-t border-gray-200 bg-[var(--bg-page)]">
+      <section className="border-t border-gray-200 bg-white">
         <div className="container-page py-6 md:py-10">
           <GallerySection headingLevel="h2" />
         </div>

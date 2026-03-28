@@ -66,7 +66,7 @@ export default function Activities() {
   ]
 
   return (
-    <div className="min-h-screen bg-[var(--bg-page)]">
+    <div className="min-h-screen bg-white">
       <section className="page-section-white">
         <div className="container-page">
           <div className="text-center mb-6">

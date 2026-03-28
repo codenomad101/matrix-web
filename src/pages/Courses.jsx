@@ -10,7 +10,7 @@ export default function Courses() {
     { id: 'board', title: '8th–12th Boards', href: '/courses', desc: 'Boards-aligned lectures, notes, and focused writing practice.' },
   ]
   return (
-    <div className="min-h-screen bg-[var(--bg-page)]">
+    <div className="min-h-screen bg-white">
       <section className="page-section-white">
         <div className="container-page">
           <h1 className="text-3xl md:text-4xl font-bold text-heading mb-5">Courses</h1>

@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function MHTCETPage() {
     return (
-        <div className="min-h-screen bg-[var(--bg-page)]">
+        <div className="min-h-screen bg-white">
             {/* Hero Section */}
             <section className="bg-[var(--brand-red)] text-white py-8 md:py-12">
                 <div className="container-page">

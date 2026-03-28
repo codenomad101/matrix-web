@@ -1157,7 +1157,7 @@ const COUNSELING_PANEL_BG = 'bg-[#0a1628]'
 
 function CounselingFormRow() {
   return (
-    <section className="bg-[var(--bg-page)] py-10 md:py-14 lg:py-16">
+    <section className="bg-white py-10 md:py-14 lg:py-16">
       <div className="container-page px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-10 sm:gap-12 md:gap-14 lg:grid-cols-2 lg:items-stretch lg:gap-x-12 xl:gap-x-16 2xl:gap-x-20">
           {/* Left — stacked: dark blue top + methodology (page body background) */}
@@ -1204,7 +1204,7 @@ function CounselingFormRow() {
             </div>
 
             <div
-              className="bg-[var(--bg-page)] px-6 py-8 sm:px-8 sm:py-10 md:py-11"
+              className="bg-white px-6 py-8 sm:px-8 sm:py-10 md:py-11"
               aria-labelledby="methodology-heading"
             >
               <div className="mx-auto max-w-4xl text-center">

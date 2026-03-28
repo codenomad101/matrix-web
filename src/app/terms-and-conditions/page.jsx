@@ -6,7 +6,7 @@ export const metadata = {
 
 export default function TermsAndConditionsPage() {
   return (
-    <div className="min-h-screen bg-[var(--bg-page)]">
+    <div className="min-h-screen bg-white">
       <section className="page-section-white">
         <div className="container-page max-w-3xl mx-auto">
           <h1 className="text-3xl font-bold text-heading mb-6">Terms &amp; Conditions</h1>

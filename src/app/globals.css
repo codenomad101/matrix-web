@@ -82,9 +82,9 @@ body {
 	font-family: inherit !important;
 }
 
-/* Body: hero-style rhythm (16px base, relaxed leading) */
+/* Body: white canvas (matches hero); footer uses --bg-page for contrast */
 body {
-	background: var(--bg-page);
+	background: #ffffff;
 	color: var(--body);
 	@apply antialiased;
 	font-size: 16px;

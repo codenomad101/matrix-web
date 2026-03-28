@@ -110,7 +110,7 @@ export default function CoursesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--bg-page)]">
+    <div className="min-h-screen bg-white">
       {/* Red Hero Strip */}
       <section className="bg-[var(--brand-red)] text-white py-8 md:py-12">
         <div className="container-page text-center">

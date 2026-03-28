@@ -12,7 +12,7 @@ export default function Gallery() {
   ]
 
   return (
-    <div className="min-h-screen bg-[var(--bg-page)]">
+    <div className="min-h-screen bg-white">
       <section className="page-section-white">
         <div className="container-page">
           <h1 className="text-3xl md:text-4xl font-bold text-heading mb-2">Photo Gallery</h1>

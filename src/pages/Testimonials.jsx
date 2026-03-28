@@ -33,7 +33,7 @@ const items = [
 
 export default function Testimonials() {
   return (
-    <div className="min-h-screen bg-[var(--bg-page)]">
+    <div className="min-h-screen bg-white">
       <section className="page-section-white">
         <div className="container-page">
           <h1 className="text-3xl font-bold mb-2 text-heading">Testimonials</h1>
