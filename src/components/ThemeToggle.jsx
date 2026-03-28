@@ -14,7 +14,7 @@ function applyTheme(theme) {
   }
 }
 
-export default function ThemeToggle() {
+export default function ThemeToggle({ variant = 'dark' }) {
   const [theme, setTheme] = useState('blue')
 
   useLayoutEffect(() => {
@@ -50,6 +50,8 @@ export default function ThemeToggle() {
 
   const isRed = theme === 'red'
 
+  const light = variant === 'light'
+
   return (
     <button
       type="button"
@@ -58,11 +60,19 @@ export default function ThemeToggle() {
       aria-label={isRed ? 'Switch to blue theme' : 'Switch to red theme'}
       onClick={toggle}
       suppressHydrationWarning
-      className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+      className={
+        light
+          ? 'inline-flex items-center gap-1.5 rounded-full border border-gray-300 bg-gray-50 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-black/80 hover:bg-gray-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-red)]/30'
+          : 'inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80'
+      }
     >
       <span className={!isRed ? 'opacity-100' : 'opacity-60'}>Blue</span>
       <span
-        className="relative h-5 w-9 shrink-0 rounded-full bg-white/25 transition-colors"
+        className={
+          light
+            ? 'relative h-5 w-9 shrink-0 rounded-full bg-gray-200 transition-colors'
+            : 'relative h-5 w-9 shrink-0 rounded-full bg-white/25 transition-colors'
+        }
         aria-hidden
       >
         <span

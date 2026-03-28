@@ -100,7 +100,7 @@ export default function Results() {
 
           {/* Year-wise progression */}
           <div className="mb-8 rounded-2xl border border-gray-200 bg-gray-50 overflow-hidden">
-            <h2 className="text-lg font-bold text-heading px-6 py-4 border-b border-gray-200">Year-wise performance</h2>
+            <h2 className="text-left text-lg font-bold text-heading px-6 py-4 border-b border-gray-200">Year-wise performance</h2>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>

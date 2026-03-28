@@ -40,9 +40,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-roboto)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['var(--font-roboto)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        body: ['var(--font-roboto)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        body: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         'h1': ['clamp(2.25rem, 2.5vw + 1rem, 2.625rem)', { lineHeight: '1.2' }],
@@ -56,6 +56,40 @@ module.exports = {
       },
       transitionTimingFunction: {
         smooth: 'cubic-bezier(0.22, 1, 0.36, 1)',
+      },
+      keyframes: {
+        headerTicker: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        vrikshaMarquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        vrikshaTreeSway: {
+          '0%, 100%': { transform: 'rotate(-2deg)' },
+          '50%': { transform: 'rotate(2deg)' },
+        },
+        vrikshaTreeShimmer: {
+          '0%, 100%': { opacity: '0.88', transform: 'scale(1)' },
+          '50%': { opacity: '1', transform: 'scale(1.03)' },
+        },
+        heroUspBorderSpin: {
+          '0%': { transform: 'translate(-50%, -50%) rotate(0deg)' },
+          '100%': { transform: 'translate(-50%, -50%) rotate(360deg)' },
+        },
+        heroUspItemIn: {
+          '0%': { opacity: '0', transform: 'translateY(14px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        headerTicker: 'headerTicker 38s linear infinite',
+        vrikshaMarquee: 'vrikshaMarquee 36s linear infinite',
+        vrikshaTreeSway: 'vrikshaTreeSway 5.5s ease-in-out infinite',
+        vrikshaTreeShimmer: 'vrikshaTreeShimmer 4s ease-in-out infinite',
+        heroUspBorderSpin: 'heroUspBorderSpin 10s linear infinite',
+        heroUspItemIn: 'heroUspItemIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards',
       },
     },
   },

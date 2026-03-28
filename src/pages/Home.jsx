@@ -2,8 +2,10 @@
 import Link from 'next/link'
 import { Suspense, useEffect, useRef, useState } from 'react'
 import HeroSlider from '../components/HeroSlider.jsx'
+import HeroUsps from '../components/HeroUsps.jsx'
+import AcademicVrikshaMethodology from '@/components/AcademicVrikshaMethodology.jsx'
 import OptimizedImage from '@/components/OptimizedImage'
-import FeaturesSection from '@/components/featuresSection.jsx'
+// import FeaturesSection from '@/components/featuresSection.jsx'
 import TestimonialsShowcase from '@/components/Testimonials.jsx'
 import EnquiryForm from '@/components/EnquiryForm.jsx'
 
@@ -65,8 +67,8 @@ function LatestNewsSection() {
       <div className="bg-box-bg rounded-2xl shadow-lg overflow-hidden border border-gray-200/60">
         <div className="grid md:grid-cols-[300px_1fr] lg:grid-cols-[350px_1fr]">
           {/* Left Side - Title and Description */}
-          <div className="bg-[var(--brand-red)] p-6 md:p-8 flex flex-col justify-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+          <div className="bg-[var(--brand-red)] p-6 md:p-8 flex flex-col justify-center text-left">
+            <h2 className="text-left text-2xl md:text-3xl font-bold text-white mb-3">
               Latest News & Updates
             </h2>
             <p className="text-white/80 text-sm md:text-base">
@@ -129,8 +131,10 @@ function OverviewSection() {
 
   return (
     <section className="container-page py-6 md:py-8">
-      <div className="mb-6">
-        <h2 className="text-4xl font-semibold text-[var(--brand-red)] py-2">Overview and Features</h2>
+      <div className="mb-6 text-center">
+        <h2 className="text-3xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl md:text-[2rem] md:leading-tight">
+          Overview and Features
+        </h2>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
@@ -156,7 +160,14 @@ function OverviewSection() {
 }
 
 // Results Image Slider Component
-function ResultsImageSlider({ visibleCount = 2, showControls = true, showDots = true, heightClassName = 'h-[280px] md:h-[350px] lg:h-[400px]', framed = true } = {}) {
+function ResultsImageSlider({
+  visibleCount = 2,
+  showControls = true,
+  showDots = true,
+  heightClassName = 'h-[280px] md:h-[350px] lg:h-[400px]',
+  framed = true,
+  className = 'relative overflow-hidden rounded-2xl',
+} = {}) {
   const [offset, setOffset] = useState(0)
   const images = [
     { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/v1763783015/5_c2lqwx.jpg', alt: 'Results image 1' },
@@ -173,7 +184,7 @@ function ResultsImageSlider({ visibleCount = 2, showControls = true, showDots = 
   }, [images.length, maxOffset])
 
   return (
-    <div className="relative overflow-hidden rounded-2xl">
+    <div className={className}>
       {/* Row of images - multiple visible, sliding as a group to the right; no white bg */}
       <div className={`relative ${heightClassName} overflow-hidden`}>
         <div
@@ -363,16 +374,16 @@ function ResultsSection({ topResults }) {
   return (
     <section className="py-6 md:py-8" ref={sectionRef}>
       <div className="container-page">
-        <div className="flex items-center justify-between mb-2 flex-col sm:flex-row gap-3 sm:gap-0">
-          <h2 className="text-2xl md:text-3xl font-bold text-left text-heading mb-0">
-            One of the <span className="text-body/90">Leading and most successful</span> Institutions in Pune
+        <div className="mb-6 flex flex-col items-center gap-4 text-center sm:mb-8">
+          <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-neutral-900 mb-0 max-w-3xl">
+            One of the <span className="text-neutral-600">Leading and most successful</span> Institutions in Pune
           </h2>
           <Link href="/results" className="inline-flex items-center gap-2 rounded-lg bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] transition-all duration-300 text-sm sm:text-base px-4 py-2 sm:px-5 sm:py-2.5 font-semibold">View All Results</Link>
         </div>
 
         {/* Results Image Slider - site background only, no white block */}
         <div className="mb-0">
-          <h3 className="text-lg md:text-xl font-bold text-[var(--brand-red)] mb-3">Results &amp; Achievements Gallery</h3>
+          <h3 className="text-center text-lg md:text-xl font-bold text-[var(--brand-red)] mb-3">Results &amp; Achievements Gallery</h3>
           <ResultsImageSlider />
         </div>
       </div>
@@ -534,7 +545,7 @@ const BLOG_CARDS = [
     href: '#',
   },
   {
-    title: 'Free career counselling and demo classes',
+    title: 'Free career counselling',
     description: 'Not sure which course to choose? Book a free counselling session at Matrix Science Academy.',
     image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_280,c_fill,q_auto,f_auto/v1764181864/A_dbzo2c.jpg',
     label: 'Counselling',
@@ -652,134 +663,145 @@ function BlogsSection() {
   )
 }
 
-// Tabbed Courses Section – NEET first, active tab red
-const COURSES_TAB_DATA = [
-  {
-    id: 'neet',
-    name: 'NEET',
-    href: '/courses/neet',
-    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_600,h_400,c_fit,q_auto,f_auto/v1764181879/B_r8gw6s.jpg',
-    heading: 'NEET – Medical Entrance',
-    description: 'Targeted preparation for the National Eligibility cum Entrance Test for MBBS, BDS, and AYUSH courses. We emphasize conceptual clarity in Biology, Chemistry, and Physics, along with extensive practice and revision cycles. Our results speak for the quality of coaching and mentorship we provide.',
-  },
+function IconCourseTarget({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="6" />
+      <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
+function IconCoursePhone({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+      <rect x="7" y="3" width="10" height="18" rx="2" />
+      <path strokeLinecap="round" d="M12 17h.01" />
+    </svg>
+  )
+}
+function IconCourseMedical({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+    </svg>
+  )
+}
+function IconCourseAtom({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+      <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" />
+      <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
+    </svg>
+  )
+}
+function IconCourseGrad({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+    </svg>
+  )
+}
+
+// Static grid — matches Academic Programs / Our Courses reference (colored card border, red icons & bullets, blue CTA)
+const OUR_COURSES_GRID = [
   {
     id: 'iit-jee',
-    name: 'IIT-JEE',
     href: '/courses/iit-jee',
-    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_500,c_fill,q_auto,f_auto/v1763786335/output_faqujd',
-    heading: 'IIT-JEE (Main & Advanced)',
-    description: 'Comprehensive preparation for India\'s premier engineering entrance. Our structured program covers JEE Main and Advanced with concept clarity, rigorous test series, and personalized doubt-solving. We focus on building strong fundamentals in Physics, Chemistry, and Mathematics to help students secure top ranks and admissions to IITs, NITs, and IIITs.',
+    title: 'IIT-JEE (Main/Advanced)',
+    description: 'Concept mastery, problem-solving drills, and test series.',
+    bullets: ['JEE Main: Jan & Apr', 'JEE Advanced: May', '30% increase in admissions'],
+    Icon: IconCourseTarget,
+    borderClass: 'border-sky-300',
   },
   {
     id: 'mht-cet',
-    name: 'MHT-CET',
     href: '/courses/mht-cet',
-    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_500,c_fill,q_auto,f_auto/v1763783015/5_c2lqwx.jpg',
-    heading: 'MHT-CET Preparation',
-    description: 'Maharashtra\'s premier entrance exam for engineering and pharmacy admissions. Our MHT-CET program combines in-depth syllabus coverage with state-specific strategy, regular full-length mocks, and performance analytics. Students benefit from small batches and expert faculty to achieve top percentiles.',
+    title: 'MHT-CET',
+    description: 'Speed-focused practice, previous year analysis, and revision.',
+    bullets: ['Conducted in May', 'State Level Competition', '86 students scored 99+ %ile'],
+    Icon: IconCoursePhone,
+    borderClass: 'border-orange-300',
+  },
+  {
+    id: 'neet',
+    href: '/courses/neet',
+    title: 'NEET',
+    description: 'NCERT-first approach, weekly assessments, and mentorship.',
+    bullets: ['Conducted in May', 'Perfect Scores', 'Multiple MBBS admissions'],
+    Icon: IconCourseMedical,
+    borderClass: 'border-emerald-300',
   },
   {
     id: 'iiser',
-    name: 'IISER',
     href: '/courses/iiser',
-    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_600,h_400,c_fit,q_auto,f_auto/v1764181786/IIT_knkkka.jpg',
-    heading: 'IISER Foundation',
-    description: 'For students aiming at the Indian Institutes of Science Education and Research and other research-oriented programs. Our IISER track builds strong foundations in science and mathematics, aligned with JEE Advanced and KVPY preparation, to help students excel in competitive and research pathways.',
+    title: 'IISER Foundation',
+    description: 'Early research aptitude and strong science fundamentals.',
+    bullets: ['Research-focused', 'Via JEE Adv/KVPY', 'Pure sciences'],
+    Icon: IconCourseAtom,
+    borderClass: 'border-violet-300',
   },
   {
-    id: 'vriksha',
-    name: 'VRIKSHA',
-    href: '/vriksha',
-    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_600,h_400,c_fit,q_auto,f_auto/v1764181864/A_dbzo2c.jpg',
-    heading: 'VRIKSHA – Holistic Growth',
-    description: 'Our newest program designed to nurture overall development—strong academics, mental strength, sports, and competitive focus. VRIKSHA combines structured learning with holistic activities to build confident, well-rounded students ready for future success.',
+    id: 'boards',
+    href: '/courses',
+    title: '8th–12th Boards',
+    description: 'Boards-aligned lectures, notes, and focused writing practice.',
+    bullets: ['State & CBSE Boards', 'Writing Practice', 'Score Maximization'],
+    Icon: IconCourseGrad,
+    borderClass: 'border-amber-300',
   },
 ]
 
 function CoursesTabSection() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const course = COURSES_TAB_DATA[activeIndex]
-
   return (
-    <section className="home-section">
-      <div className="container-page max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="home-section-title">Our Courses</h2>
-
-        {/* Tabs: active = red bg + white text, inactive = dark text only */}
-        <div className="flex flex-wrap gap-4 md:gap-6 mb-8">
-          {COURSES_TAB_DATA.map((tab, i) => (
-            <button
-              key={tab.id}
-              type="button"
-              onClick={() => setActiveIndex(i)}
-              className={`px-5 py-3 text-sm font-bold transition-all duration-200 ${
-                i === activeIndex
-                  ? 'bg-[var(--brand-red)] text-white rounded border-b-2 border-[var(--brand-red)]'
-                  : 'text-gray-800 bg-transparent hover:text-gray-600'
-              }`}
-            >
-              {tab.name}
-            </button>
-          ))}
+    <section className="bg-white py-10 md:py-14">
+      <div className="container-page">
+        <div className="mx-auto mb-10 max-w-3xl text-center md:mb-12">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#e11d48] md:text-sm">Academic Programs</p>
+          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-[#1e3a8a] md:text-4xl">Our Courses</h2>
+          <p className="mt-3 text-base text-neutral-600 md:text-lg leading-relaxed">
+            Comprehensive preparation for competitive examinations with structured curriculum and expert faculty.
+          </p>
         </div>
 
-        {/* Content: image LEFT, text RIGHT – two columns, clean alignment */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-stretch bg-white rounded-2xl border border-gray-200/80 overflow-hidden shadow-sm">
-          {/* Left column – full-color image, label bottom-right */}
-          <Link href={course.href} className="relative block min-h-[260px] md:min-h-[320px] bg-gray-200">
-            <img
-              src={course.image}
-              alt={course.heading}
-              className="w-full h-full object-cover"
-            />
-            <span className="absolute bottom-4 right-4 text-white text-lg font-bold drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)]">
-              {course.name}
-            </span>
-          </Link>
-
-          {/* Right column – heading (bold) + paragraph (lighter, smaller) */}
-          <div className="flex flex-col justify-center p-6 md:p-8">
-            <h3 className="home-section-subtitle">{course.heading}</h3>
-            <p className="home-section-body mb-5">{course.description}</p>
-            <Link
-              href={course.href}
-              className="inline-flex items-center gap-2 text-gray-800 font-semibold hover:underline text-sm"
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {OUR_COURSES_GRID.map((c) => (
+            <article
+              key={c.id}
+              className={`group flex h-full flex-col rounded-2xl border-2 ${c.borderClass} bg-white p-5 shadow-md transition hover:shadow-lg`}
             >
-              Learn more
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </Link>
-          </div>
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-red-100 bg-white text-[#dc2626] shadow-sm">
+                <c.Icon className="h-6 w-6" />
+              </div>
+              <h3 className="mt-4 text-left text-lg font-bold leading-snug text-neutral-900">{c.title}</h3>
+              <p className="mt-2 flex-1 text-left text-sm leading-relaxed text-neutral-600">{c.description}</p>
+              <ul className="mt-4 space-y-2.5 text-left text-sm text-neutral-800">
+                {c.bullets.map((b) => (
+                  <li key={b} className="flex gap-2.5">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#dc2626]" aria-hidden />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={c.href}
+                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border-2 border-blue-600 bg-white py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-blue-50"
+              >
+                Learn More
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </article>
+          ))}
         </div>
       </div>
     </section>
   )
 }
-
-// Two promo cards below Our Courses: Choosing Right Academic Support + Enter Matrix Science Academy (reference design)
-const ACADEMIC_SUPPORT_CARDS = [
-  {
-    title: 'Choosing the Right Academic Support Can Be Challenging',
-    tagline: '',
-    subTagline: '',
-    description: 'As a parent, you want the best for your child, but navigating the education landscape is tough. Between choosing the right institute, ensuring concept clarity, managing exam pressure, and keeping motivation high-it can feel overwhelming.',
-    trustLine: 'Trusted by thousands of students and parents across Pune.',
-    cta: 'Explore now',
-    href: '/counseling',
-    image: 'https://images.unsplash.com/photo-1692269726203-fa0d613eec37?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGluZGlzbiUyMGF0dXNlbnRzJTIwY2hpbGRyZW4lMjBpbiUyMHNjaG9vbHxlbnwwfHwwfHx8MA%3D%3D',
-    imageAlt: 'Students and academic success',
-  },
-  {
-    title: 'Enter Matrix Science Academy',
-    tagline: '',
-    subTagline: '',
-    description: 'We\'ve built an ecosystem specifically designed to address these challenges. We partner with parents to provide transparent, structured, and highly effective academic coaching that turns stress into success.',
-    trustLine: 'One of the leading coaching institutions in Pune.',
-    cta: 'Explore now',
-    href: '/about',
-    image: 'https://images.pexels.com/photos/1720186/pexels-photo-1720186.jpeg',
-    imageAlt: 'Matrix Science Academy achievements',
-  },
-]
 
 // Combined Features & News Section (What's Trending + Latest News + Our Courses)
 function FeaturesAndNewsSection() {
@@ -877,7 +899,7 @@ function FeaturesAndNewsSection() {
         </div>
       </div>
 
-      {/* Courses Section - horizontal slider (left to right) */}
+      {/* Our Courses – All Programs (horizontal slider) — hidden
       <div className="mt-8">
         <h2 className="home-section-title mb-2">Our Courses – All Programs</h2>
         <p className="home-section-body max-w-2xl mb-6">Comprehensive preparation for competitive examinations.</p>
@@ -890,9 +912,7 @@ function FeaturesAndNewsSection() {
                 href={course.href || `/courses/${course.id}`}
                 className="rounded-2xl border border-gray-200/80 bg-white p-3 sm:p-5 shadow-sm hover:border-[var(--brand-red)]/30 hover:shadow-md hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden block flex-shrink-0 w-[280px] sm:w-[320px]"
               >
-                {/* Layout: Left text content, right image (tilted box) */}
                 <div className="relative z-10 flex items-stretch h-full">
-                  {/* Left content */}
                   <div className="flex-1 pr-2 sm:pr-4 flex flex-col justify-between min-w-0">
                     <div>
                       <h3 className="text-base sm:text-lg font-bold text-[var(--brand-red)] leading-tight mb-0.5">
@@ -921,7 +941,6 @@ function FeaturesAndNewsSection() {
                     </span>
                   </div>
 
-                  {/* Right: image inside tilted box */}
                   <div className="relative w-24 sm:w-28 md:w-32 flex items-end justify-center flex-shrink-0">
                     <div className="relative z-10 w-20 sm:w-24 md:w-28 h-32 sm:h-36 md:h-40 rounded-[2rem] bg-gray-100 translate-x-3 -translate-y-2 rotate-[-8deg] group-hover:translate-y-0 group-hover:rotate-[-4deg] transition-transform duration-300 shadow-md overflow-hidden">
                       <img
@@ -957,6 +976,7 @@ function FeaturesAndNewsSection() {
       </div>
 
       <BlogsSection />
+      */}
       </div>
 
       <style jsx>{`
@@ -985,162 +1005,242 @@ function FeaturesAndNewsSection() {
   )
 }
 
-// Merged: Choose Right Support + Enter Matrix + Our Proven Methodology (one section)
-const METHODOLOGY_STEPS = [
-  { label: 'Concept Explanation', icon: '📖' },
-  { label: 'Practice Sessions', icon: '✏️' },
-  { label: 'Doubt Solving', icon: '💬' },
-  { label: 'Periodic Tests', icon: '📋' },
-  { label: 'Feedback', icon: '📊' },
+const COUNSELING_FEATURES = [
+  { label: 'Coaching Selection', icon: '🎯' },
+  { label: 'Exam Planning', icon: '🗓️' },
+  { label: 'Performance Eval', icon: '📈' },
+  { label: 'Study Roadmap', icon: '🗺️' },
 ]
 
-function AcademicSupportMethodologySection() {
-  return (
-    <section className="home-section">
-      <div className="container-page">
-        {/* Redesigned intro + "How we do it" (single cohesive section card) */}
-        <div className="rounded-2xl border border-gray-200/80 bg-white shadow-sm overflow-hidden">
-          <div className="p-5 md:p-6">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4">
-              <div className="min-w-0">
-                <h2 className="home-section-title mb-2">Our Proven Methodology</h2>
-                <p className="home-section-body max-w-2xl">
-                  Choosing the right support matters. We combine a structured approach with a partner mindset to turn stress into success.
-                </p>
-              </div>
-              <div className="flex items-center gap-2 flex-shrink-0">
-                <span className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700">
-                  <span className="w-2 h-2 rounded-full bg-[var(--brand-red)]" aria-hidden />
-                  Parent-friendly guidance
-                </span>
-                <span className="hidden sm:inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700">
-                  <span className="w-2 h-2 rounded-full bg-[var(--brand-red)]" aria-hidden />
-                  Student-first learning
-                </span>
-              </div>
-            </div>
+const METHODOLOGY_STEPS = [
+  { n: '01', label: 'Concept Explanation', icon: 'lightbulb' },
+  { n: '02', label: 'Practice Sessions', icon: 'device' },
+  { n: '03', label: 'Doubt Solving', icon: 'chat' },
+  { n: '04', label: 'Periodic Tests', icon: 'doc' },
+  { n: '05', label: 'Feedback', icon: 'chart' },
+]
 
-            {/* Two cards: Choosing Right Academic Support + Enter Matrix Science Academy */}
-            <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
-              {ACADEMIC_SUPPORT_CARDS.map((card, i) => (
-                <Link
-                  key={i}
-                  href={card.href}
-                  className="group relative flex rounded-2xl border border-gray-200/80 bg-white shadow-sm overflow-hidden h-[380px] sm:h-[410px] md:h-[390px] hover:shadow-md transition-all duration-300"
-                  style={{
-                    backgroundImage: `url(${card.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
-                >
-                  <div className="absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-[var(--brand-gradient-mid)] via-[var(--brand-red)] to-transparent pointer-events-none" aria-hidden />
-                  <div className="relative z-10 flex flex-col justify-center p-5 sm:p-6 md:p-7 w-full max-w-[64%] min-w-0">
-                    <h3 className="home-section-subtitle !text-white text-xl md:text-2xl mb-1">{card.title}</h3>
-                    {card.tagline && (
-                      <p className="text-sm sm:text-base font-semibold text-white mb-0.5">{card.tagline}</p>
-                    )}
-                    {card.subTagline && (
-                      <p className="text-sm sm:text-base font-semibold text-white mb-2">{card.subTagline}</p>
-                    )}
-                    <p className="text-xs sm:text-sm leading-snug text-white/90 mb-3">{card.description}</p>
-                    <p className="text-sm font-semibold text-white mb-3">{card.trustLine}</p>
-                    <span className="inline-flex items-center justify-center w-fit bg-[var(--brand-red)] text-white text-xs font-semibold uppercase tracking-wide px-4 py-2 rounded-lg group-hover:bg-[var(--brand-red-hover)] transition-colors">
-                      {card.cta}
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-
-            {/* How we do it: 5 methodology steps (kept inside same card) */}
-            <div className="mt-4 pt-4 border-t border-gray-100">
-              <p className="home-section-body font-semibold text-gray-800 mb-3">How we do it</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
-                {METHODOLOGY_STEPS.map((s, i) => (
-                  <div key={i} className="rounded-2xl border border-gray-200/80 bg-white p-2.5 flex flex-col items-center text-center hover:border-[var(--brand-red)]/30 hover:shadow-md transition-all duration-200">
-                    <span className="w-6 h-6 rounded-full bg-[var(--brand-red)]/10 text-[var(--brand-red)] flex items-center justify-center text-[11px] font-semibold mb-1">{i + 1}</span>
-                    <span className="text-lg mb-1 block" aria-hidden>{s.icon}</span>
-                    <span className="text-[11px] sm:text-xs font-semibold text-gray-800 leading-tight">{s.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
+function MethodologyStepIcon({ name, className = '' }) {
+  const cn = `h-5 w-5 sm:h-6 sm:w-6 ${className}`
+  switch (name) {
+    case 'lightbulb':
+      return (
+        <svg className={cn} fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24" aria-hidden>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+          />
+        </svg>
+      )
+    case 'device':
+      return (
+        <svg className={cn} fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24" aria-hidden>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        </svg>
+      )
+    case 'chat':
+      return (
+        <svg className={cn} fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24" aria-hidden>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+          />
+        </svg>
+      )
+    case 'doc':
+      return (
+        <svg className={cn} fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24" aria-hidden>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          />
+        </svg>
+      )
+    case 'chart':
+      return (
+        <svg className={cn} fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24" aria-hidden>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+          />
+        </svg>
+      )
+    default:
+      return null
+  }
 }
 
-// Counselling (left) + Book Your Session form (right)
-function CounselingFormRow() {
-  const steps = [
-    { label: 'Coaching Session', icon: '🎯' },
-    { label: 'Exam Planning', icon: '🗓️' },
-    { label: 'Performance Test', icon: '📈' },
-    { label: 'Study Roadmap', icon: '🗺️' },
-    { label: 'Personalized Guidance', icon: '🤝' },
-  ]
+/** Scroll-in: line draws left→right, then steps rise in with stagger (respects reduced motion). */
+function CounselingMethodologyTimeline() {
+  const rootRef = useRef(null)
+  const [active, setActive] = useState(false)
+
+  useEffect(() => {
+    const el = rootRef.current
+    if (!el) return
+
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setActive(true)
+      return
+    }
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setActive(true)
+          obs.disconnect()
+        }
+      },
+      { threshold: 0.18, rootMargin: '0px 0px -10% 0px' }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
   return (
-    <section className="home-section">
-      <div className="container-page">
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
-          <div className="rounded-2xl p-6 md:p-8 flex flex-col justify-center border border-[var(--brand-red)]/25 bg-gradient-to-br from-[var(--brand-red)] via-[var(--brand-gradient-mid)] to-[var(--brand-red)] shadow-lg overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-36 h-36 rounded-full bg-white/10 blur-2xl pointer-events-none" aria-hidden />
-            <div className="absolute -bottom-8 -left-8 w-44 h-44 rounded-full bg-black/20 blur-2xl pointer-events-none" aria-hidden />
-            <span className="relative z-10 inline-flex items-center gap-2 w-fit rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase text-white/95 mb-3">
-              Student Success Style
-            </span>
-            <h2 className="relative z-10 text-white text-2xl md:text-3xl font-bold leading-tight mb-2">
-              Free Academic Counselling for Students and Parents
-            </h2>
-            <p className="relative z-10 text-white/90 text-sm md:text-base leading-relaxed max-w-xl mb-6">
-              Not sure which path to take? Our expert counsellors help you evaluate academic performance, plan for competitive exams, and create a personalized study roadmap for your child.
-            </p>
-            <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
-              {steps.map((step, i) => (
-                <div
-                  key={i}
-                  className="rounded-xl border border-white/25 bg-white/10 backdrop-blur-sm p-3 flex items-center gap-3 hover:bg-white/15 transition-all duration-200"
-                >
-                  <span
-                    className="w-9 h-9 rounded-full bg-white/20 text-white flex items-center justify-center text-sm font-bold shrink-0"
-                    aria-hidden
-                  >
-                    {i + 1}
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block text-sm font-semibold text-white leading-tight">
-                      {step.label}
-                    </span>
-                    <span className="block text-xs text-white/80 leading-tight" aria-hidden>
-                      {step.icon}
-                    </span>
+    <div ref={rootRef} className="relative mx-auto mt-8 max-w-5xl px-1 sm:mt-10">
+      {/* Base track + animated progress (desktop — matches 5-column row) */}
+      <div
+        className="pointer-events-none absolute left-[5%] right-[5%] top-[23px] z-0 hidden h-0.5 overflow-hidden rounded-full bg-sky-100 md:block lg:left-[4%] lg:right-[4%] lg:top-[26px]"
+        aria-hidden
+      >
+        <div
+          className={`h-full w-full origin-left rounded-full bg-sky-400 transition-transform duration-[1700ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
+            active ? 'scale-x-100' : 'scale-x-0'
+          }`}
+        />
+      </div>
+
+      <ol className="relative z-[1] grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5 md:gap-3 md:gap-y-10">
+        {METHODOLOGY_STEPS.map((step, i) => {
+          const stepDelay = active ? `${320 + i * 200}ms` : '0ms'
+          const labelDelay = active ? `${420 + i * 200}ms` : '0ms'
+          return (
+            <li key={step.n} className="relative flex flex-col items-center text-center">
+              <div
+                className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
+                  active ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-5 scale-90 opacity-0'
+                }`}
+                style={{ transitionDelay: stepDelay }}
+              >
+                <div className="relative">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-sky-200 bg-white text-[#3377F5] shadow-md sm:h-12 sm:w-12 md:h-[3.25rem] md:w-[3.25rem]">
+                    <MethodologyStepIcon name={step.icon} />
+                  </div>
+                  <span className="absolute -right-0.5 -top-0.5 flex h-[1.125rem] min-w-[1.125rem] items-center justify-center rounded-full bg-[#0c1e3a] px-1 text-[8px] font-bold tabular-nums leading-none text-white shadow-sm sm:h-5 sm:min-w-[1.25rem] sm:text-[9px]">
+                    {step.n}
                   </span>
                 </div>
-              ))}
-            </div>
-            <Link
-              href="/enquiry?counseling=1"
-              className="relative z-10 inline-flex items-center justify-center gap-2 bg-white text-[var(--brand-red)] hover:bg-white/90 font-bold px-6 py-3 rounded-lg transition-colors w-fit"
-            >
-              Book Your Free Session Now
-            </Link>
-          </div>
-          <div className="rounded-2xl border border-gray-200/80 bg-white shadow-lg overflow-hidden">
-            <div className="h-1.5 bg-gradient-to-r from-[var(--brand-red)] to-[var(--brand-red)]" aria-hidden />
-            <div className="p-6 md:p-8">
-              <h3 className="text-[var(--brand-red)] text-xl md:text-2xl font-bold mb-1">Book Your Session</h3>
-              <p className="text-gray-600 text-sm md:text-base mb-4">Fill out the form below and our academic counsellor will call you.</p>
-              <Suspense
-                fallback={
-                  <div className="rounded-xl border border-gray-200 bg-white p-4 md:p-6">
-                    <p className="text-body text-sm">Loading form…</p>
-                  </div>
-                }
+              </div>
+              <p
+                className={`mt-3 max-w-[9rem] text-[10px] font-semibold leading-snug text-neutral-800 transition-all duration-500 ease-out sm:max-w-none sm:text-xs md:text-sm ${
+                  active ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
+                }`}
+                style={{ transitionDelay: labelDelay }}
               >
-                <EnquiryForm initialMessage="I am interested in free career counseling session." minimal />
-              </Suspense>
+                {step.label}
+              </p>
+            </li>
+          )
+        })}
+      </ol>
+    </div>
+  )
+}
+
+// Counselling: sits on page body background; left = dark blue + methodology (same bg); right = dark blue + form card; wide gutter between columns.
+const COUNSELING_PANEL_BG = 'bg-[#0a1628]'
+
+function CounselingFormRow() {
+  return (
+    <section className="bg-[var(--bg-page)] py-10 md:py-14 lg:py-16">
+      <div className="container-page px-4 sm:px-6">
+        <div className="grid grid-cols-1 gap-10 sm:gap-12 md:gap-14 lg:grid-cols-2 lg:items-stretch lg:gap-x-12 xl:gap-x-16 2xl:gap-x-20">
+          {/* Left — stacked: dark blue top + methodology (page body background) */}
+          <div className="flex min-h-0 flex-col overflow-hidden rounded-2xl shadow-sm sm:rounded-[1.25rem]">
+            <div className={`relative ${COUNSELING_PANEL_BG} px-6 py-10 sm:px-8 sm:py-11 md:px-10 md:py-12`}>
+              <div
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_20%_0%,rgba(51,119,245,0.12),transparent_50%)]"
+                aria-hidden
+              />
+              <div className="relative z-10 mx-auto w-full max-w-3xl text-center lg:max-w-4xl">
+                <h2 className="text-2xl font-bold leading-[1.2] tracking-tight text-white sm:text-3xl lg:text-4xl">
+                  Free Academic Counselling for Students and Parents
+                </h2>
+                <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/90 sm:text-base">
+                  Not sure which path to take? Our expert counsellors help you evaluate academic performance, plan for competitive
+                  exams, and create a personalized study roadmap for your child.
+                </p>
+
+                <div className="mx-auto mt-6 flex max-w-2xl flex-wrap items-stretch justify-center gap-2 sm:mt-7 sm:gap-2.5 md:max-w-none">
+                  {COUNSELING_FEATURES.map((item) => (
+                    <div
+                      key={item.label}
+                      className="flex shrink-0 items-center gap-1.5 rounded-md border border-white/20 bg-white/10 px-2 py-1.5 backdrop-blur-sm sm:gap-2 sm:px-2.5 sm:py-2 md:min-w-0 md:flex-1 md:justify-center md:px-2"
+                    >
+                      <span className="text-xs leading-none text-amber-300 sm:text-sm" aria-hidden>
+                        {item.icon}
+                      </span>
+                      <span className="whitespace-nowrap text-[9px] font-semibold leading-tight text-white sm:text-[10px] md:text-[11px]">
+                        {item.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 flex justify-center md:mt-9">
+                  <a
+                    href="#book-counseling-form"
+                    className="inline-flex items-center justify-center rounded-full bg-amber-400 px-7 py-3 text-sm font-bold text-neutral-900 shadow-lg transition hover:bg-amber-300 sm:px-8 sm:py-3.5 sm:text-base"
+                  >
+                    Book Your Free Session Now
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="bg-[var(--bg-page)] px-6 py-8 sm:px-8 sm:py-10 md:py-11"
+              aria-labelledby="methodology-heading"
+            >
+              <div className="mx-auto max-w-4xl text-center">
+                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#3377F5] sm:text-xs">How we teach</p>
+                <h2 id="methodology-heading" className="mt-2 text-xl font-bold tracking-tight text-neutral-900 sm:text-2xl md:text-3xl">
+                  Our Proven Methodology
+                </h2>
+              </div>
+
+              <CounselingMethodologyTimeline />
+            </div>
+          </div>
+
+          {/* Right — dark blue column; form in centered white card */}
+          <div
+            id="book-counseling-form"
+            className={`scroll-mt-28 flex min-h-0 flex-col overflow-hidden rounded-2xl shadow-sm sm:rounded-[1.25rem] ${COUNSELING_PANEL_BG}`}
+          >
+            <div className="flex flex-1 flex-col items-center justify-center px-5 py-10 sm:px-7 sm:py-12 md:px-8 md:py-14">
+              <div className="w-full max-w-lg rounded-2xl bg-white p-7 shadow-[0_20px_50px_-12px_rgba(15,23,42,0.18)] sm:max-w-xl sm:p-9 md:max-w-2xl md:p-10">
+                <h3 className="text-center text-xl font-bold text-neutral-900 md:text-2xl">Book Your Session</h3>
+                <p className="mt-2 text-center text-sm leading-relaxed text-neutral-600 md:text-base">
+                  Fill out the form below and our academic counsellor will call you.
+                </p>
+                <Suspense
+                  fallback={
+                    <div className="mt-7 rounded-xl bg-neutral-50 p-7">
+                      <p className="text-center text-sm text-neutral-600">Loading form…</p>
+                    </div>
+                  }
+                >
+                  <div className="mt-9">
+                    <EnquiryForm counselingSession counselingRelaxed counselingCentered />
+                  </div>
+                </Suspense>
+              </div>
             </div>
           </div>
         </div>
@@ -1149,52 +1249,103 @@ function CounselingFormRow() {
   )
 }
 
-// Achievement cards data (first 5 for Our Achievements)
+// Achievement stats — red line icons in white tile (reference layout)
+const ACHIEVEMENT_ICON = {
+  trend: (
+    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+    </svg>
+  ),
+  heart: (
+    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+    </svg>
+  ),
+  trophy: (
+    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+    </svg>
+  ),
+  star: (
+    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+    </svg>
+  ),
+  medal: (
+    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+    </svg>
+  ),
+}
+
 const ACHIEVEMENT_CARDS = [
-  { value: '30%', title: 'Increase in IIT admissions', desc: 'Elite Engineering Dreams Realized', icon: '📈' },
-  { value: '5', title: 'Selections in AIIMS & MBBS', desc: 'out of 53 students', icon: '❤️' },
-  { value: '86', title: 'Students 99+ Percentile', desc: 'MHT-CET 2025', icon: '🎓' },
-  { value: '32', title: 'Students Scored 95%+', desc: 'JEE Advanced 2025', icon: '⭐' },
-  { value: '80+', title: 'Qualified for JEE Adv 2025', desc: 'Breaking Barriers', icon: '🚀' },
+  { value: '30%', title: 'Increase in IIT admissions', desc: 'Elite Engineering Dreams Realized', iconKey: 'trend' },
+  { value: '5', title: 'Selections in AIIMS & MBBS', desc: 'out of 53 students', iconKey: 'heart' },
+  { value: '86', title: 'Students 99+ Percentile', desc: 'MHT-CET 2025', iconKey: 'trophy' },
+  { value: '32', title: 'Students Scored 95%+', desc: 'JEE Advanced 2025', iconKey: 'star' },
+  { value: '80+', title: 'Qualified for JEE Adv 2025', desc: 'Breaking Barriers', iconKey: 'medal' },
 ]
 
-// Our Achievements (left) + JEE Results gallery (right)
+// Our Achievements (reference: red kicker, blue headline, light blue stat cards) + moving results slider
 function AchievementsAndResultsRow() {
   return (
-    <section className="home-section py-4 md:py-5">
-      <div className="container-page">
-        <div className="grid lg:grid-cols-2 gap-4 md:gap-6 items-stretch">
-          {/* Left: Achievements in a card */}
-          <div className="rounded-2xl border border-gray-200/80 bg-white p-4 md:p-5 shadow-sm flex flex-col">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 border-b-4 border-gray-300 pb-1 inline-block mb-1">
+    <section className="bg-white py-10 md:py-12 lg:py-14">
+      <div className="container-page px-4 sm:px-6">
+        <div className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-12">
+          <div className="flex flex-col items-center text-center">
+            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--brand-red)] sm:text-xs">
               Our Achievements
+            </p>
+            <h2 className="mt-2 max-w-4xl text-3xl font-extrabold leading-[1.15] tracking-tight text-[#0066cc] sm:text-4xl md:text-[2.125rem] md:leading-[1.12] lg:text-5xl xl:text-[2.75rem] xl:leading-[1.1]">
+              One of the Leading &amp; Most Successful Institutions in Pune
             </h2>
-            <p className="home-section-body mb-4 text-sm">
-              <span className="font-bold text-gray-900">One of the leading and most successful institutions in Pune.</span>{' '}
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-500 md:text-base">
               Our results speak for the quality of education and dedication of our expert faculty.
             </p>
-            <div className="grid grid-cols-2 gap-3 flex-1">
+            <div className="mt-6 grid w-full max-w-xl grid-cols-2 gap-3 sm:max-w-2xl sm:gap-4">
               {ACHIEVEMENT_CARDS.map((card, i) => (
                 <div
                   key={i}
-                  className="rounded-xl border border-gray-200/80 bg-gray-50/50 p-3 flex flex-col justify-center hover:border-gray-300/80 transition-colors duration-200"
+                  className="rounded-xl bg-[#f0f7ff] p-3 shadow-sm sm:p-4"
                 >
-                  <span className="text-xl mb-1 block" aria-hidden>{card.icon}</span>
-                  <span className="text-xl md:text-2xl font-bold text-gray-900 leading-tight">{card.value}</span>
-                  <p className="text-xs font-semibold text-gray-800 mt-0.5">{card.title}</p>
-                  <p className="text-[11px] text-gray-500 mt-0.5">{card.desc}</p>
+                  <div className="flex flex-col items-center gap-2 text-center sm:gap-2.5">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white shadow-sm sm:h-11 sm:w-11">
+                      <span className="text-[var(--brand-red)]">{ACHIEVEMENT_ICON[card.iconKey]}</span>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-lg font-bold leading-none text-[#0066cc] sm:text-xl md:text-2xl">{card.value}</p>
+                      <p className="mt-1 text-xs font-bold leading-snug text-neutral-900 sm:text-sm">{card.title}</p>
+                      <p className="mt-0.5 text-[11px] leading-snug text-neutral-500 sm:text-xs">{card.desc}</p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
-            <Link href="/results" className="inline-flex items-center gap-2 mt-4 text-gray-900 font-semibold hover:underline">
-              View All Results
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </Link>
+            <div className="mt-6 flex justify-center">
+              <Link
+                href="/results"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#0066cc] hover:underline sm:text-base"
+              >
+                View All Results
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
           </div>
-          {/* Right: single image slider (one at a time), bordered like other sections */}
-          <div className="rounded-2xl border border-gray-200/80 bg-transparent p-4 md:p-5 shadow-none flex flex-col min-h-0">
-            <h3 className="home-section-subtitle text-lg md:text-xl mb-3">JEE Mains 2024 Results in percentile</h3>
-            <ResultsImageSlider visibleCount={1} showControls={false} showDots={false} framed={false} heightClassName="h-[490px] md:h-[570px]" />
+
+          <div className="flex min-h-0 flex-col items-center bg-transparent text-center">
+            <h3 className="home-section-subtitle mb-3 w-full text-lg font-bold md:text-xl">JEE Mains 2024 Results in percentile</h3>
+            <div className="min-h-0 w-full flex-1">
+              <ResultsImageSlider
+                visibleCount={1}
+                showControls={false}
+                showDots={false}
+                framed={false}
+                heightClassName="h-[490px] md:h-[570px]"
+                className="relative overflow-hidden bg-transparent"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -1214,10 +1365,12 @@ function SpecializedBatchesSection() {
   return (
     <section className="home-section">
       <div className="container-page">
-        <h2 className="home-section-title">Specialized Batches</h2>
-        <p className="home-section-body max-w-2xl mb-6">
-          Choose the batch that fits your pace and goals—from intensive prep to steady progress.
-        </p>
+        <div className="mb-6 text-center">
+          <h2 className="home-section-title">Specialized Batches</h2>
+          <p className="home-section-body mx-auto mt-2 max-w-2xl text-center">
+            Choose the batch that fits your pace and goals—from intensive prep to steady progress.
+          </p>
+        </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {batches.map((b, i) => (
             <Link
@@ -1280,9 +1433,6 @@ function AboutIntro() {
     </section>
   )
 }
-
-// Pexels image for Vriksha section background (child laughing)
-const PEXELS_CHILD_LAUGHING = 'https://images.pexels.com/photos/8617938/pexels-photo-8617938.jpeg'
 
 // VRIKSHA highlight – watering + tree grows + points moving toward tree
 const VRIKSHA_POINTS = [
@@ -1364,29 +1514,8 @@ function VrikshaHighlight({ embedded = false }) {
     return card
   }
   return (
-    <section className="relative overflow-hidden py-15 md:py-10">
-      {/* Background: child laughing (Pexels) */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50"
-        style={{ backgroundImage: `url(${PEXELS_CHILD_LAUGHING})` }}
-        aria-hidden
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-white/88 via-white/78 to-white/92" aria-hidden />
-      {/* Tree silhouette + subtle sway animation */}
-      <div className="absolute inset-0 pointer-events-none flex items-end justify-center" aria-hidden>
-        <div className="w-full max-w-2xl h-[140px] md:h-[180px] flex items-end opacity-30">
-          <svg viewBox="0 0 120 100" className="w-full h-full text-emerald-600/60" fill="currentColor">
-            <path d="M60 5 L95 45 L60 38 L25 45 Z" className="animate-sway" />
-            <path d="M60 22 L88 55 L60 48 L32 55 Z" className="animate-sway-delay-1" />
-            <path d="M60 38 L80 65 L60 58 L40 65 Z" className="animate-sway-delay-2" />
-            <path d="M60 52 L72 78 L60 72 L48 78 Z" fill="currentColor" />
-            <path d="M54 72 L66 72 L64 98 L56 98 Z" className="text-amber-800/80" fill="currentColor" />
-          </svg>
-        </div>
-      </div>
-      <div className="container-page max-w-5xl mx-auto relative z-10">
-        {card}
-      </div>
+    <section className="bg-white py-8 md:py-10">
+      <div className="container-page mx-auto max-w-5xl">{card}</div>
     </section>
   )
 }
@@ -1404,7 +1533,7 @@ function PerformanceGraph() {
       <div className="container-page">
         <h2 className="home-section-title mb-2">Results Over the Years</h2>
         <p className="home-section-body mb-6 max-w-2xl">Our consistent improvement in student outcomes across competitive exams.</p>
-        <div className="bg-gray-50 rounded-2xl border border-gray-200/80 p-6 md:p-8">
+        <div className="rounded-2xl border border-gray-200/80 bg-white p-6 md:p-8">
           <div className="flex flex-col sm:flex-row items-end justify-center gap-6 sm:gap-10 h-48 md:h-56">
             {years.map(({ year, label, value, color }) => (
               <div key={year} className="flex flex-col items-center gap-1.5 flex-1 max-w-[120px]">
@@ -1433,37 +1562,13 @@ function CounselingCTA() {
     <section className="page-section-tight bg-[var(--brand-red)]">
       <div className="container-page">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Free Career Counseling</h2>
-            <p className="text-white/90 text-sm md:text-base max-w-xl">Not sure which course is right for you? Book a free counseling session with our experts and get a personalized plan.</p>
+          <div className="text-left md:text-left">
+            <h2 className="text-left text-2xl md:text-3xl font-bold text-white mb-2">Free Career Counseling</h2>
+            <p className="text-white/90 text-sm md:text-base max-w-xl text-left">Not sure which course is right for you? Book a free counseling session with our experts and get a personalized plan.</p>
           </div>
           <Link href="/counseling" className="inline-flex items-center justify-center gap-2 bg-white text-[var(--brand-red)] hover:bg-gray-100 font-semibold px-6 py-3 rounded-lg transition-colors shrink-0">
             Book free session
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-          </Link>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// Demo classes & scholarships – brief mentions + links
-function DemoScholarships() {
-  return (
-    <section className="home-section">
-      <div className="container-page">
-        <div className="grid md:grid-cols-2 gap-6">
-          <Link href="/enquiry" className="group block bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-[var(--brand-red)]/20 transition-all">
-            <span className="text-2xl mb-3 block">🎓</span>
-            <h3 className="home-section-subtitle text-lg mb-2">Try a Free Demo Class</h3>
-            <p className="home-section-body mb-4">Experience our teaching style and infrastructure. Register for a demo class at your preferred branch.</p>
-            <span className="inline-flex items-center gap-1 text-[var(--brand-red)] font-semibold group-hover:gap-2 transition-all">Register for demo →</span>
-          </Link>
-          <Link href="/scholarships" className="group block bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-[var(--brand-red)]/20 transition-all">
-            <span className="text-2xl mb-3 block">🏅</span>
-            <h3 className="home-section-subtitle text-lg mb-2">Scholarships Available</h3>
-            <p className="home-section-body mb-4">Merit-based scholarships for deserving students. Criteria and application process on our scholarships page.</p>
-            <span className="inline-flex items-center gap-1 text-[var(--brand-red)] font-semibold group-hover:gap-2 transition-all">Know more →</span>
           </Link>
         </div>
       </div>
@@ -1477,9 +1582,13 @@ function PromotionalVideo() {
   return (
     <section className="home-section-alt">
       <div className="container-page">
-        <h2 className="home-section-title mb-2">See Matrix Science Academy</h2>
-        <p className="home-section-body mb-6 max-w-2xl">Campus, teaching, infrastructure, and achievements in a short video.</p>
-        <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-lg bg-gray-100 aspect-video max-w-4xl mx-auto flex items-center justify-center">
+        <div className="mb-6 text-center">
+          <h2 className="home-section-title">See Matrix Science Academy</h2>
+          <p className="home-section-body mx-auto mt-2 max-w-2xl text-center">
+            Campus, teaching, infrastructure, and achievements in a short video.
+          </p>
+        </div>
+        <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-lg bg-white aspect-video max-w-4xl mx-auto flex items-center justify-center">
           {videoUrl ? (
             <iframe
               src={videoUrl}
@@ -1507,16 +1616,14 @@ export default function Home() {
   return (
     <div className="bg-white">
       <HeroSlider />
+      <HeroUsps />
 
-      {/* Choose Right Support + Enter Matrix + Our Proven Methodology (merged), then Vriksha */}
-      <AcademicSupportMethodologySection />
-      <VrikshaHighlight />
+      {/* Academic challenge → Matrix story → pillar marquee + tree (VrikshaHighlight hidden) */}
+      <AcademicVrikshaMethodology />
+      {/* <VrikshaHighlight /> */}
 
-      {/* Our Courses + What's Trending (moved to be directly below Vriksha) */}
       <CoursesTabSection />
-      <FeaturesAndNewsSection />
 
-      {/* Counselling + Form, Achievements + Results */}
       <CounselingFormRow />
       <AchievementsAndResultsRow />
 
@@ -1525,9 +1632,8 @@ export default function Home() {
       <TestimonialsShowcase />
 
       {/* Features (facilities), then optional extras */}
-      <FeaturesSection />
+      {/* <FeaturesSection /> */}
       {/* <PerformanceGraph /> removed from homepage (Results Over the Years) */}
-      <DemoScholarships />
       <PromotionalVideo />
     </div>
   )

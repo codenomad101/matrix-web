@@ -1,6 +1,6 @@
 import './globals.css'
 import Script from 'next/script'
-import { Roboto } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import FloatingInquiryButton from '@/components/FloatingInquiryButton'
@@ -10,11 +10,11 @@ import ShowStopperPopup from '@/components/ShowStopperPopup'
 const GA_MEASUREMENT_ID = 'G-691QRXV0X2'
 const GTM_ID = 'GTM-5GPMKPKV'
 
-const roboto = Roboto({
-  weight: ['400', '500', '600', '700'],
+const inter = Inter({
+  weight: ['400', '500', '600', '700', '800', '900'],
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-roboto',
+  variable: '--font-inter',
 })
 
 export const viewport = {
@@ -153,7 +153,7 @@ export default function RootLayout({ children }) {
   }
 
   return (
-    <html lang="en" suppressHydrationWarning className={roboto.variable}>
+    <html lang="en" suppressHydrationWarning className={inter.variable}>
       <head>
         <script
           dangerouslySetInnerHTML={{

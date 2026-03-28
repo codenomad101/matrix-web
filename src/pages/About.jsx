@@ -56,8 +56,39 @@ export default function About() {
     },
   ]
 
+  const branchStrip = [
+    'Nigdi',
+    'Shahunagar',
+    'Chinchwad',
+    'Ravet',
+    'Wakad',
+    'Moshi',
+    'Kolhapur',
+    'Rahatani',
+  ]
+
   return (
     <div>
+      {/* Horizontal branch list (linked from header “8 Branches in Pune”) */}
+      <section id="branches-strip" className="bg-gray-50 border-b border-gray-200 py-3 md:py-4">
+        <div className="container-page">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-black/50 mb-2">8 branches in Pune</p>
+          <div className="flex flex-wrap items-center gap-x-1 gap-y-2 text-sm">
+            {branchStrip.map((b, idx) => (
+              <span key={b} className="inline-flex items-center">
+                {idx > 0 && <span className="mx-2 h-4 w-px bg-gray-300" aria-hidden />}
+                <Link
+                  href={`/enquiry?branch=${encodeURIComponent(b)}`}
+                  className="font-medium text-black hover:text-[var(--brand-red)] hover:underline underline-offset-2"
+                >
+                  {b}
+                </Link>
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* About Section - Allen-style white section */}
       <section className="page-section-white">
         <div className="container-page">

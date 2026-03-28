@@ -21,7 +21,25 @@ const BRANCH_OPTIONS = Object.keys(BRANCH_WHATSAPP_NUMBERS)
 const ENQUIRY_EMAIL = 'jadhavsbj755@gmail.com'
 const SITE_NAME = 'Matrix Science Academy'
 
-export default function EnquiryForm({ initialMessage = '', minimal = false }) {
+const COURSE_OPTIONS = [
+  'IIT-JEE (Main/Advanced)',
+  'MHT-CET',
+  'NEET',
+  'IISER Foundation',
+  '8th–12th Boards',
+  'Vriksha / Foundation',
+]
+
+const CLASS_OPTIONS = ['8th', '9th', '10th', '11th Science', '12th Science', 'Repeater', 'Other']
+
+export default function EnquiryForm({
+  initialMessage = '',
+  minimal = false,
+  counselingSession = false,
+  counselingDarkBg = false,
+  counselingRelaxed = false,
+  counselingCentered = false,
+}) {
   const searchParams = useSearchParams()
   const router = useRouter()
   const branchParam = searchParams.get('branch')
@@ -32,6 +50,51 @@ export default function EnquiryForm({ initialMessage = '', minimal = false }) {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState(null)
+
+  const handleCounselingSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitError(null)
+
+    const formData = new FormData(e.target)
+    const studentName = String(formData.get('name') || '').trim()
+    const phoneDigits = String(formData.get('phone') || '').replace(/\D/g, '')
+    const currentClass = String(formData.get('currentClass') || '')
+    const course = String(formData.get('course') || '')
+
+    if (phoneDigits.length !== 10) {
+      setSubmitError('Please enter a valid 10-digit mobile number.')
+      setIsSubmitting(false)
+      return
+    }
+
+    const displayPhone = `+91 ${phoneDigits.slice(0, 5)} ${phoneDigits.slice(5)}`
+    const message = `Free academic counseling (homepage)\nStudent name: ${studentName}\nParent phone: +91${phoneDigits}\nCurrent class: ${currentClass}\nCourse interest: ${course}`
+
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${ENQUIRY_EMAIL}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: studentName,
+          phone: displayPhone,
+          email: ENQUIRY_EMAIL,
+          course,
+          branch: 'Counseling',
+          currentClass,
+          message,
+          site: SITE_NAME,
+          _subject: `${SITE_NAME} – Counseling enquiry: ${studentName} – ${course}`,
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(data.message || 'Submit failed')
+      router.push('/thank-you')
+    } catch {
+      setSubmitError('Could not send. Please call +91 70587 40609.')
+      setIsSubmitting(false)
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -50,7 +113,6 @@ export default function EnquiryForm({ initialMessage = '', minimal = false }) {
     }
 
     if (submitType === 'email') {
-      // FormSubmit: submit in-place via AJAX, no mail app, no redirect away (formsubmit.co)
       const formSubmitPayload = {
         name: formValues.name,
         phone: formValues.phone,
@@ -79,7 +141,6 @@ export default function EnquiryForm({ initialMessage = '', minimal = false }) {
       }
     }
 
-    // WhatsApp: get number and open WhatsApp with pre-filled message
     const whatsappNumber = BRANCH_WHATSAPP_NUMBERS[formValues.branch] || BRANCH_WHATSAPP_NUMBERS['Nigdi']
     const whatsappMessage = `*New Enquiry from ${SITE_NAME} Website*
 
@@ -98,6 +159,127 @@ _This enquiry was submitted through the website._`
       e.target.reset()
       setIsSubmitting(false)
     }, 1000)
+  }
+
+  if (counselingSession) {
+    const fieldPad = counselingRelaxed ? 'px-3.5 py-3' : 'px-3 py-2.5'
+    const fieldPadCode = counselingRelaxed ? 'px-2.5 py-3' : 'px-2 py-2.5'
+    const formGap = counselingRelaxed ? 'gap-6' : 'gap-5'
+    const submitPad = counselingRelaxed ? 'py-4' : 'py-3.5'
+
+    const align = counselingCentered ? ' text-center' : ''
+    const inputCls =
+      (counselingDarkBg
+        ? `mt-1.5 w-full rounded-xl border border-white/20 bg-white/10 ${fieldPad} text-sm text-white placeholder:text-white/45 focus:outline-none focus:ring-2 focus:ring-[#3377F5]/50 focus:border-[#548FF7] [&>option]:bg-neutral-900 [&>option]:text-white`
+        : `mt-1.5 w-full rounded-xl border border-neutral-200 bg-neutral-50 ${fieldPad} text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#3377F5]/40 focus:border-[#3377F5]`) + align
+    const labelCls =
+      (counselingDarkBg
+        ? 'block text-[10px] font-semibold uppercase tracking-wide text-white/75 sm:text-xs'
+        : 'block text-xs font-semibold uppercase tracking-wide text-neutral-700') + align
+    const selectCodeCls =
+      (counselingDarkBg
+        ? `w-[4.75rem] shrink-0 rounded-xl border border-white/20 bg-white/10 ${fieldPadCode} text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-[#3377F5]/50 [&>option]:bg-neutral-900 [&>option]:text-white`
+        : `w-[4.75rem] shrink-0 rounded-xl border border-neutral-200 bg-neutral-50 ${fieldPadCode} text-sm font-medium text-neutral-800 focus:outline-none focus:ring-2 focus:ring-[#3377F5]/40`) + align
+
+    return (
+      <div className={counselingCentered ? 'text-center' : ''}>
+        {submitError && (
+          <p
+            className={`mb-4 text-sm ${counselingDarkBg ? 'text-red-300' : 'text-red-600'}${counselingCentered ? ' text-center' : ''}`}
+            role="alert"
+          >
+            {submitError}
+          </p>
+        )}
+        <form
+          className={`grid grid-cols-1 ${formGap}${counselingCentered ? ' text-center' : ''}`}
+          onSubmit={handleCounselingSubmit}
+          noValidate
+        >
+          <div>
+            <label htmlFor="counsel-student-name" className={labelCls}>
+              Student name
+            </label>
+            <input
+              id="counsel-student-name"
+              name="name"
+              type="text"
+              required
+              autoComplete="name"
+              placeholder="Enter student's full name"
+              className={inputCls}
+            />
+          </div>
+
+          <div
+            className={`grid grid-cols-1 md:grid-cols-2 md:gap-4 ${counselingRelaxed ? 'gap-6' : 'gap-5'}${counselingCentered ? ' [&>div]:text-center' : ''}`}
+          >
+            <div>
+              <label htmlFor="counsel-parent-phone" className={labelCls}>
+                Parent&apos;s phone
+              </label>
+              <div className={`mt-1.5 flex gap-2${counselingCentered ? ' justify-center' : ''}`}>
+                <select
+                  name="countryCode"
+                  className={selectCodeCls}
+                  defaultValue="+91"
+                  aria-label="Country code"
+                >
+                  <option value="+91">+91</option>
+                </select>
+                <input
+                  id="counsel-parent-phone"
+                  name="phone"
+                  type="tel"
+                  required
+                  inputMode="numeric"
+                  maxLength={10}
+                  pattern="[0-9]{10}"
+                  placeholder="98765 43210"
+                  className={`${inputCls} mt-0 flex-1`}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="counsel-class" className={labelCls}>
+                Current class
+              </label>
+              <select id="counsel-class" name="currentClass" required className={inputCls}>
+                <option value="">Select class</option>
+                {CLASS_OPTIONS.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="counsel-course" className={labelCls}>
+              Course interest
+            </label>
+            <select id="counsel-course" name="course" required className={inputCls}>
+              <option value="">Select course</option>
+              {COURSE_OPTIONS.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={`mt-1 w-full rounded-xl bg-[#3377F5] ${submitPad} text-base font-bold text-white shadow-md transition hover:bg-[#2563d4] disabled:opacity-60`}
+          >
+            {isSubmitting ? 'Submitting…' : 'Submit Enquiry'}
+          </button>
+        </form>
+      </div>
+    )
   }
 
   const formFields = (
@@ -127,11 +309,11 @@ _This enquiry was submitted through the website._`
           <div className="sm:col-span-1">
             <label className="block text-sm font-medium text-body">Course</label>
             <select name="course" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]">
-              <option>IIT-JEE (Main/Advanced)</option>
-              <option>MHT-CET</option>
-              <option>NEET</option>
-              <option>IISER Foundation</option>
-              <option>8th–12th Boards</option>
+              {COURSE_OPTIONS.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
             </select>
           </div>
           <div className="sm:col-span-1">
@@ -189,7 +371,7 @@ _This enquiry was submitted through the website._`
     <div className="py-4">
       <div className="grid lg:grid-cols-2 gap-6">
         <div className="page-card p-6 sm:p-8">
-          <h2 className="text-xl font-bold text-heading">Enquiry Form</h2>
+          <h2 className="text-left text-xl font-bold text-heading">Enquiry Form</h2>
           <p className="mt-1 text-body text-sm">Fill your details and choose how to send.</p>
 
           {submitError && (
@@ -200,7 +382,7 @@ _This enquiry was submitted through the website._`
         </div>
 
         <div className="rounded-2xl bg-gray-50 border border-gray-200 p-6 sm:p-8">
-          <h3 className="text-xl font-semibold text-heading">Why enquire?</h3>
+          <h3 className="text-left text-xl font-semibold text-heading">Why enquire?</h3>
           <ul className="mt-3 space-y-2 text-body">
             <li>• Get a personalized study plan</li>
             <li>• Fee details and scholarship options</li>
@@ -215,7 +397,3 @@ _This enquiry was submitted through the website._`
     </div>
   )
 }
-
-
-
-

@@ -37,10 +37,12 @@ export default function TestimonialsShowcase() {
   return (
     <section className="home-section bg-white">
       <div className="container-page">
-        <h2 className="home-section-title">Student Success Stories</h2>
-        <p className="home-section-body max-w-2xl mb-8">
-          Hear from students who achieved their dreams with our guidance.
-        </p>
+        <div className="mb-8 text-center">
+          <h2 className="home-section-title">Student Success Stories</h2>
+          <p className="home-section-body mx-auto mt-2 max-w-2xl text-center">
+            Hear from students who achieved their dreams with our guidance.
+          </p>
+        </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {testimonials.map((t, i) => (
             <div

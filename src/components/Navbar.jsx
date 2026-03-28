@@ -3,312 +3,443 @@ import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import ThemeToggle from '@/components/ThemeToggle'
+import MsaLogo from '@/components/MsaLogo'
 
-function formatDateTime() {
-    const d = new Date()
-    const dateStr = d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })
-    const timeStr = d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })
-    return { dateStr, timeStr }
+const BRANCHES = ['Nigdi', 'Shahunagar', 'Chinchwad', 'Ravet', 'Wakad', 'Moshi', 'Kolhapur', 'Rahatani']
+
+const COURSES = [
+  { id: 'iit-jee', name: 'IIT-JEE', href: '/courses/iit-jee', icon: '🎯', shortDesc: 'JEE Main & Advanced' },
+  { id: 'mht-cet', name: 'MHT-CET', href: '/courses/mht-cet', icon: '📚', shortDesc: 'State engineering & pharmacy' },
+  { id: 'neet', name: 'NEET', href: '/courses/neet', icon: '⚕️', shortDesc: 'Medical entrance' },
+  { id: 'iiser', name: 'IISER', href: '/courses/iiser', icon: '🔬', shortDesc: 'Science research institutes' },
+  { id: 'vriksha', name: 'VRIKSHA', href: '/vriksha', icon: '🌱', shortDesc: 'New program' },
+]
+
+/** Orange pill at top-right of nav label (anchor: parent `relative inline-block`) */
+const navBadgeClass =
+  'pointer-events-none absolute right-0 top-0 z-10 inline-flex -translate-y-[62%] translate-x-[40%] items-center whitespace-nowrap rounded-full bg-[#f97316] px-1.5 py-px text-[7px] font-bold uppercase leading-none text-white sm:text-[8px] sm:-translate-y-[58%] sm:translate-x-[44%]'
+
+const TICKER_ITEMS = [
+  'Batch - IIT-JEE, NEET, MHT-CET',
+  '86 Students scored 99+ Percentile in MHT-CET 2025',
+  '12+ Students selected for IIT in 2025',
+  '5 selections in AIIMS and MBBS out of 53 students',
+  'Free Career Counselling Sessions Every Saturday',
+]
+
+function IconMapPin({ className }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+    </svg>
+  )
+}
+
+function IconPhone({ className }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+      />
+    </svg>
+  )
+}
+
+/** Default nav link: dark gray, sentence case (reference header) */
+function navLinkNeutral(pathname, href, extra = '') {
+  const active = pathname === href
+  return `py-2 text-sm font-semibold tracking-normal transition-colors duration-200 ${
+    active ? 'text-[#ED1C24]' : 'text-neutral-600 hover:text-neutral-900'
+  } ${extra}`
+}
+
+function coursesNavActive(pathname) {
+  return pathname.startsWith('/courses') || pathname.startsWith('/courses/')
 }
 
 export default function Navbar() {
-    const pathname = usePathname()
-    const [mobileOpen, setMobileOpen] = useState(false)
-    const [coursesOpen, setCoursesOpen] = useState(false)
-    const [scrolled, setScrolled] = useState(false)
-    const [mounted, setMounted] = useState(false)
-    const [dateTime, setDateTime] = useState({ dateStr: '', timeStr: '' })
+  const pathname = usePathname()
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [coursesOpen, setCoursesOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
-    // Live date and time
-    useEffect(() => {
-        setDateTime(formatDateTime())
-        const t = setInterval(() => setDateTime(formatDateTime()), 1000)
-        return () => clearInterval(t)
-    }, [])
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
-    // Ensure component is mounted on client
-    useEffect(() => {
-        setMounted(true)
-    }, [])
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
-    // Add scroll effect
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20)
-        }
-        window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
+  /** Reference: white circular dots only between items (not typographic bullets) */
+  const renderTickerRow = (rowId) =>
+    TICKER_ITEMS.map((item, i) => (
+      <span key={`${rowId}-${i}`} className="inline-flex items-center">
+        {i > 0 && (
+          <span className="mx-2.5 inline-flex shrink-0 items-center justify-center sm:mx-3 md:mx-4" aria-hidden>
+            <span className="h-1 w-1 rounded-full bg-white sm:h-1.5 sm:w-1.5 md:h-1.5 md:w-1.5" />
+          </span>
+        )}
+        <span className="whitespace-nowrap text-xs font-medium leading-none text-white sm:text-sm md:text-[0.9375rem]">
+          {item}
+        </span>
+      </span>
+    ))
 
-    const BRANCHES = ['Nigdi', 'Shahunagar', 'Chinchwad', 'Ravet', 'Wakad', 'Moshi', 'Kolhapur', 'Rahatani']
-
-    const COURSES = [
-        { id: 'iit-jee', name: 'IIT-JEE', href: '/courses/iit-jee', icon: '🎯', shortDesc: 'JEE Main & Advanced' },
-        { id: 'mht-cet', name: 'MHT-CET', href: '/courses/mht-cet', icon: '📚', shortDesc: 'State engineering & pharmacy' },
-        { id: 'neet', name: 'NEET', href: '/courses/neet', icon: '⚕️', shortDesc: 'Medical entrance' },
-        { id: 'iiser', name: 'IISER', href: '/courses/iiser', icon: '🔬', shortDesc: 'Science research institutes' },
-        { id: 'vriksha', name: 'VRIKSHA', href: '/vriksha', icon: '🌱', shortDesc: 'New program' },
-    ]
-
-    const navItems = [
-        { label: 'Home', href: '/' },
-        { label: 'About Us', href: '/about' },
-        { label: 'Courses', hasSubmenu: true, submenuKey: 'courses' },
-        { label: 'VRIKSHA', href: '/vriksha' },
-        { label: 'Results', href: '/results' },
-        { label: 'Faculty', href: '/faculty' },
-        { label: 'Gallery', href: '/gallery' },
-        { label: 'Counseling', href: '/counseling' },
-    ]
-
-    return (
-        <>
-            {/* Top header: date/time (left) + branches (right) */}
-            <div className="bg-[var(--brand-red)] text-white">
-                <div className="container-header py-1.5 flex flex-wrap items-center justify-between gap-y-2 gap-x-3 text-xs font-medium">
-                    <span className="whitespace-nowrap tabular-nums" suppressHydrationWarning>
-                        {dateTime.dateStr} | {dateTime.timeStr}
-                    </span>
-                    <ThemeToggle />
-                    <div className="flex flex-wrap items-center justify-end gap-y-1 sm:ml-auto">
-                        <span className="whitespace-nowrap pr-2">Branches:</span>
-                        {BRANCHES.map((branch, idx) => (
-                            <span key={branch} className="inline-flex items-center">
-                                {idx > 0 && <span className="w-px h-4 bg-white flex-shrink-0 mx-1.5" aria-hidden />}
-                                <Link
-                                    href={`/enquiry?branch=${encodeURIComponent(branch)}`}
-                                    className="hover:underline underline-offset-2 whitespace-nowrap px-0.5"
-                                >
-                                    {branch}
-                                </Link>
-                            </span>
-                        ))}
-                    </div>
+  return (
+    <>
+      <div className={`sticky top-0 !z-[10001] transition-shadow duration-300 ${scrolled ? 'shadow-md' : ''}`}>
+        {/* 1) Utility bar — white, hairline border, branches left / blue enquire right */}
+        <div className="border-b border-neutral-200 bg-white">
+          <div className="container-header flex items-center justify-between gap-3 py-2 text-[13px] leading-tight sm:text-sm sm:leading-snug">
+            <div className="relative min-w-0 group/branches">
+              <Link
+                href="/about#branches-strip"
+                className="inline-flex items-center gap-1.5 font-medium text-[#5c6d86] transition-colors hover:text-[#4a5a72]"
+              >
+                <IconMapPin className="h-3.5 w-3.5 shrink-0 sm:h-[0.95rem] sm:w-[0.95rem]" />
+                <span className="whitespace-nowrap">8 Branches in Pune</span>
+              </Link>
+              <div
+                className="pointer-events-none invisible absolute left-0 top-full z-[10050] pt-1 opacity-0 transition-opacity duration-150 group-hover/branches:pointer-events-auto group-hover/branches:visible group-hover/branches:opacity-100"
+                role="region"
+                aria-label="Branch list"
+              >
+                <div className="min-w-[220px] rounded-lg border border-neutral-200 bg-white py-2 shadow-lg">
+                  {BRANCHES.map((branch) => (
+                    <Link
+                      key={branch}
+                      href={`/enquiry?branch=${encodeURIComponent(branch)}`}
+                      className="block px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-50"
+                    >
+                      {branch}
+                    </Link>
+                  ))}
+                  <div className="mx-2 my-1 border-t border-neutral-100" />
+                  <Link
+                    href="/about#branches-strip"
+                    className="block px-4 py-2 text-xs font-semibold text-[#ED1C24] hover:bg-neutral-50"
+                  >
+                    View on About page →
+                  </Link>
                 </div>
+              </div>
             </div>
+            <Link
+              href="/enquiry"
+              className="inline-flex shrink-0 items-center gap-1.5 font-semibold text-[#005FB8] transition-colors hover:text-[#004494]"
+            >
+              <IconPhone className="h-4 w-4 shrink-0 text-[#005FB8] sm:h-[1.05rem] sm:w-[1.05rem]" />
+              <span className="hidden min-[380px]:inline">Enquire Now</span>
+              <span className="min-[380px]:hidden">Enquire</span>
+            </Link>
+          </div>
+        </div>
 
-            <header className={`sticky top-0 !z-[10001] transition-all duration-300 ease-out ${scrolled
-                ? 'backdrop-blur-md bg-white border-b-2 border-brand/20 shadow-lg'
-                : 'backdrop-blur-sm bg-white border-b-2 border-gray-200'
-                }`}>
-                <div className="container-header flex items-center justify-between h-20">
-                {/* Logo - 50% larger than before: 84px mobile, 108px desktop */}
-                <Link href="/" className="flex items-center flex-shrink-0">
-                    <div className="h-[74px] w-[74px] md:h-[98px] md:w-[98px] grid place-content-center overflow-hidden flex-shrink-0">
-                        <img
-                            src="https://res.cloudinary.com/ddqgxrgnc/image/upload/v1773460255/matrixlogo_dlhtag.png"
-                            alt="Matrix Science Academy"
-                            width={98}
-                            height={98}
-                            className="h-[74px] w-[74px] md:h-[98px] md:w-[98px] object-contain"
-                            loading="eager"
-                        />
-                    </div>
+        {/* 2) Main bar — logo left; nav + Admissions grouped right with tight gap */}
+        <header className={`border-b border-neutral-200 bg-white ${scrolled ? 'backdrop-blur-md' : ''}`}>
+          <div className="container-header flex h-[4.25rem] items-center gap-3 md:h-[4.5rem] md:gap-4">
+            <Link
+              href="/"
+              className="flex shrink-0 items-center"
+              aria-label="Matrix Science Academy home"
+              title="Matrix Science Academy"
+            >
+              <MsaLogo
+                priority
+                className="h-8 w-auto sm:h-9 md:h-10"
+              />
+            </Link>
+
+            <div
+              className="flex min-w-0 flex-1 items-center justify-end gap-2 sm:gap-2.5 lg:gap-2.5"
+              onMouseLeave={() => setCoursesOpen(false)}
+            >
+              <nav
+                className="nav-bar-items hidden items-center gap-2 lg:flex lg:gap-3 xl:gap-3.5"
+                aria-label="Primary"
+              >
+                <Link href="/" className={navLinkNeutral(pathname, '/')}>
+                  Home
+                </Link>
+                <Link href="/about" className={navLinkNeutral(pathname, '/about')}>
+                  About
                 </Link>
 
-                {/* Academy Name - mobile only */}
-                <div className="flex-1 flex justify-start md:hidden px-2">
-                    <span className="text-sm font-medium leading-tight">
-                        <span className="text-[#ed1c24]">Matrix</span>{' '}
-                        <span className="text-[#646262]">Science</span>
-                        <span className="block text-[#214295]">Academy</span>
-                    </span>
-                </div>
-
-                {/* Right: nav text + CTA - compact so all items fit on one row */}
-                <div className="ml-auto relative flex items-center gap-1.5 md:gap-2 nav-bar-items" onMouseLeave={() => setCoursesOpen(false)}>
-                    <nav className="hidden md:flex items-center gap-1.5 flex-wrap justify-end">
-                        {navItems.map((item) => (
-                            item.hasSubmenu && item.submenuKey === 'courses' ? (
-                                <div
-                                    key="courses"
-                                    className="relative"
-                                    onMouseEnter={() => setCoursesOpen(true)}
-                                >
-                                    <button
-                                        type="button"
-                                        className={`nav-item py-1 uppercase flex items-center gap-0.5 transition-colors duration-200 ${coursesOpen
-                                            ? 'text-[var(--brand-red)]'
-                                            : 'text-black hover:text-[var(--brand-red)]'
-                                            }`}
-                                        aria-expanded={coursesOpen}
-                                        aria-haspopup="true"
-                                    >
-                                        {item.label}
-                                        <svg className={`w-3 h-3 transition-transform duration-200 ${coursesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                                    </button>
-                                    {/* Small dropdown (replaces mega menu) */}
-                                    {coursesOpen && (
-                                        <div
-                                            className="absolute top-full left-0 mt-1 min-w-[200px] py-1.5 bg-white border border-gray-200 rounded-lg shadow-lg z-50 animate-dropdownIn"
-                                            role="menu"
-                                        >
-                                            {COURSES.map((course) => (
-                                                <Link
-                                                    key={course.id}
-                                                    href={course.href}
-                                                    role="menuitem"
-                                                    className="flex items-center gap-2 px-3 py-2 text-sm font-bold text-black hover:bg-[var(--brand-red)]/10 hover:text-[var(--brand-red)] transition-colors duration-150 first:rounded-t-md last:rounded-b-md"
-                                                >
-                                                    <span className="text-base">{course.icon}</span>
-                                                    <span>{course.name}</span>
-                                                </Link>
-                                            ))}
-                                            <div className="border-t border-gray-100 my-1" />
-                                            <Link
-                                                href="/courses"
-                                                role="menuitem"
-                                                className="flex items-center gap-2 px-3 py-2 text-sm font-bold text-[var(--brand-red)] hover:bg-[var(--brand-red)]/10 transition-colors duration-150 rounded-b-md"
-                                            >
-                                                View all courses →
-                                            </Link>
-                                        </div>
-                                    )}
-                                </div>
-                            ) : (
-                                item.href === '/counseling' ? (
-                                    <span key={item.href} className="relative inline-flex items-center">
-                                        <span className="absolute bottom-full left-1/2 -translate-x-1/2 -mb-0.5 -rotate-6 text-[10px] font-medium text-[var(--brand-red)] animate-blink leading-none whitespace-nowrap">NEW</span>
-                                        <Link
-                                            href={item.href}
-                                            className={`nav-item py-1 uppercase transition-colors duration-200 ${pathname === item.href
-                                                ? 'text-[var(--brand-red)] border-b-2 border-[var(--brand-red)] pb-0.5'
-                                                : 'text-black hover:text-[var(--brand-red)]'
-                                                }`}
-                                        >
-                                            {item.label}
-                                        </Link>
-                                    </span>
-                                ) : (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        className={`nav-item py-1 uppercase transition-colors duration-200 ${pathname === item.href
-                                            ? 'text-[var(--brand-red)] border-b-2 border-[var(--brand-red)] pb-0.5'
-                                            : 'text-black hover:text-[var(--brand-red)]'
-                                            }`}
-                                    >
-                                        {item.label}
-                                    </Link>
-                                )
-                            )
-                        ))}
-                    </nav>
-
-                    <div className="flex items-center gap-2 flex-shrink-0">
-                    <Link
-                        href="/enquiry"
-                        className="hidden md:inline-flex items-center rounded bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] uppercase px-2.5 py-1 font-bold transition-all duration-200 hover:shadow-md"
+                <div className="relative" onMouseEnter={() => setCoursesOpen(true)}>
+                  <button
+                    type="button"
+                    className={`flex items-center gap-0.5 py-2 text-sm font-semibold transition-colors duration-200 ${
+                      coursesOpen || coursesNavActive(pathname)
+                        ? 'text-[#ED1C24]'
+                        : 'text-neutral-600 hover:text-neutral-900'
+                    }`}
+                    aria-expanded={coursesOpen}
+                    aria-haspopup="true"
+                  >
+                    Courses
+                    <svg
+                      className={`h-3.5 w-3.5 transition-transform duration-200 ${coursesOpen ? 'rotate-180' : ''}`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden
                     >
-                        Enquire Now
-                    </Link>
-
-                    <button
-                        className={`md:hidden inline-flex items-center justify-center h-9 w-9 rounded border transition-all duration-200 ${mobileOpen
-                            ? 'bg-box-bg border-gray-300'
-                            : 'border-gray-300 hover:bg-box-bg'
-                            }`}
-                        onClick={() => setMobileOpen((v) => !v)}
-                        aria-label="Toggle menu"
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {coursesOpen && (
+                    <div
+                      className="animate-dropdownIn absolute right-0 top-full z-50 mt-0 min-w-[240px] rounded-xl border border-neutral-200 bg-white py-2 shadow-lg"
+                      role="menu"
                     >
-                        <svg
-                            className={`h-5 w-5 transition-transform duration-300 ${mobileOpen ? 'rotate-180' : ''}`}
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
+                      {COURSES.map((course) => (
+                        <Link
+                          key={course.id}
+                          href={course.href}
+                          role="menuitem"
+                          className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-neutral-800 first:rounded-t-lg hover:bg-neutral-50"
                         >
-                            {mobileOpen ? (
-                                <>
-                                    <line x1="18" y1="6" x2="6" y2="18" />
-                                    <line x1="6" y1="6" x2="18" y2="18" />
-                                </>
-                            ) : (
-                                <>
-                                    <line x1="3" y1="6" x2="21" y2="6" />
-                                    <line x1="3" y1="12" x2="21" y2="12" />
-                                    <line x1="3" y1="18" x2="21" y2="18" />
-                                </>
-                            )}
-                        </svg>
-                    </button>
+                          <span>{course.icon}</span>
+                          <span>{course.name}</span>
+                        </Link>
+                      ))}
+                      <div className="my-1 border-t border-neutral-100" />
+                      <Link
+                        href="/courses"
+                        role="menuitem"
+                        className="block rounded-b-lg px-4 py-2 text-sm font-bold text-[#ED1C24] hover:bg-neutral-50"
+                      >
+                        View all courses →
+                      </Link>
                     </div>
-
+                  )}
                 </div>
+
+                <Link href="/faculty" className={navLinkNeutral(pathname, '/faculty')}>
+                  Faculty
+                </Link>
+                <Link href="/results" className={navLinkNeutral(pathname, '/results')}>
+                  Results
+                </Link>
+                <Link
+                  href="/vriksha"
+                  className={`inline-flex items-center py-2 pr-0.5 text-sm font-semibold tracking-normal transition-colors duration-200 lg:pr-1 ${
+                    pathname === '/vriksha' ? 'text-[#ED1C24]' : 'text-neutral-600 hover:text-neutral-900'
+                  }`}
+                >
+                  <span className="relative inline-block whitespace-nowrap">
+                    Vriksha
+                    <span className={navBadgeClass} aria-hidden>
+                      New
+                    </span>
+                  </span>
+                </Link>
+                <Link
+                  href="/counseling"
+                  className={`inline-flex items-center py-2 pl-0.5 text-sm font-semibold tracking-normal transition-colors duration-200 lg:pl-1 ${
+                    pathname === '/counseling' ? 'text-[#ED1C24]' : 'text-neutral-600 hover:text-neutral-900'
+                  }`}
+                >
+                  <span className="relative inline-block whitespace-nowrap">
+                    Counselling
+                    <span className={navBadgeClass} aria-hidden>
+                      Free
+                    </span>
+                  </span>
+                </Link>
+              </nav>
+
+              <Link
+                href="/enquiry"
+                className="hidden shrink-0 rounded-full bg-[#ED1C24] px-4 py-2 text-xs font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#c9151d] sm:inline-flex lg:ml-1 lg:px-5 lg:text-[12px]"
+              >
+                Admissions Open
+              </Link>
+              <button
+                type="button"
+                className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-neutral-200 text-[#5c6d86] transition-all hover:border-neutral-300 hover:bg-neutral-50 hover:text-[#4a5a72] lg:hidden ${
+                  mobileOpen ? 'border-neutral-300 bg-neutral-50' : ''
+                }`}
+                onClick={() => setMobileOpen((v) => !v)}
+                aria-label="Toggle menu"
+              >
+                <svg
+                  className={`h-4 w-4 transition-transform duration-300 ${mobileOpen ? 'rotate-180' : ''}`}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.75}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  {mobileOpen ? (
+                    <>
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </>
+                  ) : (
+                    <>
+                      <line x1="3" y1="6" x2="21" y2="6" />
+                      <line x1="3" y1="12" x2="21" y2="12" />
+                      <line x1="3" y1="18" x2="21" y2="18" />
+                    </>
+                  )}
+                </svg>
+              </button>
             </div>
+          </div>
+        </header>
 
-            {/* Mobile sidebar (drawer) - rendered via portal */}
-            {mounted && mobileOpen && typeof window !== 'undefined' && createPortal(
-                <div className="md:hidden fixed inset-0 z-[10002] animate-fadeIn" aria-hidden="false">
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-black/80" onClick={() => setMobileOpen(false)}></div>
-                    {/* Panel */}
-                    <div className="absolute right-0 top-0 h-full w-4/5 max-w-sm bg-white text-black shadow-2xl animate-slideInRight flex flex-col">
-                        <div className="p-4 border-b flex items-center justify-between bg-white flex-shrink-0 z-10">
-                            <div>
-                                <div className="font-medium">
-                                    <span className="text-[var(--brand-red)]">Matrix</span>{' '}
-                                    <span className="text-[var(--brand-blue)]">Science</span>{' '}
-                                    <span className="text-gray-500">Academy</span>
-                                </div>
-                            </div>
-                            <button className="h-9 w-9 rounded-lg hover:bg-[var(--brand-blue)]/10 grid place-content-center" onClick={() => setMobileOpen(false)} aria-label="Close menu">
-                                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
-                            </button>
-                        </div>
-                        <div className="p-4 flex flex-col gap-1 bg-white overflow-y-auto flex-1 min-h-0">
-                            {navItems.map((item) => (
-                                item.hasSubmenu && item.submenuKey === 'courses' ? (
-                                    <div key="courses-mobile">
-                                        <p className="px-2 py-1.5 text-[10px] font-medium text-[var(--brand-blue)]/80 uppercase tracking-wide">Courses</p>
-                                        <div className="flex flex-col gap-0.5 pl-2">
-                                            {COURSES.map((course) => (
-                                                <Link
-                                                    key={course.id}
-                                                    href={course.href}
-                                                    className="block px-2 py-1.5 rounded-lg text-xs font-bold text-black hover:bg-[var(--brand-blue)] hover:text-white transition-all duration-300"
-                                                    onClick={() => setMobileOpen(false)}
-                                                >
-                                                    {course.icon} {course.name}
-                                                </Link>
-                                            ))}
-                                            <Link href="/courses" className="block px-2 py-1.5 rounded-lg text-xs font-bold text-[var(--brand-red)] hover:bg-[var(--brand-red)] hover:text-white transition-all duration-300" onClick={() => setMobileOpen(false)}>View all courses →</Link>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        className={`block px-2 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 ${pathname === item.href
-                                            ? 'bg-[var(--brand-blue)] text-white'
-                                            : 'text-black hover:bg-[var(--brand-blue)] hover:text-white'
-                                            }`}
-                                        onClick={() => setMobileOpen(false)}
-                                    >
-                                        {item.href === '/counseling' ? (
-                                            <span className="flex items-center gap-1.5">
-                                                <span className="text-[10px] font-medium text-[var(--brand-red)] animate-blink">NEW</span>
-                                                {item.label}
-                                            </span>
-                                        ) : (
-                                            item.label
-                                        )}
-                                    </Link>
-                                )
-                            ))}
+        {/* 3) Red ticker + navy band below (taller blue strip) */}
+        <div className="bg-[#ED1C24] text-white">
+          <div className="flex w-max animate-headerTicker">
+            <div className="flex items-center px-4 py-1 sm:px-6 sm:py-1.5 md:py-1.5">
+              {renderTickerRow('a')}
+            </div>
+            <div className="flex items-center px-4 py-1 sm:px-6 sm:py-1.5 md:py-1.5" aria-hidden>
+              {renderTickerRow('b')}
+            </div>
+          </div>
+        </div>
+        <div className="bg-[#005FB8]" aria-hidden>
+          {/* ~30% thinner than prior strip (was h-1 / 5px / 1.5 / 2) */}
+          <div className="h-[3px] sm:h-[3.5px] md:h-1 lg:h-[5px]" />
+        </div>
+      </div>
 
-                            <div className="pt-4 mt-2 border-t border-gray-200 flex flex-col gap-2 flex-shrink-0">
-                                <Link href="/enquiry" className="inline-flex justify-center items-center gap-2 rounded-lg bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] transition-colors duration-300 px-5 py-2.5 font-bold shadow-soft" onClick={() => setMobileOpen(false)}>Enquire Now</Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>,
-                document.body
-            )}
-            </header>
-        </>
-    )
+      {mounted &&
+        mobileOpen &&
+        typeof window !== 'undefined' &&
+        createPortal(
+          <div className="fixed inset-0 z-[10002] animate-fadeIn lg:hidden" aria-hidden="false">
+            <div className="absolute inset-0 bg-black/80" onClick={() => setMobileOpen(false)} />
+            <div className="animate-slideInRight absolute right-0 top-0 flex h-full w-4/5 max-w-sm flex-col bg-white text-black shadow-2xl">
+              <div className="z-10 flex flex-shrink-0 items-center justify-between border-b border-neutral-200 bg-white p-4">
+                <Link
+                  href="/"
+                  className="flex shrink-0"
+                  title="Matrix Science Academy"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <MsaLogo className="h-7 w-auto min-w-[3.25rem]" />
+                </Link>
+                <button
+                  type="button"
+                  className="grid h-8 w-8 place-content-center rounded-lg text-[#5c6d86] hover:bg-neutral-100 hover:text-[#4a5a72]"
+                  onClick={() => setMobileOpen(false)}
+                  aria-label="Close menu"
+                >
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              </div>
+              <div className="min-h-0 flex-1 overflow-y-auto p-4">
+                <div className="flex flex-col gap-1">
+                  <Link
+                    href="/"
+                    className={`block rounded-lg px-3 py-2.5 text-sm font-semibold ${pathname === '/' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Home
+                  </Link>
+                  <Link
+                    href="/about"
+                    className={`block rounded-lg px-3 py-2.5 text-sm font-semibold ${pathname === '/about' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    About
+                  </Link>
+                  <Link
+                    href="/faculty"
+                    className={`block rounded-lg px-3 py-2.5 text-sm font-semibold ${pathname === '/faculty' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Faculty
+                  </Link>
+                  <Link
+                    href="/results"
+                    className={`block rounded-lg px-3 py-2.5 text-sm font-semibold ${pathname === '/results' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Results
+                  </Link>
+                  <Link
+                    href="/vriksha"
+                    className={`block rounded-lg px-3 py-2.5 ${pathname === '/vriksha' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span className="relative inline-block">
+                      <span className="text-sm font-semibold whitespace-nowrap">Vriksha</span>
+                      <span className={navBadgeClass} aria-hidden>
+                        New
+                      </span>
+                    </span>
+                  </Link>
+                  <Link
+                    href="/counseling"
+                    className={`block rounded-lg px-3 py-2.5 ${pathname === '/counseling' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span className="relative inline-block">
+                      <span className="text-sm font-semibold whitespace-nowrap">Counselling</span>
+                      <span className={navBadgeClass} aria-hidden>
+                        Free
+                      </span>
+                    </span>
+                  </Link>
+                  <p className="px-3 pt-3 text-[10px] font-semibold uppercase tracking-wide text-neutral-400">Courses</p>
+                  <div className="flex flex-col gap-0.5 pl-1">
+                    {COURSES.map((course) => (
+                      <Link
+                        key={course.id}
+                        href={course.href}
+                        className="block rounded-lg px-3 py-2 text-sm font-medium hover:bg-neutral-50"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {course.icon} {course.name}
+                      </Link>
+                    ))}
+                    <Link
+                      href="/courses"
+                      className="block rounded-lg px-3 py-2 text-sm font-bold text-[#ED1C24] hover:bg-neutral-50"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      View all courses →
+                    </Link>
+                  </div>
+                </div>
+                <div className="mt-4 flex flex-col gap-2 border-t border-neutral-200 pt-4">
+                  <Link
+                    href="/enquiry"
+                    className="inline-flex justify-center rounded-full bg-[#ED1C24] px-5 py-3 text-sm font-bold text-white hover:bg-[#c9151d]"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Admissions Open
+                  </Link>
+                  <Link
+                    href="/enquiry"
+                    className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-neutral-200 py-2.5 text-sm font-semibold text-[#005FB8] hover:bg-neutral-50 hover:text-[#004494]"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <IconPhone className="h-[1.05rem] w-[1.05rem] shrink-0" />
+                    Enquire Now
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
+    </>
+  )
 }
