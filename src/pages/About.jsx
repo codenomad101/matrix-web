@@ -68,7 +68,7 @@ export default function About() {
   ]
 
   return (
-    <div>
+    <div className="interior-page">
       {/* Horizontal branch list (linked from header “8 Branches in Pune”) */}
       <section id="branches-strip" className="bg-gray-50 border-b border-gray-200 py-3 md:py-4">
         <div className="container-page">
@@ -93,7 +93,7 @@ export default function About() {
       <section className="page-section-white">
         <div className="container-page">
           <div className="page-card">
-            <h1 className="text-3xl md:text-4xl font-bold text-heading mb-6">About Matrix Science Academy</h1>
+            <h1 className="interior-title mb-6">About Matrix Science Academy</h1>
             <p className="text-lg text-body leading-relaxed mb-5">
               Matrix Science Academy (MSA) is dedicated to building strong concepts and habits for
               competitive exams and boards. With a blended learning approach, we offer mentor-led
@@ -101,22 +101,22 @@ export default function About() {
             </p>
 
             <div className="grid sm:grid-cols-2 gap-6">
-              <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-[var(--brand-red)]">
-                <h3 className="text-lg font-bold text-heading mb-2">Our Mission</h3>
+              <div className="rounded-xl border border-neutral-200 bg-gray-50 p-6 border-l-4 border-l-neutral-400">
+                <h3 className="mb-2 text-lg font-semibold text-neutral-900">Our Mission</h3>
                 <p className="text-body text-sm leading-relaxed">
                   Deliver accessible, high-quality education with compassion and discipline.
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-[var(--brand-red)]">
-                <h3 className="text-lg font-bold text-heading mb-2">Our Vision</h3>
+              <div className="rounded-xl border border-neutral-200 bg-gray-50 p-6 border-l-4 border-l-neutral-400">
+                <h3 className="mb-2 text-lg font-semibold text-neutral-900">Our Vision</h3>
                 <p className="text-body text-sm leading-relaxed">
                   Enable every learner to achieve excellence and freedom through knowledge.
                 </p>
               </div>
             </div>
 
-            <div className="mt-8 p-6 bg-gray-50 rounded-xl">
-              <h3 className="text-lg font-bold text-heading mb-3">Our Philosophy</h3>
+            <div className="mt-8 rounded-xl border border-neutral-200 bg-gray-50 p-6">
+              <h3 className="mb-3 text-lg font-semibold text-neutral-900">Our Philosophy</h3>
               <p className="text-body leading-relaxed text-sm">
                 We are teachers by our choice and we passionately do our job. Our aim is not to run the classes conventionally,
                 but we are here to make a change and make a strong impact in the field of 8th to 12th Education in Maharashtra.
@@ -127,8 +127,8 @@ export default function About() {
             </div>
 
             {/* Our Vision - Full Message */}
-            <div className="mt-8 p-6 bg-gray-50 rounded-xl border-l-4 border-[var(--brand-red)]">
-              <h3 className="text-lg font-bold text-heading mb-3">Our Vision</h3>
+            <div className="mt-8 rounded-xl border border-neutral-200 border-l-4 border-l-neutral-400 bg-gray-50 p-6">
+              <h3 className="mb-3 text-lg font-semibold text-neutral-900">Our Vision</h3>
               <div className="space-y-3 text-body text-sm leading-relaxed">
                 <p>
                   <strong>We are teachers by our choice and we passionately do our job.</strong> Our aim is not to run the classes conventionally, but we are here to make a change and make a strong impact in the field of 8th to 12th Education in Maharashtra.
@@ -146,13 +146,13 @@ export default function About() {
       <section className="page-section-gray">
         <div className="container-page">
           <div className="text-center mb-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-heading text-center mb-3">Our Directors</h2>
+            <h2 className="interior-section-title mb-3 text-center">Our Directors</h2>
             <p className="text-body/80 text-base md:text-lg max-w-2xl mx-auto text-center">Leaders at each branch driving excellence</p>
           </div>
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
               {directors.map((d, idx) => (
-                <div key={idx} className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:border-[var(--brand-red)]/30 hover:shadow-xl transition-all duration-300 text-center">
+                <div key={idx} className="rounded-xl border border-neutral-200 bg-white p-6 text-center shadow-sm transition-all hover:border-neutral-300 hover:shadow-md">
                   <OptimizedImage
                     cloudinaryId={d.cloudinaryId}
                     alt={d.name}
@@ -163,7 +163,7 @@ export default function About() {
                     loading="lazy"
                   />
                   <p className="mt-3 font-semibold text-body">{d.name}</p>
-                  <p className="text-sm text-heading font-medium">MSA {d.branch}</p>
+                  <p className="text-sm font-medium text-neutral-700">MSA {d.branch}</p>
                 </div>
               ))}
             </div>
@@ -175,40 +175,40 @@ export default function About() {
       <section className="page-section-gray">
         <div className="container-page">
           <div className="text-center mb-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-heading text-center mb-3">Contact Us</h2>
+            <h2 className="interior-section-title mb-3 text-center">Contact Us</h2>
             <p className="text-body/80 text-base md:text-lg max-w-2xl mx-auto text-center">Visit any of our 8 branches across Pune</p>
           </div>
 
           {/* General Contact Info */}
-          <div className="bg-[var(--brand-red)] text-white rounded-xl p-4 md:p-6 mb-6 shadow-sm">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+          <div className="mb-6 rounded-xl border border-neutral-200 bg-neutral-50 p-4 text-neutral-900 shadow-sm md:p-6">
+            <div className="flex flex-col items-center justify-center gap-8 md:flex-row">
               <div className="flex items-center gap-3">
-                <div className="bg-white/20 p-4 rounded-full">
-                  <FaEnvelope className="text-2xl" />
+                <div className="rounded-full bg-neutral-200/80 p-4">
+                  <FaEnvelope className="text-2xl text-neutral-700" />
                 </div>
                 <div>
-                  <div className="text-sm text-white/80">Email Us</div>
-                  <div className="font-semibold text-lg">msapcmc@gmail.com</div>
+                  <div className="text-sm text-neutral-600">Email Us</div>
+                  <div className="text-lg font-semibold">msapcmc@gmail.com</div>
                 </div>
               </div>
-              <div className="hidden md:block w-px h-16 bg-white/30"></div>
+              <div className="hidden h-16 w-px bg-neutral-200 md:block"></div>
               <div className="flex items-center gap-3">
-                <div className="bg-white/20 p-4 rounded-full">
-                  <FaPhoneAlt className="text-2xl" />
+                <div className="rounded-full bg-neutral-200/80 p-4">
+                  <FaPhoneAlt className="text-2xl text-neutral-700" />
                 </div>
                 <div>
-                  <div className="text-sm text-white/80">Call Us</div>
-                  <div className="font-semibold text-lg">7058740609</div>
+                  <div className="text-sm text-neutral-600">Call Us</div>
+                  <div className="text-lg font-semibold">7058740609</div>
                 </div>
               </div>
-              <div className="hidden md:block w-px h-16 bg-white/30"></div>
+              <div className="hidden h-16 w-px bg-neutral-200 md:block"></div>
               <div className="flex items-center gap-3">
-                <div className="bg-white/20 p-4 rounded-full">
-                  <FaBuilding className="text-2xl" />
+                <div className="rounded-full bg-neutral-200/80 p-4">
+                  <FaBuilding className="text-2xl text-neutral-700" />
                 </div>
                 <div>
-                  <div className="text-sm text-white/80">Our Locations</div>
-                  <div className="font-semibold text-lg">8 Branches Across Pune</div>
+                  <div className="text-sm text-neutral-600">Our Locations</div>
+                  <div className="text-lg font-semibold">8 Branches Across Pune</div>
                 </div>
               </div>
             </div>
@@ -219,29 +219,29 @@ export default function About() {
             {branches.map((branch, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow-lg p-6 border-2 border-gray-100 hover:border-[var(--brand-red)] hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:border-neutral-300 hover:shadow-md"
               >
-                <h3 className="text-xl font-bold text-[var(--brand-red)] flex items-center mb-4">
-                  <div className="bg-[var(--brand-red)]/10 p-3 rounded-lg mr-3">
-                    <FaBuilding className="text-[var(--brand-red)]" />
+                <h3 className="mb-4 flex items-center text-xl font-semibold text-neutral-900">
+                  <div className="mr-3 rounded-lg bg-neutral-100 p-3">
+                    <FaBuilding className="text-neutral-700" />
                   </div>
                   {branch.name}
                 </h3>
 
                 <div className="space-y-3">
-                  <div className="flex items-start text-[var(--brand-red)]">
-                    <FaMapMarkerAlt className="mr-3 mt-1 flex-shrink-0 text-[var(--brand-red)]" />
+                  <div className="flex items-start text-neutral-800">
+                    <FaMapMarkerAlt className="mr-3 mt-1 flex-shrink-0 text-neutral-500" />
                     <span className="text-sm">{branch.address}</span>
                   </div>
 
-                  <div className="flex items-center text-[var(--brand-red)]">
-                    <FaPhoneAlt className="mr-3 flex-shrink-0 text-[var(--brand-red)]" />
+                  <div className="flex items-center text-neutral-800">
+                    <FaPhoneAlt className="mr-3 flex-shrink-0 text-neutral-500" />
                     <div className="flex flex-wrap gap-2">
                       {branch.phone.map((phone, idx) => (
                         <a
                           key={idx}
                           href={`tel:${phone.replace(/\s/g, '')}`}
-                          className="text-sm font-medium hover:text-[var(--brand-red)] transition-colors duration-300"
+                          className="text-sm font-medium text-neutral-900 underline-offset-2 hover:underline"
                         >
                           {phone}
                         </a>
@@ -258,7 +258,7 @@ export default function About() {
             <p className="text-body mb-3 text-sm">Ready to start your journey with us?</p>
             <Link
               href="/enquiry"
-              className="inline-flex items-center gap-2 rounded-lg bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] transition-colors duration-300 px-6 py-2.5 font-semibold text-sm"
+              className="inline-flex items-center gap-2 rounded-lg bg-neutral-900 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-neutral-800"
             >
               Enquire Now
             </Link>

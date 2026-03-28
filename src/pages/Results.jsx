@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import OptimizedImage from '@/components/OptimizedImage'
+import ResultsPerformanceCharts from '@/components/ResultsPerformanceCharts'
 
 // Results Image Slider Component
 function ResultsImageSlider() {
@@ -46,7 +47,7 @@ function ResultsImageSlider() {
           onClick={() => setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
           className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
         >
-          <svg className="w-6 h-6 text-[var(--brand-red)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 text-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
@@ -54,7 +55,7 @@ function ResultsImageSlider() {
           onClick={() => setCurrentIndex((prev) => (prev + 1) % images.length)}
           className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
         >
-          <svg className="w-6 h-6 text-[var(--brand-red)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 text-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
@@ -68,7 +69,7 @@ function ResultsImageSlider() {
             onClick={() => setCurrentIndex(idx)}
             className={`h-3 rounded-full transition-all duration-300 ${
               currentIndex === idx 
-                ? 'w-10 bg-[var(--brand-red)]' 
+                ? 'w-10 bg-neutral-800' 
                 : 'w-3 bg-gray-300 hover:bg-gray-400'
             }`}
           />
@@ -86,45 +87,13 @@ export default function Results() {
     { id: 'v1763783003/2_ocfn47', alt: 'Results Photo 3' },
   ]
 
-  const yearWiseStats = [
-    { year: '2023', mhtCet99: '45', iitSelections: '8', neetSelections: '3' },
-    { year: '2024', mhtCet99: '62', iitSelections: '10', neetSelections: '4' },
-    { year: '2025', mhtCet99: '86', iitSelections: '12+', neetSelections: '5' },
-  ]
-
   return (
-    <div className="min-h-screen bg-white">
+    <div className="interior-page">
       <section className="page-section-white">
         <div className="container-page">
-          <h1 className="text-3xl md:text-4xl font-bold text-heading text-center mb-5">Our Results</h1>
+          <h1 className="interior-title interior-title-center mb-5">Our Results</h1>
 
-          {/* Year-wise progression */}
-          <div className="mb-8 rounded-2xl border border-gray-200 bg-gray-50 overflow-hidden">
-            <h2 className="text-left text-lg font-bold text-heading px-6 py-4 border-b border-gray-200">Year-wise performance</h2>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-white border-b border-gray-200">
-                    <th className="text-left px-6 py-3 font-semibold text-[var(--brand-red)]">Year</th>
-                    <th className="text-left px-6 py-3 font-semibold text-[var(--brand-red)]">MHT-CET 99+ percentile</th>
-                    <th className="text-left px-6 py-3 font-semibold text-[var(--brand-red)]">IIT selections</th>
-                    <th className="text-left px-6 py-3 font-semibold text-[var(--brand-red)]">NEET (AIIMS/MBBS)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearWiseStats.map((row, i) => (
-                    <tr key={i} className="border-b border-gray-100 hover:bg-white/80">
-                      <td className="px-6 py-3 font-medium text-[var(--brand-red)]">{row.year}</td>
-                      <td className="px-6 py-3 text-[var(--brand-red)]">{row.mhtCet99}</td>
-                      <td className="px-6 py-3 text-[var(--brand-red)]">{row.iitSelections}</td>
-                      <td className="px-6 py-3 text-[var(--brand-red)]">{row.neetSelections}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="px-6 py-3 text-xs text-[var(--brand-red)]/60 border-t border-gray-100">Data to be updated by content team. Contact for latest figures.</p>
-          </div>
+          <ResultsPerformanceCharts />
 
           <div className="mb-6">
             <ResultsImageSlider />

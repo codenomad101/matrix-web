@@ -7,8 +7,8 @@ function DirectorImage({ src, name }) {
 
   if (imageError || !src) {
     return (
-      <div className="w-40 h-40 rounded-full bg-gradient-to-br from-[var(--brand-red)] to-[#1a3a97] border-4 border-white shadow-md flex items-center justify-center">
-        <FaUser className="text-white text-6xl" />
+      <div className="flex h-40 w-40 items-center justify-center rounded-full border-4 border-white bg-neutral-200 shadow-md">
+        <FaUser className="text-6xl text-neutral-600" />
       </div>
     );
   }
@@ -101,11 +101,11 @@ export default function DirectorsMessage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="interior-page">
       <section className="page-section-white">
         <div className="container-page">
           <div className="page-card p-8">
-            <h1 className="text-4xl font-bold text-heading mb-4">Director's Message:</h1>
+            <h1 className="interior-title mb-4">Director's Message</h1>
             <p className="text-body leading-relaxed">
             We are teachers by our choice and we passionately do our job. Our Aim is not to run the classes conventionally, but we
             are here to make a change and make a strong impact in the field of 8th to 12th Education in Maharashtra. We believe
@@ -119,7 +119,7 @@ export default function DirectorsMessage() {
               <div key={index} className="text-center">
                 <div className="relative inline-block">
                   <DirectorImage src={director.image} name={director.name} />
-                  <div className="absolute inset-0 rounded-full border-2 border-brand animate-pulse"></div>
+                  <div className="absolute inset-0 rounded-full border-2 border-neutral-300"></div>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800 mt-4">{director.name}</h3>
                 <p className="text-gray-500">{director.role}</p>
@@ -129,11 +129,11 @@ export default function DirectorsMessage() {
         </div>
 
         <div className="mt-12">
-            <h2 className="text-4xl font-bold text-heading mb-5">Branches</h2>
+            <h2 className="interior-section-title mb-5">Branches</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {branches.map((branch, index) => (
                 <div key={index} className="page-card p-6">
-                  <h3 className="text-2xl font-semibold text-heading flex items-center">
+                  <h3 className="flex items-center text-2xl font-semibold text-neutral-900">
                     <FaBuilding className="mr-3" /> {branch.name}
                   </h3>
                   <p className="text-body mt-3 flex items-start">

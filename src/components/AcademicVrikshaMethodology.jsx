@@ -109,24 +109,12 @@ export default function AcademicVrikshaMethodology() {
           </p>
         </div>
 
-        <div className="mx-auto mt-14 max-w-3xl">
-          <div className="rounded-xl border border-neutral-200/70 bg-white px-6 py-8 shadow-[0_4px_28px_-6px_rgba(15,23,42,0.1)] sm:rounded-2xl sm:px-8 sm:py-10 md:py-11 border-l-[5px] border-l-[#2563eb]">
-            <h3 className="text-center text-xl font-bold leading-snug text-[#0f1f3a] sm:text-2xl md:text-[1.65rem]">
-              Enter Matrix Science Academy
-            </h3>
-            <p className="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-neutral-700 md:mt-6 md:text-lg">
-              We&apos;ve built an ecosystem specifically designed to address these challenges. We partner with parents to provide
-              transparent, structured, and highly effective academic coaching that turns stress into success.
-            </p>
-          </div>
-        </div>
-
-        <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-neutral-600 md:text-base">
+        <p className="mx-auto mt-14 max-w-2xl text-center text-sm leading-relaxed text-neutral-600 md:text-base">
           <strong className="font-semibold text-neutral-900">Vriksha</strong> combines rigorous academics with mental wellbeing, sports,
-          and competitive exam readiness—one journey, clearly explained above and below the pillars you see here.
+          and competitive exam readiness—one journey, summarized in the rolling pillars below.
         </p>
 
-        <div className="mt-12 grid w-full grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(200px,280px)_minmax(0,1fr)] lg:gap-8 xl:gap-12">
+        <div className="mt-10 grid w-full grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(200px,280px)_minmax(0,1fr)] lg:gap-8 xl:gap-12">
           <div className="flex justify-center lg:justify-start lg:pr-2">
             <VrikshaTreeIllustration />
           </div>
@@ -151,6 +139,18 @@ export default function AcademicVrikshaMethodology() {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-14 max-w-3xl">
+          <div className="rounded-xl border border-neutral-200/70 bg-white px-6 py-8 shadow-[0_4px_28px_-6px_rgba(15,23,42,0.1)] sm:rounded-2xl sm:px-8 sm:py-10 md:py-11 border-l-[5px] border-l-[#2563eb]">
+            <h3 className="text-center text-xl font-bold leading-snug text-[#0f1f3a] sm:text-2xl md:text-[1.65rem]">
+              Enter Matrix Science Academy
+            </h3>
+            <p className="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-neutral-700 md:mt-6 md:text-lg">
+              We&apos;ve built an ecosystem specifically designed to address these challenges. We partner with parents to provide
+              transparent, structured, and highly effective academic coaching that turns stress into success.
+            </p>
           </div>
         </div>
       </div>

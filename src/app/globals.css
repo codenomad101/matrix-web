@@ -6,6 +6,12 @@
 	main h1 {
 		text-align: center;
 	}
+	main h1.interior-title {
+		text-align: left;
+	}
+	main h1.interior-title.interior-title-center {
+		text-align: center;
+	}
 	main h1.hero-main-headline {
 		text-align: left;
 	}
@@ -208,6 +214,32 @@ small, .text-caption, .text-small {
 .eyebrow {
 	@apply text-sm font-semibold tracking-wide text-[#0f172a] md:text-base;
 }
+/* Interior pages (About, Courses, Faculty, etc.) — plain neutral shell */
+.interior-page {
+	@apply min-h-screen bg-white text-neutral-800 antialiased;
+}
+.interior-section {
+	@apply py-10 sm:py-12 md:py-14;
+}
+.interior-inner {
+	@apply container-page;
+}
+.interior-title {
+	@apply text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl;
+}
+.interior-title-center {
+	@apply text-center;
+}
+.interior-section-title {
+	@apply text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl md:text-4xl;
+}
+.interior-lead {
+	@apply mt-2 text-base leading-relaxed text-neutral-600 md:text-lg;
+}
+.interior-muted {
+	@apply text-sm text-neutral-500;
+}
+
 /* Allen-style card for content blocks */
 .page-card {
 	@apply bg-white rounded-xl shadow-sm border border-gray-100 p-4 md:p-6;

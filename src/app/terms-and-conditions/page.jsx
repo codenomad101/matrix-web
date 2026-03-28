@@ -6,10 +6,10 @@ export const metadata = {
 
 export default function TermsAndConditionsPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="interior-page">
       <section className="page-section-white">
         <div className="container-page max-w-3xl mx-auto">
-          <h1 className="text-3xl font-bold text-heading mb-6">Terms &amp; Conditions</h1>
+          <h1 className="interior-title mb-6">Terms &amp; Conditions</h1>
           <p className="text-sm text-body/80 mb-6">Effective Date: January 14, 2026</p>
 
           <div className="space-y-4 text-body leading-relaxed">

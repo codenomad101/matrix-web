@@ -33,49 +33,43 @@ const items = [
 
 export default function Testimonials() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="interior-page">
       <section className="page-section-white">
         <div className="container-page">
-          <h1 className="text-3xl font-bold mb-2 text-heading">Testimonials</h1>
-          <p className="text-body mb-5">Hear from our successful students who achieved their dreams</p>
+          <h1 className="interior-title mb-2">Testimonials</h1>
+          <p className="mb-5 text-neutral-600">Hear from our successful students who achieved their dreams</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {items.map((t, idx) => (
               <div 
                 key={idx} 
                 className="page-card rounded-2xl hover:shadow-xl transition-all duration-500 hover:-translate-y-2 overflow-hidden group"
               >
-            {/* Quote Section with Brand Color */}
-            <div className="relative bg-brand px-6 pt-8 pb-6">
-              {/* Quote Icon */}
-              <div className="absolute top-4 left-6 opacity-20">
-                <svg className="w-16 h-16 text-[var(--brand-red)]" fill="currentColor" viewBox="0 0 24 24">
+            <div className="relative border-b border-neutral-200 bg-neutral-50 px-6 pt-8 pb-6">
+              <div className="absolute top-4 left-6 opacity-15">
+                <svg className="h-16 w-16 text-neutral-400" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.481.967-4.996 2.848-4.996 7.153 0 3.031 1.214 5.555 3.003 7.266h-7.986zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.481.967-5 2.848-5 7.153 0 3.031 1.214 5.555 3.003 7.266h-7.003z"/>
                 </svg>
               </div>
               
-              {/* Quote Text */}
               <div className="relative z-10">
-                <p className="text-[var(--brand-red)] text-base leading-relaxed font-medium italic">
+                <p className="text-base font-medium italic leading-relaxed text-neutral-800">
                   "{t.text}"
                 </p>
               </div>
-              
-              {/* Decorative corner */}
-              <div className="absolute bottom-0 right-0 w-20 h-20 bg-brand-dark/20 rounded-tl-full transform translate-x-8 translate-y-8"></div>
             </div>
 
             {/* Person Details Section */}
-            <div className="px-6 py-5 bg-white border-t border-gray-200/80">
+            <div className="border-t border-neutral-200 bg-white px-6 py-5">
               <div className="flex items-center gap-4">
                 {/* Avatar */}
-                <div className="h-12 w-12 rounded-full bg-brand/30 flex items-center justify-center text-[var(--brand-red)] font-bold text-lg shrink-0 group-hover:bg-brand/50 transition-colors duration-300">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-neutral-200 text-lg font-bold text-neutral-800 transition-colors group-hover:bg-neutral-300">
                   {t.name.split(' ').map(n => n[0]).join('')}
                 </div>
                 
                 {/* Details */}
                 <div className="flex-1 min-w-0">
-                  <div className="font-semibold text-body text-lg">{t.name}</div>
-                  <div className="text-sm font-medium text-heading mt-0.5">{t.college}</div>
+                  <div className="text-lg font-semibold text-neutral-900">{t.name}</div>
+                  <div className="mt-0.5 text-sm font-medium text-neutral-700">{t.college}</div>
                   <div className="text-xs text-body/80 mt-1">{t.exam}</div>
                 </div>
               </div>

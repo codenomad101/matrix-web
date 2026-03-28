@@ -1,30 +1,21 @@
 'use client'
 import Link from 'next/link'
+import CourseHeroPlain from '@/components/CourseHeroPlain'
 
 export default function NEETPage() {
     return (
-        <div className="min-h-screen bg-white">
-            {/* Hero Section */}
-            <section className="bg-[var(--brand-red)] text-white py-8 md:py-12">
-                <div className="container-page">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-                            <span className="text-4xl">⚕️</span>
-                            <span className="font-semibold">Medical Entrance Examination</span>
-                        </div>
-                        <h1 className="text-4xl md:text-6xl font-extrabold mb-4">NEET</h1>
-                        <p className="text-xl md:text-2xl mb-2 opacity-90">National Eligibility cum Entrance Test</p>
-                        <p className="text-lg md:text-xl opacity-80 max-w-2xl mx-auto">
-                            The single gateway to MBBS, BDS, and AYUSH courses across India
-                        </p>
-                    </div>
-                </div>
-            </section>
+        <div className="interior-page">
+            <CourseHeroPlain
+                eyebrow="Medical entrance examination"
+                title="NEET"
+                subtitle="National Eligibility cum Entrance Test"
+                description="The single gateway to MBBS, BDS, and AYUSH courses across India."
+            />
 
             {/* About the Exam */}
             <section className="page-section-white">
                 <div className="container-page max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-heading mb-6">About NEET</h2>
+                    <h2 className="interior-section-title mb-6">About NEET</h2>
                     <div className="prose prose-lg max-w-none">
                         <p className="text-body/80 text-lg leading-relaxed mb-4">
                             The National Eligibility cum Entrance Test (NEET) is the single entrance examination for
@@ -44,40 +35,40 @@ export default function NEETPage() {
             <section className="page-section-gray">
                 <div className="container-page">
                     <div className="max-w-4xl mx-auto">
-                        <h2 className="text-3xl md:text-4xl font-bold text-heading mb-8">Exam Pattern</h2>
+                        <h2 className="interior-section-title mb-8">Exam Pattern</h2>
                         <div className="page-card p-8">
                             <ul className="space-y-4 text-body/80">
                                 <li className="flex items-start gap-3">
-                                    <span className="text-emerald-600 font-bold text-xl">📅</span>
+                                    <span className="text-neutral-600 font-bold text-xl">📅</span>
                                     <span><strong>Exam Date:</strong> Usually conducted in May (Once a year)</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-emerald-600 font-bold text-xl">📝</span>
+                                    <span className="text-neutral-600 font-bold text-xl">📝</span>
                                     <span><strong>Subjects:</strong> Physics, Chemistry, Biology (Botany & Zoology)</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-emerald-600 font-bold text-xl">⏱️</span>
+                                    <span className="text-neutral-600 font-bold text-xl">⏱️</span>
                                     <span><strong>Duration:</strong> 3 hours 20 minutes</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-emerald-600 font-bold text-xl">❓</span>
+                                    <span className="text-neutral-600 font-bold text-xl">❓</span>
                                     <span><strong>Questions:</strong> 200 questions (180 to be attempted)</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-emerald-600 font-bold text-xl">💯</span>
+                                    <span className="text-neutral-600 font-bold text-xl">💯</span>
                                     <span><strong>Total Marks:</strong> 720 marks</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-emerald-600 font-bold text-xl">📖</span>
+                                    <span className="text-neutral-600 font-bold text-xl">📖</span>
                                     <span><strong>Syllabus:</strong> NCERT (11th & 12th) - Physics, Chemistry, Biology</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="text-emerald-600 font-bold text-xl">✅</span>
+                                    <span className="text-neutral-600 font-bold text-xl">✅</span>
                                     <span><strong>Marking:</strong> +4 for correct, -1 for incorrect</span>
                                 </li>
                             </ul>
-                            <div className="mt-6 p-4 bg-emerald-50 rounded-lg">
-                                <p className="text-sm text-emerald-800">
+                            <div className="mt-6 rounded-lg border border-neutral-200 bg-neutral-50 p-4">
+                                <p className="text-sm text-neutral-700">
                                     <strong>Subject-wise Distribution:</strong> Physics (45 Q), Chemistry (45 Q),
                                     Botany (45 Q), Zoology (45 Q) - Total 180 questions to be attempted from 200
                                 </p>
@@ -90,7 +81,7 @@ export default function NEETPage() {
             {/* What You'll Achieve */}
             <section className="page-section-white">
                 <div className="container-page max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-heading mb-8">What You'll Achieve</h2>
+                    <h2 className="interior-section-title mb-8">What You'll Achieve</h2>
                     <div className="grid sm:grid-cols-2 gap-6">
                         {[
                             { icon: '🏥', title: 'MBBS Admission', desc: 'Admission to government and private medical colleges across India' },
@@ -100,9 +91,9 @@ export default function NEETPage() {
                             { icon: '💰', title: 'Financial Security', desc: 'Excellent earning potential and job security' },
                             { icon: '🌍', title: 'Global Opportunities', desc: 'Practice medicine in India or pursue opportunities abroad' }
                         ].map((item, idx) => (
-                            <div key={idx} className="bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
+                            <div key={idx} className="rounded-xl border border-neutral-200 bg-neutral-50 p-6 transition-shadow hover:shadow-md">
                                 <div className="text-4xl mb-3">{item.icon}</div>
-                                <h3 className="text-xl font-bold text-heading mb-2">{item.title}</h3>
+                                <h3 className="text-xl font-bold text-neutral-900 mb-2">{item.title}</h3>
                                 <p className="text-body/80">{item.desc}</p>
                             </div>
                         ))}
@@ -111,24 +102,24 @@ export default function NEETPage() {
             </section>
 
             {/* Our Results */}
-            <section className="bg-[var(--brand-red)] text-white py-5 md:py-7">
+            <section className="border-y border-neutral-200 bg-neutral-50 py-8 md:py-10">
                 <div className="container-page">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Remarkable Results</h2>
-                        <div className="text-6xl md:text-7xl font-extrabold text-emerald-400 mb-4">5</div>
-                        <p className="text-xl md:text-2xl mb-6">Selections in AIIMS and MBBS out of 53 students</p>
+                    <div className="max-w-4xl mx-auto text-center text-neutral-900">
+                        <h2 className="interior-section-title mb-4">Our Remarkable Results</h2>
+                        <div className="text-6xl md:text-7xl font-extrabold text-neutral-800 mb-4">5</div>
+                        <p className="text-xl md:text-2xl mb-6 text-neutral-700">Selections in AIIMS and MBBS out of 53 students</p>
                         <div className="grid sm:grid-cols-3 gap-6 mt-8">
-                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                            <div className="rounded-xl border border-neutral-200 bg-white p-6">
                                 <div className="text-3xl font-bold mb-2">50+</div>
-                                <p className="text-sm opacity-90">Students Qualified for MBBS</p>
+                                <p className="text-sm text-neutral-600">Students Qualified for MBBS</p>
                             </div>
-                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                            <div className="rounded-xl border border-neutral-200 bg-white p-6">
                                 <div className="text-3xl font-bold mb-2">650+</div>
-                                <p className="text-sm opacity-90">Average Score of Top Students</p>
+                                <p className="text-sm text-neutral-600">Average Score of Top Students</p>
                             </div>
-                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                            <div className="rounded-xl border border-neutral-200 bg-white p-6">
                                 <div className="text-3xl font-bold mb-2">90%</div>
-                                <p className="text-sm opacity-90">Success Rate in Medical Admissions</p>
+                                <p className="text-sm text-neutral-600">Success Rate in Medical Admissions</p>
                             </div>
                         </div>
                     </div>
@@ -138,7 +129,7 @@ export default function NEETPage() {
             {/* Our Approach */}
             <section className="page-section-gray">
                 <div className="container-page max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-heading mb-8">Our Teaching Approach</h2>
+                    <h2 className="interior-section-title mb-8">Our Teaching Approach</h2>
                     <div className="space-y-6">
                         {[
                             { title: 'NCERT-Focused Approach', desc: 'Complete mastery of NCERT textbooks - the foundation of NEET' },
@@ -149,11 +140,11 @@ export default function NEETPage() {
                             { title: 'Doubt Clearing Sessions', desc: 'Dedicated sessions for clearing doubts in Physics, Chemistry, and Biology' }
                         ].map((item, idx) => (
                             <div key={idx} className="flex items-start gap-4 page-card p-6 hover:shadow-lg transition-all duration-300">
-                                <div className="flex-shrink-0 w-8 h-8 bg-[var(--brand-red)] rounded-full flex items-center justify-center text-white font-bold">
+                                <div className="flex-shrink-0 w-8 h-8 bg-neutral-800 rounded-full flex items-center justify-center text-white text-sm font-bold">
                                     {idx + 1}
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-heading mb-2">{item.title}</h3>
+                                    <h3 className="text-xl font-bold text-neutral-900 mb-2">{item.title}</h3>
                                     <p className="text-body/80">{item.desc}</p>
                                 </div>
                             </div>
@@ -165,21 +156,21 @@ export default function NEETPage() {
             {/* CTA Section */}
             <section className="page-section-white">
                 <div className="container-page">
-                <div className="bg-[var(--brand-red)] rounded-2xl p-8 md:p-12 text-center text-white">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Medical Journey?</h2>
-                    <p className="text-lg md:text-xl mb-8 text-white/90">
+                <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-8 md:p-12 text-center text-neutral-900">
+                    <h2 className="interior-section-title mb-4">Ready to Start Your Medical Journey?</h2>
+                    <p className="text-lg md:text-xl mb-8 text-neutral-600">
                         Join Matrix Science Academy and achieve your dream of becoming a doctor
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             href="/enquiry"
-                            className="inline-flex items-center justify-center gap-2 bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+                            className="inline-flex items-center justify-center gap-2 rounded-lg bg-neutral-900 px-8 py-4 font-semibold text-white transition-colors hover:bg-neutral-800"
                         >
                             Enquire Now
                         </Link>
                         <Link
                             href="/courses"
-                            className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-[var(--brand-red)] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105"
+                            className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-neutral-300 bg-white px-8 py-4 font-semibold text-neutral-900 transition-colors hover:bg-neutral-100"
                         >
                             View All Courses
                         </Link>

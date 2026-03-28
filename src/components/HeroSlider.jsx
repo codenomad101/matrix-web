@@ -12,6 +12,51 @@ const HERO_CAROUSEL_IMAGES = [
 
 const MAIN_CAROUSEL_MS = 4500
 
+const TYPING_WORDS = ['Physics', 'Chemistry', 'Mathematics']
+
+function HeroTypingSubjects({ className }) {
+  const [wordIndex, setWordIndex] = useState(0)
+  const [text, setText] = useState('')
+  const [phase, setPhase] = useState('typing') // 'typing' | 'deleting'
+
+  useEffect(() => {
+    const word = TYPING_WORDS[wordIndex]
+    let t
+
+    if (phase === 'typing') {
+      if (text.length < word.length) {
+        t = setTimeout(() => setText(word.slice(0, text.length + 1)), 95)
+      } else {
+        t = setTimeout(() => setPhase('deleting'), 2400)
+      }
+    } else if (text.length > 0) {
+      t = setTimeout(() => setText((s) => s.slice(0, -1)), 42)
+    } else {
+      setWordIndex((i) => (i + 1) % TYPING_WORDS.length)
+      setPhase('typing')
+    }
+
+    return () => clearTimeout(t)
+  }, [text, phase, wordIndex])
+
+  return (
+    <span className={className}>
+      <span className="font-black">in </span>
+      <span
+        className="inline-block text-left font-black text-[#548FF7]"
+        style={{ minWidth: '11.5ch' }}
+        aria-live="polite"
+        aria-label={`Subject focus: ${text || TYPING_WORDS[wordIndex]}`}
+      >
+        {text}
+        <span className="ml-0.5 inline-block w-[0.08em] animate-pulse font-light text-[#3377F5]" aria-hidden>
+          |
+        </span>
+      </span>
+    </span>
+  )
+}
+
 function IconSpark({ className }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
@@ -86,8 +131,9 @@ export default function HeroSlider() {
               <span className="block font-black">Build Strong</span>
               <span className="block font-black text-[#3377F5]">Academic</span>
               <span className="block font-black text-[#548FF7]">Foundations</span>
-              <span className="block font-black">in Science</span>
-              <span className="block font-black">&amp; Mathematics</span>
+              <span className="block">
+                <HeroTypingSubjects />
+              </span>
             </h1>
 
             <p className="mb-7 max-w-xl text-base font-normal leading-[1.7] text-neutral-600 sm:text-lg sm:leading-[1.75] md:mb-9">

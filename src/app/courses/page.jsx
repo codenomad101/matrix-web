@@ -20,7 +20,6 @@ export default function CoursesPage() {
         'Regular mock tests and assessments',
         'Doubt clearing sessions',
       ],
-      color: 'from-[var(--brand-red)] to-[var(--brand-gradient-end)]',
     },
     {
       id: 'iit-jee',
@@ -34,7 +33,6 @@ export default function CoursesPage() {
         'Comprehensive study material',
         'Performance tracking system',
       ],
-      color: 'from-[var(--brand-red)] to-[var(--brand-gradient-end)]',
     },
     {
       id: 'neet',
@@ -48,7 +46,6 @@ export default function CoursesPage() {
         'NCERT-based comprehensive coverage',
         'Regular practice tests',
       ],
-      color: 'from-[var(--brand-red)] to-[var(--brand-gradient-end)]',
     },
     {
       id: 'iiser',
@@ -62,7 +59,6 @@ export default function CoursesPage() {
         'Expert mentorship',
         'Aptitude development',
       ],
-      color: 'from-[var(--brand-red)] to-[var(--brand-gradient-end)]',
     },
   ]
 
@@ -110,18 +106,13 @@ export default function CoursesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Red Hero Strip */}
-      <section className="bg-[var(--brand-red)] text-white py-8 md:py-12">
-        <div className="container-page text-center">
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium bg-white/20 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full mb-2 sm:mb-4">
-            <span>📚 Our Programs</span>
-          </div>
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-2 sm:mb-4">
-            Courses We Offer
-          </h1>
-          <p className="text-sm sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto px-2">
-            Comprehensive training programs designed to help you achieve excellence in competitive examinations
+    <div className="interior-page">
+      <section className="border-b border-neutral-200 bg-white py-10 sm:py-12 md:py-14">
+        <div className="container-page max-w-3xl mx-auto text-center">
+          <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500">Our programs</p>
+          <h1 className="interior-title interior-title-center mt-1">Courses we offer</h1>
+          <p className="interior-lead mx-auto mt-2 max-w-2xl">
+            Comprehensive training programs for competitive examinations.
           </p>
         </div>
       </section>
@@ -137,32 +128,32 @@ export default function CoursesPage() {
               {courses.map((course) => (
                 <div key={course.id} className="w-full flex-[0_0_100%] h-full shrink-0 p-2 sm:p-6 md:p-12 flex flex-col md:flex-row items-center gap-2 sm:gap-6 md:gap-8 overflow-y-auto md:overflow-visible">
                   {/* Left Side - Icon and Name */}
-                  <div className={`flex-shrink-0 w-full md:w-1/3 bg-gradient-to-br ${course.color} rounded-lg sm:rounded-2xl p-3 sm:p-8 text-white text-center shadow-xl`}>
+                  <div className="flex-shrink-0 w-full md:w-1/3 rounded-lg border border-neutral-200 bg-neutral-100 p-3 text-center shadow-sm sm:rounded-2xl sm:p-8">
                     <div className="text-3xl sm:text-8xl md:text-9xl mb-1 sm:mb-6">{course.icon}</div>
-                    <h2 className="text-lg sm:text-3xl md:text-4xl font-extrabold mb-0.5 sm:mb-2">{course.name}</h2>
-                    <p className="text-[9px] sm:text-sm md:text-base opacity-90">{course.fullName}</p>
+                    <h2 className="text-lg font-bold text-neutral-900 sm:mb-2 sm:text-3xl md:text-4xl">{course.name}</h2>
+                    <p className="text-[9px] text-neutral-600 sm:text-sm md:text-base">{course.fullName}</p>
                   </div>
 
                   {/* Right Side - Details */}
                   <div className="flex-1 w-full">
-                    <p className="text-xs sm:text-lg md:text-xl text-[var(--brand-red)] mb-2 sm:mb-6 leading-relaxed">
+                    <p className="mb-2 text-xs leading-relaxed text-neutral-700 sm:mb-6 sm:text-lg md:text-xl">
                       {course.description}
                     </p>
                     <div className="space-y-1 sm:space-y-3">
-                      <h3 className="text-sm sm:text-xl font-bold text-[var(--brand-red)] mb-1 sm:mb-4">Key Highlights:</h3>
+                      <h3 className="mb-1 text-sm font-semibold text-neutral-900 sm:mb-4 sm:text-xl">Key highlights</h3>
                       {course.highlights.map((highlight, hIdx) => (
                         <div key={hIdx} className="flex items-start gap-1.5 sm:gap-3">
-                          <div className="flex-shrink-0 w-3 h-3 sm:w-6 sm:h-6 bg-[var(--brand-red)] rounded-full flex items-center justify-center text-white text-[8px] sm:text-sm">
+                          <div className="flex h-3 w-3 flex-shrink-0 items-center justify-center rounded-full bg-neutral-800 text-[8px] text-white sm:h-6 sm:w-6 sm:text-sm">
                             ✓
                           </div>
-                          <p className="text-[10px] sm:text-base text-[var(--brand-red)]/90 leading-tight">{highlight}</p>
+                          <p className="text-[10px] leading-tight text-neutral-700 sm:text-base">{highlight}</p>
                         </div>
                       ))}
                     </div>
                     <div className="mt-3 sm:mt-8 flex justify-center md:justify-start">
                       <Link
                         href="/enquiry"
-                        className="inline-flex items-center gap-1 sm:gap-2 bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] px-3 py-1.5 sm:px-6 sm:py-3 rounded sm:rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-[10px] sm:text-base"
+                        className="inline-flex items-center gap-1 rounded px-3 py-1.5 text-[10px] font-semibold text-white transition-colors hover:bg-neutral-800 sm:gap-2 sm:rounded-lg sm:px-6 sm:py-3 sm:text-base bg-neutral-900"
                       >
                         Enquire Now
                         <svg className="w-3 h-3 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -180,7 +171,7 @@ export default function CoursesPage() {
               onClick={prevSlide}
               className="absolute left-1.5 sm:left-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-12 sm:h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
             >
-              <svg className="w-4 h-4 sm:w-6 sm:h-6 text-[var(--brand-red)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-6 sm:h-6 text-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
@@ -188,7 +179,7 @@ export default function CoursesPage() {
               onClick={nextSlide}
               className="absolute right-1.5 sm:right-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-12 sm:h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
             >
-              <svg className="w-4 h-4 sm:w-6 sm:h-6 text-[var(--brand-red)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-6 sm:h-6 text-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -199,7 +190,7 @@ export default function CoursesPage() {
                 <button
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 ${currentIndex === idx ? 'w-6 sm:w-8 bg-[var(--brand-red)]' : 'w-1.5 sm:w-2 bg-gray-300 hover:bg-gray-400'
+                  className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 ${currentIndex === idx ? 'w-6 sm:w-8 bg-neutral-800' : 'w-1.5 sm:w-2 bg-gray-300 hover:bg-gray-400'
                     }`}
                 />
               ))}
@@ -212,20 +203,20 @@ export default function CoursesPage() {
       {/* Courses Overview Grid */}
       <section className="page-section-gray">
         <div className="container-page">
-        <h2 className="text-3xl md:text-4xl font-bold text-heading mb-5 text-center">
-          Our Courses
+        <h2 className="interior-section-title mb-5 text-center">
+          Our courses
         </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {courses.map((course) => (
             <div
               key={course.id}
               onClick={() => setCurrentIndex(courses.indexOf(course))}
-              className={`bg-gradient-to-br ${course.color} rounded-xl p-6 text-white cursor-pointer hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl`}
+              className="cursor-pointer rounded-xl border border-neutral-200 bg-neutral-50 p-6 transition-all duration-300 hover:border-neutral-300 hover:shadow-md"
             >
-              <div className="text-5xl mb-4">{course.icon}</div>
-              <h3 className="text-2xl font-bold mb-2">{course.name}</h3>
-              <p className="text-sm opacity-90 mb-4">{course.fullName}</p>
-              <p className="text-sm line-clamp-2">{course.description}</p>
+              <div className="mb-4 text-5xl">{course.icon}</div>
+              <h3 className="mb-2 text-2xl font-bold text-neutral-900">{course.name}</h3>
+              <p className="mb-4 text-sm text-neutral-600">{course.fullName}</p>
+              <p className="line-clamp-2 text-sm text-neutral-700">{course.description}</p>
             </div>
           ))}
         </div>
@@ -235,8 +226,8 @@ export default function CoursesPage() {
       {/* Batches Section */}
       <section className="page-section-white">
         <div className="container-page">
-        <h2 className="text-3xl md:text-4xl font-bold text-heading mb-4 text-center">
-          Our Specialized Batches
+        <h2 className="interior-section-title mb-4 text-center">
+          Our specialized batches
         </h2>
         <p className="text-center text-body/80 mb-5 max-w-2xl mx-auto">
           Choose the batch that best fits your preparation needs and learning pace
@@ -245,10 +236,10 @@ export default function CoursesPage() {
           {batches.map((batch) => (
             <div
               key={batch.id}
-              className="bg-gradient-to-br from-[var(--brand-red)] to-[var(--brand-gradient-end)] rounded-xl p-6 text-white text-center hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
+              className="rounded-xl border border-neutral-200 bg-white p-6 text-center transition-all duration-300 hover:border-neutral-300 hover:shadow-md"
             >
-              <div className="text-4xl sm:text-5xl mb-3">{batch.icon}</div>
-              <h3 className="text-lg sm:text-xl font-bold">{batch.name}</h3>
+              <div className="mb-3 text-4xl sm:text-5xl">{batch.icon}</div>
+              <h3 className="text-lg font-semibold text-neutral-900 sm:text-xl">{batch.name}</h3>
             </div>
           ))}
         </div>
@@ -258,23 +249,23 @@ export default function CoursesPage() {
       {/* CTA Section */}
       <section className="page-section-gray">
         <div className="container-page">
-        <div className="bg-[var(--brand-red)] rounded-2xl p-6 md:p-8 text-center text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Start Your Journey?
+        <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-center text-neutral-900 md:p-8">
+          <h2 className="interior-section-title mb-4">
+            Ready to start your journey?
           </h2>
-          <p className="text-lg md:text-xl mb-5 text-white/90">
+          <p className="mb-5 text-lg text-neutral-600 md:text-xl">
             Join thousands of successful students who achieved their dreams with Matrix Science Academy
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               href="/enquiry"
-              className="inline-flex items-center justify-center gap-2 bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-neutral-900 px-8 py-4 font-semibold text-white transition-colors hover:bg-neutral-800"
             >
               Enquire Now
             </Link>
             <Link
               href="/results"
-              className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-[var(--brand-red)] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-neutral-300 bg-white px-8 py-4 font-semibold text-neutral-900 transition-colors hover:bg-neutral-100"
             >
               View Results
             </Link>

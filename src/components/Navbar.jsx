@@ -298,20 +298,23 @@ export default function Navbar() {
           </div>
         </header>
 
-        {/* 3) Red ticker + navy band below (taller blue strip) */}
-        <div className="bg-[#ED1C24] text-white">
-          <div className="flex w-max animate-headerTicker">
-            <div className="flex items-center px-4 py-1 sm:px-6 sm:py-1.5 md:py-1.5">
-              {renderTickerRow('a')}
+        {/* 3) Red ticker + navy band — same width as page content (container), not full-bleed */}
+        <div className="border-b border-neutral-200 bg-white">
+          <div className="container-header overflow-hidden">
+            <div className="bg-[#ED1C24] text-white">
+              <div className="flex w-max animate-headerTicker">
+                <div className="flex items-center px-4 py-1 sm:px-6 sm:py-1.5 md:py-1.5">
+                  {renderTickerRow('a')}
+                </div>
+                <div className="flex items-center px-4 py-1 sm:px-6 sm:py-1.5 md:py-1.5" aria-hidden>
+                  {renderTickerRow('b')}
+                </div>
+              </div>
             </div>
-            <div className="flex items-center px-4 py-1 sm:px-6 sm:py-1.5 md:py-1.5" aria-hidden>
-              {renderTickerRow('b')}
+            <div className="bg-[#005FB8]" aria-hidden>
+              <div className="h-[3px] sm:h-[3.5px] md:h-1 lg:h-[5px]" />
             </div>
           </div>
-        </div>
-        <div className="bg-[#005FB8]" aria-hidden>
-          {/* ~30% thinner than prior strip (was h-1 / 5px / 1.5 / 2) */}
-          <div className="h-[3px] sm:h-[3.5px] md:h-1 lg:h-[5px]" />
         </div>
       </div>
 
