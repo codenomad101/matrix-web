@@ -97,8 +97,9 @@ export default function Navbar() {
       <div className={`sticky top-0 !z-[10001] transition-shadow duration-300 ${scrolled ? 'shadow-md' : ''}`}>
         {/* 1) Utility bar — white, hairline border, branches left / blue enquire right */}
         <div className="bg-white">
-          <div className="container-header flex items-center justify-between gap-3 py-2 text-[13px] leading-tight sm:text-sm sm:leading-snug">
-            <div className="relative min-w-0 group/branches">
+          <div className="container-header flex items-center justify-between gap-3 border-b border-neutral-200 py-2 text-[13px] leading-tight sm:text-sm sm:leading-snug">
+            {/* Mobile / tablet: “8 Branches in Pune” + hover dropdown */}
+            <div className="relative min-w-0 group/branches lg:hidden">
               <Link
                 href="/about#branches-strip"
                 className="inline-flex items-center gap-1.5 font-medium text-[#5c6d86] transition-colors hover:text-[#4a5a72]"
@@ -131,6 +132,41 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
+
+            {/* Desktop (lg+): “Branches” label (Enquire-style blue) + list with vertical rules */}
+            <nav
+              className="hidden min-w-0 flex-1 flex-wrap items-center gap-y-1 lg:flex"
+              aria-label="Pune branches"
+            >
+              <span className="shrink-0 font-semibold text-[#005FB8]">8 Branches in Pune</span>
+              <span
+                className="mx-2 inline-block h-3 w-px shrink-0 bg-neutral-300 sm:mx-2.5"
+                aria-hidden
+              />
+              {BRANCHES.map((branch, i) => (
+                <span key={branch} className="inline-flex items-center">
+                  {i > 0 && (
+                    <span
+                      className="mx-2 inline-block h-3 w-px shrink-0 bg-neutral-300 sm:mx-2.5"
+                      aria-hidden
+                    />
+                  )}
+                  <Link
+                    href={`/enquiry?branch=${encodeURIComponent(branch)}`}
+                    className="whitespace-nowrap text-[13px] font-medium text-[#5c6d86] transition-colors hover:text-[#4a5a72] sm:text-sm"
+                  >
+                    {branch}
+                  </Link>
+                </span>
+              ))}
+              <span className="mx-2 inline-block h-3 w-px shrink-0 bg-neutral-300 sm:mx-2.5" aria-hidden />
+              <Link
+                href="/about#branches-strip"
+                className="whitespace-nowrap text-[12px] font-semibold text-[#ED1C24] transition-colors hover:text-[#c9151d] sm:text-[13px]"
+              >
+                View all
+              </Link>
+            </nav>
             <Link
               href="/enquiry"
               className="inline-flex shrink-0 items-center gap-1.5 font-semibold text-[#005FB8] transition-colors hover:text-[#004494]"
