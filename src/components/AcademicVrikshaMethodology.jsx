@@ -87,22 +87,25 @@ function VrikshaIdentityColumn() {
   )
 }
 
-function PillarCard({ item }) {
+function PillarCardRow({ item, compact }) {
   return (
     <div className="relative z-[1] flex w-[132px] shrink-0 flex-col items-center text-center sm:w-[148px]">
-      <div className={`flex h-16 w-16 items-center justify-center shadow-sm ${item.wrap}`}>
-        <item.Icon className="h-8 w-8" />
+      <div
+        className={`flex items-center justify-center shadow-sm ${item.wrap} ${compact ? 'h-14 w-14 rounded-xl' : 'h-16 w-16 rounded-2xl'}`}
+      >
+        <item.Icon className={compact ? 'h-7 w-7' : 'h-8 w-8'} />
       </div>
-      <p className="mt-3 text-sm font-bold leading-tight text-black">{item.title}</p>
+      <p className="mt-2 text-sm font-bold leading-tight text-black sm:mt-3">{item.title}</p>
       <p className="mt-1 text-xs text-neutral-600">{item.subtitle}</p>
     </div>
   )
 }
 
-/** @param {{ variant?: 'default' | 'page' }} props — `page` = transparent section bg (full-page green shell) */
+/** @param {{ variant?: 'default' | 'page' }} props — `page` = green full-page shell; both use flat layout (no white outer cards) */
 export default function AcademicVrikshaMethodology({ variant = 'default' }) {
   const pillarLoop = [...PILLARS, ...PILLARS]
-  const sectionSurface = variant === 'page' ? 'bg-transparent' : 'bg-white'
+  const isPage = variant === 'page'
+  const sectionSurface = isPage ? 'bg-transparent' : 'bg-white'
 
   return (
     <section className={`${sectionSurface} pb-8 pt-7 md:pb-12 md:pt-9 lg:pb-16 lg:pt-11`} aria-labelledby="academic-support-heading">
@@ -118,10 +121,15 @@ export default function AcademicVrikshaMethodology({ variant = 'default' }) {
         </div>
 
         <div className="mx-auto mt-14 w-full">
-          <div className="rounded-xl border border-neutral-200/70 bg-white px-4 py-5 shadow-[0_4px_28px_-6px_rgba(15,23,42,0.1)] sm:rounded-2xl sm:px-6 sm:py-6 md:px-8 md:py-7">
-            {/* Title block: Vriksha Open School logo as background (no heavy overlay — it hid the image) */}
-            <div className="relative min-h-[280px] overflow-hidden rounded-2xl bg-gradient-to-b from-emerald-50/95 via-[#42b883]/14 to-emerald-100/40 px-2 pb-6 pt-8 sm:min-h-[300px] sm:pb-8 sm:pt-10 md:min-h-[340px] md:pb-10 md:pt-12">
-              {/* Logo only in lower band so it sits below the copy, not hidden behind it */}
+          <div className="w-full">
+            {/* Title block: Vriksha Open School logo as background */}
+            <div
+              className={`relative overflow-hidden rounded-2xl bg-gradient-to-b from-emerald-50/95 via-[#42b883]/14 to-emerald-100/40 px-2 ${
+                isPage
+                  ? 'min-h-[200px] pb-4 pt-6 sm:min-h-[220px] sm:pb-6 sm:pt-8 md:min-h-[240px] md:pb-8 md:pt-9'
+                  : 'min-h-[280px] pb-6 pt-8 sm:min-h-[300px] sm:pb-8 sm:pt-10 md:min-h-[340px] md:pb-10 md:pt-12'
+              }`}
+            >
               <div
                 className="pointer-events-none absolute inset-x-0 bottom-0 top-[46%] z-0 bg-contain bg-bottom bg-no-repeat opacity-70 sm:top-[42%] sm:opacity-[0.65] md:top-[40%] md:opacity-60"
                 style={{
@@ -144,22 +152,33 @@ export default function AcademicVrikshaMethodology({ variant = 'default' }) {
               </div>
             </div>
 
-            {/* Left: identity image (fixed). Right: pillar marquee only — image stays visible, stuck to section start on lg+ */}
             <div className="relative z-[1] mt-4 flex min-w-0 flex-col gap-5 sm:mt-5 lg:flex-row lg:items-center lg:gap-0 lg:pl-0">
-              <div className="relative z-[2] flex shrink-0 justify-center border-b border-emerald-100/70 pb-5 lg:sticky lg:top-28 lg:w-[min(220px,32vw)] lg:justify-start lg:border-b-0 lg:border-r lg:pb-0 lg:pr-5 xl:pr-6">
+              <div
+                className={`relative z-[2] flex shrink-0 justify-center pb-5 lg:sticky lg:top-28 lg:w-[min(220px,32vw)] lg:justify-start lg:border-b-0 lg:pb-0 lg:pr-5 xl:pr-6 ${
+                  isPage
+                    ? 'border-b border-emerald-200/40 lg:border-r lg:border-emerald-200/30'
+                    : 'border-b border-emerald-100/70 lg:border-r lg:border-emerald-100/80'
+                }`}
+              >
                 <VrikshaIdentityColumn />
               </div>
 
-              <div className="min-w-0 flex-1 overflow-hidden rounded-2xl border border-neutral-200 bg-white py-4 shadow-inner sm:rounded-3xl sm:py-5 lg:-ml-1 lg:rounded-l-none lg:border-l-0">
+              <div
+                className={`min-w-0 flex-1 overflow-hidden py-3 sm:py-4 lg:-ml-1 lg:rounded-l-none lg:border-l-0 ${
+                  isPage
+                    ? 'rounded-2xl border-0 bg-transparent py-2 shadow-none sm:rounded-3xl sm:py-3'
+                    : 'rounded-2xl border-0 bg-transparent py-4 shadow-none sm:rounded-3xl sm:py-5'
+                }`}
+              >
                 <div className="flex w-max animate-vrikshaMarquee items-stretch motion-reduce:animate-none">
-                  <div className="flex items-center gap-10 px-6">
+                  <div className={`flex items-center ${isPage ? 'gap-8 px-4' : 'gap-10 px-6'}`}>
                     {pillarLoop.map((item, i) => (
-                      <PillarCard key={`a-${item.title}-${i}`} item={item} />
+                      <PillarCardRow key={`a-${item.title}-${i}`} item={item} compact={isPage} />
                     ))}
                   </div>
-                  <div className="flex items-center gap-10 px-6" aria-hidden>
+                  <div className={`flex items-center ${isPage ? 'gap-8 px-4' : 'gap-10 px-6'}`} aria-hidden>
                     {pillarLoop.map((item, i) => (
-                      <PillarCard key={`b-${item.title}-${i}`} item={item} />
+                      <PillarCardRow key={`b-${item.title}-${i}`} item={item} compact={isPage} />
                     ))}
                   </div>
                 </div>
@@ -169,11 +188,15 @@ export default function AcademicVrikshaMethodology({ variant = 'default' }) {
         </div>
 
         <div className="mx-auto mt-14 max-w-3xl">
-          <div className="rounded-xl border border-neutral-200/70 bg-white px-6 py-8 shadow-[0_4px_28px_-6px_rgba(15,23,42,0.1)] sm:rounded-2xl sm:px-8 sm:py-10 md:py-11 border-l-[5px] border-l-[#2563eb]">
-            <h3 className="text-center text-xl font-bold leading-snug text-[#0f1f3a] sm:text-2xl md:text-[1.65rem]">
+          <div
+            className={`px-4 py-2 text-center sm:px-6 ${
+              isPage ? 'border-l-[3px] border-l-[#2563eb]/80' : 'border-l-[4px] border-l-[#2563eb]'
+            }`}
+          >
+            <h3 className="text-xl font-bold leading-snug text-[#0f1f3a] sm:text-2xl md:text-[1.65rem]">
               Enter Matrix Science Academy
             </h3>
-            <p className="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-neutral-700 md:mt-6 md:text-lg">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-neutral-700 md:mt-6 md:text-lg">
               We&apos;ve built an ecosystem specifically designed to address these challenges. We partner with parents to provide
               transparent, structured, and highly effective academic coaching that turns stress into success.
             </p>
