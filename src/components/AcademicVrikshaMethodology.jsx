@@ -65,39 +65,47 @@ const PILLARS = [
   { Icon: IconTrophy, title: 'Future Success', subtitle: 'Long-term outcomes', wrap: 'rounded-2xl bg-rose-100 text-rose-800' },
 ]
 
-/** Left column: Vriksha photo with same gentle sway as the former SVG tree */
-function VrikshaTreeIllustration({ compact = false }) {
-  const frameMax = compact
-    ? 'max-w-[200px] sm:max-w-[220px] lg:max-w-[240px]'
-    : 'max-w-[260px] xl:max-w-[280px]'
+/** Fixed left column — does not scroll with pillars (explicit size so Image always paints) */
+function VrikshaIdentityColumn() {
   return (
-    <div className="mx-auto flex w-full max-w-[280px] flex-col items-center justify-end lg:mx-0 lg:max-w-none">
-      <div
-        className={`origin-bottom motion-safe:animate-vrikshaTreeSway motion-reduce:animate-none ${frameMax} w-full overflow-hidden rounded-2xl shadow-md ring-1 ring-emerald-100/80`}
-      >
-        <div className="relative aspect-[4/5] w-full">
-          <Image
-            src={VRIKSHA_SIDE_IMAGE}
-            alt="Vriksha — holistic growth at Matrix Science Academy"
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 200px, (max-width: 1024px) 240px, 280px"
-            priority={false}
-          />
-        </div>
+    <div className="flex w-full shrink-0 flex-col items-center justify-center lg:-ml-1 lg:w-[200px] lg:items-start lg:justify-start xl:w-[220px]">
+      <div className="origin-bottom motion-safe:animate-vrikshaTreeSway motion-reduce:animate-none">
+        <Image
+          src={VRIKSHA_SIDE_IMAGE}
+          alt="Vriksha — holistic growth at Matrix Science Academy"
+          width={440}
+          height={560}
+          className="h-auto w-full max-w-[200px] object-contain sm:max-w-[220px] lg:max-w-[200px] xl:max-w-[220px]"
+          sizes="(max-width: 1024px) 220px, 220px"
+          priority={false}
+        />
       </div>
-      <p className={`text-center text-xs font-semibold uppercase tracking-wider text-emerald-800/80 lg:text-left ${compact ? 'mt-2' : 'mt-3'}`}>
-        Growth journey
+      <p className="mt-2 text-center text-[10px] font-semibold uppercase leading-tight tracking-wider text-emerald-800/90 lg:text-left">
+        Growth identity
       </p>
     </div>
   )
 }
 
-export default function AcademicVrikshaMethodology() {
-  const loop = [...PILLARS, ...PILLARS]
+function PillarCard({ item }) {
+  return (
+    <div className="relative z-[1] flex w-[132px] shrink-0 flex-col items-center text-center sm:w-[148px]">
+      <div className={`flex h-16 w-16 items-center justify-center shadow-sm ${item.wrap}`}>
+        <item.Icon className="h-8 w-8" />
+      </div>
+      <p className="mt-3 text-sm font-bold leading-tight text-black">{item.title}</p>
+      <p className="mt-1 text-xs text-neutral-600">{item.subtitle}</p>
+    </div>
+  )
+}
+
+/** @param {{ variant?: 'default' | 'page' }} props — `page` = transparent section bg (full-page green shell) */
+export default function AcademicVrikshaMethodology({ variant = 'default' }) {
+  const pillarLoop = [...PILLARS, ...PILLARS]
+  const sectionSurface = variant === 'page' ? 'bg-transparent' : 'bg-white'
 
   return (
-    <section className="bg-white pb-8 pt-7 md:pb-12 md:pt-9 lg:pb-16 lg:pt-11" aria-labelledby="academic-support-heading">
+    <section className={`${sectionSurface} pb-8 pt-7 md:pb-12 md:pt-9 lg:pb-16 lg:pt-11`} aria-labelledby="academic-support-heading">
       <div className="container-page px-4 sm:px-6">
         <div className="mx-auto max-w-3xl text-center">
           <h2 id="academic-support-heading" className="text-2xl font-bold leading-tight text-black sm:text-3xl md:text-[2rem] md:leading-snug">
@@ -136,25 +144,22 @@ export default function AcademicVrikshaMethodology() {
               </div>
             </div>
 
-            <div className="mt-4 grid w-full grid-cols-1 items-center gap-4 sm:mt-5 sm:gap-5 lg:grid-cols-[minmax(180px,240px)_minmax(0,1fr)] lg:gap-6 xl:gap-8">
-              <div className="flex justify-center lg:justify-start lg:pr-2">
-                <VrikshaTreeIllustration compact />
+            {/* Left: identity image (fixed). Right: pillar marquee only — image stays visible, stuck to section start on lg+ */}
+            <div className="relative z-[1] mt-4 flex min-w-0 flex-col gap-5 sm:mt-5 lg:flex-row lg:items-center lg:gap-0 lg:pl-0">
+              <div className="relative z-[2] flex shrink-0 justify-center border-b border-emerald-100/70 pb-5 lg:sticky lg:top-28 lg:w-[min(220px,32vw)] lg:justify-start lg:border-b-0 lg:border-r lg:pb-0 lg:pr-5 xl:pr-6">
+                <VrikshaIdentityColumn />
               </div>
 
-              <div className="min-w-0 w-full">
-                <div className="w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white py-4 shadow-inner sm:rounded-3xl sm:py-5">
-                  <div className="flex w-max animate-vrikshaMarquee items-stretch gap-10 px-6 motion-reduce:animate-none">
-                    {loop.map((item, i) => (
-                      <div
-                        key={`${item.title}-${i}`}
-                        className="flex w-[132px] shrink-0 flex-col items-center text-center sm:w-[148px]"
-                      >
-                        <div className={`flex h-16 w-16 items-center justify-center shadow-sm ${item.wrap}`}>
-                          <item.Icon className="h-8 w-8" />
-                        </div>
-                        <p className="mt-3 text-sm font-bold leading-tight text-black">{item.title}</p>
-                        <p className="mt-1 text-xs text-neutral-600">{item.subtitle}</p>
-                      </div>
+              <div className="min-w-0 flex-1 overflow-hidden rounded-2xl border border-neutral-200 bg-white py-4 shadow-inner sm:rounded-3xl sm:py-5 lg:-ml-1 lg:rounded-l-none lg:border-l-0">
+                <div className="flex w-max animate-vrikshaMarquee items-stretch motion-reduce:animate-none">
+                  <div className="flex items-center gap-10 px-6">
+                    {pillarLoop.map((item, i) => (
+                      <PillarCard key={`a-${item.title}-${i}`} item={item} />
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-10 px-6" aria-hidden>
+                    {pillarLoop.map((item, i) => (
+                      <PillarCard key={`b-${item.title}-${i}`} item={item} />
                     ))}
                   </div>
                 </div>
