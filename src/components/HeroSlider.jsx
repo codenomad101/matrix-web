@@ -191,7 +191,7 @@ export default function HeroSlider() {
                 ))}
               </div>
 
-              <div className="relative h-[400px] w-full overflow-hidden rounded-2xl bg-white sm:h-[440px] sm:rounded-[1.25rem] md:h-[480px] lg:h-[520px] xl:h-[560px]">
+              <div className="relative h-[300px] w-full overflow-hidden rounded-2xl bg-white sm:h-[340px] sm:rounded-[1.25rem] md:h-[380px] lg:h-[420px] xl:h-[460px]">
                 {HERO_CAROUSEL_IMAGES.map((img, i) => (
                   <div
                     key={i}

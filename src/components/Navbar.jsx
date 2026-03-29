@@ -96,7 +96,7 @@ export default function Navbar() {
     <>
       <div className={`sticky top-0 !z-[10001] transition-shadow duration-300 ${scrolled ? 'shadow-md' : ''}`}>
         {/* 1) Utility bar — white, hairline border, branches left / blue enquire right */}
-        <div className="border-b border-neutral-200 bg-white">
+        <div className="bg-white">
           <div className="container-header flex items-center justify-between gap-3 py-2 text-[13px] leading-tight sm:text-sm sm:leading-snug">
             <div className="relative min-w-0 group/branches">
               <Link
@@ -143,7 +143,7 @@ export default function Navbar() {
         </div>
 
         {/* 2) Main bar — logo left; nav + Admissions grouped right with tight gap */}
-        <header className={`border-b border-neutral-200 bg-white ${scrolled ? 'backdrop-blur-md' : ''}`}>
+        <header className={`bg-white ${scrolled ? 'backdrop-blur-md' : ''}`}>
           <div className="container-header flex h-[4.25rem] items-center gap-3 md:h-[4.5rem] md:gap-4">
             <Link
               href="/"
@@ -298,7 +298,7 @@ export default function Navbar() {
         </header>
 
         {/* 3) Red ticker + navy band — same width as page content (container), not full-bleed */}
-        <div className="border-b border-neutral-200 bg-white">
+        <div className="bg-white">
           <div className="container-header overflow-hidden">
             <div className="bg-[#ED1C24] text-white">
               <div className="flex w-max animate-headerTicker">
