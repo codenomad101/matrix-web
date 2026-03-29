@@ -12,7 +12,6 @@ const COURSES = [
   { id: 'mht-cet', name: 'MHT-CET', href: '/courses/mht-cet', icon: '📚', shortDesc: 'State engineering & pharmacy' },
   { id: 'neet', name: 'NEET', href: '/courses/neet', icon: '⚕️', shortDesc: 'Medical entrance' },
   { id: 'iiser', name: 'IISER', href: '/courses/iiser', icon: '🔬', shortDesc: 'Science research institutes' },
-  { id: 'vriksha', name: 'VRIKSHA', href: '/vriksha', icon: '🌱', shortDesc: 'New program' },
 ]
 
 /** Orange pill at top-right of nav label (anchor: parent `relative inline-block`) */
@@ -223,12 +222,6 @@ export default function Navbar() {
                   )}
                 </div>
 
-                <Link href="/faculty" className={navLinkNeutral(pathname, '/faculty')}>
-                  Faculty
-                </Link>
-                <Link href="/results" className={navLinkNeutral(pathname, '/results')}>
-                  Results
-                </Link>
                 <Link
                   href="/vriksha"
                   className={`inline-flex items-center py-2 pr-0.5 text-sm font-semibold tracking-normal transition-colors duration-200 lg:pr-1 ${
@@ -241,6 +234,12 @@ export default function Navbar() {
                       New
                     </span>
                   </span>
+                </Link>
+                <Link href="/faculty" className={navLinkNeutral(pathname, '/faculty')}>
+                  Faculty
+                </Link>
+                <Link href="/results" className={navLinkNeutral(pathname, '/results')}>
+                  Results
                 </Link>
                 <Link
                   href="/counseling"
@@ -362,44 +361,6 @@ export default function Navbar() {
                   >
                     About
                   </Link>
-                  <Link
-                    href="/faculty"
-                    className={`block rounded-lg px-3 py-2.5 text-sm font-semibold ${pathname === '/faculty' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    Faculty
-                  </Link>
-                  <Link
-                    href="/results"
-                    className={`block rounded-lg px-3 py-2.5 text-sm font-semibold ${pathname === '/results' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    Results
-                  </Link>
-                  <Link
-                    href="/vriksha"
-                    className={`block rounded-lg px-3 py-2.5 ${pathname === '/vriksha' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    <span className="relative inline-block">
-                      <span className="text-sm font-semibold whitespace-nowrap">Vriksha</span>
-                      <span className={navBadgeClass} aria-hidden>
-                        New
-                      </span>
-                    </span>
-                  </Link>
-                  <Link
-                    href="/counseling"
-                    className={`block rounded-lg px-3 py-2.5 ${pathname === '/counseling' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    <span className="relative inline-block">
-                      <span className="text-sm font-semibold whitespace-nowrap">Counselling</span>
-                      <span className={navBadgeClass} aria-hidden>
-                        Free
-                      </span>
-                    </span>
-                  </Link>
                   <p className="px-3 pt-3 text-[10px] font-semibold uppercase tracking-wide text-neutral-400">Courses</p>
                   <div className="flex flex-col gap-0.5 pl-1">
                     {COURSES.map((course) => (
@@ -420,6 +381,44 @@ export default function Navbar() {
                       View all courses →
                     </Link>
                   </div>
+                  <Link
+                    href="/vriksha"
+                    className={`block rounded-lg px-3 py-2.5 ${pathname === '/vriksha' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span className="relative inline-block">
+                      <span className="text-sm font-semibold whitespace-nowrap">Vriksha</span>
+                      <span className={navBadgeClass} aria-hidden>
+                        New
+                      </span>
+                    </span>
+                  </Link>
+                  <Link
+                    href="/faculty"
+                    className={`block rounded-lg px-3 py-2.5 text-sm font-semibold ${pathname === '/faculty' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Faculty
+                  </Link>
+                  <Link
+                    href="/results"
+                    className={`block rounded-lg px-3 py-2.5 text-sm font-semibold ${pathname === '/results' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Results
+                  </Link>
+                  <Link
+                    href="/counseling"
+                    className={`block rounded-lg px-3 py-2.5 ${pathname === '/counseling' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span className="relative inline-block">
+                      <span className="text-sm font-semibold whitespace-nowrap">Counselling</span>
+                      <span className={navBadgeClass} aria-hidden>
+                        Free
+                      </span>
+                    </span>
+                  </Link>
                 </div>
                 <div className="mt-4 flex flex-col gap-2 border-t border-neutral-200 pt-4">
                   <Link

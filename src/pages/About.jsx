@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { FaBuilding, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa'
+import { FaBuilding, FaCheck, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaStar, FaTrophy } from 'react-icons/fa'
 import OptimizedImage from '@/components/OptimizedImage'
 
 const directors = [
@@ -69,22 +69,68 @@ export default function About() {
 
   return (
     <div className="interior-page">
-      {/* Horizontal branch list (linked from header “8 Branches in Pune”) */}
-      <section id="branches-strip" className="bg-gray-50 border-b border-gray-200 py-3 md:py-4">
+      {/* Branches — lavender panel, CTA + chips + 3 highlights (reference layout) */}
+      <section id="branches-strip" className="border-b border-violet-100/80 bg-[#F9F5FB] py-10 md:py-14">
         <div className="container-page">
-          <p className="text-[11px] font-semibold uppercase tracking-wide text-black/50 mb-2">8 branches in Pune</p>
-          <div className="flex flex-wrap items-center gap-x-1 gap-y-2 text-sm">
-            {branchStrip.map((b, idx) => (
-              <span key={b} className="inline-flex items-center">
-                {idx > 0 && <span className="mx-2 h-4 w-px bg-gray-300" aria-hidden />}
-                <Link
-                  href={`/enquiry?branch=${encodeURIComponent(b)}`}
-                  className="font-medium text-black hover:text-[var(--brand-red)] hover:underline underline-offset-2"
-                >
-                  {b}
-                </Link>
-              </span>
+          <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-700/90">Matrix Science Academy</p>
+              <h2 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl md:text-[2.35rem] md:leading-tight">
+                Our branches
+              </h2>
+              <p className="mt-3 text-xs font-bold uppercase leading-relaxed tracking-[0.12em] text-violet-700 sm:text-sm">
+                Empowering future engineers & doctors with excellence
+              </p>
+            </div>
+            <Link
+              href="/enquiry"
+              className="inline-flex shrink-0 items-center justify-center self-start rounded-full bg-violet-700 px-7 py-3 text-sm font-bold uppercase tracking-wide text-white shadow-md shadow-violet-700/20 transition hover:bg-violet-800 md:self-center"
+            >
+              Enquire now
+            </Link>
+          </div>
+
+          <p className="mt-8 text-sm font-semibold text-neutral-700">Choose a centre</p>
+          <div className="mt-3 flex flex-wrap gap-2.5">
+            {branchStrip.map((b) => (
+              <Link
+                key={b}
+                href={`/enquiry?branch=${encodeURIComponent(b)}`}
+                className="inline-flex items-center rounded-full border border-violet-200/90 bg-white px-4 py-2 text-sm font-semibold text-violet-950 shadow-sm transition hover:border-violet-400 hover:bg-violet-700 hover:text-white"
+              >
+                {b}
+              </Link>
             ))}
+          </div>
+
+          <div className="mt-12 grid gap-8 rounded-2xl border border-violet-100/90 bg-violet-50/50 px-5 py-8 sm:px-8 md:grid-cols-3 md:gap-6 md:py-10">
+            <div className="text-center">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-violet-600 text-white shadow-md shadow-violet-600/25">
+                <FaStar className="h-6 w-6" aria-hidden />
+              </div>
+              <h3 className="mt-4 text-lg font-bold text-neutral-900">Top results</h3>
+              <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+                Consistently producing top rankers in JEE & NEET.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-violet-600 text-white shadow-md shadow-violet-600/25">
+                <FaCheck className="h-6 w-6" aria-hidden />
+              </div>
+              <h3 className="mt-4 text-lg font-bold text-neutral-900">Expert faculty</h3>
+              <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+                Mentors from top IITs and medical colleges.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-violet-600 text-white shadow-md shadow-violet-600/25">
+                <FaTrophy className="h-6 w-6" aria-hidden />
+              </div>
+              <h3 className="mt-4 text-lg font-bold text-neutral-900">Proven system</h3>
+              <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+                Decades of refined academic methodology.
+              </p>
+            </div>
           </div>
         </div>
       </section>
