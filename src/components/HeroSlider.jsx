@@ -1,96 +1,109 @@
 'use client'
 
+import { useReducedMotion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
+const CLOUD_IMG = 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_1600,h_1200,c_limit,q_auto,f_auto'
+
 const HERO_CAROUSEL_IMAGES = [
-  { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/v1764181879/B_r8gw6s.jpg', alt: 'Matrix Science Academy — campus and learning' },
-  { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/v1764181786/IIT_knkkka.jpg', alt: 'IIT and top engineering results' },
-  { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/v1763783028/4_nl1ejs', alt: 'Student success stories' },
-  { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/v1764181864/A_dbzo2c.jpg', alt: 'Matrix Science Academy' },
+  {
+    src: `${CLOUD_IMG}/v1774798352/Hero_Image_02_-_For_Scholarship_-_Matrix_hchnro.jpg`,
+    alt: 'Matrix Science Academy — scholarship opportunities',
+    title: 'Scholarships at Matrix',
+  },
+  {
+    src: `${CLOUD_IMG}/v1774798351/Hero_Image_09_-Talent_Edge_Scholarship_dw68zu.jpg`,
+    alt: 'Talent Edge Scholarship at Matrix Science Academy',
+    title: 'Talent Edge Scholarship',
+  },
+  {
+    src: `${CLOUD_IMG}/v1774798351/Hero_Image_01-_Everything_Under_One_Roof_-_JEE_-_MHT-CET_-_NEET_ol2wzg.jpg`,
+    alt: 'JEE, MHT-CET and NEET preparation under one roof at Matrix',
+    title: 'JEE · MHT-CET · NEET — one roof',
+  },
+  {
+    src: `${CLOUD_IMG}/v1774798348/Hero_Image_10_-The_Champion_Story_01_m3xefg.jpg`,
+    alt: 'Student champion success story at Matrix Science Academy',
+    title: 'The champion story',
+  },
+  {
+    src: `${CLOUD_IMG}/v1774798344/Hero_Image_-_04_Matrix_-_Physcis_Maths_Science_Teachers_sjwxb6.jpg`,
+    alt: 'Matrix faculty — Physics, Maths and Science teachers',
+    title: 'Expert Physics, Maths & Science faculty',
+  },
+  {
+    src: `${CLOUD_IMG}/v1774798340/Hero_Image_11_-_Vriksha_-_School_Topper_-_AIR_-_Combined_l5chqn.jpg`,
+    alt: 'Vriksha programme — school toppers and competitive exam success',
+    title: 'Vriksha — school toppers & beyond',
+  },
 ]
 
-const MAIN_CAROUSEL_MS = 4500
+const MAIN_CAROUSEL_MS = 3000
 
-const TYPING_WORDS = ['Physics', 'Chemistry', 'Mathematics']
+/** JEE → MHT-CET → NEET → Vriksha (loops), typing effect */
+const EXAM_TICKER_WORDS = ['JEE', 'MHT-CET', 'NEET', 'Vriksha']
 
-function HeroTypingSubjects({ className }) {
+function HeroExamTicker() {
+  const reduceMotion = useReducedMotion()
   const [wordIndex, setWordIndex] = useState(0)
   const [text, setText] = useState('')
   const [phase, setPhase] = useState('typing') // 'typing' | 'deleting'
 
   useEffect(() => {
-    const word = TYPING_WORDS[wordIndex]
+    if (reduceMotion) return
+    const word = EXAM_TICKER_WORDS[wordIndex]
     let t
 
     if (phase === 'typing') {
       if (text.length < word.length) {
-        t = setTimeout(() => setText(word.slice(0, text.length + 1)), 95)
+        t = setTimeout(() => setText(word.slice(0, text.length + 1)), 72)
       } else {
-        t = setTimeout(() => setPhase('deleting'), 2400)
+        t = setTimeout(() => setPhase('deleting'), 2000)
       }
     } else if (text.length > 0) {
-      t = setTimeout(() => setText((s) => s.slice(0, -1)), 42)
+      t = setTimeout(() => setText((s) => s.slice(0, -1)), 38)
     } else {
-      setWordIndex((i) => (i + 1) % TYPING_WORDS.length)
+      setWordIndex((i) => (i + 1) % EXAM_TICKER_WORDS.length)
       setPhase('typing')
     }
 
     return () => clearTimeout(t)
-  }, [text, phase, wordIndex])
+  }, [text, phase, wordIndex, reduceMotion])
+
+  if (reduceMotion) {
+    return (
+      <span className="inline-block font-black leading-none tracking-[-0.04em] text-[#005FB8]">
+        JEE, MHT-CET, NEET & Vriksha
+      </span>
+    )
+  }
+
+  const word = EXAM_TICKER_WORDS[wordIndex]
 
   return (
-    <span className={className}>
-      <span className="font-black">in </span>
+    <span
+      className="inline-block min-h-[1.15em] font-black leading-none tracking-[-0.04em]"
+      style={{ minWidth: '9ch' }}
+      aria-live="polite"
+      aria-atomic="true"
+      aria-label={`Exam focus: ${text || word}`}
+    >
+      <span className="inline text-[#005FB8]">{text}</span>
       <span
-        className="inline-block text-left font-black text-[#548FF7]"
-        style={{ minWidth: '11.5ch' }}
-        aria-live="polite"
-        aria-label={`Subject focus: ${text || TYPING_WORDS[wordIndex]}`}
+        className="ml-0.5 inline-block w-[0.07em] animate-pulse font-light text-[#005FB8]"
+        aria-hidden
       >
-        {text}
-        <span className="ml-0.5 inline-block w-[0.08em] animate-pulse font-light text-[#3377F5]" aria-hidden>
-          |
-        </span>
+        |
       </span>
     </span>
   )
 }
 
-function IconSpark({ className }) {
+function IconMail({ className }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-      />
-    </svg>
-  )
-}
-
-function IconCheckCircle({ className }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden>
-      <circle cx="12" cy="12" r="10" fill="#548FF7" />
-      <path
-        d="M8 12.5l2.5 2.5L16 9"
-        fill="none"
-        stroke="white"
-        strokeWidth={2.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-function IconMiniChart({ className }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden>
-      <rect x="4" y="14" width="4" height="6" rx="1" fill="#10b981" />
-      <rect x="10" y="10" width="4" height="10" rx="1" fill="#059669" />
-      <rect x="16" y="6" width="4" height="14" rx="1" fill="#10b981" />
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
     </svg>
   )
 }
@@ -105,76 +118,80 @@ export default function HeroSlider() {
     return () => clearInterval(t)
   }, [])
 
-  const bullets = [
-    'Small batch sizes for individual attention',
-    'Concept-based learning over rote memorization',
-    'Regular tests and rigorous performance tracking',
-    'Personalized student guidance and mentoring',
-  ]
-
   return (
-    <section className="bg-white">
-      <div className="container-page px-4 py-10 sm:px-6 sm:py-12 md:py-14 lg:py-16">
-        <div className="mx-auto grid w-full grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-5 xl:gap-6">
-          {/* Left — copy & CTAs (wider column vs image, per reference layout) */}
-          <div className="flex min-h-0 w-full flex-col justify-center text-left lg:col-span-7 lg:max-w-none xl:col-span-7">
-            {/* Pill badge — light blue field, vibrant blue label (reference) */}
-            <div className="mb-6 md:mb-7">
-              <span className="inline-flex items-center gap-2 rounded-full bg-[#3377F5]/10 px-3.5 py-2 text-sm font-medium text-[#3377F5] md:gap-2.5 md:px-4 md:py-2.5 md:text-[0.9375rem]">
-                <IconSpark className="h-4 w-4 shrink-0 md:h-[1.125rem] md:w-[1.125rem]" aria-hidden />
-                Believe — Build — Become
-              </span>
-            </div>
+    <section className="relative overflow-hidden bg-white">
+      <div className="container-page relative z-[1] px-4 py-10 sm:px-6 sm:py-12 md:py-14 lg:py-16">
+        <div className="relative mx-auto grid w-full min-w-0 grid-cols-1 items-center gap-10 overflow-x-clip lg:grid-cols-12 lg:gap-6 xl:gap-8">
+          {/* Bluish circle — centered on column split (half left / half right) */}
+          <div
+            className="pointer-events-none absolute left-[48%] top-1/2 z-0 hidden h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#005FB8]/20 sm:h-64 sm:w-64 lg:block lg:h-72 lg:w-72 xl:left-[47%] xl:bg-[#005FB8]/18"
+            aria-hidden
+          />
 
-            {/* Five-line headline — wide block, max weight + size (reference); global h1 clamp excluded via .hero-main-headline */}
-            <h1 className="hero-main-headline mb-7 w-full max-w-full text-left text-[2.125rem] font-black leading-[0.98] tracking-[-0.03em] text-neutral-900 sm:mb-8 sm:text-[2.625rem] sm:leading-[0.98] md:mb-9 md:text-[3.25rem] md:leading-[0.97] lg:text-[3.75rem] lg:leading-[0.96] xl:max-w-[42rem] xl:text-[4.125rem] xl:leading-[0.95] 2xl:max-w-[46rem] 2xl:text-[4.5rem]">
-              <span className="block font-black">Build Strong</span>
-              <span className="block font-black text-[#3377F5]">Academic</span>
-              <span className="block font-black text-[#548FF7]">Foundations</span>
-              <span className="block">
-                <HeroTypingSubjects />
-              </span>
-            </h1>
+          {/* Left — copy (background is full hero section) */}
+          <div className="relative z-[1] min-h-0 min-w-0 w-full lg:col-span-5 lg:max-w-none">
+            <div className="flex flex-col text-left">
+              <div className="mb-5 md:mb-6">
+                <span className="inline-flex rounded-full bg-[#ED1C24] px-4 py-2 text-xs font-semibold tracking-wide text-white shadow-sm sm:text-sm">
+                  Matrix Science Academy
+                </span>
+              </div>
 
-            <p className="mb-7 max-w-xl text-base font-normal leading-[1.7] text-neutral-600 sm:text-lg sm:leading-[1.75] md:mb-9">
-              Concept-based coaching and personalized academic guidance to help students excel in school and competitive
-              examinations.
-            </p>
+              <h1 className="hero-main-headline mb-2 text-[1.875rem] font-bold leading-[1.08] tracking-[-0.03em] text-[#0f172a] sm:text-[2.25rem] md:text-[2.5rem] lg:text-[2.75rem]">
+                Believe. Build. Become —
+              </h1>
 
-            <ul className="mb-9 max-w-xl space-y-4 md:mb-11 md:space-y-[1.125rem]">
-              {bullets.map((item, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-3.5 text-sm font-normal leading-relaxed text-neutral-600 sm:text-base sm:leading-relaxed"
+              <p className="mb-1 text-base font-medium text-neutral-600 sm:text-lg">Through</p>
+
+              <div className="mb-5 text-[2.25rem] sm:mb-6 sm:text-[2.75rem] md:text-[3.25rem] lg:text-[3.5rem]">
+                <HeroExamTicker />
+              </div>
+
+              <p className="mb-8 max-w-xl text-base font-normal leading-relaxed text-neutral-600 sm:mb-9 sm:text-lg">
+                Strong concepts. Disciplined learning. Proven results for JEE, MHT-CET, NEET and holistic growth through
+                VRIKSHA.
+              </p>
+
+              <div className="flex flex-col gap-5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6">
+                <Link
+                  href="/counseling"
+                  className="inline-flex w-fit items-center justify-center rounded-full bg-[#005FB8] px-8 py-3.5 text-sm font-bold tracking-wide text-white shadow-lg shadow-[#005FB8]/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#004494] hover:shadow-xl hover:shadow-[#004494]/35 sm:px-9 sm:text-base"
                 >
-                  <IconCheckCircle className="mt-0.5 h-6 w-6 shrink-0 sm:h-7 sm:w-7" />
-                  <span className="pt-px">{item}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="flex flex-wrap gap-3 sm:gap-4">
-              <Link
-                href="/counseling"
-                className="inline-flex items-center justify-center rounded-full bg-[#3377F5] px-7 py-3.5 text-sm font-semibold tracking-normal text-white shadow-lg shadow-[#3377F5]/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2563d4] hover:shadow-xl hover:shadow-[#3377F5]/35 sm:px-8 sm:text-base"
-              >
-                Book Free Counselling
-              </Link>
-              <Link
-                href="/courses"
-                className="inline-flex items-center justify-center rounded-full border-2 border-neutral-200 bg-white px-7 py-3.5 text-sm font-semibold tracking-normal text-neutral-900 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-300 hover:bg-neutral-50 hover:shadow-md sm:px-8 sm:text-base"
-              >
-                Explore Courses
-              </Link>
+                  Get Started
+                </Link>
+                <div className="relative inline-flex items-center">
+                  <a
+                    href="mailto:msapcmc@gmail.com"
+                    className="relative z-[1] inline-flex items-center gap-2.5 text-sm font-semibold text-[#0f172a] transition-colors hover:text-[#005FB8] sm:text-base"
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/90 text-pink-600 shadow-sm ring-1 ring-pink-100">
+                      <IconMail className="h-4 w-4" />
+                    </span>
+                    msapcmc@gmail.com
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Right — card + carousel */}
-          <div className="mx-auto w-full max-w-[480px] lg:col-span-5 lg:mx-0 lg:max-w-none lg:justify-self-start lg:pl-0 xl:col-span-5 xl:-translate-x-1 2xl:-translate-x-2">
+          {/* Right — card + carousel (wider column on large screens) */}
+          <div className="relative z-[1] mx-auto w-full min-w-0 max-w-[540px] justify-self-start sm:max-w-[600px] lg:col-span-7 lg:mx-0 lg:max-w-full lg:justify-self-start lg:pl-3 xl:pl-5">
             <div
-              className="hero-image-card group relative rounded-[1.35rem] bg-white p-3 shadow-[0_20px_50px_-12px_rgba(15,23,42,0.18)] ring-1 ring-neutral-100 transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_28px_60px_-12px_rgba(51,119,245,0.22)] sm:rounded-3xl sm:p-3.5 md:p-4"
+              className="hero-image-card group relative max-w-full rounded-[1.35rem] bg-white p-3 shadow-[0_20px_50px_-12px_rgba(15,23,42,0.18)] ring-1 ring-neutral-100 transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_28px_60px_-12px_rgba(51,119,245,0.22)] sm:rounded-3xl sm:p-3.5 md:p-4"
             >
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100 sm:rounded-[1.25rem]">
+              <div className="relative mb-3 min-h-[2.75rem] sm:min-h-[3rem] sm:mb-3.5" aria-live="polite">
+                {HERO_CAROUSEL_IMAGES.map((img, i) => (
+                  <p
+                    key={i}
+                    className="absolute left-0 top-0 right-0 text-left text-sm font-bold leading-snug tracking-tight text-neutral-900 transition-opacity duration-700 ease-out sm:text-base"
+                    style={{ opacity: i === carouselIndex ? 1 : 0 }}
+                  >
+                    {img.title}
+                  </p>
+                ))}
+              </div>
+
+              <div className="relative h-[300px] w-full overflow-hidden rounded-2xl bg-white sm:h-[340px] sm:rounded-[1.25rem] md:h-[380px] lg:h-[420px] xl:h-[460px]">
                 {HERO_CAROUSEL_IMAGES.map((img, i) => (
                   <div
                     key={i}
@@ -185,40 +202,9 @@ export default function HeroSlider() {
                     <img
                       src={img.src}
                       alt={img.alt}
-                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      className="h-full w-full object-contain object-center"
                     />
                   </div>
-                ))}
-
-                {/* Bottom-left stat overlay */}
-                <div
-                  className="absolute bottom-4 left-4 z-10 flex max-w-[calc(100%-2rem)] items-center gap-3 rounded-xl border border-neutral-100/90 bg-white/95 px-3.5 py-3 shadow-lg backdrop-blur-sm transition-transform duration-300 group-hover:translate-x-0.5 sm:bottom-5 sm:left-5 sm:px-4 sm:py-3.5"
-                  role="status"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50">
-                    <IconMiniChart className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium text-neutral-500 sm:text-sm">Average score</p>
-                    <p className="text-sm font-bold text-neutral-900 sm:text-base">95%+</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-4 flex justify-center gap-1.5 pb-1">
-                {HERO_CAROUSEL_IMAGES.map((_, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    aria-label={`Show slide ${i + 1}`}
-                    aria-current={i === carouselIndex}
-                    onClick={() => setCarouselIndex(i)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      i === carouselIndex
-                        ? 'w-6 bg-[#3377F5]'
-                        : 'w-2 bg-neutral-300 hover:bg-neutral-400'
-                    }`}
-                  />
                 ))}
               </div>
             </div>

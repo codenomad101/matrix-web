@@ -1,26 +1,61 @@
 'use client'
-import { Suspense } from 'react'
-import EnquiryForm from '../components/EnquiryForm.jsx'
+import { Suspense, useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
+import EnquiryForm, { BRANCH_OPTIONS } from '../components/EnquiryForm.jsx'
+import BranchEnquiryLanding from '@/components/BranchEnquiryLanding.jsx'
+
+function EnquiryWithBranch() {
+  const searchParams = useSearchParams()
+  const param = searchParams.get('branch')
+  const [branch, setBranch] = useState(() =>
+    param && BRANCH_OPTIONS.includes(param) ? param : 'Nigdi'
+  )
+
+  useEffect(() => {
+    setBranch(param && BRANCH_OPTIONS.includes(param) ? param : 'Nigdi')
+  }, [param])
+
+  return (
+    <>
+      <BranchEnquiryLanding branchKey={branch} />
+
+      <section id="enquiry-form" className="scroll-mt-24 border-t border-violet-100 bg-[#F9F5FB] py-12 md:py-16">
+        <div className="mx-auto w-full max-w-2xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-center text-2xl font-bold tracking-tight text-neutral-900 md:text-[1.65rem]">
+            Enquiry form
+          </h2>
+          <p className="mx-auto mt-2 max-w-lg text-center text-sm text-neutral-600 md:text-base">
+            You&apos;re contacting our <strong className="font-semibold text-neutral-800">{branch}</strong> centre.
+            Prefer another location? Change &quot;Preferred branch&quot; below.
+          </p>
+          <div className="mt-8">
+            <EnquiryForm
+              selectedBranch={branch}
+              onBranchChange={setBranch}
+              layoutCentered
+              singleColumnFormOnly
+            />
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
 
 export default function Enquiry() {
   return (
     <div className="interior-page">
-      <section className="page-section-white">
-        <div className="container-page max-w-4xl">
-          <h1 className="interior-title mb-2">Enquire Now</h1>
-          <p className="mb-6 text-neutral-600">Fill the form below and choose how to send your enquiry.</p>
-          <Suspense
-            fallback={
-              <div className="rounded-xl border border-gray-200 bg-white p-4 md:p-6">
-                <p className="text-body text-sm">Loading form…</p>
-              </div>
-            }
-          >
-            <EnquiryForm />
-          </Suspense>
-        </div>
-      </section>
+      <Suspense
+        fallback={
+          <div className="container-page max-w-4xl py-12">
+            <div className="rounded-xl border border-gray-200 bg-white p-6">
+              <p className="text-sm text-neutral-600">Loading…</p>
+            </div>
+          </div>
+        }
+      >
+        <EnquiryWithBranch />
+      </Suspense>
     </div>
   )
 }
-

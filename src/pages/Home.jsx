@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { Suspense, useEffect, useRef, useState } from 'react'
+import { FaAward, FaBook, FaLeaf, FaSlidersH, FaTachometerAlt, FaTrophy } from 'react-icons/fa'
 import HeroSlider from '../components/HeroSlider.jsx'
 import HeroUsps from '../components/HeroUsps.jsx'
 import AcademicVrikshaMethodology from '@/components/AcademicVrikshaMethodology.jsx'
@@ -757,7 +758,7 @@ const OUR_COURSES_GRID = [
 
 function CoursesTabSection() {
   return (
-    <section className="bg-white py-10 md:py-14">
+    <section className="bg-white pb-10 pt-6 md:pb-14 md:pt-7">
       <div className="container-page">
         <div className="mx-auto mb-10 max-w-3xl text-center md:mb-12">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#e11d48] md:text-sm">Academic Programs</p>
@@ -1353,35 +1354,123 @@ function AchievementsAndResultsRow() {
   )
 }
 
-// Specialized Batches – card grid like Methodology / Achievements
+// Explore Our Specialized Learning Paths — five batch cards (reference layout)
+const SPECIALIZED_BATCHES = [
+  {
+    id: 'impulse',
+    href: '/courses',
+    title: 'Impulse Batch',
+    subtitle: 'Foundation Phase',
+    tagClass: 'bg-sky-100 text-sky-800',
+    iconWrapClass: 'bg-sky-500 text-white',
+    Icon: FaBook,
+    description: 'Common starting point for all students. Strong fundamentals + concept clarity.',
+    cta: 'Learn More',
+    featured: false,
+  },
+  {
+    id: 'air',
+    href: '/courses/iit-jee',
+    title: 'AIR Batch',
+    subtitle: 'IIT Rank Focus',
+    tagClass: 'bg-yellow-400 text-yellow-950',
+    iconWrapClass: 'bg-yellow-400 text-yellow-950',
+    Icon: FaTrophy,
+    description: 'For top-performing students. Advanced training for All India Ranks.',
+    cta: 'Explore Batch',
+    featured: true,
+  },
+  {
+    id: 'sprint',
+    href: '/courses/mht-cet',
+    title: 'Sprint Batch',
+    subtitle: 'CET Top Rankers',
+    tagClass: 'bg-slate-200 text-slate-800',
+    iconWrapClass: 'bg-slate-500 text-white',
+    Icon: FaTachometerAlt,
+    description: 'High-speed preparation. Designed for 90%+ performers.',
+    cta: 'View Details',
+    featured: false,
+  },
+  {
+    id: 'drift',
+    href: '/courses',
+    title: 'Drift Batch',
+    subtitle: 'Concept Strengthening',
+    tagClass: 'bg-neutral-200 text-neutral-800',
+    iconWrapClass: 'bg-neutral-400 text-white',
+    Icon: FaSlidersH,
+    description: 'Structured learning path. Focus on accuracy & improvement.',
+    cta: 'Know More',
+    featured: false,
+  },
+  {
+    id: 'vriksha',
+    href: '/vriksha',
+    title: 'VRIKSHA Batch',
+    subtitle: 'Holistic Growth',
+    tagClass: 'bg-emerald-100 text-emerald-900',
+    iconWrapClass: 'bg-emerald-500 text-white',
+    Icon: FaLeaf,
+    description: 'Academics + sports + creativity. AI, communication & life skills.',
+    cta: 'Discover VRIKSHA',
+    featured: false,
+  },
+]
+
 function SpecializedBatchesSection() {
-  const batches = [
-    { name: 'IMPULSE', icon: '⚡' },
-    { name: 'SPRINT', icon: '⏱️' },
-    { name: 'PACE', icon: '✓' },
-    { name: 'DRIFT', icon: '🌊' },
-    { name: 'RACE', icon: '🏁' },
-  ]
   return (
-    <section className="home-section">
+    <section className="border-t border-neutral-100 bg-[#f8fafc] py-10 md:py-12">
       <div className="container-page">
-        <div className="mb-6 text-center">
-          <h2 className="home-section-title">Specialized Batches</h2>
-          <p className="home-section-body mx-auto mt-2 max-w-2xl text-center">
-            Choose the batch that fits your pace and goals—from intensive prep to steady progress.
+        <div className="mx-auto mb-8 max-w-3xl text-center md:mb-10">
+          <h2 className="text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl md:font-extrabold">
+            Explore Our Specialized Learning Paths
+          </h2>
+          <p className="mt-2 text-sm text-neutral-600 md:text-base">
+            Designed for every student&apos;s goal – from strong foundations to top ranks
           </p>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-          {batches.map((b, i) => (
-            <Link
-              key={i}
-              href="/courses"
-              className="rounded-2xl border border-gray-200/80 bg-white p-5 flex flex-col items-center text-center hover:border-[var(--brand-red)]/30 hover:shadow-md transition-all duration-200 group"
-            >
-              <span className="text-3xl mb-2 block group-hover:scale-110 transition-transform" aria-hidden>{b.icon}</span>
-              <span className="text-sm font-semibold text-gray-800">{b.name}</span>
-            </Link>
-          ))}
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 xl:gap-5">
+          {SPECIALIZED_BATCHES.map((b) => {
+            const Icon = b.Icon
+            return (
+              <Link
+                key={b.id}
+                href={b.href}
+                className={`group relative flex h-full flex-col rounded-3xl border bg-white p-5 shadow-sm transition hover:shadow-md ${
+                  b.featured
+                    ? 'border-2 border-yellow-400 shadow-[0_0_0_1px_rgba(250,204,21,0.4),0_12px_40px_-8px_rgba(250,204,21,0.35)]'
+                    : 'border border-neutral-200/90'
+                }`}
+              >
+                {b.featured && (
+                  <span
+                    className="absolute -right-1 -top-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 to-amber-500 text-amber-950 shadow-md ring-2 ring-white"
+                    aria-hidden
+                  >
+                    <FaAward className="h-4 w-4" />
+                  </span>
+                )}
+                <div
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full ${b.iconWrapClass}`}
+                >
+                  <Icon className="h-5 w-5" aria-hidden />
+                </div>
+                <span
+                  className={`mt-4 inline-flex w-fit rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide ${b.tagClass}`}
+                >
+                  {b.subtitle}
+                </span>
+                <h3 className="mt-3 text-left text-lg font-bold leading-tight text-neutral-900">{b.title}</h3>
+                <p className="mt-2 flex-1 text-left text-sm leading-relaxed text-neutral-600">{b.description}</p>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-blue-600 transition group-hover:gap-2">
+                  {b.cta}
+                  <span aria-hidden>→</span>
+                </span>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -1624,11 +1713,11 @@ export default function Home() {
 
       <CoursesTabSection />
 
+      <SpecializedBatchesSection />
+
       <CounselingFormRow />
       <AchievementsAndResultsRow />
 
-      {/* Specialized Batches, Student Voices */}
-      <SpecializedBatchesSection />
       <TestimonialsShowcase />
 
       {/* Features (facilities), then optional extras */}

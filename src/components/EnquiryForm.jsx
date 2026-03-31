@@ -16,7 +16,7 @@ const BRANCH_WHATSAPP_NUMBERS = {
   'Rahatani': '917058740609',
 }
 
-const BRANCH_OPTIONS = Object.keys(BRANCH_WHATSAPP_NUMBERS)
+export const BRANCH_OPTIONS = Object.keys(BRANCH_WHATSAPP_NUMBERS)
 
 const ENQUIRY_EMAIL = 'jadhavsbj755@gmail.com'
 const SITE_NAME = 'Matrix Science Academy'
@@ -39,11 +39,19 @@ export default function EnquiryForm({
   counselingDarkBg = false,
   counselingRelaxed = false,
   counselingCentered = false,
+  /** When set with onBranchChange, branch dropdown is controlled (updates enquiry header). */
+  selectedBranch,
+  onBranchChange,
+  /** Centre-align labels, fields, and side panel on the full enquiry page. */
+  layoutCentered = false,
+  /** Branch landing page: single form card only (no “Why enquire?” column). */
+  singleColumnFormOnly = false,
 }) {
   const searchParams = useSearchParams()
   const router = useRouter()
   const branchParam = searchParams.get('branch')
   const initialBranch = BRANCH_OPTIONS.includes(branchParam || '') ? branchParam : 'Nigdi'
+  const branchControlled = typeof onBranchChange === 'function' && typeof selectedBranch === 'string'
   const fromCounseling = searchParams.get('counseling') === '1' || initialMessage
   const messagePlaceholder = fromCounseling ? "E.g. I'd like to schedule a free career counseling session." : 'Tell us about your goals'
   const defaultMessage = initialMessage || (fromCounseling ? 'I am interested in free career counseling session.' : '')
@@ -282,24 +290,48 @@ _This enquiry was submitted through the website._`
     )
   }
 
+  const formGridClass =
+    minimal
+      ? 'grid grid-cols-1 gap-4'
+      : singleColumnFormOnly
+        ? `mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4${layoutCentered ? ' text-center [&_input]:text-center [&_select]:text-center [&_textarea]:text-center' : ''}`
+        : `mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2${layoutCentered ? ' text-center [&_input]:text-center [&_select]:text-center [&_textarea]:text-center' : ''}`
+
   const formFields = (
-    <form
-      className={minimal ? 'grid grid-cols-1 gap-4' : 'mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4'}
-      onSubmit={handleSubmit}
-    >
-      {!minimal && (
-        <div className="sm:col-span-1">
-          <label className="block text-sm font-medium text-body">Full Name</label>
-          <input required name="name" type="text" placeholder="Your name" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]" />
+    <form className={formGridClass} onSubmit={handleSubmit}>
+      {!minimal &&
+        (singleColumnFormOnly ? (
+          <>
+            <div className="sm:col-span-1">
+              <label className="block text-sm font-medium text-body">Phone</label>
+              <input required name="phone" type="tel" placeholder="98765 43210" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]" />
+            </div>
+            <div className="sm:col-span-1">
+              <label className="block text-sm font-medium text-body">Full Name</label>
+              <input required name="name" type="text" placeholder="Your name" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]" />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="sm:col-span-1">
+              <label className="block text-sm font-medium text-body">Full Name</label>
+              <input required name="name" type="text" placeholder="Your name" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]" />
+            </div>
+            <div className="sm:col-span-1">
+              <label className="block text-sm font-medium text-body">Phone</label>
+              <input required name="phone" type="tel" placeholder="98765 43210" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]" />
+            </div>
+          </>
+        ))}
+
+      {minimal && (
+        <div>
+          <label className="block text-sm font-medium text-body">Phone</label>
+          <input required name="phone" type="tel" placeholder="98765 43210" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]" />
         </div>
       )}
 
-      <div className={minimal ? '' : 'sm:col-span-1'}>
-        <label className="block text-sm font-medium text-body">Phone</label>
-        <input required name="phone" type="tel" placeholder="98765 43210" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]" />
-      </div>
-
-      <div className={minimal ? '' : 'sm:col-span-1'}>
+      <div className={minimal ? '' : singleColumnFormOnly ? 'sm:col-span-2' : 'sm:col-span-1'}>
         <label className="block text-sm font-medium text-body">Email</label>
         <input required name="email" type="email" placeholder="you@example.com" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]" />
       </div>
@@ -318,21 +350,48 @@ _This enquiry was submitted through the website._`
           </div>
           <div className="sm:col-span-1">
             <label className="block text-sm font-medium text-body">Preferred Branch</label>
-            <select name="branch" defaultValue={initialBranch} className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]">
-              {BRANCH_OPTIONS.map((b) => (
-                <option key={b} value={b}>{b}</option>
-              ))}
-            </select>
+            {branchControlled ? (
+              <select
+                name="branch"
+                value={selectedBranch}
+                onChange={(e) => onBranchChange(e.target.value)}
+                className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]"
+              >
+                {BRANCH_OPTIONS.map((b) => (
+                  <option key={b} value={b}>
+                    {b}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <select
+                name="branch"
+                defaultValue={initialBranch}
+                className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]"
+              >
+                {BRANCH_OPTIONS.map((b) => (
+                  <option key={b} value={b}>
+                    {b}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
         </>
       )}
 
       <div className={minimal ? '' : 'sm:col-span-2'}>
         <label className="block text-sm font-medium text-body">Message</label>
-        <textarea name="message" rows={minimal ? 3 : 4} placeholder={messagePlaceholder} defaultValue={defaultMessage} className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]"></textarea>
+        <textarea
+          name="message"
+          rows={minimal ? 3 : singleColumnFormOnly ? 3 : 4}
+          placeholder={messagePlaceholder}
+          defaultValue={defaultMessage}
+          className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand-red)] focus:border-[var(--brand-red)]"
+        />
       </div>
 
-      <div className={minimal ? 'flex flex-wrap gap-3' : 'sm:col-span-2 flex flex-wrap gap-3'}>
+      <div className={minimal ? 'flex flex-wrap gap-3' : `sm:col-span-2 flex flex-wrap gap-3${layoutCentered ? ' justify-center' : ''}`}>
         <button
           type="submit"
           name="submitType"
@@ -367,12 +426,31 @@ _This enquiry was submitted through the website._`
     )
   }
 
+  if (singleColumnFormOnly) {
+    return (
+      <div className={`py-2${layoutCentered ? ' text-center' : ''}`}>
+        <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-7">
+          <h2 className={`text-xl font-bold text-heading${layoutCentered ? '' : ' text-left'}`}>Enquiry form</h2>
+          <p className={`mt-1 text-body text-sm${layoutCentered ? '' : ' text-left'}`}>
+            Fill your details—we&apos;ll respond from your selected centre.
+          </p>
+          {submitError && (
+            <p className="mt-3 text-sm text-[var(--brand-red)]" role="alert">
+              {submitError}
+            </p>
+          )}
+          {formFields}
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className="py-4">
-      <div className="grid lg:grid-cols-2 gap-6">
-        <div className="page-card p-6 sm:p-8">
-          <h2 className="text-left text-xl font-bold text-heading">Enquiry Form</h2>
-          <p className="mt-1 text-body text-sm">Fill your details and choose how to send.</p>
+    <div className={`py-4${layoutCentered ? ' text-center' : ''}`}>
+      <div className="grid gap-6 lg:grid-cols-2">
+        <div className={`page-card p-6 sm:p-8${layoutCentered ? ' text-center' : ''}`}>
+          <h2 className={`text-xl font-bold text-heading${layoutCentered ? '' : ' text-left'}`}>Enquiry Form</h2>
+          <p className={`mt-1 text-body text-sm${layoutCentered ? '' : ' text-left'}`}>Fill your details and choose how to send.</p>
 
           {submitError && (
             <p className="mt-3 text-sm text-[var(--brand-red)]" role="alert">{submitError}</p>
@@ -381,15 +459,15 @@ _This enquiry was submitted through the website._`
           {formFields}
         </div>
 
-        <div className="rounded-2xl bg-gray-50 border border-gray-200 p-6 sm:p-8">
-          <h3 className="text-left text-xl font-semibold text-heading">Why enquire?</h3>
-          <ul className="mt-3 space-y-2 text-body">
+        <div className={`rounded-2xl border border-gray-200 bg-gray-50 p-6 sm:p-8${layoutCentered ? ' text-center' : ''}`}>
+          <h3 className={`text-xl font-semibold text-heading${layoutCentered ? '' : ' text-left'}`}>Why enquire?</h3>
+          <ul className={`mt-3 space-y-2 text-body${layoutCentered ? ' list-none' : ''}`}>
             <li>• Get a personalized study plan</li>
             <li>• Fee details and scholarship options</li>
             <li>• Centre timings and batch schedules</li>
             <li>• Meet counsellors and mentors</li>
           </ul>
-          <div className="mt-6 text-sm text-body/80">
+          <div className={`mt-6 text-sm text-body/80${layoutCentered ? ' mx-auto max-w-md' : ''}`}>
             <strong>Send via WhatsApp</strong> opens WhatsApp with your details pre-filled. <strong>Submit via email</strong> sends your enquiry to our team by email—no mail app opens.
           </div>
         </div>

@@ -12,7 +12,6 @@ const COURSES = [
   { id: 'mht-cet', name: 'MHT-CET', href: '/courses/mht-cet', icon: '📚', shortDesc: 'State engineering & pharmacy' },
   { id: 'neet', name: 'NEET', href: '/courses/neet', icon: '⚕️', shortDesc: 'Medical entrance' },
   { id: 'iiser', name: 'IISER', href: '/courses/iiser', icon: '🔬', shortDesc: 'Science research institutes' },
-  { id: 'vriksha', name: 'VRIKSHA', href: '/vriksha', icon: '🌱', shortDesc: 'New program' },
 ]
 
 /** Orange pill at top-right of nav label (anchor: parent `relative inline-block`) */
@@ -97,9 +96,10 @@ export default function Navbar() {
     <>
       <div className={`sticky top-0 !z-[10001] transition-shadow duration-300 ${scrolled ? 'shadow-md' : ''}`}>
         {/* 1) Utility bar — white, hairline border, branches left / blue enquire right */}
-        <div className="border-b border-neutral-200 bg-white">
-          <div className="container-header flex items-center justify-between gap-3 py-2 text-[13px] leading-tight sm:text-sm sm:leading-snug">
-            <div className="relative min-w-0 group/branches">
+        <div className="bg-white">
+          <div className="container-header flex items-center justify-between gap-3 border-b border-neutral-200 py-2 text-[13px] leading-tight sm:text-sm sm:leading-snug">
+            {/* Mobile / tablet: “8 Branches in Pune” + hover dropdown */}
+            <div className="relative min-w-0 group/branches lg:hidden">
               <Link
                 href="/about#branches-strip"
                 className="inline-flex items-center gap-1.5 font-medium text-[#5c6d86] transition-colors hover:text-[#4a5a72]"
@@ -132,6 +132,41 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
+
+            {/* Desktop (lg+): “Branches” label (Enquire-style blue) + list with vertical rules */}
+            <nav
+              className="hidden min-w-0 flex-1 flex-wrap items-center gap-y-1 lg:flex"
+              aria-label="Pune branches"
+            >
+              <span className="shrink-0 font-semibold text-[#005FB8]">8 Branches in Pune</span>
+              <span
+                className="mx-2 inline-block h-3 w-px shrink-0 bg-neutral-300 sm:mx-2.5"
+                aria-hidden
+              />
+              {BRANCHES.map((branch, i) => (
+                <span key={branch} className="inline-flex items-center">
+                  {i > 0 && (
+                    <span
+                      className="mx-2 inline-block h-3 w-px shrink-0 bg-neutral-300 sm:mx-2.5"
+                      aria-hidden
+                    />
+                  )}
+                  <Link
+                    href={`/enquiry?branch=${encodeURIComponent(branch)}`}
+                    className="whitespace-nowrap text-[13px] font-medium text-[#5c6d86] transition-colors hover:text-[#4a5a72] sm:text-sm"
+                  >
+                    {branch}
+                  </Link>
+                </span>
+              ))}
+              <span className="mx-2 inline-block h-3 w-px shrink-0 bg-neutral-300 sm:mx-2.5" aria-hidden />
+              <Link
+                href="/about#branches-strip"
+                className="whitespace-nowrap text-[12px] font-semibold text-[#ED1C24] transition-colors hover:text-[#c9151d] sm:text-[13px]"
+              >
+                View all
+              </Link>
+            </nav>
             <Link
               href="/enquiry"
               className="inline-flex shrink-0 items-center gap-1.5 font-semibold text-[#005FB8] transition-colors hover:text-[#004494]"
@@ -144,7 +179,7 @@ export default function Navbar() {
         </div>
 
         {/* 2) Main bar — logo left; nav + Admissions grouped right with tight gap */}
-        <header className={`border-b border-neutral-200 bg-white ${scrolled ? 'backdrop-blur-md' : ''}`}>
+        <header className={`bg-white ${scrolled ? 'backdrop-blur-md' : ''}`}>
           <div className="container-header flex h-[4.25rem] items-center gap-3 md:h-[4.5rem] md:gap-4">
             <Link
               href="/"
@@ -223,12 +258,6 @@ export default function Navbar() {
                   )}
                 </div>
 
-                <Link href="/faculty" className={navLinkNeutral(pathname, '/faculty')}>
-                  Faculty
-                </Link>
-                <Link href="/results" className={navLinkNeutral(pathname, '/results')}>
-                  Results
-                </Link>
                 <Link
                   href="/vriksha"
                   className={`inline-flex items-center py-2 pr-0.5 text-sm font-semibold tracking-normal transition-colors duration-200 lg:pr-1 ${
@@ -241,6 +270,12 @@ export default function Navbar() {
                       New
                     </span>
                   </span>
+                </Link>
+                <Link href="/faculty" className={navLinkNeutral(pathname, '/faculty')}>
+                  Faculty
+                </Link>
+                <Link href="/results" className={navLinkNeutral(pathname, '/results')}>
+                  Results
                 </Link>
                 <Link
                   href="/counseling"
@@ -299,7 +334,7 @@ export default function Navbar() {
         </header>
 
         {/* 3) Red ticker + navy band — same width as page content (container), not full-bleed */}
-        <div className="border-b border-neutral-200 bg-white">
+        <div className="bg-white">
           <div className="container-header overflow-hidden">
             <div className="bg-[#ED1C24] text-white">
               <div className="flex w-max animate-headerTicker">
@@ -362,44 +397,6 @@ export default function Navbar() {
                   >
                     About
                   </Link>
-                  <Link
-                    href="/faculty"
-                    className={`block rounded-lg px-3 py-2.5 text-sm font-semibold ${pathname === '/faculty' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    Faculty
-                  </Link>
-                  <Link
-                    href="/results"
-                    className={`block rounded-lg px-3 py-2.5 text-sm font-semibold ${pathname === '/results' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    Results
-                  </Link>
-                  <Link
-                    href="/vriksha"
-                    className={`block rounded-lg px-3 py-2.5 ${pathname === '/vriksha' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    <span className="relative inline-block">
-                      <span className="text-sm font-semibold whitespace-nowrap">Vriksha</span>
-                      <span className={navBadgeClass} aria-hidden>
-                        New
-                      </span>
-                    </span>
-                  </Link>
-                  <Link
-                    href="/counseling"
-                    className={`block rounded-lg px-3 py-2.5 ${pathname === '/counseling' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    <span className="relative inline-block">
-                      <span className="text-sm font-semibold whitespace-nowrap">Counselling</span>
-                      <span className={navBadgeClass} aria-hidden>
-                        Free
-                      </span>
-                    </span>
-                  </Link>
                   <p className="px-3 pt-3 text-[10px] font-semibold uppercase tracking-wide text-neutral-400">Courses</p>
                   <div className="flex flex-col gap-0.5 pl-1">
                     {COURSES.map((course) => (
@@ -420,6 +417,44 @@ export default function Navbar() {
                       View all courses →
                     </Link>
                   </div>
+                  <Link
+                    href="/vriksha"
+                    className={`block rounded-lg px-3 py-2.5 ${pathname === '/vriksha' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span className="relative inline-block">
+                      <span className="text-sm font-semibold whitespace-nowrap">Vriksha</span>
+                      <span className={navBadgeClass} aria-hidden>
+                        New
+                      </span>
+                    </span>
+                  </Link>
+                  <Link
+                    href="/faculty"
+                    className={`block rounded-lg px-3 py-2.5 text-sm font-semibold ${pathname === '/faculty' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Faculty
+                  </Link>
+                  <Link
+                    href="/results"
+                    className={`block rounded-lg px-3 py-2.5 text-sm font-semibold ${pathname === '/results' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Results
+                  </Link>
+                  <Link
+                    href="/counseling"
+                    className={`block rounded-lg px-3 py-2.5 ${pathname === '/counseling' ? 'bg-neutral-100' : 'hover:bg-neutral-50'}`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span className="relative inline-block">
+                      <span className="text-sm font-semibold whitespace-nowrap">Counselling</span>
+                      <span className={navBadgeClass} aria-hidden>
+                        Free
+                      </span>
+                    </span>
+                  </Link>
                 </div>
                 <div className="mt-4 flex flex-col gap-2 border-t border-neutral-200 pt-4">
                   <Link

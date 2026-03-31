@@ -131,7 +131,7 @@ export default function HeroUsps() {
   return (
     <section className="relative bg-white" aria-labelledby="hero-usps-heading">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" aria-hidden />
-      <div className="container-page px-4 py-10 sm:px-6 sm:py-12 md:py-14">
+      <div className="container-page px-4 pb-5 pt-10 sm:px-6 sm:pb-6 sm:pt-12 md:pb-7 md:pt-14">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#3377F5] sm:text-xs">Why Matrix</p>
           <h2 id="hero-usps-heading" className="mt-2 text-xl font-bold tracking-tight text-neutral-900 sm:text-2xl md:text-3xl">
