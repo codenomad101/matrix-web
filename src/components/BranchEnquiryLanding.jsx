@@ -23,12 +23,14 @@ const CORE_COURSES = [
   },
 ]
 
-const INFRA_IMAGES = {
-  classroom:
-    'https://images.unsplash.com/photo-1580582932707-520aed937d7f?auto=format&fit=crop&w=1200&q=80',
-  lab: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80',
-  library: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80',
-}
+const INFRASTRUCTURE_FEATURES = [
+  { id: 1, title: 'Doubt Solving Session', cloudinaryId: 'v1764181800/7_rhfwuq' },
+  { id: 2, title: 'Floor Coordinator', cloudinaryId: 'v1764181802/2_qkyerp' },
+  { id: 3, title: 'AC Classroom', cloudinaryId: 'v1764181811/6_txcbt4' },
+  { id: 4, title: 'Spacious Parking', cloudinaryId: 'v1764181896/5_iksmin' },
+  { id: 5, title: 'Parents Waiting Room', cloudinaryId: 'v1764181956/1_hvf5af' },
+  { id: 6, title: 'Office', cloudinaryId: 'v1764181872/4_phnnrh' },
+]
 
 export default function BranchEnquiryLanding({ branchKey }) {
   const detail = getBranchEnquiryDetail(branchKey)
@@ -186,43 +188,21 @@ export default function BranchEnquiryLanding({ branchKey }) {
               Designed for optimal learning
             </p>
           </div>
-
-          <div className="grid gap-3 lg:grid-cols-12 lg:items-start lg:gap-4">
-            <div className="relative overflow-hidden rounded-xl lg:col-span-7">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={INFRA_IMAGES.classroom}
-                alt=""
-                className="aspect-[16/9] w-full object-cover"
-              />
-              <span className="absolute bottom-2 left-2 rounded-md bg-white/95 px-2.5 py-1 text-[11px] font-bold text-neutral-900 shadow-sm sm:bottom-2.5 sm:left-2.5 sm:px-3 sm:text-xs">
-                Smart classrooms
-              </span>
-            </div>
-            <div className="flex flex-col gap-2.5 lg:col-span-5 lg:gap-3">
-              <div className="relative overflow-hidden rounded-xl">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={INFRA_IMAGES.lab}
-                  alt=""
-                  className="aspect-[2/1] w-full object-cover object-center"
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {INFRASTRUCTURE_FEATURES.map((feature) => (
+              <div key={feature.id} className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+                <OptimizedImage
+                  cloudinaryId={feature.cloudinaryId}
+                  alt={feature.title}
+                  width={320}
+                  height={220}
+                  className="h-24 w-full object-cover"
+                  crop="fill"
+                  loading="lazy"
                 />
-                <span className="absolute bottom-2 left-2 rounded-md bg-white/95 px-2.5 py-1 text-[11px] font-bold text-neutral-900 shadow-sm sm:px-3 sm:text-xs">
-                  Advanced labs
-                </span>
+                <p className="px-2 py-1.5 text-center text-[11px] font-medium text-neutral-900">{feature.title}</p>
               </div>
-              <div className="relative overflow-hidden rounded-xl">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={INFRA_IMAGES.library}
-                  alt=""
-                  className="aspect-[2/1] w-full object-cover"
-                />
-                <span className="absolute bottom-2 left-2 rounded-md bg-white/95 px-2.5 py-1 text-[11px] font-bold text-neutral-900 shadow-sm sm:px-3 sm:text-xs">
-                  Reading room
-                </span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
