@@ -9,6 +9,8 @@ import OptimizedImage from '@/components/OptimizedImage'
 // import FeaturesSection from '@/components/featuresSection.jsx'
 import TestimonialsShowcase from '@/components/Testimonials.jsx'
 import EnquiryForm from '@/components/EnquiryForm.jsx'
+import AchievementsBentoSection from '@/components/AchievementsBentoSection.jsx'
+import ResultsImageSlider from '@/components/ResultsImageSlider.jsx'
 
 const topTestimonials = [
   {
@@ -157,110 +159,6 @@ function OverviewSection() {
         ))}
       </div>
     </section>
-  )
-}
-
-// Results Image Slider Component
-function ResultsImageSlider({
-  visibleCount = 2,
-  showControls = true,
-  showDots = true,
-  heightClassName = 'h-[280px] md:h-[350px] lg:h-[400px]',
-  framed = true,
-  className = 'relative overflow-hidden rounded-2xl',
-} = {}) {
-  const [offset, setOffset] = useState(0)
-  const images = [
-    { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/v1763783015/5_c2lqwx.jpg', alt: 'Results image 1' },
-    { src: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/v1763783028/7_cgvboz.jpg', alt: 'Results image 2' },
-  ]
-  const step = 1
-  const maxOffset = Math.max(0, images.length - visibleCount)
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setOffset((prev) => (prev >= maxOffset ? 0 : prev + step))
-    }, 4000)
-    return () => clearInterval(timer)
-  }, [images.length, maxOffset])
-
-  return (
-    <div className={className}>
-      {/* Row of images - multiple visible, sliding as a group to the right; no white bg */}
-      <div className={`relative ${heightClassName} overflow-hidden`}>
-        <div
-          className="flex h-full transition-transform duration-700 ease-in-out"
-          style={{
-            width: `${images.length * (100 / visibleCount)}%`,
-            transform: `translateX(-${offset * (100 / images.length)}%)`,
-          }}
-        >
-          {images.map((img, idx) => (
-            <div
-              key={idx}
-              className={`flex-shrink-0 ${framed ? 'p-2 md:p-3' : 'p-0'} h-full flex items-center justify-center`}
-              style={{ width: `${100 / images.length}%` }}
-            >
-              {framed ? (
-                <div className="w-full h-full rounded-xl overflow-hidden flex items-center justify-center shadow-md border border-gray-200/60 bg-page-bg">
-                  <img
-                    src={img.src ?? `https://res.cloudinary.com/ddqgxrgnc/image/upload/w_800,h_600,c_fit,q_auto,f_auto/${img.cloudinaryId}`}
-                    alt={img.alt}
-                    className="w-full h-full object-contain"
-                    loading={idx < 2 ? 'eager' : 'lazy'}
-                  />
-                </div>
-              ) : (
-                <img
-                  src={img.src ?? `https://res.cloudinary.com/ddqgxrgnc/image/upload/w_1200,h_1200,c_fit,q_auto,f_auto/${img.cloudinaryId}`}
-                  alt={img.alt}
-                  className="w-full h-full object-contain"
-                  loading={idx < 2 ? 'eager' : 'lazy'}
-                />
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* Navigation Arrows */}
-        {showControls && (
-          <>
-            <button
-              onClick={() => setOffset((prev) => (prev === 0 ? maxOffset : prev - step))}
-              className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[var(--brand-red)] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border border-gray-200/80 hover:border-[var(--brand-red)]"
-            >
-              <svg className="w-5 h-5 md:w-6 md:h-6 text-[var(--brand-red)] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={() => setOffset((prev) => (prev >= maxOffset ? 0 : prev + step))}
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 hover:bg-[var(--brand-red)] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border border-gray-200/80 hover:border-[var(--brand-red)]"
-            >
-              <svg className="w-5 h-5 md:w-6 md:h-6 text-[var(--brand-red)] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </>
-        )}
-      </div>
-
-      {/* Dots - no white bg, site background */}
-      {showDots && (
-        <div className="flex justify-center gap-2 py-3">
-          {Array.from({ length: maxOffset + 1 }).map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setOffset(idx)}
-              className={`h-2 rounded-full transition-all duration-300 ${offset === idx
-                ? 'w-6 bg-[var(--brand-red)]'
-                : 'w-2 bg-gray-300 hover:bg-[var(--brand-red)]/50'
-                }`}
-            />
-          ))}
-        </div>
-      )}
-    </div>
   )
 }
 
@@ -1250,110 +1148,6 @@ function CounselingFormRow() {
   )
 }
 
-// Achievement stats — red line icons in white tile (reference layout)
-const ACHIEVEMENT_ICON = {
-  trend: (
-    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-    </svg>
-  ),
-  heart: (
-    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-    </svg>
-  ),
-  trophy: (
-    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-    </svg>
-  ),
-  star: (
-    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-    </svg>
-  ),
-  medal: (
-    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-    </svg>
-  ),
-}
-
-const ACHIEVEMENT_CARDS = [
-  { value: '30%', title: 'Increase in IIT admissions', desc: 'Elite Engineering Dreams Realized', iconKey: 'trend' },
-  { value: '5', title: 'Selections in AIIMS & MBBS', desc: 'out of 53 students', iconKey: 'heart' },
-  { value: '86', title: 'Students 99+ Percentile', desc: 'MHT-CET 2025', iconKey: 'trophy' },
-  { value: '32', title: 'Students Scored 95%+', desc: 'JEE Advanced 2025', iconKey: 'star' },
-  { value: '80+', title: 'Qualified for JEE Adv 2025', desc: 'Breaking Barriers', iconKey: 'medal' },
-]
-
-// Our Achievements (reference: red kicker, blue headline, light blue stat cards) + moving results slider
-function AchievementsAndResultsRow() {
-  return (
-    <section className="bg-white py-10 md:py-12 lg:py-14">
-      <div className="container-page px-4 sm:px-6">
-        <div className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-12">
-          <div className="flex flex-col items-center text-center">
-            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--brand-red)] sm:text-xs">
-              Our Achievements
-            </p>
-            <h2 className="mt-2 max-w-4xl text-3xl font-extrabold leading-[1.15] tracking-tight text-[#0066cc] sm:text-4xl md:text-[2.125rem] md:leading-[1.12] lg:text-5xl xl:text-[2.75rem] xl:leading-[1.1]">
-              One of the Leading &amp; Most Successful Institutions in Pune
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-500 md:text-base">
-              Our results speak for the quality of education and dedication of our expert faculty.
-            </p>
-            <div className="mt-6 grid w-full max-w-xl grid-cols-2 gap-3 sm:max-w-2xl sm:gap-4">
-              {ACHIEVEMENT_CARDS.map((card, i) => (
-                <div
-                  key={i}
-                  className="rounded-xl bg-[#f0f7ff] p-3 shadow-sm sm:p-4"
-                >
-                  <div className="flex flex-col items-center gap-2 text-center sm:gap-2.5">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white shadow-sm sm:h-11 sm:w-11">
-                      <span className="text-[var(--brand-red)]">{ACHIEVEMENT_ICON[card.iconKey]}</span>
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-lg font-bold leading-none text-[#0066cc] sm:text-xl md:text-2xl">{card.value}</p>
-                      <p className="mt-1 text-xs font-bold leading-snug text-neutral-900 sm:text-sm">{card.title}</p>
-                      <p className="mt-0.5 text-[11px] leading-snug text-neutral-500 sm:text-xs">{card.desc}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-6 flex justify-center">
-              <Link
-                href="/results"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#0066cc] hover:underline sm:text-base"
-              >
-                View All Results
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex min-h-0 flex-col items-center bg-transparent text-center">
-            <h3 className="home-section-subtitle mb-3 w-full text-lg font-bold md:text-xl">JEE Mains 2024 Results in percentile</h3>
-            <div className="min-h-0 w-full flex-1">
-              <ResultsImageSlider
-                visibleCount={1}
-                showControls={false}
-                showDots={false}
-                framed={false}
-                heightClassName="h-[490px] md:h-[570px]"
-                className="relative overflow-hidden bg-transparent"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 // Explore Our Specialized Learning Paths — five batch cards (reference layout)
 const SPECIALIZED_BATCHES = [
   {
@@ -1716,7 +1510,7 @@ export default function Home() {
       <SpecializedBatchesSection />
 
       <CounselingFormRow />
-      <AchievementsAndResultsRow />
+      <AchievementsBentoSection />
 
       <TestimonialsShowcase />
 
