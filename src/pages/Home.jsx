@@ -1051,8 +1051,16 @@ function CounselingMethodologyTimeline() {
   )
 }
 
-// Counselling: sits on page body background; left = dark blue + methodology (same bg); right = dark blue + form card; wide gutter between columns.
-const COUNSELING_PANEL_BG = 'bg-[#0a1628]'
+// Counselling: dark blue panels (left hero + right form column); methodology below stays on light surface.
+const COUNSELING_PANEL_BG =
+  'relative overflow-hidden bg-gradient-to-b from-[#1a4a8c] via-[#123a6e] to-[#0c2544]'
+const COUNSELING_PANEL_OVERLAY =
+  'pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_55%_at_15%_0%,rgba(96,165,250,0.18),transparent_55%)]'
+const COUNSELING_PANEL_OVERLAY_BOTTOM =
+  'pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_90%_100%,rgba(30,58,138,0.35),transparent_50%)]'
+
+/** YouTube embed URL only, e.g. https://www.youtube.com/embed/dQw4w9WgXcQ — leave empty for placeholder */
+const COUNSELING_PROMO_VIDEO_EMBED_URL = ''
 
 function CounselingFormRow() {
   return (
@@ -1061,11 +1069,9 @@ function CounselingFormRow() {
         <div className="grid grid-cols-1 gap-10 sm:gap-12 md:gap-14 lg:grid-cols-2 lg:items-stretch lg:gap-x-12 xl:gap-x-16 2xl:gap-x-20">
           {/* Left — stacked: dark blue top + methodology (page body background) */}
           <div className="flex min-h-0 flex-col overflow-hidden rounded-2xl shadow-sm sm:rounded-[1.25rem]">
-            <div className={`relative ${COUNSELING_PANEL_BG} px-6 py-10 sm:px-8 sm:py-11 md:px-10 md:py-12`}>
-              <div
-                className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_20%_0%,rgba(51,119,245,0.12),transparent_50%)]"
-                aria-hidden
-              />
+            <div className={`${COUNSELING_PANEL_BG} px-6 py-10 sm:px-8 sm:py-11 md:px-10 md:py-12`}>
+              <div className={COUNSELING_PANEL_OVERLAY} aria-hidden />
+              <div className={COUNSELING_PANEL_OVERLAY_BOTTOM} aria-hidden />
               <div className="relative z-10 mx-auto w-full max-w-3xl text-center lg:max-w-4xl">
                 <h2 className="text-2xl font-bold leading-[1.2] tracking-tight text-white sm:text-3xl lg:text-4xl">
                   Free Academic Counselling for Students and Parents
@@ -1091,13 +1097,33 @@ function CounselingFormRow() {
                   ))}
                 </div>
 
-                <div className="mt-8 flex justify-center md:mt-9">
-                  <a
-                    href="#book-counseling-form"
-                    className="inline-flex items-center justify-center rounded-full bg-amber-400 px-7 py-3 text-sm font-bold text-neutral-900 shadow-lg transition hover:bg-amber-300 sm:px-8 sm:py-3.5 sm:text-base"
-                  >
-                    Book Your Free Session Now
-                  </a>
+                <div className="mx-auto mt-8 w-full max-w-3xl md:mt-9">
+                  <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wide text-white/70">
+                    Watch our counselling introduction
+                  </p>
+                  <div className="overflow-hidden rounded-xl border border-white/20 bg-black/25 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.45)] ring-1 ring-white/10 aspect-video">
+                    {COUNSELING_PROMO_VIDEO_EMBED_URL ? (
+                      <iframe
+                        src={COUNSELING_PROMO_VIDEO_EMBED_URL}
+                        title="Matrix Science Academy — academic counselling"
+                        className="h-full w-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    ) : (
+                      <div className="flex h-full min-h-[12rem] flex-col items-center justify-center gap-3 bg-gradient-to-b from-white/5 to-black/30 px-4 py-8 text-center sm:min-h-[14rem]">
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/15 ring-2 ring-white/25">
+                          <svg className="h-8 w-8 text-white/90" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </div>
+                        <p className="text-sm font-semibold text-white">Promotional video</p>
+                        <p className="max-w-sm text-xs leading-relaxed text-white/80">
+                          Campus, counselling, and how we guide students—video coming soon.
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -1120,25 +1146,64 @@ function CounselingFormRow() {
           {/* Right — dark blue column; form in centered white card */}
           <div
             id="book-counseling-form"
-            className={`scroll-mt-28 flex min-h-0 flex-col overflow-hidden rounded-2xl shadow-sm sm:rounded-[1.25rem] ${COUNSELING_PANEL_BG}`}
+            className={`scroll-mt-28 flex min-h-[36rem] flex-col overflow-hidden rounded-2xl shadow-sm sm:min-h-[40rem] sm:rounded-[1.25rem] lg:min-h-[44rem] ${COUNSELING_PANEL_BG}`}
           >
-            <div className="flex flex-1 flex-col items-center justify-center px-5 py-10 sm:px-7 sm:py-12 md:px-8 md:py-14">
-              <div className="w-full max-w-lg rounded-2xl bg-white p-7 shadow-[0_20px_50px_-12px_rgba(15,23,42,0.18)] sm:max-w-xl sm:p-9 md:max-w-2xl md:p-10">
+            <div className={COUNSELING_PANEL_OVERLAY} aria-hidden />
+            <div className={COUNSELING_PANEL_OVERLAY_BOTTOM} aria-hidden />
+            <div className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center px-5 py-12 sm:px-7 sm:py-14 md:px-8 md:py-16">
+              <div className="flex w-full max-w-lg min-h-[26rem] flex-col rounded-2xl bg-white p-8 shadow-[0_20px_50px_-12px_rgba(15,23,42,0.18)] sm:max-w-xl sm:min-h-[28rem] sm:p-10 md:max-w-2xl md:min-h-[30rem] md:p-11 lg:min-h-[32rem]">
                 <h3 className="text-center text-xl font-bold text-neutral-900 md:text-2xl">Book Your Session</h3>
                 <p className="mt-2 text-center text-sm leading-relaxed text-neutral-600 md:text-base">
                   Fill out the form below and our academic counsellor will call you.
                 </p>
                 <Suspense
                   fallback={
-                    <div className="mt-7 rounded-xl bg-neutral-50 p-7">
+                    <div className="mt-7 flex flex-1 items-center justify-center rounded-xl bg-neutral-50 p-8">
                       <p className="text-center text-sm text-neutral-600">Loading form…</p>
                     </div>
                   }
                 >
-                  <div className="mt-9">
-                    <EnquiryForm counselingSession counselingRelaxed counselingCentered />
+                  <div className="mt-8 flex flex-1 flex-col sm:mt-10">
+                    <div className="flex-1">
+                      <EnquiryForm counselingSession counselingRelaxed counselingCentered />
+                    </div>
                   </div>
                 </Suspense>
+                <div className="mt-8 border-t border-neutral-100 pt-8">
+                  <p className="text-center text-[11px] font-bold uppercase tracking-[0.18em] text-[#3377F5]">
+                    Why families choose Matrix
+                  </p>
+                  <p className="mx-auto mt-3 max-w-md text-center text-sm leading-relaxed text-neutral-600">
+                    Get clarity on courses, batches, and fees—no pressure, just honest guidance. Same-day callbacks on working hours;
+                    your details stay private.
+                  </p>
+                  <ul className="mx-auto mt-5 max-w-md space-y-2.5 text-left text-sm text-neutral-700">
+                    <li className="flex gap-2.5">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700" aria-hidden>
+                        <svg className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      <span>Personalized roadmap for JEE, NEET, MHT-CET, or school boards</span>
+                    </li>
+                    <li className="flex gap-2.5">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700" aria-hidden>
+                        <svg className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      <span>Speak with counsellors who know Pune centres and batch timings</span>
+                    </li>
+                    <li className="flex gap-2.5">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700" aria-hidden>
+                        <svg className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      <span>Free session—walk in with doubts, walk out with a plan</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -1459,42 +1524,6 @@ function CounselingCTA() {
   )
 }
 
-// Promotional video – placeholder for 1–2 min campus/teaching video
-function PromotionalVideo() {
-  const videoUrl = '' // Set to YouTube/Vimeo embed URL when available, e.g. 'https://www.youtube.com/embed/VIDEO_ID'
-  return (
-    <section className="home-section-alt">
-      <div className="container-page">
-        <div className="mb-6 text-center">
-          <h2 className="home-section-title">See Matrix Science Academy</h2>
-          <p className="home-section-body mx-auto mt-2 max-w-2xl text-center">
-            Campus, teaching, infrastructure, and achievements in a short video.
-          </p>
-        </div>
-        <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-lg bg-white aspect-video max-w-4xl mx-auto flex items-center justify-center">
-          {videoUrl ? (
-            <iframe
-              src={videoUrl}
-              title="Matrix Science Academy - Promotional Video"
-              className="w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          ) : (
-            <div className="text-center p-8">
-              <div className="w-20 h-20 rounded-full bg-[var(--brand-red)]/20 flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-[var(--brand-red)]" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-              </div>
-              <p className="text-body font-medium">Promotional video coming soon</p>
-              <p className="text-body/70 text-sm mt-1">Campus, teaching & results</p>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 export default function Home() {
   return (
     <div className="bg-white">
@@ -1517,7 +1546,6 @@ export default function Home() {
       {/* Features (facilities), then optional extras */}
       {/* <FeaturesSection /> */}
       {/* <PerformanceGraph /> removed from homepage (Results Over the Years) */}
-      <PromotionalVideo />
     </div>
   )
 }
