@@ -15,29 +15,34 @@ function EnquiryWithBranch() {
     setBranch(param && BRANCH_OPTIONS.includes(param) ? param : 'Nigdi')
   }, [param])
 
+  /** Branch landing URLs (?branch=…) show landing + infrastructure only—no duplicate form at bottom. */
+  const showBottomForm = !(param && BRANCH_OPTIONS.includes(param))
+
   return (
     <>
-      <BranchEnquiryLanding branchKey={branch} />
+      <BranchEnquiryLanding branchKey={branch} enquiryFormAnchor={showBottomForm} />
 
-      <section id="enquiry-form" className="scroll-mt-24 border-t border-violet-100 bg-[#F9F5FB] py-12 md:py-16">
-        <div className="mx-auto w-full max-w-2xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-2xl font-bold tracking-tight text-neutral-900 md:text-[1.65rem]">
-            Enquiry form
-          </h2>
-          <p className="mx-auto mt-2 max-w-lg text-center text-sm text-neutral-600 md:text-base">
-            You&apos;re contacting our <strong className="font-semibold text-neutral-800">{branch}</strong> centre.
-            Prefer another location? Change &quot;Preferred branch&quot; below.
-          </p>
-          <div className="mt-8">
-            <EnquiryForm
-              selectedBranch={branch}
-              onBranchChange={setBranch}
-              layoutCentered
-              singleColumnFormOnly
-            />
+      {showBottomForm && (
+        <section id="enquiry-form" className="scroll-mt-24 border-t border-violet-100 bg-[#F9F5FB] py-12 md:py-16">
+          <div className="mx-auto w-full max-w-2xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-center text-2xl font-bold tracking-tight text-neutral-900 md:text-[1.65rem]">
+              Enquiry form
+            </h2>
+            <p className="mx-auto mt-2 max-w-lg text-center text-sm text-neutral-600 md:text-base">
+              You&apos;re contacting our <strong className="font-semibold text-neutral-800">{branch}</strong> centre.
+              Prefer another location? Change &quot;Preferred branch&quot; below.
+            </p>
+            <div className="mt-8">
+              <EnquiryForm
+                selectedBranch={branch}
+                onBranchChange={setBranch}
+                layoutCentered
+                singleColumnFormOnly
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   )
 }

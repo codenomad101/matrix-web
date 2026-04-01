@@ -7,7 +7,10 @@ export const BRANCH_ENQUIRY_DETAILS = {
     directorName: 'Mr. Nishant Patwardhan',
     directorTitle: 'Director, MSA Nigdi',
     cloudinaryId: 'v1764218938/abhi_mehta_f6h4om',
-    addressLines: ['3rd Floor, Kohinoor Arcade, Nigdi Chowk, Pune'],
+    addressLines: [
+      'Pradhikaran — Tated horizon building, Opp. St. Ursula School, Nigdi, Pradhikaran',
+      'Nigdi Chowk — 3rd Floor, Kohinoor Arcade, Nigdi Chowk, Pune',
+    ],
     phone: '70587 40609',
     aboutText:
       'Matrix Nigdi offers a disciplined, concept-first environment for JEE, NEET, and MHT-CET aspirants. Our faculty combine rigour with mentorship so every student builds strong fundamentals and exam temperament.',

@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { FaBuilding, FaCheck, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaStar, FaTrophy } from 'react-icons/fa'
+import { FaBuilding, FaCheck, FaPhoneAlt, FaEnvelope, FaStar, FaTrophy } from 'react-icons/fa'
 import OptimizedImage from '@/components/OptimizedImage'
 
 const directors = [
@@ -13,49 +13,6 @@ const directors = [
 ]
 
 export default function About() {
-  const branches = [
-    {
-      name: 'Pradhikaran Office',
-      address: 'Tated horizon building Opp. St. Ursula School Nigdi, Pradhikaran',
-      phone: ['70587 40609'],
-    },
-    {
-      name: 'Nigdi Office',
-      address: '3rd Floor, Kohinoor Arcade, Nigdi Chowk',
-      phone: ['70587 40609'],
-    },
-    {
-      name: 'Ravet 1 Office',
-      address: '3rd Floor, Blooming Dale, Above Dominos',
-      phone: ['70587 40609'],
-    },
-    {
-      name: 'Ravet 2 Office',
-      address: '3rd Floor, Sr No. 95, Bhalchandra Prospera',
-      phone: ['70587 40609'],
-    },
-    {
-      name: 'Chinchwad Office',
-      address: '3rd Floor, Geo Spaces, Opp. Elpro Mall, Link Road',
-      phone: ['70587 40609'],
-    },
-    {
-      name: 'Shahunagar Office',
-      address: 'Spine Road, Near NKGSB Bank, Purnanagar',
-      phone: ['70587 40609'],
-    },
-    {
-      name: 'Moshi',
-      address: 'Bharat Mata Chowk Above Reliance Digital',
-      phone: ['70587 40609'],
-    },
-    {
-      name: 'Wakad Office',
-      address: 'Sr No 190/190 Ground Floor, Sunder Height, Near Saraswat Bank, Datta Mandir',
-      phone: ['70587 40609'],
-    },
-  ]
-
   const branchStrip = [
     'Nigdi',
     'Shahunagar',
@@ -69,91 +26,25 @@ export default function About() {
 
   return (
     <div className="interior-page">
-      {/* Branches — lavender panel, CTA + chips + 3 highlights (reference layout) */}
-      <section id="branches-strip" className="border-b border-violet-100/80 bg-[#F9F5FB] py-10 md:py-14">
-        <div className="container-page">
-          <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-            <div className="max-w-2xl">
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-700/90">Matrix Science Academy</p>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl md:text-[2.35rem] md:leading-tight">
-                Our branches
-              </h2>
-              <p className="mt-3 text-xs font-bold uppercase leading-relaxed tracking-[0.12em] text-violet-700 sm:text-sm">
-                Empowering future engineers & doctors with excellence
-              </p>
-            </div>
-            <Link
-              href="/enquiry"
-              className="inline-flex shrink-0 items-center justify-center self-start rounded-full bg-violet-700 px-7 py-3 text-sm font-bold uppercase tracking-wide text-white shadow-md shadow-violet-700/20 transition hover:bg-violet-800 md:self-center"
-            >
-              Enquire now
-            </Link>
-          </div>
-
-          <p className="mt-8 text-sm font-semibold text-neutral-700">Choose a centre</p>
-          <div className="mt-3 flex flex-wrap gap-2.5">
-            {branchStrip.map((b) => (
-              <Link
-                key={b}
-                href={`/enquiry?branch=${encodeURIComponent(b)}`}
-                className="inline-flex items-center rounded-full border border-violet-200/90 bg-white px-4 py-2 text-sm font-semibold text-violet-950 shadow-sm transition hover:border-violet-400 hover:bg-violet-700 hover:text-white"
-              >
-                {b}
-              </Link>
-            ))}
-          </div>
-
-          <div className="mt-12 grid gap-8 rounded-2xl border border-violet-100/90 bg-violet-50/50 px-5 py-8 sm:px-8 md:grid-cols-3 md:gap-6 md:py-10">
-            <div className="text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-violet-600 text-white shadow-md shadow-violet-600/25">
-                <FaStar className="h-6 w-6" aria-hidden />
-              </div>
-              <h3 className="mt-4 text-lg font-bold text-neutral-900">Top results</h3>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-600">
-                Consistently producing top rankers in JEE & NEET.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-violet-600 text-white shadow-md shadow-violet-600/25">
-                <FaCheck className="h-6 w-6" aria-hidden />
-              </div>
-              <h3 className="mt-4 text-lg font-bold text-neutral-900">Expert faculty</h3>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-600">
-                Mentors from top IITs and medical colleges.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-violet-600 text-white shadow-md shadow-violet-600/25">
-                <FaTrophy className="h-6 w-6" aria-hidden />
-              </div>
-              <h3 className="mt-4 text-lg font-bold text-neutral-900">Proven system</h3>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-600">
-                Decades of refined academic methodology.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* About Section - Allen-style white section */}
       <section className="page-section-white">
         <div className="container-page">
-          <div className="page-card">
-            <h1 className="interior-title mb-6">About Matrix Science Academy</h1>
-            <p className="text-lg text-body leading-relaxed mb-5">
+          <div className="page-card text-center">
+            <h1 className="interior-title interior-title-center mb-6">About Matrix Science Academy</h1>
+            <p className="mx-auto mb-5 max-w-3xl text-lg leading-relaxed text-body">
               Matrix Science Academy (MSA) is dedicated to building strong concepts and habits for
               competitive exams and boards. With a blended learning approach, we offer mentor-led
               classes, quality study material, and rigorous assessments.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div className="rounded-xl border border-neutral-200 bg-gray-50 p-6 border-l-4 border-l-neutral-400">
+            <div className="grid gap-6 sm:grid-cols-2">
+              <div className="rounded-xl border border-l-4 border-neutral-200 border-l-neutral-400 bg-gray-50 p-6">
                 <h3 className="mb-2 text-lg font-semibold text-neutral-900">Our Mission</h3>
                 <p className="text-body text-sm leading-relaxed">
                   Deliver accessible, high-quality education with compassion and discipline.
                 </p>
               </div>
-              <div className="rounded-xl border border-neutral-200 bg-gray-50 p-6 border-l-4 border-l-neutral-400">
+              <div className="rounded-xl border border-l-4 border-neutral-200 border-l-neutral-400 bg-gray-50 p-6">
                 <h3 className="mb-2 text-lg font-semibold text-neutral-900">Our Vision</h3>
                 <p className="text-body text-sm leading-relaxed">
                   Enable every learner to achieve excellence and freedom through knowledge.
@@ -163,7 +54,7 @@ export default function About() {
 
             <div className="mt-8 rounded-xl border border-neutral-200 bg-gray-50 p-6">
               <h3 className="mb-3 text-lg font-semibold text-neutral-900">Our Philosophy</h3>
-              <p className="text-body leading-relaxed text-sm">
+              <p className="mx-auto max-w-3xl text-body text-sm leading-relaxed">
                 We are teachers by our choice and we passionately do our job. Our aim is not to run the classes conventionally,
                 but we are here to make a change and make a strong impact in the field of 8th to 12th Education in Maharashtra.
                 We believe education is the key to success. Matrix Science Academy aims to provide quality and affordable education
@@ -175,7 +66,7 @@ export default function About() {
             {/* Our Vision - Full Message */}
             <div className="mt-8 rounded-xl border border-neutral-200 border-l-4 border-l-neutral-400 bg-gray-50 p-6">
               <h3 className="mb-3 text-lg font-semibold text-neutral-900">Our Vision</h3>
-              <div className="space-y-3 text-body text-sm leading-relaxed">
+              <div className="mx-auto max-w-3xl space-y-3 text-body text-sm leading-relaxed">
                 <p>
                   <strong>We are teachers by our choice and we passionately do our job.</strong> Our aim is not to run the classes conventionally, but we are here to make a change and make a strong impact in the field of 8th to 12th Education in Maharashtra.
                 </p>
@@ -212,6 +103,72 @@ export default function About() {
                   <p className="text-sm font-medium text-neutral-700">MSA {d.branch}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Branches — lavender panel, CTA + chips + 3 highlights (below directors, center-aligned) */}
+      <section id="branches-strip" className="border-b border-violet-100/80 bg-[#F9F5FB] py-10 md:py-14">
+        <div className="container-page text-center">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-6">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-700/90">Matrix Science Academy</p>
+              <h2 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl md:text-[2.35rem] md:leading-tight">
+                Our branches
+              </h2>
+              <p className="mt-3 text-xs font-bold uppercase leading-relaxed tracking-[0.12em] text-violet-700 sm:text-sm">
+                Empowering future engineers & doctors with excellence
+              </p>
+            </div>
+            <Link
+              href="/enquiry"
+              className="inline-flex shrink-0 items-center justify-center rounded-full bg-violet-700 px-7 py-3 text-sm font-bold uppercase tracking-wide text-white shadow-md shadow-violet-700/20 transition hover:bg-violet-800"
+            >
+              Enquire now
+            </Link>
+          </div>
+
+          <p className="mt-8 text-sm font-semibold text-neutral-700">Choose a centre</p>
+          <div className="mt-3 flex flex-wrap justify-center gap-2.5">
+            {branchStrip.map((b) => (
+              <Link
+                key={b}
+                href={`/enquiry?branch=${encodeURIComponent(b)}`}
+                className="inline-flex items-center rounded-full border border-violet-200/90 bg-white px-4 py-2 text-sm font-semibold text-violet-950 shadow-sm transition hover:border-violet-400 hover:bg-violet-700 hover:text-white"
+              >
+                {b}
+              </Link>
+            ))}
+          </div>
+
+          <div className="mx-auto mt-12 grid max-w-5xl gap-8 rounded-2xl border border-violet-100/90 bg-violet-50/50 px-5 py-8 sm:px-8 md:grid-cols-3 md:gap-6 md:py-10">
+            <div className="text-center">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-violet-600 text-white shadow-md shadow-violet-600/25">
+                <FaStar className="h-6 w-6" aria-hidden />
+              </div>
+              <h3 className="mt-4 text-lg font-bold text-neutral-900">Top results</h3>
+              <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+                Consistently producing top rankers in JEE & NEET.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-violet-600 text-white shadow-md shadow-violet-600/25">
+                <FaCheck className="h-6 w-6" aria-hidden />
+              </div>
+              <h3 className="mt-4 text-lg font-bold text-neutral-900">Expert faculty</h3>
+              <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+                Mentors from top IITs and medical colleges.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-violet-600 text-white shadow-md shadow-violet-600/25">
+                <FaTrophy className="h-6 w-6" aria-hidden />
+              </div>
+              <h3 className="mt-4 text-lg font-bold text-neutral-900">Proven system</h3>
+              <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+                Decades of refined academic methodology.
+              </p>
             </div>
           </div>
         </div>
@@ -260,44 +217,13 @@ export default function About() {
             </div>
           </div>
 
-          {/* Branches Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {branches.map((branch, index) => (
-              <div
-                key={index}
-                className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:border-neutral-300 hover:shadow-md"
-              >
-                <h3 className="mb-4 flex items-center text-xl font-semibold text-neutral-900">
-                  <div className="mr-3 rounded-lg bg-neutral-100 p-3">
-                    <FaBuilding className="text-neutral-700" />
-                  </div>
-                  {branch.name}
-                </h3>
-
-                <div className="space-y-3">
-                  <div className="flex items-start text-neutral-800">
-                    <FaMapMarkerAlt className="mr-3 mt-1 flex-shrink-0 text-neutral-500" />
-                    <span className="text-sm">{branch.address}</span>
-                  </div>
-
-                  <div className="flex items-center text-neutral-800">
-                    <FaPhoneAlt className="mr-3 flex-shrink-0 text-neutral-500" />
-                    <div className="flex flex-wrap gap-2">
-                      {branch.phone.map((phone, idx) => (
-                        <a
-                          key={idx}
-                          href={`tel:${phone.replace(/\s/g, '')}`}
-                          className="text-sm font-medium text-neutral-900 underline-offset-2 hover:underline"
-                        >
-                          {phone}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <p className="mx-auto mt-6 max-w-xl text-center text-sm text-body/80">
+            Centre addresses are shown on each branch&apos;s enquiry page—use the branch chips above or open{' '}
+            <Link href="/enquiry" className="font-semibold text-neutral-900 underline-offset-2 hover:underline">
+              Enquiry
+            </Link>{' '}
+            and pick a location.
+          </p>
 
           {/* Call to Action */}
           <div className="mt-8 text-center">

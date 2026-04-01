@@ -1,7 +1,6 @@
 'use client'
 
-import Link from 'next/link'
-import { FaCheck, FaPhoneAlt, FaStar, FaTrophy } from 'react-icons/fa'
+import { FaCheck, FaMapMarkerAlt, FaPhoneAlt, FaStar, FaTrophy } from 'react-icons/fa'
 import OptimizedImage from '@/components/OptimizedImage'
 import { getBranchEnquiryDetail } from '@/data/branch-enquiry-details'
 
@@ -32,32 +31,43 @@ const INFRASTRUCTURE_FEATURES = [
   { id: 6, title: 'Office', cloudinaryId: 'v1764181872/4_phnnrh' },
 ]
 
-export default function BranchEnquiryLanding({ branchKey }) {
+export default function BranchEnquiryLanding({ branchKey, enquiryFormAnchor = true }) {
   const detail = getBranchEnquiryDetail(branchKey)
   if (!detail) return null
 
   const tel = detail.phone.replace(/\s/g, '')
+  const enquirePrimaryHref = enquiryFormAnchor ? '#enquiry-form' : `tel:${tel}`
 
   return (
     <>
       {/* 1 — Header (white) */}
       <section className="border-b border-neutral-100 bg-white">
         <div className="container-page flex flex-col gap-6 py-10 md:flex-row md:items-end md:justify-between md:py-12 lg:py-14">
-          <div>
+          <div className="min-w-0 max-w-2xl">
             <h1 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl md:text-[2.35rem] md:leading-tight">
               Matrix — {detail.key}
             </h1>
             <p className="mt-3 text-xs font-bold uppercase tracking-[0.14em] text-violet-700 sm:text-sm">
               Empowering future engineers & doctors with excellence
             </p>
+            {detail.addressLines?.length > 0 && (
+              <div className="mt-5 flex gap-3 text-left text-sm leading-relaxed text-neutral-700">
+                <FaMapMarkerAlt className="mt-0.5 h-4 w-4 shrink-0 text-violet-700" aria-hidden />
+                <div className="space-y-1.5">
+                  {detail.addressLines.map((line, idx) => (
+                    <p key={idx}>{line}</p>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
           <div className="flex shrink-0 flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-            <Link
-              href="#enquiry-form"
+            <a
+              href={enquirePrimaryHref}
               className="inline-flex items-center justify-center rounded-full bg-violet-700 px-8 py-3 text-center text-sm font-bold uppercase tracking-wide text-white shadow-md shadow-violet-700/20 transition hover:bg-violet-800"
             >
               Enquire now
-            </Link>
+            </a>
             <a
               href={`tel:${tel}`}
               className="inline-flex items-center justify-center gap-2 rounded-full border border-neutral-200 bg-white px-5 py-2.5 text-sm font-semibold text-neutral-800 transition hover:border-violet-300 hover:bg-violet-50/50"
