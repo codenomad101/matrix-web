@@ -6,40 +6,17 @@ import Link from 'next/link'
 
 const CLOUD_IMG = 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_1600,h_1200,c_limit,q_auto,f_auto'
 
-const HERO_CAROUSEL_IMAGES = [
-  {
-    src: `${CLOUD_IMG}/v1774798352/Hero_Image_02_-_For_Scholarship_-_Matrix_hchnro.jpg`,
-    alt: 'Matrix Science Academy — scholarship opportunities',
-    title: 'Scholarships at Matrix',
-  },
-  {
-    src: `${CLOUD_IMG}/v1774798351/Hero_Image_09_-Talent_Edge_Scholarship_dw68zu.jpg`,
-    alt: 'Talent Edge Scholarship at Matrix Science Academy',
-    title: 'Talent Edge Scholarship',
-  },
-  {
-    src: `${CLOUD_IMG}/v1774798351/Hero_Image_01-_Everything_Under_One_Roof_-_JEE_-_MHT-CET_-_NEET_ol2wzg.jpg`,
-    alt: 'JEE, MHT-CET and NEET preparation under one roof at Matrix',
-    title: 'JEE · MHT-CET · NEET — one roof',
-  },
-  {
-    src: `${CLOUD_IMG}/v1774798348/Hero_Image_10_-The_Champion_Story_01_m3xefg.jpg`,
-    alt: 'Student champion success story at Matrix Science Academy',
-    title: 'The champion story',
-  },
-  {
-    src: `${CLOUD_IMG}/v1774798344/Hero_Image_-_04_Matrix_-_Physcis_Maths_Science_Teachers_sjwxb6.jpg`,
-    alt: 'Matrix faculty — Physics, Maths and Science teachers',
-    title: 'Expert Physics, Maths & Science faculty',
-  },
-  {
-    src: `${CLOUD_IMG}/v1774798340/Hero_Image_11_-_Vriksha_-_School_Topper_-_AIR_-_Combined_l5chqn.jpg`,
-    alt: 'Vriksha programme — school toppers and competitive exam success',
-    title: 'Vriksha — school toppers & beyond',
-  },
-]
+/** Only the champion story asset reads at full width; repeated as 4 slides for manual navigation */
+const CHAMPION_STORY_SLIDE = {
+  src: `${CLOUD_IMG}/v1774798348/Hero_Image_10_-The_Champion_Story_01_m3xefg.jpg`,
+  alt: 'Student champion success story at Matrix Science Academy',
+  title: 'The champion story',
+}
 
-const MAIN_CAROUSEL_MS = 3000
+const HERO_CAROUSEL_SLIDE_COUNT = 4
+const HERO_CAROUSEL_IMAGES = Array.from({ length: HERO_CAROUSEL_SLIDE_COUNT }, () => ({ ...CHAMPION_STORY_SLIDE }))
+
+const CAROUSEL_AUTO_ADVANCE_MS = 4000
 
 /** JEE → MHT-CET → NEET → Vriksha (loops), typing effect */
 const EXAM_TICKER_WORDS = ['JEE', 'MHT-CET', 'NEET', 'Vriksha']
@@ -109,14 +86,34 @@ function IconMail({ className }) {
 }
 
 export default function HeroSlider() {
+  const reduceMotion = useReducedMotion()
   const [carouselIndex, setCarouselIndex] = useState(0)
+  /** Bumps when the user uses arrows/dots so the auto-advance timer restarts from now */
+  const [autoAdvanceEpoch, setAutoAdvanceEpoch] = useState(0)
+  const slideCount = HERO_CAROUSEL_IMAGES.length
 
   useEffect(() => {
-    const t = setInterval(() => {
-      setCarouselIndex((i) => (i + 1) % HERO_CAROUSEL_IMAGES.length)
-    }, MAIN_CAROUSEL_MS)
-    return () => clearInterval(t)
-  }, [])
+    if (reduceMotion || slideCount < 2) return
+    const id = window.setInterval(() => {
+      setCarouselIndex((i) => (i + 1) % slideCount)
+    }, CAROUSEL_AUTO_ADVANCE_MS)
+    return () => window.clearInterval(id)
+  }, [reduceMotion, slideCount, autoAdvanceEpoch])
+
+  const goPrev = () => {
+    setCarouselIndex((i) => (i === 0 ? slideCount - 1 : i - 1))
+    setAutoAdvanceEpoch((e) => e + 1)
+  }
+
+  const goNext = () => {
+    setCarouselIndex((i) => (i + 1) % slideCount)
+    setAutoAdvanceEpoch((e) => e + 1)
+  }
+
+  const goToSlide = (index) => {
+    setCarouselIndex(index)
+    setAutoAdvanceEpoch((e) => e + 1)
+  }
 
   return (
     <section className="relative overflow-hidden bg-white">
@@ -201,11 +198,55 @@ export default function HeroSlider() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={img.src}
-                      alt={img.alt}
+                      alt={i === carouselIndex ? img.alt : ''}
                       className="h-full w-full object-contain object-center"
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                      aria-hidden={i !== carouselIndex}
                     />
                   </div>
                 ))}
+              </div>
+
+              <div className="mt-3 flex flex-col items-center gap-3 sm:mt-4">
+                <div className="flex items-center justify-center gap-2 sm:gap-3">
+                  <button
+                    type="button"
+                    onClick={goPrev}
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-sm transition hover:border-[#005FB8] hover:bg-[#005FB8]/5 hover:text-[#005FB8] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#005FB8] focus-visible:ring-offset-2"
+                    aria-label="Previous image"
+                  >
+                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={goNext}
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-sm transition hover:border-[#005FB8] hover:bg-[#005FB8]/5 hover:text-[#005FB8] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#005FB8] focus-visible:ring-offset-2"
+                    aria-label="Next image"
+                  >
+                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+                <div className="flex items-center gap-2" role="group" aria-label="Choose slide">
+                  {HERO_CAROUSEL_IMAGES.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      aria-current={i === carouselIndex ? 'true' : undefined}
+                      aria-label={`Slide ${i + 1} of ${slideCount}`}
+                      onClick={() => goToSlide(i)}
+                      className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#005FB8] focus-visible:ring-offset-2 ${
+                        i === carouselIndex ? 'w-7 bg-[#005FB8]' : 'w-2 bg-neutral-300 hover:bg-neutral-400'
+                      }`}
+                    />
+                  ))}
+                </div>
+                <p className="text-[11px] text-neutral-500 sm:text-xs">
+                  {carouselIndex + 1} of {slideCount}
+                </p>
               </div>
             </div>
           </div>
