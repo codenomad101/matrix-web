@@ -493,3 +493,15 @@ small, .text-caption, .text-small {
 	transform-box: fill-box;
 	transform-origin: center;
 }
+
+/* VRIKSHA landing — Playfair / script (globals otherwise force Inter on all headings) */
+.vriksha-landing .vriksha-serif {
+	font-family: var(--font-vriksha-serif), ui-serif, Georgia, serif !important;
+}
+.vriksha-landing .vriksha-script {
+	font-family: var(--font-vriksha-script), cursive !important;
+}
+.vriksha-landing h1.vriksha-serif,
+.vriksha-landing h2.vriksha-serif {
+	font-weight: 400 !important;
+}

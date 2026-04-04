@@ -7,20 +7,24 @@ import BranchEnquiryLanding from '@/components/BranchEnquiryLanding.jsx'
 function EnquiryWithBranch() {
   const searchParams = useSearchParams()
   const param = searchParams.get('branch')
-  const [branch, setBranch] = useState(() =>
-    param && BRANCH_OPTIONS.includes(param) ? param : 'Nigdi'
-  )
+  const branchFromUrl = param && BRANCH_OPTIONS.includes(param) ? param : null
+  const [branch, setBranch] = useState(() => branchFromUrl ?? 'Nigdi')
 
   useEffect(() => {
-    setBranch(param && BRANCH_OPTIONS.includes(param) ? param : 'Nigdi')
-  }, [param])
+    setBranch(branchFromUrl ?? 'Nigdi')
+  }, [param, branchFromUrl])
 
   /** Branch landing URLs (?branch=…) show landing + infrastructure only—no duplicate form at bottom. */
-  const showBottomForm = !(param && BRANCH_OPTIONS.includes(param))
+  const showBottomForm = !branchFromUrl
+  const landingMode = branchFromUrl ? 'branch' : 'general'
 
   return (
     <>
-      <BranchEnquiryLanding branchKey={branch} enquiryFormAnchor={showBottomForm} />
+      <BranchEnquiryLanding
+        branchKey={branchFromUrl ?? branch}
+        enquiryFormAnchor={showBottomForm}
+        mode={landingMode}
+      />
 
       {showBottomForm && (
         <section id="enquiry-form" className="scroll-mt-24 border-t border-violet-100 bg-[#F9F5FB] py-12 md:py-16">
@@ -29,8 +33,17 @@ function EnquiryWithBranch() {
               Enquiry form
             </h2>
             <p className="mx-auto mt-2 max-w-lg text-center text-sm text-neutral-600 md:text-base">
-              You&apos;re contacting our <strong className="font-semibold text-neutral-800">{branch}</strong> centre.
-              Prefer another location? Change &quot;Preferred branch&quot; below.
+              {branchFromUrl ? (
+                <>
+                  You&apos;re contacting our <strong className="font-semibold text-neutral-800">{branch}</strong> centre.
+                  Prefer another location? Change &quot;Preferred branch&quot; below.
+                </>
+              ) : (
+                <>
+                  Share your details and course interest—we&apos;ll reach out from the right centre. Choose your{' '}
+                  <strong className="font-semibold text-neutral-800">preferred branch</strong> below.
+                </>
+              )}
             </p>
             <div className="mt-8">
               <EnquiryForm
