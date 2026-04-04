@@ -1,12 +1,63 @@
 /* Tailwind base */
 @tailwind base;
+
+/* Page titles in <main>: centered by default; use text-left on the element to override (e.g. hero column, forms) */
+@layer base {
+	main h1 {
+		text-align: center;
+	}
+	main h1.interior-title {
+		text-align: left;
+	}
+	main h1.interior-title.interior-title-center {
+		text-align: center;
+	}
+	main h1.hero-main-headline {
+		text-align: left;
+	}
+	main h2 {
+		text-align: center;
+	}
+}
+
 @tailwind components;
 @tailwind utilities;
 
-/* CSS variables for brand colors */
-:root {
+/* CSS variables — accent toggles via html[data-theme="blue"|"red"] (see ThemeToggle) */
+:root,
+html[data-theme="blue"] {
 	--brand: #b2dfee;
-	--brand-dark: #0a1a67;
+	--brand-red: #0a1a67;
+	--brand-red-hover: #071247;
+	--brand-gradient-mid: #132a8f;
+	--brand-gradient-end: #051139;
+	--brand-dark: var(--brand-red);
+	--brand-blue: var(--brand-red);
+	--brand-gray: #f5f5f5;
+	--heading: var(--brand-red);
+	--body: #0a1a67;
+	--bg-page: #f5f5f5;
+	--bg-box: #f0f0f0;
+	/* Inter from next/font (--font-inter on html); clean modern sans stack */
+	--font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+	/* Theme-aware soft accent (used for popup backgrounds) */
+	/* Higher percentages = darker popup panel backdrop */
+	/* Tweaked darker for better contrast with `text-white` in the popup form */
+	--accent-soft-10: color-mix(in srgb, var(--brand-red) 28%, transparent);
+	--accent-soft-15: color-mix(in srgb, var(--brand-red) 42%, transparent);
+	--accent-soft-20: color-mix(in srgb, var(--brand-red) 52%, transparent);
+}
+
+html[data-theme="red"] {
+	--brand-red: #b30027;
+	--brand-red-hover: #8a001e;
+	--brand-gradient-mid: #c41e3a;
+	--brand-gradient-end: #4a0010;
+	--brand-dark: var(--brand-red);
+	--brand-blue: var(--brand-red);
+	--heading: var(--brand-red);
+	--body: #334155;
 }
 
 html, body {
@@ -14,37 +65,239 @@ html, body {
 	overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-body {
-	@apply bg-white text-[#0a1a67] antialiased;
+/* Mobile safety: prevent images/forms from overflowing containers */
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
 }
 
-/******** Utilities ********/
+input, select, textarea {
+	max-width: 100%;
+}
+
+button {
+	max-width: 100%;
+}
+
+/* Uniform font: sans-serif everywhere, important so nothing overrides */
+html {
+	font-family: var(--font-sans) !important;
+}
+body {
+	font-family: inherit !important;
+}
+
+/* Body: white canvas (matches hero); footer uses --bg-page for contrast */
+body {
+	background: #ffffff;
+	color: var(--body);
+	@apply antialiased;
+	font-size: 16px;
+	line-height: 1.625;
+	font-weight: 400;
+}
+
+/* Force sans-serif on all text elements so font is uniform site-wide */
+h1, h2, h3, h4, h5, h6, p, span, a, li, label, input, select, textarea, button, div {
+	font-family: var(--font-sans) !important;
+}
+
+/* Headings: hero-inspired scale (slate-900, tight tracking); utilities / text-heading override color */
+h1:not(.hero-main-headline),
+.text-h1 {
+	font-size: clamp(1.875rem, 2.5vw + 1rem, 3rem);
+	font-weight: 800;
+	line-height: 1.12;
+	letter-spacing: -0.025em;
+	color: #0f172a;
+}
+
+h2, .text-h2 {
+	font-size: clamp(1.5rem, 1.25vw + 1rem, 2rem);
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+	color: #0f172a;
+}
+
+h3, .text-h3 {
+	font-size: clamp(1.125rem, 0.4vw + 1rem, 1.375rem);
+	font-weight: 600;
+	line-height: 1.35;
+	letter-spacing: -0.015em;
+	color: #0f172a;
+}
+
+p, .text-body {
+	font-size: clamp(1rem, 0.2vw + 0.9rem, 1.125rem);
+	font-weight: 400;
+	line-height: 1.625;
+	color: var(--body);
+}
+
+small, .text-caption, .text-small {
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 1.5;
+	color: var(--body);
+}
+
+/* Navbar primary row — reference: ~14px semibold, no uppercase */
+.nav-bar-items a,
+.nav-bar-items button {
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+/******** Utilities – same width for navbar, body, and all sections ********/
+/* ~96rem (1536px): a bit wider than 7xl/88rem for large desktops */
 .container-responsive {
-	@apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+	@apply max-w-[min(100%,96rem)] mx-auto px-4 sm:px-6 lg:px-8;
 }
 
 .container-content {
-	@apply max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8;
+	@apply max-w-[min(100%,96rem)] mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Wider container for top header / navbar */
+.container-header {
+	@apply max-w-[min(100%,96rem)] mx-auto px-4 sm:px-6 lg:px-8;
 }
 
 .container-page {
-	@apply max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8;
+	@apply max-w-[min(100%,96rem)] mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Allen-style page sections: compact vertical spacing */
+.page-section {
+	@apply py-3 md:py-5;
+}
+.page-section-white {
+	@apply bg-white page-section;
+}
+.page-section-gray {
+	@apply bg-gray-50 page-section;
+}
+.page-section-tight {
+	@apply py-2 md:py-3;
+}
+
+/* Homepage sections – centered, hero-style titles (no heavy underlines) */
+.home-section {
+	@apply py-3 md:py-5 bg-white;
+}
+.home-section-alt {
+	@apply py-3 md:py-5 bg-white;
+}
+.home-section-title {
+	@apply w-full text-center text-3xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl md:text-[2rem] md:leading-tight mb-3;
+}
+.home-section-subtitle {
+	@apply w-full text-center text-xl font-bold tracking-tight text-neutral-900 md:text-2xl mb-3 leading-snug;
+}
+.home-section-body {
+	@apply text-neutral-600 text-base md:text-lg leading-relaxed;
+}
+
+.section-heading {
+	@apply w-full text-center text-xl md:text-2xl font-bold tracking-tight text-neutral-900 mb-2;
+}
+.section-heading-center {
+	@apply section-heading;
+}
+.section-subheading {
+	@apply text-sm md:text-base max-w-2xl mx-auto text-center text-neutral-600 leading-relaxed;
+}
+
+/* Eyebrow / kicker – matches hero tagline */
+.eyebrow {
+	@apply text-sm font-semibold tracking-wide text-[#0f172a] md:text-base;
+}
+/* Interior pages (About, Courses, Faculty, etc.) — plain neutral shell */
+.interior-page {
+	@apply min-h-screen bg-white text-neutral-800 antialiased;
+}
+.interior-section {
+	@apply py-10 sm:py-12 md:py-14;
+}
+.interior-inner {
+	@apply container-page;
+}
+.interior-title {
+	@apply text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl;
+}
+.interior-title-center {
+	@apply text-center;
+}
+.interior-section-title {
+	@apply text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl md:text-4xl;
+}
+.interior-lead {
+	@apply mt-2 text-base leading-relaxed text-neutral-600 md:text-lg;
+}
+.interior-muted {
+	@apply text-sm text-neutral-500;
+}
+
+/* Allen-style card for content blocks */
+.page-card {
+	@apply bg-white rounded-xl shadow-sm border border-gray-100 p-4 md:p-6;
+}
+.page-card-hover {
+	@apply page-card hover:shadow-md hover:border-gray-200 transition-all duration-300;
 }
 
 .btn-primary {
-	@apply items-center gap-2 rounded-lg bg-brand text-[#0a1a67] hover:bg-brand-dark transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium shadow-soft;
+	@apply items-center gap-2 rounded-lg bg-brand text-[var(--brand-red)] hover:bg-brand-dark transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium shadow-soft;
 }
 
 .btn-outline {
-	@apply items-center gap-2 rounded-lg border border-brand text-brand hover:bg-[#0a1a67]/10 transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium;
+	@apply items-center gap-2 rounded-lg border border-brand text-brand transition-colors duration-300 ease-smooth px-5 py-2.5 font-medium;
+}
+.btn-outline:hover {
+	background-color: color-mix(in srgb, var(--brand-red) 10%, transparent);
 }
 
 .nav-link {
 	@apply transition-colors duration-200;
 }
 
+/* Optional: use red for any heading-style text */
+.text-heading {
+	color: var(--heading);
+}
+
+/* Boxes: grayish background, heading red (inherited), text blue */
 .card {
-	@apply bg-white rounded-2xl shadow-soft hover:shadow-lg transition-shadow duration-300;
+	background: var(--bg-box);
+	color: var(--body);
+	@apply rounded-2xl shadow-soft hover:shadow-lg transition-shadow duration-300;
+}
+
+.card h1, .card h2, .card h3, .card .text-h1, .card .text-h2, .card .text-h3 {
+	color: var(--heading);
+}
+
+@keyframes sway {
+	0%, 100% {
+		transform: rotate(-1deg);
+	}
+	50% {
+		transform: rotate(1deg);
+	}
+}
+
+.animate-sway {
+	animation: sway 8s ease-in-out infinite;
+}
+
+.animate-sway-delay-1 {
+	animation: sway 7s ease-in-out 0.2s infinite;
+}
+
+.animate-sway-delay-2 {
+	animation: sway 6s ease-in-out 0.4s infinite;
 }
 
 @keyframes bounce-slow {
@@ -86,3 +339,169 @@ body {
 	animation: fadeIn 0.3s ease-out;
 }
 
+@keyframes dropdownIn {
+	from {
+		opacity: 0;
+		transform: translateY(-8px) scale(0.96);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+.animate-dropdownIn {
+	animation: dropdownIn 0.2s ease-out;
+	transform-origin: top;
+}
+
+@keyframes blink {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.4; }
+}
+
+.animate-blink {
+	animation: blink 1.2s ease-in-out infinite;
+}
+
+/* Card dynamic backgrounds: gradient shift + floating orbs */
+@keyframes card-gradient-shift {
+	0%, 100% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+}
+
+@keyframes float-orb-1 {
+	0%, 100% { transform: translate(0, 0); }
+	33% { transform: translate(6px, -8px); }
+	66% { transform: translate(-4px, 5px); }
+}
+
+@keyframes float-orb-2 {
+	0%, 100% { transform: translate(0, 0); }
+	33% { transform: translate(-5px, 6px); }
+	66% { transform: translate(8px, -4px); }
+}
+
+@keyframes float-orb-3 {
+	0%, 100% { transform: translate(0, 0); }
+	50% { transform: translate(-6px, -5px); }
+}
+
+.card-bg-gradient {
+	background: linear-gradient(
+		120deg,
+		transparent 0%,
+		color-mix(in srgb, var(--brand-red) 4%, transparent) 25%,
+		color-mix(in srgb, var(--brand-red) 8%, transparent) 50%,
+		color-mix(in srgb, var(--brand-red) 4%, transparent) 75%,
+		transparent 100%
+	);
+	background-size: 200% 200%;
+	animation: card-gradient-shift 8s ease-in-out infinite;
+}
+
+.card-float-orb {
+	position: absolute;
+	border-radius: 50%;
+	pointer-events: none;
+	filter: blur(24px);
+	opacity: 0.5;
+}
+
+.card-float-orb-1 { animation: float-orb-1 6s ease-in-out infinite; }
+.card-float-orb-2 { animation: float-orb-2 7s ease-in-out infinite; }
+.card-float-orb-3 { animation: float-orb-3 5s ease-in-out infinite; }
+
+/* Vriksha section: tree background + feature animations */
+@keyframes vriksha-tree-grow {
+	0% { transform: scale(0.5) translateY(12%); opacity: 0.75; }
+	45% { transform: scale(1) translateY(0); opacity: 0.95; }
+	55% { transform: scale(1) translateY(0); opacity: 0.95; }
+	100% { transform: scale(0.5) translateY(12%); opacity: 0.75; }
+}
+@keyframes vriksha-flow {
+	0% { transform: translateX(-50%); }
+	100% { transform: translateX(0); }
+}
+.vriksha-tree-bg {
+	animation: vriksha-tree-grow 8s ease-in-out infinite;
+	transform-origin: center bottom;
+}
+.vriksha-flow { animation: vriksha-flow 20s linear infinite; }
+
+
+/* Hero section: growth chart — visible motion (container + stroke draw + fill + arrow) */
+@keyframes hero-growth-container {
+	0%, 100% {
+		opacity: 0.88;
+		transform: translateY(4px);
+	}
+	50% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes hero-growth-stroke-draw {
+	0% {
+		stroke-dashoffset: 100;
+	}
+	40% {
+		stroke-dashoffset: 0;
+	}
+	65% {
+		stroke-dashoffset: 0;
+	}
+	100% {
+		stroke-dashoffset: 100;
+	}
+}
+@keyframes hero-growth-fill-pulse {
+	0%, 100% {
+		opacity: 0.55;
+	}
+	50% {
+		opacity: 0.9;
+	}
+}
+@keyframes hero-growth-arrow-nudge {
+	0%, 100% {
+		transform: translate(0, 0);
+		opacity: 0.55;
+	}
+	50% {
+		transform: translate(1px, -3px);
+		opacity: 0.85;
+	}
+}
+.hero-growth-chart {
+	animation: hero-growth-container 4s ease-in-out infinite;
+	transform-origin: center bottom;
+	will-change: transform, opacity;
+}
+.hero-growth-path {
+	stroke-dasharray: 100;
+	stroke-dashoffset: 100;
+	animation: hero-growth-stroke-draw 5.5s ease-in-out infinite;
+	will-change: stroke-dashoffset;
+}
+.hero-growth-fill {
+	animation: hero-growth-fill-pulse 4s ease-in-out infinite;
+	transform-origin: center bottom;
+}
+.hero-growth-arrow {
+	animation: hero-growth-arrow-nudge 2.5s ease-in-out infinite;
+	transform-box: fill-box;
+	transform-origin: center;
+}
+
+/* VRIKSHA landing — Playfair / script (globals otherwise force Inter on all headings) */
+.vriksha-landing .vriksha-serif {
+	font-family: var(--font-vriksha-serif), ui-serif, Georgia, serif !important;
+}
+.vriksha-landing .vriksha-script {
+	font-family: var(--font-vriksha-script), cursive !important;
+}
+.vriksha-landing h1.vriksha-serif,
+.vriksha-landing h2.vriksha-serif {
+	font-weight: 400 !important;
+}

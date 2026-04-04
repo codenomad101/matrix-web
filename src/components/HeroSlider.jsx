@@ -1,525 +1,257 @@
 'use client'
-import { useEffect, useMemo, useState } from 'react'
 
-const SLIDE_INTERVAL_MS = 6000
+import { useReducedMotion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import Link from 'next/link'
 
-// Mock OptimizedImage component for demo
-const OptimizedImage = ({ cloudinaryId, alt, width, height, className, crop, loading }) => (
-  <img
-    src={`https://res.cloudinary.com/ddqgxrgnc/image/upload/w_${width},h_${height},c_${crop},q_auto,f_auto/${cloudinaryId}`}
-    alt={alt}
-    className={className}
-    loading={loading}
-  />
-)
+const CLOUD_IMG = 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_1600,h_1200,c_limit,q_auto,f_auto'
 
-// Mock Link component for demo
-const Link = ({ href, children, className, ...props }) => (
-  <a href={href} className={className} {...props}>{children}</a>
-)
+/** Only the champion story asset reads at full width; repeated as 4 slides for manual navigation */
+const CHAMPION_STORY_SLIDE = {
+  src: `${CLOUD_IMG}/v1774798348/Hero_Image_10_-The_Champion_Story_01_m3xefg.jpg`,
+  alt: 'Student champion success story at Matrix Science Academy',
+  title: 'The champion story',
+}
 
-export default function HeroSlider() {
-  const slides = useMemo(() => [
-    {
-      id: 'msa-branding',
-      title: 'Matrix Science Academy',
-      tagline: 'Believe - Build - Become',
-      sanskritTagline: 'सा विद्या या विमुक्तये',
-      type: 'branding',
-    },
-    {
-      id: 'vision',
-      title: 'Our Vision',
-      subtitle: 'Directors Message',
-      description: 'Empowering students to achieve excellence in competitive examinations through dedicated teaching, innovative methods, and personalized attention.',
-      cloudinaryId: 'v1764181800/7_rhfwuq',
-      type: 'vision',
-    },
-    {
-      id: 'courses-offered',
-      title: 'Courses We Offer',
-      subtitle: 'Comprehensive Training Programs',
-      courses: [
-        { name: 'IIT-JEE', icon: '🎯', description: 'Advanced Engineering Entrance' },
-        { name: 'MHT-CET', icon: '📚', description: 'Maharashtra State Entrance' },
-        { name: 'NEET', icon: '⚕️', description: 'Medical Entrance Exam' },
-        { name: 'IISER', icon: '🔬', description: 'Science Research Institute' },
-      ],
-      cloudinaryId: 'v1763852019/booksweoffer_bciiam',
-      type: 'courses',
-    },
-    {
-      id: 'results-stats',
-      title: 'Results in Statistics',
-      subtitle: 'Our Success Story',
-      stats: [
-        { value: '86', label: 'Students 99+ Percentile', exam: 'MHT-CET 2025' },
-        { value: '30%', label: 'increase in IIT admissions', exam: '2025' },
-        { value: 'Multiple', label: 'admissions into MBBS', exam: '2025' },
-        { value: '150+', label: 'Expert Faculty', exam: 'Teachers by Choice' },
-      ],
-      cloudinaryId: 'v1763783028/4_nl1ejs',
-      type: 'results',
-    },
-  ], [])
+const HERO_CAROUSEL_SLIDE_COUNT = 4
+const HERO_CAROUSEL_IMAGES = Array.from({ length: HERO_CAROUSEL_SLIDE_COUNT }, () => ({ ...CHAMPION_STORY_SLIDE }))
 
+const CAROUSEL_AUTO_ADVANCE_MS = 4000
 
-  const [index, setIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
+/** JEE → MHT-CET → NEET → Vriksha (loops), typing effect */
+const EXAM_TICKER_WORDS = ['JEE', 'MHT-CET', 'NEET', 'Vriksha']
+
+function HeroExamTicker() {
+  const reduceMotion = useReducedMotion()
+  const [wordIndex, setWordIndex] = useState(0)
+  const [text, setText] = useState('')
+  const [phase, setPhase] = useState('typing') // 'typing' | 'deleting'
 
   useEffect(() => {
-    if (isPaused) return
+    if (reduceMotion) return
+    const word = EXAM_TICKER_WORDS[wordIndex]
+    let t
 
-    const timer = setInterval(() => {
-      setIndex((i) => (i + 1) % slides.length)
-    }, SLIDE_INTERVAL_MS)
-    return () => clearInterval(timer)
-  }, [slides.length, isPaused])
+    if (phase === 'typing') {
+      if (text.length < word.length) {
+        t = setTimeout(() => setText(word.slice(0, text.length + 1)), 72)
+      } else {
+        t = setTimeout(() => setPhase('deleting'), 2000)
+      }
+    } else if (text.length > 0) {
+      t = setTimeout(() => setText((s) => s.slice(0, -1)), 38)
+    } else {
+      setWordIndex((i) => (i + 1) % EXAM_TICKER_WORDS.length)
+      setPhase('typing')
+    }
+
+    return () => clearTimeout(t)
+  }, [text, phase, wordIndex, reduceMotion])
+
+  if (reduceMotion) {
+    return (
+      <span className="inline-block font-black leading-none tracking-[-0.04em] text-[#005FB8]">
+        JEE, MHT-CET, NEET & Vriksha
+      </span>
+    )
+  }
+
+  const word = EXAM_TICKER_WORDS[wordIndex]
 
   return (
-    <section className="relative overflow-hidden">
-      <div className="container-page pt-1 pb-2 sm:pt-6 sm:pb-8 px-2 sm:px-6">
-        {/* Compact height for mobile */}
-        <div
-          className="relative min-h-[350px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[650px] rounded-lg sm:rounded-3xl overflow-hidden bg-gradient-to-br from-gray-300 via-gray-200 to-gray-300 text-white"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.15),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.1),transparent_35%)]" />
+    <span
+      className="inline-block min-h-[1.15em] font-black leading-none tracking-[-0.04em]"
+      style={{ minWidth: '9ch' }}
+      aria-live="polite"
+      aria-atomic="true"
+      aria-label={`Exam focus: ${text || word}`}
+    >
+      <span className="inline text-[#005FB8]">{text}</span>
+      <span
+        className="ml-0.5 inline-block w-[0.07em] animate-pulse font-light text-[#005FB8]"
+        aria-hidden
+      >
+        |
+      </span>
+    </span>
+  )
+}
 
-          <div className="absolute inset-0 flex transition-transform duration-700 ease-smooth will-change-transform" style={{ transform: `translateX(-${index * 100}%)` }}>
-            {slides.map((s) => (
-              <div key={s.id} className="w-full flex-[0_0_100%] h-full shrink-0 relative flex items-center">
-                {s.type === 'branding' ? (
-                  <div className="w-full h-full relative overflow-hidden">
-                    {/* Background Image */}
-                    {/* Background Image */}
-                    <div className="absolute inset-0">
-                      <OptimizedImage
-                        cloudinaryId="v1764181864/A_dbzo2c"
-                        alt="Matrix Science Academy Background"
-                        width={1920}
-                        height={1080}
-                        className="w-full h-full object-cover"
-                        crop="fill"
-                        loading="eager"
-                      />
-                      {/* Stronger overlay for better mobile readability */}
-                      <div className="absolute inset-0 bg-black/60 md:bg-black/50"></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                    </div>
-                    {/* Content */}
-                    <div className="relative z-10 w-full h-full grid lg:grid-cols-2 gap-2 sm:gap-6 lg:gap-8 p-2 sm:p-6 md:p-8 lg:p-10 overflow-y-auto lg:overflow-visible">
-                      {/* Left Content */}
-                      <div className="flex flex-col justify-center gap-1 sm:gap-4 md:gap-5 min-w-0 py-1 sm:py-0">
-                        <div className="inline-flex items-center gap-1 sm:gap-2 text-[9px] sm:text-xs md:text-sm font-medium bg-white/10 text-white border border-white/20 w-fit px-2 sm:px-3 md:px-4 py-0.5 sm:py-1.5 md:py-2 rounded-full backdrop-blur-sm">
-                          <span className="font-bold">🎓 Premium Education</span>
-                        </div>
+function IconMail({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>
+  )
+}
 
-                        <div className="bg-white shadow-2xl border border-gray-200 rounded-lg sm:rounded-xl p-3 sm:p-6 max-w-fit">
-                          <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight text-[#0a1a67]" style={{ textShadow: 'none' }}>
-                            <span className="text-[#B30027] font-black">Matrix</span>{' '}
-                            <span className="text-[#7a7a7a] font-black">Science</span>
-                            <span className="block text-[#0a1a67] font-black">Academy</span>
-                          </h1>
+export default function HeroSlider() {
+  const reduceMotion = useReducedMotion()
+  const [carouselIndex, setCarouselIndex] = useState(0)
+  /** Bumps when the user uses arrows/dots so the auto-advance timer restarts from now */
+  const [autoAdvanceEpoch, setAutoAdvanceEpoch] = useState(0)
+  const slideCount = HERO_CAROUSEL_IMAGES.length
 
-                          <p className="text-xs sm:text-lg md:text-xl lg:text-2xl font-black text-[#0a1a67] mt-0.5 sm:mt-2" style={{ textShadow: 'none' }}>
-                            {s.tagline}
-                          </p>
-                        </div>
+  useEffect(() => {
+    if (reduceMotion || slideCount < 2) return
+    const id = window.setInterval(() => {
+      setCarouselIndex((i) => (i + 1) % slideCount)
+    }, CAROUSEL_AUTO_ADVANCE_MS)
+    return () => window.clearInterval(id)
+  }, [reduceMotion, slideCount, autoAdvanceEpoch])
 
+  const goPrev = () => {
+    setCarouselIndex((i) => (i === 0 ? slideCount - 1 : i - 1))
+    setAutoAdvanceEpoch((e) => e + 1)
+  }
 
+  const goNext = () => {
+    setCarouselIndex((i) => (i + 1) % slideCount)
+    setAutoAdvanceEpoch((e) => e + 1)
+  }
 
-                        {/* Branches Grid */}
-                        <div className="bg-white shadow-xl border border-gray-200 rounded-lg sm:rounded-xl p-2 sm:p-4 mt-1 sm:mt-4 max-w-fit">
-                          <h3 className="text-[10px] sm:text-sm font-bold text-[#B30027] mb-1.5 border-b border-gray-200 pb-0.5">Our Branches</h3>
-                          <div className="flex flex-wrap gap-1 sm:gap-2">
-                            {['Nigdi', 'Shahunagar', 'Chinchwad', 'Ravet', 'Wakad', 'Moshi', 'Kolhapur', 'Rahatani'].map((branch) => (
-                              <div key={branch} className="bg-[#0a1a67]/10 border border-[#0a1a67]/20 rounded-full px-1.5 sm:px-3 py-0.5 sm:py-1 text-center hover:bg-[#0a1a67]/20 transition-colors">
-                                <div className="text-[8px] sm:text-xs md:text-sm font-medium text-[#0a1a67]">{branch}</div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
+  const goToSlide = (index) => {
+    setCarouselIndex(index)
+    setAutoAdvanceEpoch((e) => e + 1)
+  }
 
-                        {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-1.5 sm:gap-3 mt-1.5 sm:mt-4 relative z-20">
-                          <Link href="/enquiry" className="inline-flex justify-center items-center max-w-[100px] sm:max-w-[140px] md:max-w-[160px] lg:max-w-[180px] bg-[#B30027] text-white hover:bg-[#8a001e] text-[9px] sm:text-sm md:text-base lg:text-lg px-2.5 sm:px-5 md:px-6 lg:px-8 py-1 sm:py-2.5 md:py-3 lg:py-4 font-bold shadow-lg sm:shadow-2xl rounded sm:rounded-lg md:rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[#B30027]/50">
-                            Enquire Now
-                          </Link>
-                        </div>
-                      </div>
+  return (
+    <section className="relative overflow-hidden bg-white">
+      <div className="container-page relative z-[1] px-4 py-10 sm:px-6 sm:py-12 md:py-14 lg:py-16">
+        <div className="relative mx-auto grid w-full min-w-0 grid-cols-1 items-center gap-10 overflow-x-clip lg:grid-cols-12 lg:gap-6 xl:gap-8">
+          {/* Bluish circle — centered on column split (half left / half right) */}
+          <div
+            className="pointer-events-none absolute left-[48%] top-1/2 z-0 hidden h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#005FB8]/20 sm:h-64 sm:w-64 lg:block lg:h-72 lg:w-72 xl:left-[47%] xl:bg-[#005FB8]/18"
+            aria-hidden
+          />
 
-                      {/* Right Side - Decorative Elements */}
-                      <div className="hidden lg:flex items-center justify-center relative min-w-0 overflow-hidden">
-                        <div className="relative w-full max-w-md">
-                          {/* Circular Stats */}
-                          <div className="absolute top-0 right-0 bg-white/95 md:bg-white/10 md:backdrop-blur-md border border-white/30 md:border-white/20 rounded-full p-4 lg:p-5 xl:p-6 shadow-xl z-20">
-                            <div className="text-center">
-                              <div className="text-2xl lg:text-3xl xl:text-3xl font-extrabold text-[#B30027]">99+</div>
-                              <div className="text-xs lg:text-sm text-gray-200">Percentile</div>
-                            </div>
-                          </div>
-
-                          {/* Main Card */}
-                          <div className="bg-white/95 md:bg-white/10 md:backdrop-blur-md border border-white/30 md:border-white/20 rounded-2xl lg:rounded-3xl p-6 lg:p-7 xl:p-8 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                            <div className="space-y-3 lg:space-y-4">
-                              <div className="flex items-center gap-2.5 lg:gap-3">
-                                <div className="h-10 w-10 lg:h-12 lg:w-12 rounded-full bg-white/20 md:bg-white/10 border border-white/30 md:border-white/20 flex items-center justify-center flex-shrink-0">
-                                  <span className="text-xl lg:text-2xl">🎯</span>
-                                </div>
-                                <div className="min-w-0">
-                                  <div className="text-sm lg:text-base font-bold text-white">IIT-JEE</div>
-                                  <div className="text-xs lg:text-sm text-gray-200">30% increase in admissions</div>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-2.5 lg:gap-3">
-                                <div className="h-10 w-10 lg:h-12 lg:w-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
-                                  <span className="text-xl lg:text-2xl">🏆</span>
-                                </div>
-                                <div className="min-w-0">
-                                  <div className="text-sm lg:text-base font-bold text-white">MHT-CET</div>
-                                  <div className="text-xs lg:text-sm text-gray-200">123 Students 98+</div>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-2.5 lg:gap-3">
-                                <div className="h-10 w-10 lg:h-12 lg:w-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
-                                  <span className="text-xl lg:text-2xl">⚕️</span>
-                                </div>
-                                <div className="min-w-0">
-                                  <div className="text-sm lg:text-base font-bold text-white">NEET</div>
-                                  <div className="text-xs lg:text-sm text-gray-200">Perfect Scores</div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Bottom Badge */}
-                          <div className="absolute -bottom-3 lg:-bottom-4 -left-3 lg:-left-4 bg-[#B30027] rounded-lg lg:rounded-xl p-3 lg:p-4 shadow-xl z-20">
-                            <div className="text-white text-center">
-                              <div className="text-xl lg:text-2xl font-extrabold">30K+</div>
-                              <div className="text-xs">Alumni</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : s.type === 'vision' ? (
-                  <div className="w-full h-full relative overflow-hidden">
-                    {/* Background Image */}
-                    <div className="absolute inset-0">
-                      <OptimizedImage
-                        cloudinaryId={s.cloudinaryId}
-                        alt={s.title}
-                        width={1920}
-                        height={1080}
-                        className="w-full h-full object-cover"
-                        crop="fill"
-                        loading="lazy"
-                      />
-                      {/* Overlay */}
-                      <div className="absolute inset-0 bg-black/60 md:bg-black/50"></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                    </div>
-
-                    <div className="w-full h-full flex flex-col gap-2 sm:gap-4 p-3 sm:p-6 md:p-8 lg:p-10 relative z-10 overflow-y-auto items-center justify-center">
-                      <div className="w-full max-w-6xl">
-                        {/* Directors Images */}
-                        <div className="bg-white md:bg-white/10 md:backdrop-blur-md shadow-2xl border border-gray-200 md:border-white/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12">
-                          <h3 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 md:mb-8 border-b border-gray-200 md:border-white/20 pb-3 md:pb-4 text-[#0a1a67] md:text-white text-center">
-                            👥 Our Directors
-                          </h3>
-                          <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
-                            <div className="flex flex-col items-center">
-                              <OptimizedImage
-                                cloudinaryId="v1764218938/abhi_mehta_f6h4om"
-                                alt="Nishant Patwardhan"
-                                width={200}
-                                height={200}
-                                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-cover rounded-full shadow-lg border-2 border-gray-200"
-                                crop="fill"
-                                loading="lazy"
-                              />
-                              <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] md:text-white text-center font-semibold leading-tight">Nishant Patwardhan</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director, Matrix Science Academy</p>
-                            </div>
-                            <div className="flex flex-col items-center">
-                              <OptimizedImage
-                                cloudinaryId="v1764990905/yadav_vv66wt"
-                                alt="Ravindra Yadav"
-                                width={200}
-                                height={200}
-                                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-cover rounded-full shadow-lg border-2 border-gray-200"
-                                crop="fill"
-                                loading="lazy"
-                              />
-                              <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] md:text-white text-center font-semibold leading-tight">Ravindra Yadav</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director, Matrix Science Academy</p>
-                            </div>
-                            <div className="flex flex-col items-center">
-                              <OptimizedImage
-                                cloudinaryId="v1764218937/nishant_tifi1f"
-                                alt="Abhishek Mehta"
-                                width={200}
-                                height={200}
-                                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-cover rounded-full shadow-lg border-2 border-gray-200"
-                                crop="fill"
-                                loading="lazy"
-                              />
-                              <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] md:text-white text-center font-semibold leading-tight">Abhishek Mehta</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director, Matrix Science Academy</p>
-                            </div>
-                            <div className="flex flex-col items-center">
-                              <OptimizedImage
-                                cloudinaryId="v1765163829/algesh_hskjtk"
-                                alt="Algesh Patrike"
-                                width={200}
-                                height={200}
-                                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-cover rounded-full shadow-lg border-2 border-gray-200"
-                                crop="fill"
-                                loading="lazy"
-                              />
-                              <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] md:text-white text-center font-semibold leading-tight">Algesh Patrike</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director, Matrix Science Academy</p>
-                            </div>
-                            <div className="flex flex-col items-center">
-                              <OptimizedImage
-                                cloudinaryId="v1765163801/manoj_1_algvci"
-                                alt="Manoj Kumar"
-                                width={200}
-                                height={200}
-                                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-cover rounded-full shadow-lg border-2 border-gray-200"
-                                crop="fill"
-                                loading="lazy"
-                              />
-                              <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] md:text-white text-center font-semibold leading-tight">Manoj Kumar</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#B30027] md:text-white text-center leading-tight">MSA Wakad</p>
-                            </div>
-                            <div className="flex flex-col items-center">
-                              <OptimizedImage
-                                cloudinaryId="v1765163805/umesh_1_aoyp2r"
-                                alt="Umesh Bharde"
-                                width={200}
-                                height={200}
-                                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-cover rounded-full shadow-lg border-2 border-gray-200"
-                                crop="fill"
-                                loading="lazy"
-                              />
-                              <p className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-[#0a1a67] md:text-white text-center font-semibold leading-tight">Umesh Bharde</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80 text-center leading-tight mt-0.5">Director</p>
-                              <p className="text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs text-[#B30027] md:text-white text-center leading-tight">MSA Moshi</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : s.type === 'courses' ? (
-                  <div className="w-full h-full relative overflow-hidden">
-                    {/* Background Image */}
-                    <div className="absolute inset-0">
-                      <OptimizedImage
-                        cloudinaryId={s.cloudinaryId}
-                        alt={s.title}
-                        width={1920}
-                        height={1080}
-                        className="w-full h-full object-cover"
-                        crop="fill"
-                        loading="lazy"
-                      />
-                      {/* Overlay */}
-                      <div className="absolute inset-0 bg-black/60 md:bg-black/50"></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                    </div>
-
-                    <div className="w-full h-full flex flex-col gap-0.5 p-1.5 sm:p-2 md:p-3 relative z-10 overflow-y-auto items-center justify-center">
-                      <div className="text-center shrink-0 mb-0.5 sm:mb-1">
-                        <h1 className="text-sm sm:text-base md:text-lg lg:text-xl font-extrabold leading-tight text-white">
-                          Our Courses
-                        </h1>
-                      </div>
-                      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-4 items-center">
-                        {/* Left Column: Compact Courses Grid */}
-                        <div className="grid grid-cols-2 gap-1 sm:gap-2 w-full">
-                          {s.courses.map((course, idx) => (
-                            <div
-                              key={idx}
-                              className="bg-white md:bg-white/10 md:backdrop-blur-md border border-gray-200 md:border-white/20 rounded sm:rounded-lg md:rounded-xl p-1 sm:p-2 md:p-4 lg:p-5 text-center shadow-md hover:shadow-lg transition-all duration-300 group cursor-pointer"
-                            >
-                              <div className="text-sm sm:text-base md:text-2xl lg:text-3xl mb-0.5 md:mb-2 group-hover:scale-110 transition-transform duration-300">
-                                {course.icon}
-                              </div>
-                              <h3 className="text-[9px] sm:text-[10px] md:text-sm lg:text-base font-bold text-[#0a1a67] md:text-white leading-tight">
-                                {course.name}
-                              </h3>
-                              <p className="hidden sm:block text-[7px] sm:text-[8px] md:text-xs lg:text-sm text-[#0a1a67]/70 md:text-white/80">
-                                {course.description}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-
-                        <div className="bg-white md:bg-white/10 md:backdrop-blur-md border border-gray-200 md:border-white/20 rounded-lg sm:rounded-xl md:rounded-2xl p-2 sm:p-3 md:p-5 lg:p-6">
-                          <h3 className="text-[10px] sm:text-xs md:text-base lg:text-lg font-bold mb-1.5 sm:mb-2 md:mb-4 border-b border-gray-200 md:border-white/20 pb-1 md:pb-2 text-[#0a1a67] md:text-white">
-                            ⚡ Specialized Batches
-                          </h3>
-                          <div className="space-y-1 sm:space-y-1.5 md:space-y-2 lg:space-y-3">
-                            <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
-                              <span className="text-xs sm:text-sm md:text-lg lg:text-xl">🚀</span>
-                              <div>
-                                <div className="text-[10px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">IMPULSE</div>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
-                              <span className="text-xs sm:text-sm md:text-lg lg:text-xl">🏃</span>
-                              <div>
-                                <div className="text-[10px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">SPRINT</div>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
-                              <span className="text-xs sm:text-sm md:text-lg lg:text-xl">📈</span>
-                              <div>
-                                <div className="text-[10px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">PACE</div>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
-                              <span className="text-xs sm:text-sm md:text-lg lg:text-xl">🎓</span>
-                              <div>
-                                <div className="text-[10px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">DRIFT</div>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
-                              <span className="text-xs sm:text-sm md:text-lg lg:text-xl">🏆</span>
-                              <div>
-                                <div className="text-[10px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">RACE</div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <Link href="/courses" className="inline-flex justify-center items-center w-full bg-[#B30027] text-white hover:bg-[#8a001e] text-[8px] sm:text-[9px] md:text-sm lg:text-base px-2 py-1.5 md:px-4 md:py-2.5 rounded-md md:rounded-lg font-bold shadow-md transition-all duration-300 hover:scale-105 mt-2 md:mt-4">
-                            View All Batches
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : s.type === 'results' ? (
-                  <div className="w-full h-full relative overflow-hidden">
-                    {/* Background Image */}
-                    <div className="absolute inset-0">
-                      <OptimizedImage
-                        cloudinaryId={s.cloudinaryId}
-                        alt={s.title}
-                        width={1920}
-                        height={1080}
-                        className="w-full h-full object-cover"
-                        crop="fill"
-                        loading="lazy"
-                      />
-                      {/* Overlay */}
-                      <div className="absolute inset-0 bg-black/60 md:bg-black/50"></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                    </div>
-
-                    <div className="w-full h-full flex flex-col gap-0 p-1 sm:p-2 md:p-3 relative z-10 overflow-y-auto items-center justify-center">
-                      <div className="text-center shrink-0 mb-0 sm:mb-0.5">
-                        <div className="inline-flex items-center gap-1 text-[8px] sm:text-[9px] md:text-xs font-medium bg-white/10 text-white border border-white/20 w-fit px-1 sm:px-1.5 py-0.5 rounded-full backdrop-blur-sm mb-0.5">
-                          <span>Our Achievements</span>
-                        </div>
-                        <h1 className="text-xs sm:text-base md:text-lg lg:text-xl font-extrabold leading-tight text-white">
-                          {s.title}
-                        </h1>
-                      </div>
-
-                      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-1.5 sm:gap-4 items-center">
-                        {/* Left Column: Compact Stats Grid */}
-                        <div className="grid grid-cols-2 gap-1 sm:gap-2 w-full">
-                          {s.stats.map((stat, idx) => {
-                            return (
-                              <div
-                                key={idx}
-                                className="bg-white md:bg-white/10 md:backdrop-blur-md border border-gray-200 md:border-white/20 rounded-lg sm:rounded-lg md:rounded-xl p-1 sm:p-2 md:p-4 lg:p-5 text-center shadow-md hover:shadow-lg transition-all duration-300 group cursor-pointer"
-                              >
-                                <div className="text-xs sm:text-lg md:text-2xl lg:text-3xl font-extrabold mb-0 md:mb-2 group-hover:scale-110 transition-transform duration-300 text-[#0a1a67] md:text-white">
-                                  {stat.value}
-                                </div>
-                                <h3 className="text-[7px] sm:text-[9px] md:text-xs lg:text-sm font-bold leading-tight text-[#0a1a67] md:text-white">
-                                  {stat.label}
-                                </h3>
-                                <p className="text-[6px] sm:text-[8px] md:text-[10px] lg:text-xs text-[#0a1a67]/70 md:text-white/80">
-                                  {stat.exam}
-                                </p>
-                              </div>
-                            )
-                          })}
-                        </div>
-
-                        <div className="bg-white md:bg-white/10 md:backdrop-blur-md border border-gray-200 md:border-white/20 rounded-lg sm:rounded-xl md:rounded-2xl p-1.5 sm:p-3 md:p-5 lg:p-6">
-                          <h3 className="text-[9px] sm:text-xs md:text-base lg:text-lg font-bold mb-1 sm:mb-2 md:mb-4 border-b border-gray-200 md:border-white/20 pb-0.5 md:pb-2 text-[#0a1a67] md:text-white">
-                            🏆 Outstanding Performance
-                          </h3>
-                          <div className="space-y-0.5 sm:space-y-1.5 md:space-y-2 lg:space-y-3">
-                            <div className="flex items-start gap-1 sm:gap-2 md:gap-3">
-                              <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#B30027] md:text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                              </svg>
-                              <div>
-                                <div className="text-[9px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">80+ Students</div>
-                                <div className="text-[7px] sm:text-[9px] md:text-xs lg:text-sm text-[#0a1a67]/70 md:text-white/80">Qualified for JEE Advanced</div>
-                              </div>
-                            </div>
-                            <div className="flex items-start gap-1 sm:gap-2 md:gap-3">
-                              <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#B30027] md:text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                              </svg>
-                              <div>
-                                <div className="text-[9px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">32 Students</div>
-                                <div className="text-[7px] sm:text-[9px] md:text-xs lg:text-sm text-[#0a1a67]/70 md:text-white/80">Scored more than 95%ile</div>
-                              </div>
-                            </div>
-                            <div className="flex items-start gap-1 sm:gap-2 md:gap-3">
-                              <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#B30027] md:text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                              </svg>
-                              <div>
-                                <div className="text-[9px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">86 Students</div>
-                                <div className="text-[7px] sm:text-[9px] md:text-xs lg:text-sm text-[#0a1a67]/70 md:text-white/80">Scored 99%ile in MHT-CET</div>
-                              </div>
-                            </div>
-                            <div className="flex items-start gap-1 sm:gap-2 md:gap-3">
-                              <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#B30027] md:text-white shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                              </svg>
-                              <div>
-                                <div className="text-[9px] sm:text-xs md:text-base lg:text-lg font-bold text-[#0a1a67] md:text-white">162 Students</div>
-                                <div className="text-[7px] sm:text-[9px] md:text-xs lg:text-sm text-[#0a1a67]/70 md:text-white/80">Scored 98%ile in MHT-CET</div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <Link href="/results" className="inline-flex justify-center items-center w-full bg-[#B30027] text-white hover:bg-[#8a001e] text-[7px] sm:text-[9px] md:text-sm lg:text-base px-1.5 py-1 md:px-4 md:py-2.5 rounded-md md:rounded-lg font-bold shadow-md transition-all duration-300 hover:scale-105 mt-1.5 md:mt-4">
-                            View Detailed Results
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : null}
+          {/* Left — copy (background is full hero section) */}
+          <div className="relative z-[1] min-h-0 min-w-0 w-full lg:col-span-5 lg:max-w-none">
+            <div className="flex flex-col text-left">
+              <div className="mb-5 md:mb-6">
+                <span className="inline-flex rounded-full bg-[#ED1C24] px-4 py-2 text-xs font-semibold tracking-wide text-white shadow-sm sm:text-sm">
+                  Matrix Science Academy
+                </span>
               </div>
-            ))}
+
+              <h1 className="hero-main-headline mb-2 text-[1.875rem] font-bold leading-[1.08] tracking-[-0.03em] text-[#0f172a] sm:text-[2.25rem] md:text-[2.5rem] lg:text-[2.75rem]">
+                Believe. Build. Become —
+              </h1>
+
+              <p className="mb-1 text-base font-medium text-neutral-600 sm:text-lg">Through</p>
+
+              <div className="mb-5 text-[2.25rem] sm:mb-6 sm:text-[2.75rem] md:text-[3.25rem] lg:text-[3.5rem]">
+                <HeroExamTicker />
+              </div>
+
+              <p className="mb-8 max-w-xl text-base font-normal leading-relaxed text-neutral-600 sm:mb-9 sm:text-lg">
+                Strong concepts. Disciplined learning. Proven results for JEE, MHT-CET, NEET and holistic growth through
+                VRIKSHA.
+              </p>
+
+              <div className="flex flex-col gap-5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6">
+                <Link
+                  href="/counseling"
+                  className="inline-flex w-fit items-center justify-center rounded-full bg-[#005FB8] px-8 py-3.5 text-sm font-bold tracking-wide text-white shadow-lg shadow-[#005FB8]/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#004494] hover:shadow-xl hover:shadow-[#004494]/35 sm:px-9 sm:text-base"
+                >
+                  Get Started
+                </Link>
+                <div className="relative inline-flex items-center">
+                  <a
+                    href="mailto:msapcmc@gmail.com"
+                    className="relative z-[1] inline-flex items-center gap-2.5 text-sm font-semibold text-[#0f172a] transition-colors hover:text-[#005FB8] sm:text-base"
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/90 text-pink-600 shadow-sm ring-1 ring-pink-100">
+                      <IconMail className="h-4 w-4" />
+                    </span>
+                    msapcmc@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="absolute bottom-2 sm:bottom-4 left-0 right-0 flex justify-center gap-1.5 sm:gap-2 z-20">
-            {slides.map((_, i) => (
-              <button key={i} aria-label={`Go to slide ${i + 1}`} onClick={() => setIndex(i)} className={`h-1.5 sm:h-3 rounded-full transition-all duration-300 ${index === i ? 'w-6 sm:w-10 bg-[#0a1a67]' : 'w-2 sm:w-4 bg-gray-400 hover:bg-gray-500'}`}></button>
-            ))}
+          {/* Right — card + carousel (wider column on large screens) */}
+          <div className="relative z-[1] mx-auto w-full min-w-0 max-w-[540px] justify-self-start sm:max-w-[600px] lg:col-span-7 lg:mx-0 lg:max-w-full lg:justify-self-start lg:pl-3 xl:pl-5">
+            <div
+              className="hero-image-card group relative max-w-full rounded-[1.35rem] bg-white p-3 shadow-[0_20px_50px_-12px_rgba(15,23,42,0.18)] ring-1 ring-neutral-100 transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_28px_60px_-12px_rgba(51,119,245,0.22)] sm:rounded-3xl sm:p-3.5 md:p-4"
+            >
+              <div className="relative mb-3 min-h-[2.75rem] sm:min-h-[3rem] sm:mb-3.5" aria-live="polite">
+                {HERO_CAROUSEL_IMAGES.map((img, i) => (
+                  <p
+                    key={i}
+                    className="absolute left-0 top-0 right-0 text-left text-sm font-bold leading-snug tracking-tight text-neutral-900 transition-opacity duration-700 ease-out sm:text-base"
+                    style={{ opacity: i === carouselIndex ? 1 : 0 }}
+                  >
+                    {img.title}
+                  </p>
+                ))}
+              </div>
+
+              <div className="relative h-[300px] w-full overflow-hidden rounded-2xl bg-white sm:h-[340px] sm:rounded-[1.25rem] md:h-[380px] lg:h-[420px] xl:h-[460px]">
+                {HERO_CAROUSEL_IMAGES.map((img, i) => (
+                  <div
+                    key={i}
+                    className="absolute inset-0 transition-opacity duration-700 ease-out"
+                    style={{ opacity: i === carouselIndex ? 1 : 0, zIndex: i === carouselIndex ? 1 : 0 }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={img.src}
+                      alt={i === carouselIndex ? img.alt : ''}
+                      className="h-full w-full object-contain object-center"
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                      aria-hidden={i !== carouselIndex}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-3 flex flex-col items-center gap-3 sm:mt-4">
+                <div className="flex items-center justify-center gap-2 sm:gap-3">
+                  <button
+                    type="button"
+                    onClick={goPrev}
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-sm transition hover:border-[#005FB8] hover:bg-[#005FB8]/5 hover:text-[#005FB8] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#005FB8] focus-visible:ring-offset-2"
+                    aria-label="Previous image"
+                  >
+                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={goNext}
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-sm transition hover:border-[#005FB8] hover:bg-[#005FB8]/5 hover:text-[#005FB8] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#005FB8] focus-visible:ring-offset-2"
+                    aria-label="Next image"
+                  >
+                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+                <div className="flex items-center gap-2" role="group" aria-label="Choose slide">
+                  {HERO_CAROUSEL_IMAGES.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      aria-current={i === carouselIndex ? 'true' : undefined}
+                      aria-label={`Slide ${i + 1} of ${slideCount}`}
+                      onClick={() => goToSlide(i)}
+                      className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#005FB8] focus-visible:ring-offset-2 ${
+                        i === carouselIndex ? 'w-7 bg-[#005FB8]' : 'w-2 bg-neutral-300 hover:bg-neutral-400'
+                      }`}
+                    />
+                  ))}
+                </div>
+                <p className="text-[11px] text-neutral-500 sm:text-xs">
+                  {carouselIndex + 1} of {slideCount}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </section >
+    </section>
   )
 }

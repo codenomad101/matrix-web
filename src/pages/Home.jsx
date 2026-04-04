@@ -1,12 +1,16 @@
 'use client'
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
+import { FaAward, FaBook, FaLeaf, FaSlidersH, FaTachometerAlt, FaTrophy } from 'react-icons/fa'
 import HeroSlider from '../components/HeroSlider.jsx'
-import NewsSlider from '../components/NewsSlider.jsx'
+import HeroUsps from '../components/HeroUsps.jsx'
+import AcademicVrikshaMethodology from '@/components/AcademicVrikshaMethodology.jsx'
 import OptimizedImage from '@/components/OptimizedImage'
-import FeaturesSection from '@/components/featuresSection.jsx'
-
+// import FeaturesSection from '@/components/featuresSection.jsx'
 import TestimonialsShowcase from '@/components/Testimonials.jsx'
+import EnquiryForm from '@/components/EnquiryForm.jsx'
+import AchievementsBentoSection from '@/components/AchievementsBentoSection.jsx'
+import ResultsImageSlider from '@/components/ResultsImageSlider.jsx'
 
 const topTestimonials = [
   {
@@ -62,19 +66,19 @@ function LatestNewsSection() {
   ]
 
   return (
-    <section className="container-page py-8">
-      <div className="bg-gradient-to-r from-gray-50 to-white rounded-2xl shadow-lg overflow-hidden">
+    <section className="container-page py-6 md:py-8">
+      <div className="bg-box-bg rounded-2xl shadow-lg overflow-hidden border border-gray-200/60">
         <div className="grid md:grid-cols-[300px_1fr] lg:grid-cols-[350px_1fr]">
           {/* Left Side - Title and Description */}
-          <div className="bg-[#0a1a67] p-6 md:p-8 flex flex-col justify-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+          <div className="bg-[var(--brand-red)] p-6 md:p-8 flex flex-col justify-center text-left">
+            <h2 className="text-left text-2xl md:text-3xl font-bold text-white mb-3">
               Latest News & Updates
             </h2>
             <p className="text-white/80 text-sm md:text-base">
               Stay updated with the latest happenings, achievements, and announcements from Matrix Science Academy.
             </p>
             <div className="mt-4 flex items-center gap-2 text-white/60 text-sm">
-              <svg className="w-5 h-5 animate-pulse text-[#B30027]" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-5 h-5 animate-pulse text-[var(--brand-red)]" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
               </svg>
               <span></span>
@@ -89,8 +93,8 @@ function LatestNewsSection() {
                   key={idx}
                   className="py-3 border-b border-gray-100 last:border-0 flex items-start gap-3 group cursor-pointer hover:bg-gray-50 px-2 rounded-lg transition-colors duration-300"
                 >
-                  <span className="text-[#B30027] font-bold text-lg">›</span>
-                  <span className="text-[#0a1a67] font-medium group-hover:text-[#B30027] transition-colors duration-300">
+                  <span className="text-[var(--brand-red)] font-bold text-lg">›</span>
+                  <span className="text-[var(--brand-red)] font-medium group-hover:text-[var(--brand-red)] transition-colors duration-300">
                     {news}
                   </span>
                 </div>
@@ -129,9 +133,11 @@ function OverviewSection() {
   ]
 
   return (
-    <section className="container-page py-4">
-      <div className="mb-6">
-        <h2 className="text-4xl font-semibold text-[#0a1a67] py-2">Overview and Features</h2>
+    <section className="container-page py-6 md:py-8">
+      <div className="mb-6 text-center">
+        <h2 className="text-3xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl md:text-[2rem] md:leading-tight">
+          Overview and Features
+        </h2>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
@@ -153,84 +159,6 @@ function OverviewSection() {
         ))}
       </div>
     </section>
-  )
-}
-
-// Results Image Slider Component
-function ResultsImageSlider() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const images = [
-    { cloudinaryId: 'v1764181799/JEE_MAIN_o7kayq', alt: 'JEE Main Results' },
-    { cloudinaryId: 'v1764181794/JEE_MAIN_2025_aoxekj', alt: 'JEE Main 2025 Results' },
-    { cloudinaryId: 'v1764181786/IIT_knkkka', alt: 'IIT Results' },
-    { cloudinaryId: 'v1764181835/NEET_riozts', alt: 'NEET Results' },
-  ]
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length)
-    }, 4000)
-    return () => clearInterval(timer)
-  }, [images.length])
-
-  return (
-    <div className="relative overflow-hidden rounded-2xl bg-white shadow-2xl border border-gray-100">
-      {/* Main Slider */}
-      <div className="relative h-[280px] md:h-[350px] lg:h-[400px] bg-white">
-        {images.map((img, idx) => (
-          <div
-            key={idx}
-            className={`absolute inset-0 transition-all duration-700 ease-in-out ${currentIndex === idx
-              ? 'opacity-100 scale-100'
-              : 'opacity-0 scale-95'
-              }`}
-          >
-            <div className="w-full h-full bg-white p-2 md:p-4 lg:p-5 flex items-center justify-center">
-              <div className="relative w-full h-full bg-white rounded-xl shadow-lg overflow-hidden">
-                <img
-                  src={`https://res.cloudinary.com/ddqgxrgnc/image/upload/w_1200,h_800,c_fit,q_auto,f_auto/${img.cloudinaryId}`}
-                  alt={img.alt}
-                  className="w-full h-full object-contain"
-                  loading={idx === 0 ? 'eager' : 'lazy'}
-                />
-              </div>
-            </div>
-          </div>
-        ))}
-
-        {/* Navigation Arrows */}
-        <button
-          onClick={() => setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white hover:bg-[#0a1a67] rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border-2 border-[#0a1a67]/20 hover:border-[#0a1a67]"
-        >
-          <svg className="w-6 h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          onClick={() => setCurrentIndex((prev) => (prev + 1) % images.length)}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white hover:bg-[#0a1a67] rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 border-2 border-[#0a1a67]/20 hover:border-[#0a1a67]"
-        >
-          <svg className="w-6 h-6 text-[#0a1a67] hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-      </div>
-
-      {/* Dots Navigation */}
-      <div className="flex justify-center gap-3 py-4 bg-white border-t border-gray-100">
-        {images.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrentIndex(idx)}
-            className={`h-3 rounded-full transition-all duration-300 ${currentIndex === idx
-              ? 'w-10 bg-[#0a1a67] shadow-md'
-              : 'w-3 bg-gray-300 hover:bg-[#0a1a67]/50'
-              }`}
-          />
-        ))}
-      </div>
-    </div>
   )
 }
 
@@ -343,55 +271,19 @@ function ResultsSection({ topResults }) {
   ]
 
   return (
-    <section className="container-page py-4" ref={sectionRef}>
-      <div className="flex items-center justify-between mb-4 flex-col sm:flex-row gap-3 sm:gap-0">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#0a1a67] text-center sm:text-left">
-          One of the <span className="text-[#B30027]">Leading and most </span>  <span className="text-[#B30027]"> successful</span> Institutions in Pune
-        </h2>
+    <section className="py-6 md:py-8" ref={sectionRef}>
+      <div className="container-page">
+        <div className="mb-6 flex flex-col items-center gap-4 text-center sm:mb-8">
+          <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-neutral-900 mb-0 max-w-3xl">
+            One of the <span className="text-neutral-600">Leading and most successful</span> Institutions in Pune
+          </h2>
+          <Link href="/results" className="inline-flex items-center gap-2 rounded-lg bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] transition-all duration-300 text-sm sm:text-base px-4 py-2 sm:px-5 sm:py-2.5 font-semibold">View All Results</Link>
+        </div>
 
-        <Link href="/results" className="btn-outline hover:scale-105 transition-transform duration-300 text-sm sm:text-base px-4 py-2 sm:px-5 sm:py-2.5">View All Results</Link>
-      </div>
-
-      {/* Results Image Slider */}
-      <div className="mb-6">
-        <ResultsImageSlider />
-      </div>
-
-      {/* Enhanced Results Display */}
-      <div className="mt-6">
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {topCards.filter((_, idx) => idx !== 1).map((card, filteredIdx) => {
-            const bgColors = ['bg-[#B30027]', 'bg-brand-dark']
-            return (
-              <div
-                key={filteredIdx}
-                className={`${bgColors[filteredIdx]} p-6 text-center text-white rounded-2xl shadow-soft transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden group min-h-[180px] flex flex-col justify-center`}
-              >
-                <h2>Our Results</h2>
-                <div className="relative z-10">
-                  <div className="text-4xl font-extrabold text-white mb-2">
-                    {card.value}
-                  </div>
-                  <div className="text-lg font-semibold text-white flex items-center justify-center gap-2">
-                    {card.title}
-                    <svg className="w-5 h-5 opacity-0 group-hover:opacity-100 transform group-hover:scale-110 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </div>
-                  <div className="text-sm text-white/90 mt-2">
-                    {card.desc}
-                  </div>
-                  {card.highlight && (
-                    <div className="text-xs text-white/80 mt-2">
-                      {card.highlight}
-                    </div>
-                  )}
-                </div>
-                {/* Hover underline effect */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></div>
-              </div>
-            )
-          })}
+        {/* Results Image Slider - site background only, no white block */}
+        <div className="mb-0">
+          <h3 className="text-center text-lg md:text-xl font-bold text-[var(--brand-red)] mb-3">Results &amp; Achievements Gallery</h3>
+          <ResultsImageSlider />
         </div>
       </div>
     </section>
@@ -401,16 +293,417 @@ function ResultsSection({ topResults }) {
 // Testimonials Slider Component
 
 
-// Combined Features & News Section
+// What's Trending – carousel slides (replaces Why Choose Us)
+const TRENDING_SLIDES = [
+  {
+    label: 'JEE Main & Advanced 2026',
+    headline: 'IIT dream? Expert faculty & structured batches.',
+    description: 'Recorded lectures, test series & study material, all in one place across 8 branches.',
+    cta: 'Explore JEE Batches',
+    href: '/courses/iit-jee',
+    percentile: '99+',
+    name: 'Top Rankers',
+    subtext: 'JEE · MHT-CET · NEET',
+    location: 'Pune',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1763786335/output_faqujd',
+  },
+  {
+    label: 'MHT-CET 2025',
+    headline: '86 students scored 99+ percentile!',
+    description: 'Join the ranks. Structured curriculum, regular tests and doubt sessions.',
+    cta: 'Explore MHT-CET',
+    href: '/courses/mht-cet',
+    percentile: '99%ile',
+    name: 'MHT-CET Toppers',
+    subtext: 'State Rankers · Pharmacy · Engineering',
+    location: 'Pune',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1763783015/5_c2lqwx.jpg',
+  },
+  {
+    label: 'NEET 2025',
+    headline: 'AIIMS & MBBS – 5 selections from 53 students.',
+    description: 'Medical entrance prep with expert faculty and proven results.',
+    cta: 'Explore NEET',
+    href: '/courses/neet',
+    percentile: 'MBBS',
+    name: 'NEET Success',
+    subtext: 'AIIMS · MBBS · BDS',
+    location: 'Pune',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1764181879/B_r8gw6s.jpg',
+  },
+  {
+    label: 'IIT Selections 2025',
+    headline: '30% increase in IIT admissions this year.',
+    description: 'Believe, Build, Become – join Matrix Science Academy.',
+    cta: 'View Results',
+    href: '/results',
+    percentile: 'IIT',
+    name: 'IIT Achievers',
+    subtext: 'IIT Guwahati · Kharagpur · Mandi',
+    location: 'Pune',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1764181786/IIT_knkkka.jpg',
+  },
+]
+
+function WhatsTrendingCarousel() {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const t = setInterval(() => setIndex((i) => (i + 1) % TRENDING_SLIDES.length), 5000)
+    return () => clearInterval(t)
+  }, [])
+
+  return (
+    <div className="w-full">
+      <h2 className="home-section-title mb-4 text-center">What&apos;s Trending</h2>
+      <div className="relative rounded-xl overflow-hidden border border-gray-300 bg-white min-h-[220px] sm:min-h-[260px] shadow-sm">
+        <div className="flex overflow-hidden transition-transform duration-500 ease-out" style={{ width: `${TRENDING_SLIDES.length * 100}%`, transform: `translateX(-${index * (100 / TRENDING_SLIDES.length)}%)` }}>
+          {TRENDING_SLIDES.map((slide, i) => (
+            <div key={i} className="flex-shrink-0 flex flex-col sm:flex-row p-4 sm:p-5 md:p-6 gap-3 sm:gap-4 md:gap-6 items-center" style={{ width: `${100 / TRENDING_SLIDES.length}%` }}>
+              <div className="flex-1 flex flex-col justify-center min-w-0">
+                <span className="inline-block w-fit rounded-full bg-gray-200 text-gray-800 text-xs sm:text-sm font-semibold px-3 py-1 mb-2">
+                  {slide.label}
+                </span>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 leading-tight mb-1.5 sm:mb-2">
+                  {slide.headline}
+                </h3>
+                <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-none max-w-md">
+                  {slide.description}
+                </p>
+                <Link
+                  href={slide.href}
+                  className="inline-flex items-center justify-center w-fit bg-[var(--brand-red)] hover:bg-[var(--brand-red-hover)] text-white font-medium px-4 py-2 sm:px-5 sm:py-2.5 rounded transition-colors text-sm"
+                >
+                  {slide.cta}
+                </Link>
+              </div>
+              <div className="flex-shrink-0 relative w-28 sm:w-36 md:w-40 lg:w-44">
+                <div className="relative flex items-end justify-end min-h-[140px] sm:min-h-[180px] md:min-h-[200px]">
+                  <div className="relative z-10 w-24 sm:w-32 md:w-36 h-28 sm:h-36 md:h-40 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
+                    <img src={slide.image} alt="" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 z-20 w-[120px] sm:w-[130px] text-white rounded-b-lg overflow-hidden shadow" style={{ clipPath: 'polygon(0 18%, 100% 0, 100% 100%, 0 100%)' }}>
+                    <div className="bg-gray-800 px-2 pt-2.5 pb-0.5">
+                      <span className="text-base sm:text-lg font-bold text-white">{slide.percentile}</span>
+                    </div>
+                    <div className="bg-gray-700 px-2 py-1.5">
+                      <p className="font-semibold text-[10px] sm:text-xs leading-tight text-white">{slide.name}</p>
+                      <p className="text-white/80 text-[9px] sm:text-[10px] mt-0.5">{slide.subtext}</p>
+                      <p className="text-white/70 text-[8px] mt-0.5">• {slide.location}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex justify-center gap-2 mt-4">
+        {TRENDING_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Trending slide ${i + 1}`}
+            onClick={() => setIndex(i)}
+            className={`h-2 rounded-full transition-all duration-300 ${index === i ? 'w-6 bg-gray-700' : 'w-2 bg-gray-300 hover:bg-gray-400'}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// Blogs section – horizontal card carousel below courses
+const BLOG_CARDS = [
+  {
+    title: 'JEE Advanced 2026: Exam pattern and key dates',
+    description: 'What you need to know about eligibility, registration and exam dates for JEE Advanced 2026.',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_280,c_fill,q_auto,f_auto/v1764181786/IIT_knkkka.jpg',
+    label: 'JEE Advanced 2026',
+    href: '#',
+  },
+  {
+    title: 'MHT-CET 2025: 86 students scored 99+ percentile',
+    description: 'Matrix Science Academy students shine in MHT-CET. Here’s how we prepare our batches.',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_280,c_fill,q_auto,f_auto/v1763783015/5_c2lqwx.jpg',
+    label: 'MHT-CET 2025',
+    href: '#',
+  },
+  {
+    title: 'NEET 2026: Application and preparation tips',
+    description: 'Eligibility, important dates and how to plan your NEET preparation effectively.',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_280,c_fill,q_auto,f_auto/v1764181879/B_r8gw6s.jpg',
+    label: 'NEET 2026',
+    href: '#',
+  },
+  {
+    title: 'IIT admissions 2025: 30% increase in selections',
+    description: 'Our students’ success in IIT JEE Advanced and what makes our batches different.',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_280,c_fill,q_auto,f_auto/v1763786335/output_faqujd',
+    label: 'IIT Selections',
+    href: '#',
+  },
+  {
+    title: 'Free career counselling',
+    description: 'Not sure which course to choose? Book a free counselling session at Matrix Science Academy.',
+    image: 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_280,c_fill,q_auto,f_auto/v1764181864/A_dbzo2c.jpg',
+    label: 'Counselling',
+    href: '/counseling',
+  },
+]
+
+function BlogsSection() {
+  const scrollRef = useRef(null)
+  const [isBlogsPaused, setIsBlogsPaused] = useState(false)
+
+  const scroll = (dir) => {
+    if (!scrollRef.current) return
+    const cardWidth = 320
+    const gap = 16
+    const step = cardWidth + gap
+    scrollRef.current.scrollBy({ left: dir * step, behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    const scroller = scrollRef.current
+    if (!scroller || isBlogsPaused) return
+
+    const cardWidth = 320
+    const gap = 16
+    const step = cardWidth + gap
+
+    const timer = setInterval(() => {
+      if (!scrollRef.current) return
+      const maxScrollLeft = scrollRef.current.scrollWidth - scrollRef.current.clientWidth
+      const nextLeft = scrollRef.current.scrollLeft + step
+
+      if (nextLeft >= maxScrollLeft - 8) {
+        scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' })
+        return
+      }
+
+      scrollRef.current.scrollBy({ left: step, behavior: 'smooth' })
+    }, 2600)
+
+    return () => clearInterval(timer)
+  }, [isBlogsPaused])
+
+  return (
+    <section className="home-section bg-white">
+      <div className="container-page">
+        <h2 className="home-section-title mb-4">Blogs</h2>
+        <p className="home-section-body max-w-2xl mb-6">Latest updates, exam tips, and success stories.</p>
+        <div className="relative -mx-4 sm:-mx-6 lg:-mx-8">
+          <button
+            type="button"
+            onClick={() => scroll(-1)}
+            aria-label="Previous blogs"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-300 shadow-md flex items-center justify-center text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-colors"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          <button
+            type="button"
+            onClick={() => scroll(1)}
+            aria-label="Next blogs"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-300 shadow-md flex items-center justify-center text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-colors"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          </button>
+          <div
+            ref={scrollRef}
+            className="blogs-scroll flex gap-4 overflow-x-auto scroll-smooth pb-2 px-4 sm:px-6 lg:px-8"
+            style={{ scrollSnapType: 'x mandatory' }}
+            onMouseEnter={() => setIsBlogsPaused(true)}
+            onMouseLeave={() => setIsBlogsPaused(false)}
+          >
+            {BLOG_CARDS.map((blog, i) => (
+              <Link
+                key={i}
+                href={blog.href}
+                className="flex-shrink-0 w-[280px] sm:w-[300px] rounded-xl overflow-hidden bg-white border border-gray-300 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 group"
+                style={{ scrollSnapAlign: 'start' }}
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+                  <img src={blog.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" aria-hidden />
+                  <div className="absolute bottom-2 left-2 right-2">
+                    <span className="inline-block px-2 py-0.5 rounded bg-white/95 text-[10px] font-semibold uppercase text-gray-800 shadow-sm">
+                      {blog.label}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-4 bg-white">
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base leading-snug line-clamp-2 mb-1">
+                    {blog.title}
+                  </h3>
+                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed line-clamp-2">
+                    {blog.description}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+      <style jsx>{`
+        .blogs-scroll {
+          -webkit-overflow-scrolling: touch;
+        }
+        .blogs-scroll::-webkit-scrollbar {
+          display: none;
+        }
+        .blogs-scroll {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+      `}</style>
+    </section>
+  )
+}
+
+function IconCourseTarget({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="6" />
+      <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
+function IconCoursePhone({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+      <rect x="7" y="3" width="10" height="18" rx="2" />
+      <path strokeLinecap="round" d="M12 17h.01" />
+    </svg>
+  )
+}
+function IconCourseMedical({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+    </svg>
+  )
+}
+function IconCourseAtom({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+      <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" />
+      <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
+    </svg>
+  )
+}
+function IconCourseGrad({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+    </svg>
+  )
+}
+
+// Static grid — matches Academic Programs / Our Courses reference (colored card border, red icons & bullets, blue CTA)
+const OUR_COURSES_GRID = [
+  {
+    id: 'iit-jee',
+    href: '/courses/iit-jee',
+    title: 'IIT-JEE (Main/Advanced)',
+    description: 'Concept mastery, problem-solving drills, and test series.',
+    bullets: ['JEE Main: Jan & Apr', 'JEE Advanced: May', '30% increase in admissions'],
+    Icon: IconCourseTarget,
+    borderClass: 'border-sky-300',
+  },
+  {
+    id: 'mht-cet',
+    href: '/courses/mht-cet',
+    title: 'MHT-CET',
+    description: 'Speed-focused practice, previous year analysis, and revision.',
+    bullets: ['Conducted in May', 'State Level Competition', '86 students scored 99+ %ile'],
+    Icon: IconCoursePhone,
+    borderClass: 'border-orange-300',
+  },
+  {
+    id: 'neet',
+    href: '/courses/neet',
+    title: 'NEET',
+    description: 'NCERT-first approach, weekly assessments, and mentorship.',
+    bullets: ['Conducted in May', 'Perfect Scores', 'Multiple MBBS admissions'],
+    Icon: IconCourseMedical,
+    borderClass: 'border-emerald-300',
+  },
+  {
+    id: 'iiser',
+    href: '/courses/iiser',
+    title: 'IISER Foundation',
+    description: 'Early research aptitude and strong science fundamentals.',
+    bullets: ['Research-focused', 'Via JEE Adv/KVPY', 'Pure sciences'],
+    Icon: IconCourseAtom,
+    borderClass: 'border-violet-300',
+  },
+  {
+    id: 'boards',
+    href: '/courses',
+    title: '8th–12th Boards',
+    description: 'Boards-aligned lectures, notes, and focused writing practice.',
+    bullets: ['State & CBSE Boards', 'Writing Practice', 'Score Maximization'],
+    Icon: IconCourseGrad,
+    borderClass: 'border-amber-300',
+  },
+]
+
+function CoursesTabSection() {
+  return (
+    <section className="bg-white pb-10 pt-6 md:pb-14 md:pt-7">
+      <div className="container-page">
+        <div className="mx-auto mb-10 max-w-3xl text-center md:mb-12">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#e11d48] md:text-sm">Academic Programs</p>
+          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-[#1e3a8a] md:text-4xl">Our Courses</h2>
+          <p className="mt-3 text-base text-neutral-600 md:text-lg leading-relaxed">
+            Comprehensive preparation for competitive examinations with structured curriculum and expert faculty.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {OUR_COURSES_GRID.map((c) => (
+            <article
+              key={c.id}
+              className={`group flex h-full flex-col rounded-2xl border-2 ${c.borderClass} bg-white p-5 shadow-md transition hover:shadow-lg`}
+            >
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-red-100 bg-white text-[#dc2626] shadow-sm">
+                <c.Icon className="h-6 w-6" />
+              </div>
+              <h3 className="mt-4 text-left text-lg font-bold leading-snug text-neutral-900">{c.title}</h3>
+              <p className="mt-2 flex-1 text-left text-sm leading-relaxed text-neutral-600">{c.description}</p>
+              <ul className="mt-4 space-y-2.5 text-left text-sm text-neutral-800">
+                {c.bullets.map((b) => (
+                  <li key={b} className="flex gap-2.5">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#dc2626]" aria-hidden />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={c.href}
+                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border-2 border-blue-600 bg-white py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-blue-50"
+              >
+                Learn More
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Combined Features & News Section (What's Trending + Latest News + Our Courses)
 function FeaturesAndNewsSection() {
-  const features = [
-    { icon: '📚', title: 'Expert Faculty', desc: '150+ qualified teachers' },
-    { icon: '🎯', title: 'Focused Learning', desc: 'Structured curriculum' },
-    { icon: '🏆', title: 'Proven Results', desc: 'Top rankers every year' },
-    { icon: '💡', title: 'Doubt Sessions', desc: 'Personalized attention' },
-    { icon: '🏢', title: '8 Branches', desc: 'Across Pune region' },
-    { icon: '📊', title: 'Performance Tracking', desc: 'Regular assessments' },
-  ]
 
   const courses = [
     {
@@ -448,6 +741,16 @@ function FeaturesAndNewsSection() {
       description: 'Premier institutes for integrated BS-MS programs in pure sciences.',
       examDates: 'Admission via JEE Advanced/KVPY',
       ourResults: 'Research-focused training',
+    },
+    {
+      id: 'vriksha',
+      href: '/vriksha',
+      icon: '🌱',
+      name: 'VRIKSHA',
+      fullName: 'New Program',
+      description: 'Our newest program designed to nurture growth and excellence with a structured curriculum.',
+      examDates: 'Flexible batches',
+      ourResults: 'Dedicated support & proven approach',
     }
   ]
 
@@ -464,109 +767,104 @@ function FeaturesAndNewsSection() {
   ]
 
   return (
-    <section className="container-page py-8">
-      <div className="grid lg:grid-cols-2 gap-6">
-        {/* Left - Features */}
-        <div className="hidden md:block bg-[#0a1a67] rounded-2xl p-6 md:p-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Why Choose Us?</h2>
-          <div className="grid grid-cols-2 gap-4">
-            {features.map((feature, idx) => (
-              <div
-                key={idx}
-                className="bg-white/10 backdrop-blur rounded-xl p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-pointer group"
-              >
-                <span className="text-3xl mb-2 block group-hover:scale-110 transition-transform duration-300">{feature.icon}</span>
-                <h3 className="text-white font-semibold text-sm md:text-base">{feature.title}</h3>
-                <p className="text-white/70 text-xs md:text-sm mt-1">{feature.desc}</p>
-              </div>
-            ))}
-          </div>
-          <Link href="/about" className="inline-flex items-center gap-2 mt-6 text-white hover:text-white/80 transition-colors duration-300 font-medium">
-            Learn More About Us
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
+    <section className="home-section bg-white">
+      <div className="container-page">
+      <div className="grid grid-cols-1 md:grid-cols-[65%_35%] gap-4 md:gap-6">
+        {/* Left – What's Trending (65%) */}
+        <div className="min-w-0">
+          <WhatsTrendingCarousel />
         </div>
 
-        {/* Right - Latest News */}
-        <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 md:col-span-1 lg:col-span-1">
-          <div className="bg-[#B30027] p-4 md:p-6">
-            <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
-              <svg className="w-6 h-6 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-              </svg>
-              Latest News & Updates
-            </h2>
-          </div>
-          <div className="p-4 md:p-6 h-[320px] overflow-hidden relative">
+        {/* Right - Latest News (35%): no card background, plain list */}
+        <div className="min-w-0">
+          <h2 className="home-section-title mb-3">Latest News</h2>
+          <p className="home-section-body mb-4">Announcements and achievements.</p>
+          <div className="h-[240px] overflow-hidden relative">
             <div className="animate-scroll-news">
               {[...newsItems, ...newsItems].map((news, idx) => (
                 <div
                   key={idx}
-                  className="py-3 border-b border-gray-100 last:border-0 flex items-start gap-3 group cursor-pointer hover:bg-gray-50 px-2 rounded-lg transition-colors duration-300"
+                  className="py-2 border-b border-gray-200 last:border-0 flex items-start gap-2"
                 >
-                  <span className="text-[#B30027] font-bold text-lg flex-shrink-0">›</span>
-                  <span className="text-[#0a1a67] font-medium group-hover:text-[#B30027] transition-colors duration-300 text-sm md:text-base">
+                  <span className="text-gray-400 font-medium text-sm flex-shrink-0">›</span>
+                  <span className="text-gray-700 text-sm leading-snug">
                     {news}
                   </span>
                 </div>
               ))}
             </div>
-            {/* Fade effect at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent pointer-events-none" />
           </div>
         </div>
       </div>
 
-      {/* Courses Section */}
-      <div className="mt-12">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0a1a67] mb-3">Our Courses</h2>
-          <p className="text-[#0a1a67]/70 text-lg">Comprehensive preparation for competitive examinations</p>
-        </div>
+      {/* Our Courses – All Programs (horizontal slider) — hidden
+      <div className="mt-8">
+        <h2 className="home-section-title mb-2">Our Courses – All Programs</h2>
+        <p className="home-section-body max-w-2xl mb-6">Comprehensive preparation for competitive examinations.</p>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-          {courses.map((course) => (
-            <Link
-              key={course.id}
-              href={`/courses/${course.id}`}
-              className="bg-[#0a1a67] rounded-xl sm:rounded-2xl p-3 sm:p-6 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden block"
-            >
-              {/* Background decoration */}
-              <div className="absolute top-0 right-0 w-16 h-16 sm:w-24 sm:h-24 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500"></div>
-
-              <div className="relative z-10">
-                <div className="text-2xl sm:text-5xl mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">{course.icon}</div>
-                <h3 className="text-sm sm:text-2xl font-bold mb-0.5 sm:mb-1 leading-tight">{course.name}</h3>
-                <p className="text-[10px] sm:text-sm opacity-90 mb-1.5 sm:mb-3 leading-tight">{course.fullName}</p>
-                <p className="text-[9px] sm:text-sm leading-relaxed mb-2 sm:mb-4 line-clamp-2 sm:line-clamp-3">{course.description}</p>
-
-                <div className="mt-2 sm:mt-4 space-y-1.5 sm:space-y-2">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-md sm:rounded-lg p-1.5 sm:p-3">
-                    <p className="text-[8px] sm:text-xs font-bold">📅 {course.examDates}</p>
+        <div className="overflow-hidden -mx-4 sm:-mx-6 lg:-mx-8">
+          <div className="animate-scroll-courses flex gap-4 sm:gap-6 pb-2" style={{ width: 'max-content' }}>
+            {[...courses, ...courses].map((course, idx) => (
+              <Link
+                key={`${course.id}-${idx}`}
+                href={course.href || `/courses/${course.id}`}
+                className="rounded-2xl border border-gray-200/80 bg-white p-3 sm:p-5 shadow-sm hover:border-[var(--brand-red)]/30 hover:shadow-md hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden block flex-shrink-0 w-[280px] sm:w-[320px]"
+              >
+                <div className="relative z-10 flex items-stretch h-full">
+                  <div className="flex-1 pr-2 sm:pr-4 flex flex-col justify-between min-w-0">
+                    <div>
+                      <h3 className="text-base sm:text-lg font-bold text-[var(--brand-red)] leading-tight mb-0.5">
+                        {course.name}
+                      </h3>
+                      <p className="text-[11px] sm:text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                        Batch
+                      </p>
+                      <p className="text-[10px] sm:text-xs text-gray-600 mt-0.5 mb-1">
+                        {course.fullName}
+                      </p>
+                      <p className="text-[10px] sm:text-xs text-gray-600 mb-1.5 line-clamp-2">
+                        {course.description}
+                      </p>
+                      <div className="mt-1.5 space-y-1">
+                        <p className="text-[10px] sm:text-xs font-semibold text-gray-700">
+                          📅 {course.examDates}
+                        </p>
+                        <p className="text-[9px] sm:text-[10px] font-medium text-gray-500">
+                          🏆 {course.ourResults}
+                        </p>
+                      </div>
+                    </div>
+                    <span className="inline-flex items-center justify-center mt-2 px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold rounded-full bg-[var(--brand-red)] text-white group-hover:bg-[var(--brand-red-hover)] transition-colors">
+                      Explore More
+                    </span>
                   </div>
 
-                  <div className="bg-white/20 backdrop-blur-sm rounded-md sm:rounded-lg p-1.5 sm:p-3">
-                    <p className="text-[8px] sm:text-xs font-bold">🏆 {course.ourResults}</p>
+                  <div className="relative w-24 sm:w-28 md:w-32 flex items-end justify-center flex-shrink-0">
+                    <div className="relative z-10 w-20 sm:w-24 md:w-28 h-32 sm:h-36 md:h-40 rounded-[2rem] bg-gray-100 translate-x-3 -translate-y-2 rotate-[-8deg] group-hover:translate-y-0 group-hover:rotate-[-4deg] transition-transform duration-300 shadow-md overflow-hidden">
+                      <img
+                        src={
+                          course.id === 'iit-jee'
+                            ? 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1763786335/output_faqujd'
+                            : course.id === 'mht-cet'
+                              ? 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1763783015/5_c2lqwx.jpg'
+                              : 'https://res.cloudinary.com/ddqgxrgnc/image/upload/w_400,h_500,c_fit,q_auto,f_auto/v1764181879/B_r8gw6s.jpg'
+                        }
+                        alt={`${course.name}`}
+                        className="w-full h-full object-cover -translate-y-2 sm:-translate-y-3 md:-translate-y-4"
+                      />
+                    </div>
                   </div>
                 </div>
-
-                <div className="mt-2 sm:mt-4 flex items-center gap-1 sm:gap-2 text-[9px] sm:text-sm font-semibold group-hover:gap-2 sm:group-hover:gap-3 transition-all duration-300">
-                  Learn More
-                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
         </div>
 
-        <div className="text-center mt-8">
+        <div className="text-center mt-5">
           <Link
             href="/courses"
-            className="inline-flex items-center gap-2 bg-[#B30027] text-white hover:bg-[#8a001e] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+            className="inline-flex items-center gap-2 bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
           >
             View All Courses & Batches
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -574,6 +872,10 @@ function FeaturesAndNewsSection() {
             </svg>
           </Link>
         </div>
+      </div>
+
+      <BlogsSection />
+      */}
       </div>
 
       <style jsx>{`
@@ -587,70 +889,634 @@ function FeaturesAndNewsSection() {
         .animate-scroll-news:hover {
           animation-play-state: paused;
         }
+        @keyframes scroll-courses {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-scroll-courses {
+          animation: scroll-courses 35s linear infinite;
+        }
+        .animate-scroll-courses:hover {
+          animation-play-state: paused;
+        }
       `}</style>
     </section>
   )
 }
 
-// Our Vision Section Component
-function VisionSection() {
-  const branches = [
-    {
-      name: 'Nigdi',
-      director: 'Mr. Nishant Patwardhan',
-      directorImage: 'v1764218938/abhi_mehta_f6h4om',
-    },
-    {
-      name: 'Shahunagar',
-      director: 'Mr. Ravindra Yadav',
-      directorImage: 'v1764990905/yadav_vv66wt',
-    },
-    {
-      name: 'Chinchwad',
-      director: 'Mr. Algesh Patrike',
-      directorImage: 'v1765163829/algesh_hskjtk',
-    },
-    {
-      name: 'Ravet',
-      director: 'Mr. Abhishek Mehta',
-      directorImage: 'v1764218937/nishant_tifi1f',
-    },
-    {
-      name: 'Wakad',
-      director: 'Mr. Manoj Kumar',
-      directorImage: 'v1765163801/manoj_1_algvci',
-    },
-    {
-      name: 'Moshi',
-      director: 'Mr. Umesh Bharde',
-      directorImage: 'v1765163805/umesh_1_aoyp2r',
-    },
-  ]
+const COUNSELING_FEATURES = [
+  { label: 'Coaching Selection', icon: '🎯' },
+  { label: 'Exam Planning', icon: '🗓️' },
+  { label: 'Performance Eval', icon: '📈' },
+  { label: 'Study Roadmap', icon: '🗺️' },
+]
+
+const METHODOLOGY_STEPS = [
+  { n: '01', label: 'Concept Explanation', icon: 'lightbulb' },
+  { n: '02', label: 'Practice Sessions', icon: 'device' },
+  { n: '03', label: 'Doubt Solving', icon: 'chat' },
+  { n: '04', label: 'Periodic Tests', icon: 'doc' },
+  { n: '05', label: 'Feedback', icon: 'chart' },
+]
+
+function MethodologyStepIcon({ name, className = '' }) {
+  const cn = `h-5 w-5 sm:h-6 sm:w-6 ${className}`
+  switch (name) {
+    case 'lightbulb':
+      return (
+        <svg className={cn} fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24" aria-hidden>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+          />
+        </svg>
+      )
+    case 'device':
+      return (
+        <svg className={cn} fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24" aria-hidden>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        </svg>
+      )
+    case 'chat':
+      return (
+        <svg className={cn} fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24" aria-hidden>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+          />
+        </svg>
+      )
+    case 'doc':
+      return (
+        <svg className={cn} fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24" aria-hidden>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          />
+        </svg>
+      )
+    case 'chart':
+      return (
+        <svg className={cn} fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24" aria-hidden>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+          />
+        </svg>
+      )
+    default:
+      return null
+  }
+}
+
+/** Scroll-in: line draws left→right, then steps rise in with stagger (respects reduced motion). */
+function CounselingMethodologyTimeline() {
+  const rootRef = useRef(null)
+  const [active, setActive] = useState(false)
+
+  useEffect(() => {
+    const el = rootRef.current
+    if (!el) return
+
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setActive(true)
+      return
+    }
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setActive(true)
+          obs.disconnect()
+        }
+      },
+      { threshold: 0.18, rootMargin: '0px 0px -10% 0px' }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
 
   return (
-    <section className="container-page py-8 sm:py-12">
-      <div className="max-w-4xl mx-auto">
-        {/* Vision Text */}
-        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-gray-100">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0a1a67] mb-4 sm:mb-6">
-            Our Vision
-          </h2>
-          <div className="space-y-4 text-[#0a1a67] text-sm sm:text-base leading-relaxed">
-            <p>
-              <strong>We are teachers by our choice and we passionately do our job.</strong> Our aim is not to run the classes conventionally, but we are here to make a change and make a strong impact in the field of 8th to 12th Education in Maharashtra.
-            </p>
-            <p>
-              Matrix Science Academy aims to provide <strong>quality and affordable education</strong> to all students via offline as well as online mode.
-            </p>
+    <div ref={rootRef} className="relative mx-auto mt-8 max-w-5xl px-1 sm:mt-10">
+      {/* Base track + animated progress (desktop — matches 5-column row) */}
+      <div
+        className="pointer-events-none absolute left-[5%] right-[5%] top-[23px] z-0 hidden h-0.5 overflow-hidden rounded-full bg-sky-100 md:block lg:left-[4%] lg:right-[4%] lg:top-[26px]"
+        aria-hidden
+      >
+        <div
+          className={`h-full w-full origin-left rounded-full bg-sky-400 transition-transform duration-[1700ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
+            active ? 'scale-x-100' : 'scale-x-0'
+          }`}
+        />
+      </div>
+
+      <ol className="relative z-[1] grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5 md:gap-3 md:gap-y-10">
+        {METHODOLOGY_STEPS.map((step, i) => {
+          const stepDelay = active ? `${320 + i * 200}ms` : '0ms'
+          const labelDelay = active ? `${420 + i * 200}ms` : '0ms'
+          return (
+            <li key={step.n} className="relative flex flex-col items-center text-center">
+              <div
+                className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
+                  active ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-5 scale-90 opacity-0'
+                }`}
+                style={{ transitionDelay: stepDelay }}
+              >
+                <div className="relative">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-sky-200 bg-white text-[#3377F5] shadow-md sm:h-12 sm:w-12 md:h-[3.25rem] md:w-[3.25rem]">
+                    <MethodologyStepIcon name={step.icon} />
+                  </div>
+                  <span className="absolute -right-0.5 -top-0.5 flex h-[1.125rem] min-w-[1.125rem] items-center justify-center rounded-full bg-[#0c1e3a] px-1 text-[8px] font-bold tabular-nums leading-none text-white shadow-sm sm:h-5 sm:min-w-[1.25rem] sm:text-[9px]">
+                    {step.n}
+                  </span>
+                </div>
+              </div>
+              <p
+                className={`mt-3 max-w-[9rem] text-[10px] font-semibold leading-snug text-neutral-800 transition-all duration-500 ease-out sm:max-w-none sm:text-xs md:text-sm ${
+                  active ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
+                }`}
+                style={{ transitionDelay: labelDelay }}
+              >
+                {step.label}
+              </p>
+            </li>
+          )
+        })}
+      </ol>
+    </div>
+  )
+}
+
+// Counselling: dark blue panels (left hero + right form column); methodology below stays on light surface.
+const COUNSELING_PANEL_BG =
+  'relative overflow-hidden bg-gradient-to-b from-[#1a4a8c] via-[#123a6e] to-[#0c2544]'
+const COUNSELING_PANEL_OVERLAY =
+  'pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_55%_at_15%_0%,rgba(96,165,250,0.18),transparent_55%)]'
+const COUNSELING_PANEL_OVERLAY_BOTTOM =
+  'pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_90%_100%,rgba(30,58,138,0.35),transparent_50%)]'
+
+/** YouTube embed URL only, e.g. https://www.youtube.com/embed/dQw4w9WgXcQ — leave empty for placeholder */
+const COUNSELING_PROMO_VIDEO_EMBED_URL = ''
+
+function CounselingFormRow() {
+  return (
+    <section className="bg-white py-10 md:py-14 lg:py-16">
+      <div className="container-page px-4 sm:px-6">
+        <div className="grid grid-cols-1 gap-10 sm:gap-12 md:gap-14 lg:grid-cols-2 lg:items-stretch lg:gap-x-12 xl:gap-x-16 2xl:gap-x-20">
+          {/* Left — stacked: dark blue top + methodology (page body background) */}
+          <div className="flex min-h-0 flex-col overflow-hidden rounded-2xl shadow-sm sm:rounded-[1.25rem]">
+            <div className={`${COUNSELING_PANEL_BG} px-6 py-10 sm:px-8 sm:py-11 md:px-10 md:py-12`}>
+              <div className={COUNSELING_PANEL_OVERLAY} aria-hidden />
+              <div className={COUNSELING_PANEL_OVERLAY_BOTTOM} aria-hidden />
+              <div className="relative z-10 mx-auto w-full max-w-3xl text-center lg:max-w-4xl">
+                <h2 className="text-2xl font-bold leading-[1.2] tracking-tight text-white sm:text-3xl lg:text-4xl">
+                  Free Academic Counselling for Students and Parents
+                </h2>
+                <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/90 sm:text-base">
+                  Not sure which path to take? Our expert counsellors help you evaluate academic performance, plan for competitive
+                  exams, and create a personalized study roadmap for your child.
+                </p>
+
+                <div className="mx-auto mt-6 flex max-w-2xl flex-wrap items-stretch justify-center gap-2 sm:mt-7 sm:gap-2.5 md:max-w-none">
+                  {COUNSELING_FEATURES.map((item) => (
+                    <div
+                      key={item.label}
+                      className="flex shrink-0 items-center gap-1.5 rounded-md border border-white/20 bg-white/10 px-2 py-1.5 backdrop-blur-sm sm:gap-2 sm:px-2.5 sm:py-2 md:min-w-0 md:flex-1 md:justify-center md:px-2"
+                    >
+                      <span className="text-xs leading-none text-amber-300 sm:text-sm" aria-hidden>
+                        {item.icon}
+                      </span>
+                      <span className="whitespace-nowrap text-[9px] font-semibold leading-tight text-white sm:text-[10px] md:text-[11px]">
+                        {item.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mx-auto mt-8 w-full max-w-3xl md:mt-9">
+                  <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wide text-white/70">
+                    Watch our counselling introduction
+                  </p>
+                  <div className="overflow-hidden rounded-xl border border-white/20 bg-black/25 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.45)] ring-1 ring-white/10 aspect-video">
+                    {COUNSELING_PROMO_VIDEO_EMBED_URL ? (
+                      <iframe
+                        src={COUNSELING_PROMO_VIDEO_EMBED_URL}
+                        title="Matrix Science Academy — academic counselling"
+                        className="h-full w-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    ) : (
+                      <div className="flex h-full min-h-[12rem] flex-col items-center justify-center gap-3 bg-gradient-to-b from-white/5 to-black/30 px-4 py-8 text-center sm:min-h-[14rem]">
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/15 ring-2 ring-white/25">
+                          <svg className="h-8 w-8 text-white/90" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </div>
+                        <p className="text-sm font-semibold text-white">Promotional video</p>
+                        <p className="max-w-sm text-xs leading-relaxed text-white/80">
+                          Campus, counselling, and how we guide students—video coming soon.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="bg-white px-6 py-8 sm:px-8 sm:py-10 md:py-11"
+              aria-labelledby="methodology-heading"
+            >
+              <div className="mx-auto max-w-4xl text-center">
+                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#3377F5] sm:text-xs">How we teach</p>
+                <h2 id="methodology-heading" className="mt-2 text-xl font-bold tracking-tight text-neutral-900 sm:text-2xl md:text-3xl">
+                  Our Proven Methodology
+                </h2>
+              </div>
+
+              <CounselingMethodologyTimeline />
+            </div>
           </div>
-          <Link 
-            href="/about" 
-            className="inline-flex items-center gap-2 mt-6 text-[#B30027] hover:text-[#8a001e] font-semibold transition-colors duration-300 text-sm sm:text-base"
+
+          {/* Right — dark blue column; form in centered white card */}
+          <div
+            id="book-counseling-form"
+            className={`scroll-mt-28 flex min-h-[36rem] flex-col overflow-hidden rounded-2xl shadow-sm sm:min-h-[40rem] sm:rounded-[1.25rem] lg:min-h-[44rem] ${COUNSELING_PANEL_BG}`}
           >
-            Read Full Message
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+            <div className={COUNSELING_PANEL_OVERLAY} aria-hidden />
+            <div className={COUNSELING_PANEL_OVERLAY_BOTTOM} aria-hidden />
+            <div className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center px-5 py-12 sm:px-7 sm:py-14 md:px-8 md:py-16">
+              <div className="flex w-full max-w-lg min-h-[26rem] flex-col rounded-2xl bg-white p-8 shadow-[0_20px_50px_-12px_rgba(15,23,42,0.18)] sm:max-w-xl sm:min-h-[28rem] sm:p-10 md:max-w-2xl md:min-h-[30rem] md:p-11 lg:min-h-[32rem]">
+                <h3 className="text-center text-xl font-bold text-neutral-900 md:text-2xl">Book Your Session</h3>
+                <p className="mt-2 text-center text-sm leading-relaxed text-neutral-600 md:text-base">
+                  Fill out the form below and our academic counsellor will call you.
+                </p>
+                <Suspense
+                  fallback={
+                    <div className="mt-7 flex flex-1 items-center justify-center rounded-xl bg-neutral-50 p-8">
+                      <p className="text-center text-sm text-neutral-600">Loading form…</p>
+                    </div>
+                  }
+                >
+                  <div className="mt-8 flex flex-1 flex-col sm:mt-10">
+                    <div className="flex-1">
+                      <EnquiryForm counselingSession counselingRelaxed counselingCentered />
+                    </div>
+                  </div>
+                </Suspense>
+                <div className="mt-8 border-t border-neutral-100 pt-8">
+                  <p className="text-center text-[11px] font-bold uppercase tracking-[0.18em] text-[#3377F5]">
+                    Why families choose Matrix
+                  </p>
+                  <p className="mx-auto mt-3 max-w-md text-center text-sm leading-relaxed text-neutral-600">
+                    Get clarity on courses, batches, and fees—no pressure, just honest guidance. Same-day callbacks on working hours;
+                    your details stay private.
+                  </p>
+                  <ul className="mx-auto mt-5 max-w-md space-y-2.5 text-left text-sm text-neutral-700">
+                    <li className="flex gap-2.5">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700" aria-hidden>
+                        <svg className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      <span>Personalized roadmap for JEE, NEET, MHT-CET, or school boards</span>
+                    </li>
+                    <li className="flex gap-2.5">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700" aria-hidden>
+                        <svg className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      <span>Speak with counsellors who know Pune centres and batch timings</span>
+                    </li>
+                    <li className="flex gap-2.5">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700" aria-hidden>
+                        <svg className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      <span>Free session—walk in with doubts, walk out with a plan</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Explore Our Specialized Learning Paths — five batch cards (reference layout)
+const SPECIALIZED_BATCHES = [
+  {
+    id: 'impulse',
+    href: '/courses',
+    title: 'Impulse Batch',
+    subtitle: 'Foundation Phase',
+    tagClass: 'bg-sky-100 text-sky-800',
+    iconWrapClass: 'bg-sky-500 text-white',
+    Icon: FaBook,
+    description: 'Common starting point for all students. Strong fundamentals + concept clarity.',
+    cta: 'Learn More',
+    featured: false,
+  },
+  {
+    id: 'air',
+    href: '/courses/iit-jee',
+    title: 'AIR Batch',
+    subtitle: 'IIT Rank Focus',
+    tagClass: 'bg-yellow-400 text-yellow-950',
+    iconWrapClass: 'bg-yellow-400 text-yellow-950',
+    Icon: FaTrophy,
+    description: 'For top-performing students. Advanced training for All India Ranks.',
+    cta: 'Explore Batch',
+    featured: true,
+  },
+  {
+    id: 'sprint',
+    href: '/courses/mht-cet',
+    title: 'Sprint Batch',
+    subtitle: 'CET Top Rankers',
+    tagClass: 'bg-slate-200 text-slate-800',
+    iconWrapClass: 'bg-slate-500 text-white',
+    Icon: FaTachometerAlt,
+    description: 'High-speed preparation. Designed for 90%+ performers.',
+    cta: 'View Details',
+    featured: false,
+  },
+  {
+    id: 'drift',
+    href: '/courses',
+    title: 'Drift Batch',
+    subtitle: 'Concept Strengthening',
+    tagClass: 'bg-neutral-200 text-neutral-800',
+    iconWrapClass: 'bg-neutral-400 text-white',
+    Icon: FaSlidersH,
+    description: 'Structured learning path. Focus on accuracy & improvement.',
+    cta: 'Know More',
+    featured: false,
+  },
+  {
+    id: 'vriksha',
+    href: '/vriksha',
+    title: 'VRIKSHA Batch',
+    subtitle: 'Holistic Growth',
+    tagClass: 'bg-emerald-100 text-emerald-900',
+    iconWrapClass: 'bg-emerald-500 text-white',
+    Icon: FaLeaf,
+    description: 'Academics + sports + creativity. AI, communication & life skills.',
+    cta: 'Discover VRIKSHA',
+    featured: false,
+  },
+]
+
+function SpecializedBatchesSection() {
+  return (
+    <section className="border-t border-neutral-100 bg-[#f8fafc] py-10 md:py-12">
+      <div className="container-page">
+        <div className="mx-auto mb-8 max-w-3xl text-center md:mb-10">
+          <h2 className="text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl md:font-extrabold">
+            Explore Our Specialized Learning Paths
+          </h2>
+          <p className="mt-2 text-sm text-neutral-600 md:text-base">
+            Designed for every student&apos;s goal – from strong foundations to top ranks
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 xl:gap-5">
+          {SPECIALIZED_BATCHES.map((b) => {
+            const Icon = b.Icon
+            return (
+              <Link
+                key={b.id}
+                href={b.href}
+                className={`group relative flex h-full flex-col rounded-3xl border bg-white p-5 shadow-sm transition hover:shadow-md ${
+                  b.featured
+                    ? 'border-2 border-yellow-400 shadow-[0_0_0_1px_rgba(250,204,21,0.4),0_12px_40px_-8px_rgba(250,204,21,0.35)]'
+                    : 'border border-neutral-200/90'
+                }`}
+              >
+                {b.featured && (
+                  <span
+                    className="absolute -right-1 -top-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 to-amber-500 text-amber-950 shadow-md ring-2 ring-white"
+                    aria-hidden
+                  >
+                    <FaAward className="h-4 w-4" />
+                  </span>
+                )}
+                <div
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full ${b.iconWrapClass}`}
+                >
+                  <Icon className="h-5 w-5" aria-hidden />
+                </div>
+                <span
+                  className={`mt-4 inline-flex w-fit rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide ${b.tagClass}`}
+                >
+                  {b.subtitle}
+                </span>
+                <h3 className="mt-3 text-left text-lg font-bold leading-tight text-neutral-900">{b.title}</h3>
+                <p className="mt-2 flex-1 text-left text-sm leading-relaxed text-neutral-600">{b.description}</p>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-blue-600 transition group-hover:gap-2">
+                  {b.cta}
+                  <span aria-hidden>→</span>
+                </span>
+              </Link>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// About intro – short orientation for new visitors
+function AboutIntro() {
+  return (
+    <section className="page-section-tight bg-white">
+      <div className="container-page">
+        <div className="flex flex-col md:flex-row items-stretch gap-6 md:gap-8">
+          {/* Left: Text content */}
+          <div className="flex-1 flex flex-col justify-center">
+            <h2 className="text-xl md:text-2xl font-bold mb-3 leading-tight">
+              <span>About </span>
+              <span className="text-[#ed1c24]">Matrix</span>{' '}
+              <span className="text-[#646262] font-black">Science</span>{' '}
+              <span className="text-[#214295] font-black">Academy</span>
+            </h2>
+            <p className="text-body/90 text-base md:text-lg max-w-3xl mb-4">
+              Matrix Science Academy is one of the leading coaching institutions in Pune, helping students achieve their dreams in IIT-JEE, NEET, MHT-CET, and IISER through expert faculty, structured learning, and proven results.
+            </p>
+            <Link href="/about" className="inline-flex items-center gap-2 text-heading font-semibold hover:underline">
+              Read more about us
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+
+          {/* Right: Image on tilted card, similar to course card */}
+          <div className="flex-1 flex items-center justify-center">
+            <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg h-40 sm:h-48 md:h-56 lg:h-64">
+              {/* Subtle red accent background similar to Why Choose Us cards */}
+              <div className="absolute -bottom-1 -left-1 w-12 h-12 rounded-full bg-[var(--brand-red)]/15 blur-sm" aria-hidden />
+              <div className="absolute -top-3 right-0 w-10 h-10 rounded-full bg-[var(--brand-red)]/10 blur-[2px]" aria-hidden />
+              <div className="relative z-10 w-full h-full rounded-[2rem] bg-gradient-to-tr from-[#ffe6ea] via-[#ffe6ea] to-[#ffd0da] transition-transform duration-300 shadow-md overflow-hidden">
+                <img
+                  src="https://res.cloudinary.com/ddqgxrgnc/image/upload/v1764181864/A_dbzo2c.jpg"
+                  alt="About Matrix Science Academy"
+                  className="w-full h-full object-cover -translate-y-1 sm:-translate-y-1.5 md:-translate-y-2"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// VRIKSHA highlight – watering + tree grows + points moving toward tree
+const VRIKSHA_POINTS = [
+  { icon: '📚', label: 'Academics' },
+  { icon: '🧠', label: 'Mindset' },
+  { icon: '🏃', label: 'Sports' },
+  { icon: '🎯', label: 'Exams' },
+  { icon: '🌱', label: 'Growth' },
+  { icon: '🚀', label: 'Success' },
+]
+
+function VrikshaHighlight({ embedded = false }) {
+  const card = (
+    <Link
+      href="/vriksha"
+      className="group block bg-white border border-gray-200/80 rounded-2xl sm:rounded-3xl p-4 md:p-6 shadow-sm transition-all duration-300 overflow-hidden h-full relative"
+    >
+          {/* Tree as background at end of card – below slider, same position */}
+          <div className="absolute bottom-4 right-0 flex items-end justify-end pointer-events-none w-[45%] md:w-[40%] min-h-[160px] md:min-h-[180px]" aria-hidden>
+            <div className="vriksha-tree-bg flex items-end justify-center w-full max-w-[200px] md:max-w-[240px] lg:max-w-[280px] h-[140px] md:h-[180px] opacity-90">
+              <svg viewBox="0 0 80 100" className="w-full h-full text-emerald-500/50 drop-shadow-sm" fill="currentColor">
+                <path d="M40 8 L72 48 L40 42 L8 48 Z" fill="currentColor" opacity="0.9" />
+                <path d="M40 22 L66 58 L40 52 L14 58 Z" fill="currentColor" opacity="0.85" />
+                <path d="M40 36 L60 68 L40 62 L20 68 Z" className="text-emerald-600" fill="currentColor" opacity="0.9" />
+                <path d="M40 50 L54 78 L40 72 L26 78 Z" className="text-emerald-600" fill="currentColor" />
+                <path d="M34 72 L46 72 L44 98 L36 98 Z" className="text-amber-700" fill="currentColor" opacity="0.9" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Content row: text | slider (slider sits above tree so it touches it) */}
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
+            <div className="flex-1 flex flex-col justify-center min-w-0">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[var(--brand-red)]/10 flex items-center justify-center text-2xl md:text-3xl group-hover:scale-105 transition-transform ring-2 ring-[var(--brand-red)]/15">
+                  🌱
+                </div>
+                <span className="inline-block px-3 py-1 rounded-full bg-[var(--brand-red)] text-white text-xs font-semibold uppercase tracking-widest">New</span>
+              </div>
+              <h2 className="home-section-subtitle text-[var(--brand-red)] mb-2">VRIKSHA</h2>
+              <p className="home-section-body mb-4 max-w-xl">
+                Holistic learning: academics, wellness, and competitive readiness in one program.
+              </p>
+              <span className="inline-flex items-center gap-2 text-[var(--brand-red)] font-semibold text-sm md:text-base group-hover:gap-3 transition-all">
+                Explore VRIKSHA
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              </span>
+              {/* Mobile: flowing feature pills – reduced height, card style */}
+              <div className="md:hidden overflow-hidden -mx-1 mt-3 relative z-10">
+                <div className="vriksha-flow flex gap-3 w-max py-2 items-stretch">
+                  {[...VRIKSHA_POINTS, ...VRIKSHA_POINTS].map((item, i) => (
+                    <span key={i} className="flex items-center gap-2 shrink-0 px-4 py-2.5 rounded-2xl border border-gray-200/80 bg-white text-sm font-semibold text-gray-800 whitespace-nowrap shadow-sm min-h-[52px]">
+                      <span className="text-xl" aria-hidden>{item.icon}</span>
+                      {item.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop: flowing feature pills – reduced height, card style */}
+            <div className="hidden md:block flex-shrink-0 overflow-hidden min-h-[120px] w-[520px] lg:w-[680px] xl:w-[800px] relative z-10">
+              <div className="vriksha-flow flex gap-4 w-max py-3 items-stretch">
+                {[...VRIKSHA_POINTS, ...VRIKSHA_POINTS].map((item, i) => (
+                  <span
+                    key={i}
+                    className="flex items-center gap-2 shrink-0 px-5 py-4 rounded-2xl border border-gray-200/80 bg-white text-sm font-semibold text-gray-800 whitespace-nowrap shadow-sm min-h-[64px]"
+                  >
+                    <span className="text-2xl" aria-hidden>{item.icon}</span>
+                    {item.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Link>
+  )
+  if (embedded) {
+    return card
+  }
+  return (
+    <section className="bg-white py-8 md:py-10">
+      <div className="container-page mx-auto max-w-5xl">{card}</div>
+    </section>
+  )
+}
+
+// Performance graph – 3-year improvement (CSS-only, dummy data)
+function PerformanceGraph() {
+  const years = [
+    { year: '2023', label: '2023', value: 72, color: 'bg-[var(--brand-red)]/30' },
+    { year: '2024', label: '2024', value: 85, color: 'bg-[var(--brand-red)]/60' },
+    { year: '2025', label: '2025', value: 100, color: 'bg-[var(--brand-red)]' },
+  ]
+  const maxValue = 100
+  return (
+    <section className="home-section-alt">
+      <div className="container-page">
+        <h2 className="home-section-title mb-2">Results Over the Years</h2>
+        <p className="home-section-body mb-6 max-w-2xl">Our consistent improvement in student outcomes across competitive exams.</p>
+        <div className="rounded-2xl border border-gray-200/80 bg-white p-6 md:p-8">
+          <div className="flex flex-col sm:flex-row items-end justify-center gap-6 sm:gap-10 h-48 md:h-56">
+            {years.map(({ year, label, value, color }) => (
+              <div key={year} className="flex flex-col items-center gap-1.5 flex-1 max-w-[120px]">
+                <div className="w-full flex flex-col justify-end h-36 md:h-40 rounded-t-lg overflow-hidden relative">
+                  <div
+                    className={`w-full ${color} rounded-t transition-all duration-700 flex items-center justify-center min-h-[28px]`}
+                    style={{ height: `${(value / maxValue) * 100}%`, minHeight: '28px' }}
+                  >
+                    <span className={`text-sm font-bold drop-shadow-sm ${value >= 95 ? 'text-white' : 'text-[var(--brand-red)]'}`}>{value}</span>
+                  </div>
+                </div>
+                <span className="text-sm font-semibold text-body">{label}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-xs text-gray-500 mt-4">Indexed performance (2025 = 100). Actual data to be updated by content team.</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Counseling CTA – free counseling + link
+function CounselingCTA() {
+  return (
+    <section className="page-section-tight bg-[var(--brand-red)]">
+      <div className="container-page">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="text-left md:text-left">
+            <h2 className="text-left text-2xl md:text-3xl font-bold text-white mb-2">Free Career Counseling</h2>
+            <p className="text-white/90 text-sm md:text-base max-w-xl text-left">Not sure which course is right for you? Book a free counseling session with our experts and get a personalized plan.</p>
+          </div>
+          <Link href="/counseling" className="inline-flex items-center justify-center gap-2 bg-white text-[var(--brand-red)] hover:bg-gray-100 font-semibold px-6 py-3 rounded-lg transition-colors shrink-0">
+            Book free session
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </Link>
         </div>
       </div>
@@ -660,56 +1526,26 @@ function VisionSection() {
 
 export default function Home() {
   return (
-    <div>
-      <NewsSlider />
+    <div className="bg-white">
       <HeroSlider />
+      <HeroUsps />
 
-      {/* Combined Features & News Section */}
-      <FeaturesAndNewsSection />
+      {/* Academic challenge → Matrix story → pillar marquee + tree (VrikshaHighlight hidden) */}
+      <AcademicVrikshaMethodology />
+      {/* <VrikshaHighlight /> */}
 
+      <CoursesTabSection />
 
-      {/* Results Section */}
+      <SpecializedBatchesSection />
 
+      <CounselingFormRow />
+      <AchievementsBentoSection />
 
+      <TestimonialsShowcase />
 
-      <ResultsSection topResults={topResults} />
-
-      {/* Our Vision Section */}
-      <VisionSection />
-
-      {/* Features Section */}
-      <FeaturesSection />
-
-
-
-      {/* Testimonials Section with Slider */}
-      <section className="py-12 relative overflow-hidden" style={{ backgroundColor: '#0a1a67' }}>
-
-        {/* <div className="container-page relative z-10">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="text-4xl font-bold relative text-white">
-              <span className="relative z-10">Student Testimonials</span>
-              <span className="absolute -bottom-1 left-0 w-24 h-1 bg-white rounded-full"></span>
-            </h2>
-            <Link href="/testimonials" className="btn-outline bg-white hover:scale-105 transition-transform duration-300">View All</Link>
-          </div>
-          
-          <TestimonialCard testimonials={topTestimonials} />
-        </div> */}
-        <TestimonialsShowcase />
-      </section>
-
-
-      {/* CTA Section */}
-      <section className="container-page py-8">
-        <div className="rounded-2xl bg-brand/30 border border-brand/40 p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div>
-            <h3 className="text-2xl font-bold text-[#0a1a67]">Ready to start your journey?</h3>
-            <p className="text-[#0a1a67] mt-1">Speak with our counsellors and get a personalized plan.</p>
-          </div>
-          <Link href="/enquiry" className="inline-flex items-center gap-2 rounded-lg bg-[#B30027] text-white hover:bg-[#8a001e] transition-colors duration-300 px-5 py-2.5 font-medium shadow-soft">Enquire Now</Link>
-        </div>
-      </section>
+      {/* Features (facilities), then optional extras */}
+      {/* <FeaturesSection /> */}
+      {/* <PerformanceGraph /> removed from homepage (Results Over the Years) */}
     </div>
   )
 }

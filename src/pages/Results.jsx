@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import OptimizedImage from '@/components/OptimizedImage'
+import ResultsPerformanceCharts from '@/components/ResultsPerformanceCharts'
 
 // Results Image Slider Component
 function ResultsImageSlider() {
@@ -46,7 +47,7 @@ function ResultsImageSlider() {
           onClick={() => setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
           className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
         >
-          <svg className="w-6 h-6 text-[#0a1a67]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 text-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
@@ -54,7 +55,7 @@ function ResultsImageSlider() {
           onClick={() => setCurrentIndex((prev) => (prev + 1) % images.length)}
           className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
         >
-          <svg className="w-6 h-6 text-[#0a1a67]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 text-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
@@ -68,7 +69,7 @@ function ResultsImageSlider() {
             onClick={() => setCurrentIndex(idx)}
             className={`h-3 rounded-full transition-all duration-300 ${
               currentIndex === idx 
-                ? 'w-10 bg-[#0a1a67]' 
+                ? 'w-10 bg-neutral-800' 
                 : 'w-3 bg-gray-300 hover:bg-gray-400'
             }`}
           />
@@ -87,33 +88,35 @@ export default function Results() {
   ]
 
   return (
-    <div className="container-page py-10">
-      <h1 className="text-3xl sm:text-4xl font-bold text-[#0a1a67] mb-8 text-center">Our Results</h1>
-      
-      {/* Results Image Slider */}
-      <div className="mb-10">
-        <ResultsImageSlider />
-      </div>
-      <div className="grid sm:grid-cols-2 gap-6">
-        {resultsImages.map((image, idx) => (
-          <div 
-            key={idx} 
-            className="card bg-white rounded-2xl overflow-hidden hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
-          >
-            <div className="w-full aspect-[3/4] overflow-hidden">
-              <OptimizedImage
-                cloudinaryId={image.id}
-                alt={image.alt}
-                width={600}
-                height={800}
-                className="w-full h-full object-cover"
-                crop="fill"
-                quality="auto"
-              />
-            </div>
+    <div className="interior-page">
+      <section className="page-section-white">
+        <div className="container-page">
+          <h1 className="interior-title interior-title-center mb-5">Our Results</h1>
+
+          <ResultsPerformanceCharts />
+
+          <div className="mb-6">
+            <ResultsImageSlider />
           </div>
-        ))}
-      </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {resultsImages.map((image, idx) => (
+              <div key={idx} className="page-card overflow-hidden p-0">
+                <div className="w-full aspect-[3/4] overflow-hidden rounded-xl">
+                  <OptimizedImage
+                    cloudinaryId={image.id}
+                    alt={image.alt}
+                    width={600}
+                    height={800}
+                    className="w-full h-full object-cover"
+                    crop="fill"
+                    quality="auto"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

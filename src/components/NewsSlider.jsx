@@ -62,12 +62,12 @@ export default function NewsSlider() {
   }, [])
 
   return (
-    <div className="bg-[#B30027] text-white border-b border-brand/30 shadow-md relative z-10">
+    <div className="bg-[var(--brand-red)] text-white border-b border-brand/30 shadow-md relative z-10">
       <div className="container-content">
         <div className="flex items-center gap-2 sm:gap-4 py-2 sm:py-3 px-2 sm:px-6">
           {/* News Icon/Label */}
           <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-            <svg className="w-3 h-3 sm:w-5 sm:h-5 text-[#B30027] animate-pulse flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <svg className="w-3 h-3 sm:w-5 sm:h-5 text-[var(--brand-red)] animate-pulse flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
             </svg>
             <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white whitespace-nowrap hidden sm:inline">Latest News</span>
@@ -115,7 +115,7 @@ export default function NewsSlider() {
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
                 className={`h-1 sm:h-1.5 rounded-full transition-all duration-300 ${currentIndex === idx
-                  ? 'w-4 sm:w-6 bg-[#B30027]'
+                  ? 'w-4 sm:w-6 bg-[var(--brand-red)]'
                   : 'w-1 sm:w-1.5 bg-white/40 hover:bg-white/60'
                   }`}
                 aria-label={`Go to news ${idx + 1}`}

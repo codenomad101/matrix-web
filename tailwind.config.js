@@ -8,9 +8,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        heading: 'var(--heading)',
+        body: 'var(--body)',
+        'page-bg': '#f5f5f5',
+        'box-bg': '#f0f0f0',
         brand: {
           DEFAULT: '#b2dfee',
-          dark: '#0a1a67',
+          dark: 'var(--brand-red)',
           50: '#f2faff',
           100: '#e4f4fb',
           200: '#cdeafa',
@@ -28,7 +32,7 @@ module.exports = {
           200: '#99c3df',
           300: '#66a5cf',
           400: '#3387bf',
-          500: '#0a1a67',
+          500: 'var(--brand-red)',
           600: '#003d72',
           700: '#002e56',
           800: '#001f3a',
@@ -36,14 +40,56 @@ module.exports = {
         },
       },
       fontFamily: {
-        display: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        body: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        'h1': ['clamp(2.25rem, 2.5vw + 1rem, 2.625rem)', { lineHeight: '1.2' }],
+        'h2': ['clamp(1.75rem, 1.5vw + 1rem, 2rem)', { lineHeight: '1.3' }],
+        'h3': ['clamp(1.375rem, 0.5vw + 1.1rem, 1.5rem)', { lineHeight: '1.4' }],
+        'body': ['clamp(1rem, 0.25vw + 0.9rem, 1.125rem)', { lineHeight: '1.6' }],
+        'caption': ['0.875rem', { lineHeight: '1.5' }],
       },
       boxShadow: {
         soft: '0 8px 30px rgba(0,0,0,0.08)',
       },
       transitionTimingFunction: {
         smooth: 'cubic-bezier(0.22, 1, 0.36, 1)',
+      },
+      keyframes: {
+        headerTicker: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        vrikshaMarquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        vrikshaTreeSway: {
+          '0%, 100%': { transform: 'rotate(-2deg)' },
+          '50%': { transform: 'rotate(2deg)' },
+        },
+        vrikshaTreeShimmer: {
+          '0%, 100%': { opacity: '0.88', transform: 'scale(1)' },
+          '50%': { opacity: '1', transform: 'scale(1.03)' },
+        },
+        heroUspBorderSpin: {
+          '0%': { transform: 'translate(-50%, -50%) rotate(0deg)' },
+          '100%': { transform: 'translate(-50%, -50%) rotate(360deg)' },
+        },
+        heroUspItemIn: {
+          '0%': { opacity: '0', transform: 'translateY(14px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        headerTicker: 'headerTicker 38s linear infinite',
+        vrikshaMarquee: 'vrikshaMarquee 36s linear infinite',
+        vrikshaTreeSway: 'vrikshaTreeSway 5.5s ease-in-out infinite',
+        vrikshaTreeShimmer: 'vrikshaTreeShimmer 4s ease-in-out infinite',
+        heroUspBorderSpin: 'heroUspBorderSpin 10s linear infinite',
+        heroUspItemIn: 'heroUspItemIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards',
       },
     },
   },

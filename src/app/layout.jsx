@@ -1,14 +1,31 @@
 import './globals.css'
 import Script from 'next/script'
+import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import FloatingInquiryButton from '@/components/FloatingInquiryButton'
+import BackToTop from '@/components/BackToTop'
+import ShowStopperPopup from '@/components/ShowStopperPopup'
 
 const GA_MEASUREMENT_ID = 'G-691QRXV0X2'
 const GTM_ID = 'GTM-5GPMKPKV'
 
+const inter = Inter({
+  weight: ['400', '500', '600', '700', '800', '900'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+}
+
 export const metadata = {
   metadataBase: new URL('https://www.matrixscienceacademy.com'),
+
   title: {
     default: 'Matrix Science Academy | Leading IIT-JEE, NEET, MHT-CET Coaching in Pune',
     template: '%s | Matrix Science Academy',
@@ -136,8 +153,14 @@ export default function RootLayout({ children }) {
   }
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={inter.variable}>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var t=localStorage.getItem('msa-theme');if(t==='red'||t==='blue')document.documentElement.setAttribute('data-theme',t);else document.documentElement.setAttribute('data-theme','blue');}catch(e){document.documentElement.setAttribute('data-theme','blue');}})();",
+          }}
+        />
         {/* Google Search Console site verification - visible in view-source for verification */}
         <meta name="google-site-verification" content="kh5Lhw6qb0rfqtFJWhX370Jqb2lKsz75k3IeLPJGpDU" />
         {/* Google Tag Manager - as high in head as possible */}
@@ -151,7 +174,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
       </head>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col font-sans antialiased">
+        <span id="top" aria-hidden="true" className="absolute top-0 left-0" />
         {/* Google Tag Manager (noscript) - immediately after opening body */}
         <noscript>
           <iframe
@@ -180,15 +204,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Navbar />
-        <main className="flex-1">
+        <main className="flex-1 bg-white">
           {children}
         </main>
         <Footer />
+        <BackToTop />
         <FloatingInquiryButton />
+        <ShowStopperPopup />
       </body>
     </html>
   )
 }
-
-
 
